@@ -4,6 +4,9 @@ import monkey, { cdn } from 'vite-plugin-monkey';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+    build: {
+        minify: false,
+    },
     plugins: [
         react(),
         monkey({
@@ -43,8 +46,12 @@ export default defineConfig({
                 'run-at': 'document-start'
             },
             build: {
-                // Bundling React to avoid CSP blocking external CDNs
                 externalGlobals: {
+                    react: cdn.jsdelivr('React', 'umd/react.production.min.js'),
+                    'react-dom': cdn.jsdelivr('ReactDOM', 'umd/react-dom.production.min.js'),
+                    'react-dom/client': 'ReactDOM',
+                    'react/jsx-runtime': 'React',
+                    'sweetalert2': cdn.jsdelivr('Swal', 'dist/sweetalert2.all.min.js'),
                 },
             },
         }),
