@@ -18,11 +18,13 @@ export interface AIModalProps {
     productTitle?: string;
     asin?: string | null;
     starRating?: number;
+    existingReviewText?: string;
 }
 
-export const AIModal: React.FC<AIModalProps> = ({ isOpen, onClose, onInsert, productTitle = "", asin, starRating }) => {
+export const AIModal: React.FC<AIModalProps> = ({ isOpen, onClose, onInsert, productTitle = "", asin, starRating, existingReviewText = "" }) => {
     const { settings, setSetting } = useSettings();
     const [userThoughts, setUserThoughts] = useState('');
+    const [useExistingReview, setUseExistingReview] = useState(false);
     const [reviewLength, setReviewLength] = useState<'short' | 'normal' | 'long' | 'detailed'>('normal');
     const [isGenerating, setIsGenerating] = useState(false);
     const [generatedText, setGeneratedText] = useState('');
@@ -124,12 +126,14 @@ ${markdownInstruction}`;
             p += `\n\nThe user has rated this product ${starRating} out of 5 stars.`;
         }
 
-        if (userThoughts.trim()) {
-            p += `\n\nUser's Initial Thoughts / Specific Points to Cover:\n${userThoughts}`;
+        const currentThoughts = useExistingReview ? existingReviewText : userThoughts;
+
+        if (currentThoughts.trim()) {
+            p += `\n\nUser's Initial Thoughts / Specific Points to Cover:\n${currentThoughts}`;
         }
 
         return p;
-    }, [productTitle, productContext, starRating, userThoughts, reviewLength]);
+    }, [productTitle, productContext, starRating, userThoughts, existingReviewText, useExistingReview, reviewLength]);
 
     const handleGenerate = async () => {
         setIsGenerating(true);
@@ -244,7 +248,22 @@ ${markdownInstruction}`;
 
                 <div className="ars-ai-prompt-section">
                     <div className="flex justify-between items-center mb-2">
-                        <label className="ars-label mb-0">Your Initial Thoughts (Optional):</label>
+                        <div className="flex items-center gap-3">
+                            <label className="ars-label mb-0">Your Initial Thoughts (Required - 300+ chars):</label>
+                            {existingReviewText.length >= 300 && (
+                                <label className="flex items-center gap-1 text-xs cursor-pointer select-none">
+                                    <input
+                                        type="checkbox"
+                                        checked={useExistingReview}
+                                        onChange={(e) => setUseExistingReview(e.target.checked)}
+                                        className="ars-checkbox"
+                                    />
+                                    <span style={{ color: useExistingReview ? 'var(--ars-color-primary)' : 'inherit' }}>
+                                        Use existing review content
+                                    </span>
+                                </label>
+                            )}
+                        </div>
                         <Button
                             variant="ghost"
                             size="sm"
@@ -256,13 +275,31 @@ ${markdownInstruction}`;
                         </Button>
                     </div>
 
-                    <textarea
-                        className="ars-ai-prompt-input"
-                        placeholder="Enter your opinion, pros/cons, or specific points you want the AI to cover..."
-                        value={userThoughts}
-                        onChange={(e) => setUserThoughts(e.target.value)}
-                        style={{ minHeight: '80px' }}
-                    />
+                    <div style={{ position: 'relative' }}>
+                        <textarea
+                            className="ars-ai-prompt-input"
+                            placeholder="Enter your opinion, pros/cons, or specific points you want the AI to cover (min. 300 characters)..."
+                            value={useExistingReview ? existingReviewText : userThoughts}
+                            onChange={(e) => !useExistingReview && setUserThoughts(e.target.value)}
+                            style={{
+                                minHeight: '120px',
+                                opacity: useExistingReview ? 0.6 : 1,
+                                cursor: useExistingReview ? 'not-allowed' : 'text',
+                                backgroundColor: useExistingReview ? '#f9fafb' : 'white'
+                            }}
+                            disabled={useExistingReview}
+                        />
+                        {!useExistingReview && userThoughts.length > 0 && userThoughts.length < 300 && (
+                            <div className="absolute bottom-2 right-3 text-[10px] text-red-500 font-medium">
+                                {userThoughts.length} / 300
+                            </div>
+                        )}
+                        {!useExistingReview && userThoughts.length >= 300 && (
+                            <div className="absolute bottom-2 right-3 text-[10px] text-green-500 font-medium">
+                                {userThoughts.length} characters
+                            </div>
+                        )}
+                    </div>
 
                     {showPreview && (
                         <div className="ars-ai-prompt-preview mt-2 p-3 bg-gray-50 border rounded text-xs font-mono text-gray-600 overflow-y-auto max-h-40 whitespace-pre-wrap">
@@ -274,7 +311,7 @@ ${markdownInstruction}`;
                         className="ars-generate-btn mt-3"
                         onClick={handleGenerate}
                         isLoading={isGenerating}
-                        disabled={isGenerating}
+                        disabled={isGenerating || (useExistingReview ? existingReviewText.length < 300 : userThoughts.length < 300)}
                         icon={<Sparkles size={18} />}
                     >
                         Generate Review

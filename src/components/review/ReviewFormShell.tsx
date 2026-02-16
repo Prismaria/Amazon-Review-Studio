@@ -326,6 +326,7 @@ export const ReviewFormShell: React.FC = () => {
                 productTitle={amazon.product.name}
                 asin={amazon.product.asin}
                 starRating={amazon.state.starRating}
+                existingReviewText={amazon.state.reviewText}
             />
             <SettingsDashboard
                 isOpen={isSettingsOpen}
