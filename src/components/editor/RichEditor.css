@@ -1,0 +1,75 @@
+.ars-rich-editor {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.ars-editor-textarea {
+    width: 100%;
+    min-height: 250px;
+    padding: var(--ars-spacing-md);
+    font-family: inherit;
+    font-size: var(--ars-font-size-md);
+    color: var(--ars-color-text-main);
+    background-color: var(--ars-color-bg-main);
+    border: 1px solid var(--ars-color-border);
+    resize: vertical;
+    outline: none;
+    line-height: 1.6;
+    /* Smooth height transition for auto-resize */
+    transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1), min-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: height, min-height;
+}
+
+.ars-editor-footer {
+    display: flex;
+    justify-content: space-between; /* Changed to space-between to accommodate checkbox */
+    align-items: center;
+    padding: var(--ars-spacing-xs) var(--ars-spacing-sm);
+    background-color: var(--ars-color-bg-secondary);
+    border: 1px solid var(--ars-color-border);
+    border-top: none;
+    border-bottom-left-radius: var(--ars-radius-md);
+    border-bottom-right-radius: var(--ars-radius-md);
+}
+
+.ars-editor-options {
+    display: flex;
+    align-items: center;
+}
+
+.ars-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: var(--ars-font-size-xs);
+    color: var(--ars-color-text-secondary);
+    cursor: pointer;
+    user-select: none;
+}
+
+.ars-checkbox-label input[type="checkbox"] {
+    cursor: pointer;
+}
+
+.ars-checkbox-label:hover {
+    color: var(--ars-color-text-main);
+}
+
+.ars-char-count {
+    font-size: var(--ars-font-size-xs);
+    color: var(--ars-color-text-secondary);
+}
+
+/* Template Manager specific tweaks */
+.ars-tm-editor {
+    flex: 1;
+    min-height: 0;
+    /* Allow shrinking */
+}
+
+.ars-tm-editor .ars-editor-textarea {
+    flex: 1;
+    min-height: 200px;
+    resize: none;
+}

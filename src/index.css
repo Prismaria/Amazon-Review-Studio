@@ -1,0 +1,138 @@
+/* Component CSS - consolidated for shadow DOM injection */
+@import './components/review/ProfileSection.css';
+@import './components/review/ProductHeader.css';
+@import './components/review/StarRating.css';
+@import './components/review/MediaUpload.css';
+@import './components/review/ReviewFormShell.css';
+@import './components/common/Button.css';
+@import './components/common/Input.css';
+@import './components/common/Card.css';
+@import './components/common/Modal.css';
+@import './components/editor/RichEditor.css';
+@import './components/editor/EditorToolbar.css';
+@import './components/ai/AIModal.css';
+@import './components/settings/SettingsDashboard.css';
+@import './components/common/ScalingWrapper.css';
+@import './components/ReviewStudio.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:host {
+    display: block;
+    animation: ars-fade-zoom 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+
+    color-scheme: light;
+    color: var(--ars-color-text-main);
+    background-color: transparent;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Design System Variables */
+    --ars-color-primary: #FF9900;
+    /* Amazon Orange */
+    --ars-color-primary-hover: #e68a00;
+    --ars-color-secondary: #232f3e;
+    /* Amazon Dark Blue */
+    --ars-color-secondary-hover: #131921;
+
+    --ars-color-text-main: #0f1111;
+    --ars-color-text-secondary: #565959;
+    --ars-color-text-inverse: #ffffff;
+
+    --ars-color-bg-main: #ffffff;
+    --ars-color-bg-secondary: #f0f2f2;
+    --ars-color-bg-tertiary: #e7e9ec;
+
+    --ars-color-border: #d5d9d9;
+    --ars-color-border-focus: #e77600;
+
+    --ars-color-success: #067d62;
+    --ars-color-error: #ba0933;
+    --ars-color-warning: #ffa41c;
+
+    --ars-radius-sm: 4px;
+    --ars-radius-md: 8px;
+    --ars-radius-lg: 12px;
+    --ars-radius-xl: 20px;
+
+    --ars-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+    --ars-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --ars-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+
+    --ars-spacing-xs: 4px;
+    --ars-spacing-sm: 8px;
+    --ars-spacing-md: 16px;
+    --ars-spacing-lg: 24px;
+    --ars-spacing-xl: 32px;
+
+    --ars-font-size-xs: 11px;
+    --ars-font-size-sm: 13px;
+    --ars-font-size-md: 15px;
+    --ars-font-size-lg: 18px;
+    --ars-font-size-xl: 24px;
+
+    --ars-anim-fast: 0.15s ease;
+    --ars-anim-normal: 0.25s ease;
+}
+
+/* Redesign Tweaks */
+:host {
+    padding: 60px 24px !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+button {
+    cursor: pointer;
+    font-family: inherit;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #bbb;
+}
+
+@keyframes ars-fade-zoom {
+    from {
+        opacity: 0;
+        transform: scale(0.98) translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.ars-review-shell-listing {
+    animation: ars-fade-zoom 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* Ensure no flicker on Amazon styles */
+.ryp__desktop {
+    display: none !important;
+}

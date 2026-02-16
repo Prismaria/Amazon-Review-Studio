@@ -1,0 +1,44 @@
+.ars-scaling-wrapper {
+    transition: height 0.2s ease-out, width 0.2s ease-out;
+}
+
+.ars-scaling-wrapper.is-resizing {
+    transition: none;
+    cursor: nwse-resize;
+}
+
+.ars-scaling-content {
+    transition: transform 0.2s ease-out;
+    pointer-events: auto;
+}
+
+.is-resizing .ars-scaling-content {
+    transition: none;
+}
+
+.ars-resize-handle {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 12px;
+    height: 12px;
+    cursor: nwse-resize;
+    z-index: 1000;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+    /* Two small, light, elegant lines in the corner */
+    background:
+        linear-gradient(-45deg,
+            transparent 20%, #ccc 20%, #ccc 30%,
+            transparent 30%, transparent 45%,
+            #ccc 45%, #ccc 55%, transparent 55%);
+}
+
+.ars-resize-handle:hover,
+.is-resizing .ars-resize-handle {
+    opacity: 1;
+}
+
+.ars-resize-handle svg {
+    display: none;
+}

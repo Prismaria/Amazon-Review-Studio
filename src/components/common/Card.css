@@ -1,0 +1,23 @@
+.ars-card {
+    background-color: var(--ars-color-bg-main);
+    border: 1px solid var(--ars-color-border);
+    border-radius: var(--ars-radius-md);
+    box-shadow: var(--ars-shadow-sm);
+    overflow: hidden;
+}
+
+.ars-card--p-none {
+    padding: 0;
+}
+
+.ars-card--p-sm {
+    padding: var(--ars-spacing-sm);
+}
+
+.ars-card--p-md {
+    padding: var(--ars-spacing-md);
+}
+
+.ars-card--p-lg {
+    padding: var(--ars-spacing-lg);
+}

@@ -1,0 +1,93 @@
+.ars-studio-container {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--ars-color-bg-main);
+    border: 1px solid var(--ars-color-border);
+    border-radius: var(--ars-radius-lg);
+    box-shadow: var(--ars-shadow-lg);
+    overflow: hidden;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.ars-studio-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--ars-spacing-md) var(--ars-spacing-lg);
+    background-color: var(--ars-color-secondary);
+    color: white;
+}
+
+.ars-title-group {
+    display: flex;
+    align-items: center;
+    gap: var(--ars-spacing-sm);
+}
+
+.ars-title-group h1 {
+    font-size: var(--ars-font-size-lg);
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.ars-logo {
+    color: var(--ars-color-primary);
+}
+
+.ars-studio-main {
+    padding: var(--ars-spacing-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--ars-spacing-xl);
+}
+
+.ars-form-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ars-spacing-md);
+}
+
+.ars-editor-label-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ars-editor-label-row label {
+    font-size: var(--ars-font-size-sm);
+    font-weight: 600;
+    color: var(--ars-color-text-main);
+}
+
+.ars-ai-trigger {
+    color: var(--ars-color-primary) !important;
+    border-color: var(--ars-color-primary) !important;
+}
+
+.ars-ai-trigger:hover {
+    background-color: rgba(255, 153, 0, 0.05) !important;
+}
+
+.ars-actions-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--ars-spacing-sm);
+    padding-top: var(--ars-spacing-lg);
+    border-top: 1px solid var(--ars-color-bg-tertiary);
+}
+
+.ars-apply-btn {
+    width: 100%;
+    max-width: 400px;
+    height: 48px !important;
+    font-size: var(--ars-font-size-md) !important;
+}
+
+.ars-hint {
+    font-size: var(--ars-font-size-xs);
+    color: var(--ars-color-text-secondary);
+    margin: 0;
+}

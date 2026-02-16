@@ -1,0 +1,45 @@
+.ars-product-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.ars-product-image-link {
+    flex-shrink: 0;
+    display: block;
+}
+
+.ars-product-image-link:hover .ars-product-image {
+    opacity: 0.9;
+}
+
+.ars-product-image {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: opacity 0.2s ease;
+}
+
+.ars-product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
+}
+
+.ars-product-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #0f1111;
+    letter-spacing: -0.01em;
+}
+
+.ars-product-name {
+    font-size: 0.875rem;
+    color: #565959;
+    line-height: 1.4;
+}

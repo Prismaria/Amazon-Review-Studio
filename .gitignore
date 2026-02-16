@@ -1,0 +1,34 @@
+# Build outputs
+dist
+dist-ssr
+*.local
+
+# Dependencies
+node_modules
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Editor/OS artifacts
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+Thumbs.db
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Project-specific exclusions
+list-of-all-features.md
+list-of-all-localstorage-keys.md
+amazon-review-textbox-tools.user.js
+Fix-*-implementation_plan.md
+amazon-review-native-react-app.html

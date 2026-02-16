@@ -1,0 +1,60 @@
+.ars-star-rating {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ars-star-rating-stars {
+    display: flex;
+    gap: 4px;
+}
+
+.ars-star-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    border: none;
+    background: transparent;
+    color: #d5d9d9;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.ars-star-button:hover {
+    color: #e68a00;
+    transform: scale(1.15);
+}
+
+.ars-star-button:active {
+    transform: scale(0.9);
+}
+
+.ars-star-button:focus-visible {
+    outline: 2px solid #FF9900;
+    outline-offset: 2px;
+}
+
+.ars-star-button--filled {
+    color: #FF9900;
+}
+
+/* Ensure all stars in the "filled" range highlight uniformly when the group is hovered */
+.ars-star-rating-stars:hover .ars-star-button--filled {
+    color: #e68a00;
+}
+
+.ars-star-clear {
+    font-size: 0.875rem;
+    color: #54b4e8;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px 0;
+    transition: color 0.2s ease;
+}
+
+.ars-star-clear:hover {
+    color: #2d9fd8;
+    text-decoration: underline;
+}

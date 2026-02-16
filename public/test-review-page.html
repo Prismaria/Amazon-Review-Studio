@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Review Studio Test - Amazon Review Form</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f3f3f3; }
+        .test-note { padding: 16px; background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="test-note">
+        <strong>Test page:</strong> This page mimics Amazon's review form structure. 
+        Install the Review Studio userscript and reload to see our replacement UI.
+    </div>
+
+    <div id="react-app" class="ryp__desktop">
+        <div class="a-section a-spacing-none ryp__profile__background-color">
+            <div class="a-section a-padding-base ryp__profile-container">
+                <div data-hook="ryp-profile-info" class="a-profile ryp__profile__info">
+                    <div class="a-profile-avatar-wrapper">
+                        <div class="a-profile-avatar">
+                            <img src="https://m.media-amazon.com/images/S/amazon-avatars-global/a33e45b6-989d-42b0-a3c3-75c454cc640b._CR0%2C0%2C500%2C500_SX460_.jpeg" alt="" />
+                        </div>
+                    </div>
+                    <div class="a-profile-content">
+                        <span class="a-profile-name">Test User</span>
+                    </div>
+                </div>
+                <a aria-label="Edit your name" data-hook="ryp-profile-edit-link" id="ryp__profile__edit-link" class="a-link-normal ryp__profile-edit__link" href="#">Edit public name</a>
+            </div>
+        </div>
+
+        <div class="a-section in-context-ryp__container">
+            <div data-testid="in-context-ryp__product-header" class="a-section in-context-ryp__product-header">
+                <img alt="" src="https://m.media-amazon.com/images/I/51x0Y+-QDaL._SR240,240_.jpg" height="64" width="64" />
+                <div data-testid="in-context-ryp__product-header-question-container" class="in-context-ryp__product-header-question-container">
+                    <span class="in-context-ryp__product-title a-text-bold">How was the item?</span>
+                    <span class="in-context-ryp__product-name">VYLEE 181 Pcs Cable Management Organizer Kit</span>
+                </div>
+            </div>
+
+            <form data-testid="in-context-ryp-form" id="in-context-ryp-form" class="in-context-ryp-form-desktop">
+                <div class="a-section in-context-ryp__form_fields_container-desktop">
+                    <div class="a-section in-context-ryp__form-field-container">
+                        <div class="in-context-ryp__form-field--starRating-wrapper">
+                            <div class="in-context-ryp__form-field--starRating"></div>
+                            <span class="in-context-ryp__form-field--starRating--clear" tabindex="0">Clear</span>
+                        </div>
+                    </div>
+                    <div class="a-section in-context-ryp__form-field-container">
+                        <label for="reviewText">Write a review</label>
+                        <textarea id="reviewText" name="reviewText" placeholder="What should other customers know?"></textarea>
+                    </div>
+                    <div class="a-section in-context-ryp__form-field-container">
+                        <label for="media">Share a video or photo</label>
+                        <input type="file" id="media" accept="image/*,video/*" style="display:none" />
+                    </div>
+                    <div class="a-section in-context-ryp__form-field-container">
+                        <label for="reviewTitle">Title your review (required)</label>
+                        <input type="text" id="reviewTitle" name="reviewTitle" placeholder="What's most important to know?" />
+                    </div>
+                </div>
+                <div class="in-context-ryp__submit-button-frame-desktop">
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="/src/main.tsx"></script>
+</body>
+</html>

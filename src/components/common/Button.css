@@ -1,0 +1,146 @@
+.ars-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--ars-radius-md);
+    font-weight: 500;
+    transition: all var(--ars-anim-fast);
+    outline: none;
+    border: 1px solid transparent;
+    user-select: none;
+    white-space: nowrap;
+}
+
+.ars-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.ars-button:focus-visible {
+    box-shadow: 0 0 0 2px var(--ars-color-bg-main), 0 0 0 4px var(--ars-color-primary);
+}
+
+/* Variants */
+.ars-button--primary {
+    background-color: var(--ars-color-primary);
+    color: var(--ars-color-text-inverse);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.ars-button--primary:hover {
+    background-color: var(--ars-color-primary-hover);
+    transform: translateY(-1px);
+}
+
+.ars-button--primary:active {
+    transform: translateY(0);
+}
+
+.ars-button--secondary {
+    background-color: var(--ars-color-secondary);
+    color: var(--ars-color-text-inverse);
+}
+
+.ars-button--secondary:hover {
+    background-color: var(--ars-color-secondary-hover);
+}
+
+.ars-button--outline {
+    background-color: transparent;
+    border-color: var(--ars-color-border);
+    color: var(--ars-color-text-main);
+}
+
+.ars-button--outline:hover {
+    background-color: var(--ars-color-bg-secondary);
+    border-color: var(--ars-color-border-focus);
+}
+
+.ars-button--ghost {
+    background-color: transparent;
+    color: var(--ars-color-text-secondary);
+}
+
+.ars-button--ghost:hover {
+    background-color: var(--ars-color-bg-secondary);
+    color: var(--ars-color-text-main);
+}
+
+.ars-button--danger {
+    background-color: var(--ars-color-error);
+    color: var(--ars-color-text-inverse);
+}
+
+.ars-button--danger:hover {
+    background-color: #a8082e;
+    /* slightly darker */
+}
+
+/* Sizes */
+.ars-button--sm {
+    height: 28px;
+    padding: 0 var(--ars-spacing-sm);
+    font-size: var(--ars-font-size-sm);
+}
+
+.ars-button--md {
+    height: 36px;
+    padding: 0 var(--ars-spacing-md);
+    font-size: var(--ars-font-size-sm);
+    /* Amazon uses 13px often */
+}
+
+.ars-button--lg {
+    height: 44px;
+    padding: 0 var(--ars-spacing-lg);
+    font-size: var(--ars-font-size-md);
+}
+
+.ars-button--icon {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border-radius: 50%;
+    /* Circle for icon buttons */
+}
+
+.ars-button--icon.ars-button--sm {
+    width: 28px;
+    height: 28px;
+}
+
+.ars-button--icon.ars-button--lg {
+    width: 44px;
+    height: 44px;
+}
+
+/* Loader & Icon */
+.ars-button__loader {
+    animation: ars-spin 1s linear infinite;
+    margin-right: var(--ars-spacing-xs);
+}
+
+.ars-button--icon .ars-button__loader {
+    margin-right: 0;
+}
+
+.ars-button__icon {
+    margin-right: var(--ars-spacing-xs);
+    display: flex;
+    align-items: center;
+}
+
+.ars-button--icon .ars-button__icon {
+    margin-right: 0;
+}
+
+@keyframes ars-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}

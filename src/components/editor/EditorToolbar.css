@@ -1,0 +1,128 @@
+.ars-editor-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--ars-spacing-xs);
+    background-color: var(--ars-color-bg-secondary);
+    border: 1px solid var(--ars-color-border);
+    border-bottom: none;
+    border-top-left-radius: var(--ars-radius-md);
+    border-top-right-radius: var(--ars-radius-md);
+}
+
+.ars-toolbar-group {
+    display: flex;
+    align-items: center;
+    gap: var(--ars-spacing-xs);
+}
+
+.ars-toolbar-divider {
+    width: 1px;
+    height: 20px;
+    background-color: var(--ars-color-border);
+    margin: 0 var(--ars-spacing-xs);
+}
+
+.ars-toolbar-btn {
+    height: 28px !important;
+    width: 28px !important;
+    padding: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ars-toolbar-btn[data-variant="primary"] {
+    background-color: var(--ars-color-primary) !important;
+    color: white !important;
+}
+
+.ars-toolbar-paste {
+    width: auto !important;
+    min-width: 28px;
+    padding: 0 8px !important;
+}
+
+.ars-toolbar-paste-label {
+    margin-left: 4px;
+}
+
+.ars-phrase-popover {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 1000;
+    margin-top: 4px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--ars-color-border);
+}
+
+.ars-bullet-selector {
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    margin-top: 5px !important;
+    background: white !important;
+    border: 1px solid #ddd !important;
+    border-radius: 8px !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2) !important;
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 6px !important;
+    padding: 10px !important;
+    z-index: 99999 !important;
+    width: auto !important;
+    min-width: 140px !important;
+    pointer-events: auto !important;
+}
+
+/* Remove fixed overlay since we'll use a better approach or just rely on wrapper hover/click-outside */
+.ars-bullet-selector-overlay {
+    display: none !important;
+}
+
+.ars-bullet-option {
+    width: 30px !important;
+    height: 30px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    border-radius: 4px !important;
+    font-size: 16px !important;
+    color: #333 !important;
+    transition: all 0.2s ease !important;
+    background: transparent !important;
+}
+
+.ars-bullet-option:hover {
+    background-color: #f0f0f0 !important;
+}
+
+.ars-bullet-option.active {
+    background-color: var(--ars-color-primary) !important;
+    color: white !important;
+}
+
+.ars-bullet-btn {
+    position: relative !important;
+}
+
+.ars-bullet-indicator {
+    position: absolute !important;
+    bottom: -1px !important;
+    right: -1px !important;
+    font-size: 11px !important;
+    color: inherit !important;
+    opacity: 0.8 !important;
+    width: 12px !important;
+    height: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    pointer-events: none !important;
+    z-index: 1 !important;
+    font-weight: bold !important;
+}

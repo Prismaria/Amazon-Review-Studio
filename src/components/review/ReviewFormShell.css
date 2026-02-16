@@ -1,0 +1,128 @@
+.ars-review-shell {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #ffffff;
+    color: #0f1111;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    animation: ars-fade-zoom 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.ars-review-shell--loading {
+    padding: 2rem;
+    text-align: center;
+    color: #565959;
+}
+
+.ars-review-form-container {
+    padding: 1.5rem 2rem 0;
+}
+
+.ars-review-form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.ars-form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.ars-form-field-label-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ars-form-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #0f1111;
+}
+
+.ars-ai-trigger {
+    color: #FF9900 !important;
+    border-color: #FF9900 !important;
+}
+
+.ars-ai-trigger:hover {
+    background-color: rgba(255, 153, 0, 0.08) !important;
+}
+
+.ars-review-submit {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    padding: 1.25rem 2rem;
+    border-top: 1px solid #e5e7eb;
+    background-color: #f9fafb;
+}
+
+.ars-header-actions {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 20;
+}
+
+.ars-action-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #ffffff;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    opacity: 0.8;
+}
+
+.ars-action-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    opacity: 1;
+}
+
+.ars-action-button.active {
+    color: #FF9900;
+    opacity: 1;
+}
+
+.ars-submit-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ars-back-button {
+    background-color: #ffffff !important;
+    border-color: #d5d9d9 !important;
+    color: #0f1111 !important;
+    box-shadow: 0 2px 5px 0 rgba(213, 217, 217, 0.5);
+}
+
+.ars-back-button:hover {
+    background-color: #f7fafa !important;
+    border-color: #adb1b1 !important;
+    transform: translateY(-1px);
+}
+
+.ars-back-button:active {
+    transform: translateY(0);
+}
