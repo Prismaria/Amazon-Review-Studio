@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Amazon Review Toolkit 2.0
 // @namespace    https://github.com/Prismaria/Amazon-Review-Studio
-// @version      2.0.0
+// @version      2.0.3
 // @author       Prismaris
 // @description  Complete review writing tookit for Amazon.
 // @match        *://*.amazon.com/*
@@ -14,8 +14,9 @@
 // @match        *://*.amazon.co.jp/*
 // @match        *://*.amazon.in/*
 // @match        *://*.amazon.com.au/*
-// @require      https://cdn.jsdelivr.net/npm/react@19.2.4/umd/react.production.min.js
-// @require      https://cdn.jsdelivr.net/npm/sweetalert2@11.26.18/dist/sweetalert2.all.min.js
+// @require      https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js
+// @require      https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js
+// @require      https://cdn.jsdelivr.net/npm/sweetalert2@11.10/dist/sweetalert2.all.min.js
 // @connect      pastebin.com
 // @connect      localhost
 // @connect      127.0.0.1
@@ -29,7 +30,7 @@
 // @run-at       document-start
 // ==/UserScript==
 
-(function (jsxRuntime, React__default, ReactDOM, Swal) {
+(function (React__default, ReactDOM, Swal) {
   'use strict';
 
   function _interopNamespaceDefault(e) {
@@ -51,6 +52,37 @@
 
   const React__default__namespace = _interopNamespaceDefault(React__default);
 
+  var jsxRuntime = { exports: {} };
+  var reactJsxRuntime_production_min = {};
+  var hasRequiredReactJsxRuntime_production_min;
+  function requireReactJsxRuntime_production_min() {
+    if (hasRequiredReactJsxRuntime_production_min) return reactJsxRuntime_production_min;
+    hasRequiredReactJsxRuntime_production_min = 1;
+    var f = React__default, k = Symbol.for("react.element"), l = Symbol.for("react.fragment"), m = Object.prototype.hasOwnProperty, n = f.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner, p = { key: true, ref: true, __self: true, __source: true };
+    function q(c, a, g) {
+      var b, d = {}, e = null, h = null;
+      void 0 !== g && (e = "" + g);
+      void 0 !== a.key && (e = "" + a.key);
+      void 0 !== a.ref && (h = a.ref);
+      for (b in a) m.call(a, b) && !p.hasOwnProperty(b) && (d[b] = a[b]);
+      if (c && c.defaultProps) for (b in a = c.defaultProps, a) void 0 === d[b] && (d[b] = a[b]);
+      return { $$typeof: k, type: c, key: e, ref: h, props: d, _owner: n.current };
+    }
+    reactJsxRuntime_production_min.Fragment = l;
+    reactJsxRuntime_production_min.jsx = q;
+    reactJsxRuntime_production_min.jsxs = q;
+    return reactJsxRuntime_production_min;
+  }
+  var hasRequiredJsxRuntime;
+  function requireJsxRuntime() {
+    if (hasRequiredJsxRuntime) return jsxRuntime.exports;
+    hasRequiredJsxRuntime = 1;
+    {
+      jsxRuntime.exports = requireReactJsxRuntime_production_min();
+    }
+    return jsxRuntime.exports;
+  }
+  var jsxRuntimeExports = requireJsxRuntime();
   const mergeClasses = (...classes) => classes.filter((className, index, array) => {
     return Boolean(className) && className.trim() !== "" && array.indexOf(className) === index;
   }).join(" ").trim();
@@ -1041,9 +1073,9 @@
     name,
     className
   }) => {
-    return jsxRuntime.jsx("div", { className: cn("ars-profile-section", className), children: jsxRuntime.jsx("div", { className: "ars-profile-container", children: jsxRuntime.jsxs("div", { className: "ars-profile-info", children: [
-jsxRuntime.jsx("div", { className: "ars-profile-avatar-wrapper", children: jsxRuntime.jsx("a", { href: "/gp/profile", className: "ars-profile-avatar", target: "_blank", rel: "noopener noreferrer", children: avatarSrc ? jsxRuntime.jsx("img", { src: avatarSrc, alt: "" }) : jsxRuntime.jsx("span", { className: "ars-profile-avatar-placeholder", children: name.charAt(0).toUpperCase() || "?" }) }) }),
-jsxRuntime.jsx("span", { className: "ars-profile-name", children: name })
+    return jsxRuntimeExports.jsx("div", { className: cn("ars-profile-section", className), children: jsxRuntimeExports.jsx("div", { className: "ars-profile-container", children: jsxRuntimeExports.jsxs("div", { className: "ars-profile-info", children: [
+jsxRuntimeExports.jsx("div", { className: "ars-profile-avatar-wrapper", children: jsxRuntimeExports.jsx("a", { href: "/gp/profile", className: "ars-profile-avatar", target: "_blank", rel: "noopener noreferrer", children: avatarSrc ? jsxRuntimeExports.jsx("img", { src: avatarSrc, alt: "" }) : jsxRuntimeExports.jsx("span", { className: "ars-profile-avatar-placeholder", children: name.charAt(0).toUpperCase() || "?" }) }) }),
+jsxRuntimeExports.jsx("span", { className: "ars-profile-name", children: name })
     ] }) }) });
   };
   const ProductHeader = ({
@@ -1053,7 +1085,7 @@ jsxRuntime.jsx("span", { className: "ars-profile-name", children: name })
     productUrl,
     className
   }) => {
-    const imageNode = imageSrc ? jsxRuntime.jsx(
+    const imageNode = imageSrc ? jsxRuntimeExports.jsx(
       "img",
       {
         className: "ars-product-image",
@@ -1063,24 +1095,24 @@ jsxRuntime.jsx("span", { className: "ars-profile-name", children: name })
         height: 64
       }
     ) : null;
-    return jsxRuntime.jsxs("div", { className: cn("ars-product-header", className), children: [
-      imageNode && (productUrl ? jsxRuntime.jsx("a", { href: productUrl, target: "_blank", rel: "noopener noreferrer", className: "ars-product-image-link", children: imageNode }) : imageNode),
-jsxRuntime.jsxs("div", { className: "ars-product-info", children: [
-jsxRuntime.jsx("span", { className: "ars-product-title", children: title }),
-jsxRuntime.jsx("span", { className: "ars-product-name", children: name })
+    return jsxRuntimeExports.jsxs("div", { className: cn("ars-product-header", className), children: [
+      imageNode && (productUrl ? jsxRuntimeExports.jsx("a", { href: productUrl, target: "_blank", rel: "noopener noreferrer", className: "ars-product-image-link", children: imageNode }) : imageNode),
+jsxRuntimeExports.jsxs("div", { className: "ars-product-info", children: [
+jsxRuntimeExports.jsx("span", { className: "ars-product-title", children: title }),
+jsxRuntimeExports.jsx("span", { className: "ars-product-name", children: name })
       ] })
     ] });
   };
   const StarRating = ({ value, onChange, className, hideClear }) => {
     const [hoverValue, setHoverValue] = React__default.useState(0);
     const displayValue = hoverValue || value;
-    return jsxRuntime.jsxs("div", { className: cn("ars-star-rating", className), children: [
-jsxRuntime.jsx(
+    return jsxRuntimeExports.jsxs("div", { className: cn("ars-star-rating", className), children: [
+jsxRuntimeExports.jsx(
         "div",
         {
           className: "ars-star-rating-stars",
           onMouseLeave: () => setHoverValue(0),
-          children: [1, 2, 3, 4, 5].map((rating) => jsxRuntime.jsx(
+          children: [1, 2, 3, 4, 5].map((rating) => jsxRuntimeExports.jsx(
             "button",
             {
               type: "button",
@@ -1098,13 +1130,13 @@ jsxRuntime.jsx(
               },
               "aria-label": `${rating} star${rating > 1 ? "s" : ""}`,
               "aria-pressed": rating <= value,
-              children: jsxRuntime.jsx(Star, { size: 28, strokeWidth: 1.5, fill: "currentColor" })
+              children: jsxRuntimeExports.jsx(Star, { size: 28, strokeWidth: 1.5, fill: "currentColor" })
             },
             rating
           ))
         }
       ),
-      !hideClear && jsxRuntime.jsx(
+      !hideClear && jsxRuntimeExports.jsx(
         "button",
         {
           type: "button",
@@ -1116,15 +1148,15 @@ jsxRuntime.jsx(
       )
     ] });
   };
-  const PreviewThumbnail = ({ src, onRemove }) => jsxRuntime.jsxs("div", { className: "ars-media-thumbnail", children: [
-jsxRuntime.jsx(
+  const PreviewThumbnail = ({ src, onRemove }) => jsxRuntimeExports.jsxs("div", { className: "ars-media-thumbnail", children: [
+jsxRuntimeExports.jsx(
       "div",
       {
         className: "ars-media-thumbnail-image",
         style: { backgroundImage: `url(${src})` }
       }
     ),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx(
       "button",
       {
         type: "button",
@@ -1134,7 +1166,7 @@ jsxRuntime.jsx(
           onRemove();
         },
         title: "Remove media",
-        children: jsxRuntime.jsx(X, { size: 14 })
+        children: jsxRuntimeExports.jsx(X, { size: 14 })
       }
     )
   ] });
@@ -1199,9 +1231,9 @@ jsxRuntime.jsx(
         onFilesDropped(files);
       }
     };
-    return jsxRuntime.jsxs("div", { className: "ars-media-upload-wrapper", children: [
-jsxRuntime.jsxs("div", { className: "ars-media-thumbnails", children: [
-        thumbnails.map((src, i) => jsxRuntime.jsx(
+    return jsxRuntimeExports.jsxs("div", { className: "ars-media-upload-wrapper", children: [
+jsxRuntimeExports.jsxs("div", { className: "ars-media-thumbnails", children: [
+        thumbnails.map((src, i) => jsxRuntimeExports.jsx(
           PreviewThumbnail,
           {
             src,
@@ -1209,7 +1241,7 @@ jsxRuntime.jsxs("div", { className: "ars-media-thumbnails", children: [
           },
           `${src}-${i}`
         )),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx(
           "div",
           {
             className: cn(
@@ -1227,18 +1259,18 @@ jsxRuntime.jsx(
             onDragLeave: handleDragLeave,
             onDrop: handleDrop,
             "aria-label": "Share a video or photo",
-            children: showPasteFeedback ? jsxRuntime.jsx("div", { className: "ars-media-upload-feedback", children: thumbnails.length > 0 ? "..." : "Image pasted! Uploading..." }) : jsxRuntime.jsx("div", { className: "ars-media-upload-content", children: isDragging2 ? jsxRuntime.jsxs("div", { className: "ars-media-upload-dragging-content", children: [
-jsxRuntime.jsx(Camera, { size: thumbnails.length > 0 ? 24 : 32, className: "ars-media-upload-icon animate-bounce" }),
-              thumbnails.length === 0 && jsxRuntime.jsx("span", { className: "ars-media-upload-placeholder font-bold", children: "Drop files to upload" })
-            ] }) : jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-jsxRuntime.jsx(Camera, { size: thumbnails.length > 0 ? 24 : 32, className: "ars-media-upload-icon" }),
-              thumbnails.length === 0 && jsxRuntime.jsx("span", { className: "ars-media-upload-placeholder", children: placeholder })
+            children: showPasteFeedback ? jsxRuntimeExports.jsx("div", { className: "ars-media-upload-feedback", children: thumbnails.length > 0 ? "..." : "Image pasted! Uploading..." }) : jsxRuntimeExports.jsx("div", { className: "ars-media-upload-content", children: isDragging2 ? jsxRuntimeExports.jsxs("div", { className: "ars-media-upload-dragging-content", children: [
+jsxRuntimeExports.jsx(Camera, { size: thumbnails.length > 0 ? 24 : 32, className: "ars-media-upload-icon animate-bounce" }),
+              thumbnails.length === 0 && jsxRuntimeExports.jsx("span", { className: "ars-media-upload-placeholder font-bold", children: "Drop files to upload" })
+            ] }) : jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+jsxRuntimeExports.jsx(Camera, { size: thumbnails.length > 0 ? 24 : 32, className: "ars-media-upload-icon" }),
+              thumbnails.length === 0 && jsxRuntimeExports.jsx("span", { className: "ars-media-upload-placeholder", children: placeholder })
             ] }) })
           }
         )
       ] }),
-jsxRuntime.jsxs("div", { className: "ars-media-upload-actions", children: [
-        onPasteFromClipboard && jsxRuntime.jsxs(
+jsxRuntimeExports.jsxs("div", { className: "ars-media-upload-actions", children: [
+        onPasteFromClipboard && jsxRuntimeExports.jsxs(
           "button",
           {
             type: "button",
@@ -1246,12 +1278,12 @@ jsxRuntime.jsxs("div", { className: "ars-media-upload-actions", children: [
             onClick: handlePasteClick,
             title: "Paste image from clipboard",
             children: [
-jsxRuntime.jsx(ClipboardPaste, { size: 18 }),
+jsxRuntimeExports.jsx(ClipboardPaste, { size: 18 }),
               "Paste from Clipboard..."
             ]
           }
         ),
-jsxRuntime.jsxs(
+jsxRuntimeExports.jsxs(
           "a",
           {
             href: "https://photos.google.com/",
@@ -1260,12 +1292,12 @@ jsxRuntime.jsxs(
             className: "ars-media-upload-action-btn ars-media-upload-google-btn",
             title: "Open Google Photos",
             children: [
-jsxRuntime.jsx(Image$1, { size: 18 }),
+jsxRuntimeExports.jsx(Image$1, { size: 18 }),
               "Google Photos"
             ]
           }
         ),
-jsxRuntime.jsxs(
+jsxRuntimeExports.jsxs(
           "a",
           {
             href: "https://www.icloud.com/photos",
@@ -1274,7 +1306,7 @@ jsxRuntime.jsxs(
             className: "ars-media-upload-action-btn ars-media-upload-icloud-btn",
             title: "Open iCloud Photos",
             children: [
-jsxRuntime.jsx(Cloud, { size: 18 }),
+jsxRuntimeExports.jsx(Cloud, { size: 18 }),
               "iCloud Photos"
             ]
           }
@@ -1284,7 +1316,7 @@ jsxRuntime.jsx(Cloud, { size: 18 }),
   };
   const Button = React__default.forwardRef(
     ({ className, variant = "primary", size = "md", isLoading, icon, children, disabled, ...props }, ref) => {
-      return jsxRuntime.jsxs(
+      return jsxRuntimeExports.jsxs(
         "button",
         {
           ref,
@@ -1298,8 +1330,8 @@ jsxRuntime.jsx(Cloud, { size: 18 }),
           disabled: disabled || isLoading,
           ...props,
           children: [
-            isLoading && jsxRuntime.jsx(LoaderCircle, { className: "ars-button__loader", size: 16 }),
-            !isLoading && icon && jsxRuntime.jsx("span", { className: "ars-button__icon", children: icon }),
+            isLoading && jsxRuntimeExports.jsx(LoaderCircle, { className: "ars-button__loader", size: 16 }),
+            !isLoading && icon && jsxRuntimeExports.jsx("span", { className: "ars-button__icon", children: icon }),
             children
           ]
         }
@@ -6997,7 +7029,7 @@ componentDidUpdate() {
         }
       };
     }, [isPresent]);
-    return jsxRuntime.jsx(PopChildMeasure, { isPresent, childRef: ref, sizeRef: size, pop, children: pop === false ? children : React__default__namespace.cloneElement(children, { ref: composedRef }) });
+    return jsxRuntimeExports.jsx(PopChildMeasure, { isPresent, childRef: ref, sizeRef: size, pop, children: pop === false ? children : React__default__namespace.cloneElement(children, { ref: composedRef }) });
   }
   const PresenceChild = ({ children, initial, isPresent, onExitComplete, custom, presenceAffectsLayout, mode, anchorX, anchorY, root }) => {
     const presenceChildren = useConstant(newChildrenMap);
@@ -7033,8 +7065,8 @@ componentDidUpdate() {
     React__default__namespace.useEffect(() => {
       !isPresent && !presenceChildren.size && onExitComplete && onExitComplete();
     }, [isPresent]);
-    children = jsxRuntime.jsx(PopChild, { pop: mode === "popLayout", isPresent, anchorX, anchorY, root, children });
-    return jsxRuntime.jsx(PresenceContext.Provider, { value: context, children });
+    children = jsxRuntimeExports.jsx(PopChild, { pop: mode === "popLayout", isPresent, anchorX, anchorY, root, children });
+    return jsxRuntimeExports.jsx(PresenceContext.Provider, { value: context, children });
   };
   function newChildrenMap() {
     return new Map();
@@ -7106,7 +7138,7 @@ componentDidUpdate() {
       return null;
     }
     const { forceRender } = React__default.useContext(LayoutGroupContext);
-    return jsxRuntime.jsx(jsxRuntime.Fragment, { children: renderedChildren.map((child) => {
+    return jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: renderedChildren.map((child) => {
       const key = getChildKey(child);
       const isPresent = propagate && !isParentPresent ? false : presentChildren === renderedChildren || presentKeys.includes(key);
       const onExit = () => {
@@ -7131,7 +7163,7 @@ componentDidUpdate() {
           onExitComplete && onExitComplete();
         }
       };
-      return jsxRuntime.jsx(PresenceChild, { isPresent, initial: !isInitialRender.current || initial ? void 0 : false, custom, presenceAffectsLayout, mode, root, onExitComplete: isPresent ? void 0 : onExit, anchorX, anchorY, children: child }, key);
+      return jsxRuntimeExports.jsx(PresenceChild, { isPresent, initial: !isInitialRender.current || initial ? void 0 : false, custom, presenceAffectsLayout, mode, root, onExitComplete: isPresent ? void 0 : onExit, anchorX, anchorY, children: child }, key);
     }) });
   };
   const LazyContext = React__default.createContext({ strict: false });
@@ -7577,7 +7609,7 @@ animationType: typeof layout2 === "string" ? layout2 : "both",
         MeasureLayout2 = layoutProjection.MeasureLayout;
         context.visualElement = useVisualElement(Component2, visualState, configAndProps, createVisualElement, layoutProjection.ProjectionNode, isSVG);
       }
-      return jsxRuntime.jsxs(MotionContext.Provider, { value: context, children: [MeasureLayout2 && context.visualElement ? jsxRuntime.jsx(MeasureLayout2, { visualElement: context.visualElement, ...configAndProps }) : null, useRender(Component2, props, useMotionRef(visualState, context.visualElement, externalRef), visualState, isStatic, forwardMotionProps, isSVG)] });
+      return jsxRuntimeExports.jsxs(MotionContext.Provider, { value: context, children: [MeasureLayout2 && context.visualElement ? jsxRuntimeExports.jsx(MeasureLayout2, { visualElement: context.visualElement, ...configAndProps }) : null, useRender(Component2, props, useMotionRef(visualState, context.visualElement, externalRef), visualState, isStatic, forwardMotionProps, isSVG)] });
     }
     MotionDOMComponent.displayName = `motion.${typeof Component2 === "string" ? Component2 : `create(${Component2.displayName ?? Component2.name ?? ""})`}`;
     const ForwardRefMotionComponent = React__default.forwardRef(MotionDOMComponent);
@@ -8533,7 +8565,7 @@ componentDidMount() {
   function MeasureLayout(props) {
     const [isPresent, safeToRemove] = usePresence();
     const layoutGroup = React__default.useContext(LayoutGroupContext);
-    return jsxRuntime.jsx(MeasureLayoutWithContext, { ...props, layoutGroup, switchLayoutGroup: React__default.useContext(SwitchLayoutGroupContext), isPresent, safeToRemove });
+    return jsxRuntimeExports.jsx(MeasureLayoutWithContext, { ...props, layoutGroup, switchLayoutGroup: React__default.useContext(SwitchLayoutGroupContext), isPresent, safeToRemove });
   }
   const drag = {
     pan: {
@@ -8767,8 +8799,8 @@ componentDidMount() {
       }
       return () => window.removeEventListener("keydown", handleEsc);
     }, [isOpen, onClose]);
-    return jsxRuntime.jsx(AnimatePresence, { children: isOpen && jsxRuntime.jsxs("div", { className: "ars-modal-overlay-container", children: [
-jsxRuntime.jsx(
+    return jsxRuntimeExports.jsx(AnimatePresence, { children: isOpen && jsxRuntimeExports.jsxs("div", { className: "ars-modal-overlay-container", children: [
+jsxRuntimeExports.jsx(
         motion.div,
         {
           className: "ars-modal-backdrop",
@@ -8780,7 +8812,7 @@ jsxRuntime.jsx(
           onClick: onClose
         }
       ),
-jsxRuntime.jsx("div", { className: "ars-modal-wrapper", children: jsxRuntime.jsxs(
+jsxRuntimeExports.jsx("div", { className: "ars-modal-wrapper", children: jsxRuntimeExports.jsxs(
         motion.div,
         {
           className: "ars-modal",
@@ -8793,9 +8825,9 @@ jsxRuntime.jsx("div", { className: "ars-modal-wrapper", children: jsxRuntime.jsx
           role: "dialog",
           "aria-modal": "true",
           children: [
-jsxRuntime.jsxs("div", { className: "ars-modal-header", children: [
-              title && jsxRuntime.jsx("h2", { className: "ars-modal-title", children: title }),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsxs("div", { className: "ars-modal-header", children: [
+              title && jsxRuntimeExports.jsx("h2", { className: "ars-modal-title", children: title }),
+jsxRuntimeExports.jsx(
                 Button,
                 {
                   variant: "ghost",
@@ -8803,12 +8835,12 @@ jsxRuntime.jsx(
                   onClick: onClose,
                   className: "ars-modal-close",
                   "aria-label": "Close modal",
-                  children: jsxRuntime.jsx(X, { size: 20 })
+                  children: jsxRuntimeExports.jsx(X, { size: 20 })
                 }
               )
             ] }),
-jsxRuntime.jsx("div", { className: "ars-modal-content", children }),
-            footer && jsxRuntime.jsx("div", { className: "ars-modal-footer", children: footer })
+jsxRuntimeExports.jsx("div", { className: "ars-modal-content", children }),
+            footer && jsxRuntimeExports.jsx("div", { className: "ars-modal-footer", children: footer })
           ]
         }
       ) })
@@ -8817,11 +8849,11 @@ jsxRuntime.jsx("div", { className: "ars-modal-content", children }),
   const Input = React__default.forwardRef(
     ({ className, label, error, icon, suffix, id: id2, ...props }, ref) => {
       const inputId = id2 || `input-${Math.random().toString(36).substr(2, 9)}`;
-      return jsxRuntime.jsxs("div", { className: cn("ars-input-group", className), children: [
-        label && jsxRuntime.jsx("label", { htmlFor: inputId, className: "ars-input-label", children: label }),
-jsxRuntime.jsxs("div", { className: "ars-input-wrapper", children: [
-          icon && jsxRuntime.jsx("span", { className: "ars-input-icon", children: icon }),
-jsxRuntime.jsx(
+      return jsxRuntimeExports.jsxs("div", { className: cn("ars-input-group", className), children: [
+        label && jsxRuntimeExports.jsx("label", { htmlFor: inputId, className: "ars-input-label", children: label }),
+jsxRuntimeExports.jsxs("div", { className: "ars-input-wrapper", children: [
+          icon && jsxRuntimeExports.jsx("span", { className: "ars-input-icon", children: icon }),
+jsxRuntimeExports.jsx(
             "input",
             {
               ref,
@@ -8835,9 +8867,9 @@ jsxRuntime.jsx(
               ...props
             }
           ),
-          suffix && jsxRuntime.jsx("div", { className: "ars-input-suffix", children: suffix })
+          suffix && jsxRuntimeExports.jsx("div", { className: "ars-input-suffix", children: suffix })
         ] }),
-        error && jsxRuntime.jsx("span", { className: "ars-input-error", children: error })
+        error && jsxRuntimeExports.jsx("span", { className: "ars-input-error", children: error })
       ] });
     }
   );
@@ -8967,7 +8999,7 @@ getAll() {
       localStorage.setItem("amazon_review_phrases", JSON.stringify(p));
       setPhrasesState(p);
     }, []);
-    return jsxRuntime.jsx(SettingsContext.Provider, { value: {
+    return jsxRuntimeExports.jsx(SettingsContext.Provider, { value: {
       settings,
       setSetting,
       templates,
@@ -9143,28 +9175,28 @@ getAll() {
         onClose();
       }
     };
-    return jsxRuntime.jsx(
+    return jsxRuntimeExports.jsx(
       Modal,
       {
         isOpen,
         onClose: handleClose,
         title: "Template Manager",
         width: "850px",
-        children: jsxRuntime.jsxs("div", { className: "ars-template-manager", style: { display: "flex", height: "600px", gap: "1.5rem", padding: "1.5rem" }, children: [
-jsxRuntime.jsxs("div", { className: "ars-tm-sidebar", style: { width: "240px", borderRight: "1px solid var(--ars-color-border)", paddingRight: "1.5rem", display: "flex", flexDirection: "column" }, children: [
-jsxRuntime.jsx("div", { className: "ars-tm-header", style: { marginBottom: "1rem" }, children: jsxRuntime.jsx(
+        children: jsxRuntimeExports.jsxs("div", { className: "ars-template-manager", style: { display: "flex", height: "600px", gap: "1.5rem", padding: "1.5rem" }, children: [
+jsxRuntimeExports.jsxs("div", { className: "ars-tm-sidebar", style: { width: "240px", borderRight: "1px solid var(--ars-color-border)", paddingRight: "1.5rem", display: "flex", flexDirection: "column" }, children: [
+jsxRuntimeExports.jsx("div", { className: "ars-tm-header", style: { marginBottom: "1rem" }, children: jsxRuntimeExports.jsx(
               Button,
               {
                 variant: "primary",
                 size: "sm",
                 style: { width: "100%" },
                 onClick: handleCreateNew,
-                icon: jsxRuntime.jsx(Plus, { size: 16 }),
+                icon: jsxRuntimeExports.jsx(Plus, { size: 16 }),
                 children: "New Template"
               }
             ) }),
-jsxRuntime.jsxs("div", { className: "ars-tm-list", style: { flex: 1, overflowY: "auto", display: "flex", flexDirection: "column", gap: "0.5rem" }, children: [
-              templates.map((t) => jsxRuntime.jsxs(
+jsxRuntimeExports.jsxs("div", { className: "ars-tm-list", style: { flex: 1, overflowY: "auto", display: "flex", flexDirection: "column", gap: "0.5rem" }, children: [
+              templates.map((t) => jsxRuntimeExports.jsxs(
                 "div",
                 {
                   draggable: true,
@@ -9189,7 +9221,7 @@ jsxRuntime.jsxs("div", { className: "ars-tm-list", style: { flex: 1, overflowY: 
                   },
                   title: "Drag to reorder",
                   children: [
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx(
                       "div",
                       {
                         style: {
@@ -9201,23 +9233,23 @@ jsxRuntime.jsx(
                           borderRadius: "4px"
                         },
                         onMouseDown: (e) => e.stopPropagation(),
-                        children: jsxRuntime.jsx(GripVertical, { size: 16 })
+                        children: jsxRuntimeExports.jsx(GripVertical, { size: 16 })
                       }
                     ),
-jsxRuntime.jsxs("div", { style: { display: "flex", alignItems: "center", gap: "0.5rem", overflow: "hidden", flex: 1 }, children: [
-jsxRuntime.jsx(FileText, { size: 16, color: "var(--ars-color-text-secondary)" }),
-jsxRuntime.jsx("span", { style: { whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", fontWeight: 500 }, children: t.title })
+jsxRuntimeExports.jsxs("div", { style: { display: "flex", alignItems: "center", gap: "0.5rem", overflow: "hidden", flex: 1 }, children: [
+jsxRuntimeExports.jsx(FileText, { size: 16, color: "var(--ars-color-text-secondary)" }),
+jsxRuntimeExports.jsx("span", { style: { whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", fontWeight: 500 }, children: t.title })
                     ] })
                   ]
                 },
                 t.id
               )),
-              templates.length === 0 && jsxRuntime.jsx("div", { style: { padding: "1rem", textAlign: "center", color: "var(--ars-color-text-secondary)", fontSize: "0.875rem" }, children: "No templates yet. Create one to get started!" })
+              templates.length === 0 && jsxRuntimeExports.jsx("div", { style: { padding: "1rem", textAlign: "center", color: "var(--ars-color-text-secondary)", fontSize: "0.875rem" }, children: "No templates yet. Create one to get started!" })
             ] })
           ] }),
-jsxRuntime.jsx("div", { className: "ars-tm-content", style: { flex: 1, display: "flex", flexDirection: "column", gap: "1rem" }, children: selectedId || editTitle ? jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-jsxRuntime.jsxs("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center" }, children: [
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx("div", { className: "ars-tm-content", style: { flex: 1, display: "flex", flexDirection: "column", gap: "1rem" }, children: selectedId || editTitle ? jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+jsxRuntimeExports.jsxs("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center" }, children: [
+jsxRuntimeExports.jsx(
                 Input,
                 {
                   value: editTitle,
@@ -9229,30 +9261,30 @@ jsxRuntime.jsx(
                   style: { fontSize: "1.25rem", fontWeight: 600, border: "none", padding: "0.5rem 0", background: "transparent" }
                 }
               ),
-jsxRuntime.jsxs("div", { style: { display: "flex", gap: "0.5rem" }, children: [
-                selectedId && jsxRuntime.jsx(
+jsxRuntimeExports.jsxs("div", { style: { display: "flex", gap: "0.5rem" }, children: [
+                selectedId && jsxRuntimeExports.jsx(
                   Button,
                   {
                     variant: "ghost",
                     onClick: () => handleDelete(selectedId),
                     title: "Delete Template",
                     style: { color: "var(--ars-color-error)" },
-                    children: jsxRuntime.jsx(Trash2, { size: 18 })
+                    children: jsxRuntimeExports.jsx(Trash2, { size: 18 })
                   }
                 ),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx(
                   Button,
                   {
                     variant: isDirty ? "primary" : "secondary",
                     onClick: handleSave,
                     disabled: !isDirty,
-                    icon: jsxRuntime.jsx(Save, { size: 16 }),
+                    icon: jsxRuntimeExports.jsx(Save, { size: 16 }),
                     children: "Save"
                   }
                 )
               ] })
             ] }),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx(
               RichEditor,
               {
                 value: editContent,
@@ -9265,18 +9297,18 @@ jsxRuntime.jsx(
                 className: "ars-tm-editor"
               }
             ),
-jsxRuntime.jsx("div", { style: { borderTop: "1px solid var(--ars-color-border)", paddingTop: "1rem", display: "flex", justifyContent: "flex-end" }, children: jsxRuntime.jsx(
+jsxRuntimeExports.jsx("div", { style: { borderTop: "1px solid var(--ars-color-border)", paddingTop: "1rem", display: "flex", justifyContent: "flex-end" }, children: jsxRuntimeExports.jsx(
               Button,
               {
                 variant: "primary",
                 onClick: handleInsert,
-                icon: jsxRuntime.jsx(PanelsTopLeft, { size: 16 }),
+                icon: jsxRuntimeExports.jsx(PanelsTopLeft, { size: 16 }),
                 children: "Insert Template"
               }
             ) })
-          ] }) : jsxRuntime.jsxs("div", { style: { flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", color: "var(--ars-color-text-secondary)" }, children: [
-jsxRuntime.jsx(PanelsTopLeft, { size: 48, style: { marginBottom: "1rem", opacity: 0.5 } }),
-jsxRuntime.jsx("p", { children: "Select a template to edit or create a new one." })
+          ] }) : jsxRuntimeExports.jsxs("div", { style: { flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", color: "var(--ars-color-text-secondary)" }, children: [
+jsxRuntimeExports.jsx(PanelsTopLeft, { size: 48, style: { marginBottom: "1rem", opacity: 0.5 } }),
+jsxRuntimeExports.jsx("p", { children: "Select a template to edit or create a new one." })
           ] }) })
         ] })
       }
@@ -9801,13 +9833,13 @@ jsxRuntime.jsx("p", { children: "Select a template to edit or create a new one."
       setNewContent("");
       setIsAdding(false);
     };
-    return jsxRuntime.jsxs("div", { className: "ars-phrase-manager", style: { width: "300px", padding: "1rem" }, children: [
-jsxRuntime.jsxs("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }, children: [
-jsxRuntime.jsxs("h3", { style: { margin: 0, fontSize: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }, children: [
-jsxRuntime.jsx(MessageSquare, { size: 16 }),
+    return jsxRuntimeExports.jsxs("div", { className: "ars-phrase-manager", style: { width: "300px", padding: "1rem" }, children: [
+jsxRuntimeExports.jsxs("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }, children: [
+jsxRuntimeExports.jsxs("h3", { style: { margin: 0, fontSize: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }, children: [
+jsxRuntimeExports.jsx(MessageSquare, { size: 16 }),
           " Saved Phrases"
         ] }),
-jsxRuntime.jsxs(
+jsxRuntimeExports.jsxs(
           "div",
           {
             onClick: handleSync,
@@ -9817,14 +9849,14 @@ jsxRuntime.jsxs(
                     `,
             title: "Sync Phrases to Cloud",
             children: [
-              syncState === "syncing" ? jsxRuntime.jsx(RefreshCw, { size: 10, className: "animate-spin text-orange-500" }) : syncState === "synced" ? jsxRuntime.jsx(Check, { size: 10, className: "text-green-600" }) : jsxRuntime.jsx(RefreshCw, { size: 10 }),
-jsxRuntime.jsx("span", { children: syncState === "syncing" ? "Syncing..." : syncState === "synced" ? "Synced" : "Sync" })
+              syncState === "syncing" ? jsxRuntimeExports.jsx(RefreshCw, { size: 10, className: "animate-spin text-orange-500" }) : syncState === "synced" ? jsxRuntimeExports.jsx(Check, { size: 10, className: "text-green-600" }) : jsxRuntimeExports.jsx(RefreshCw, { size: 10 }),
+jsxRuntimeExports.jsx("span", { children: syncState === "syncing" ? "Syncing..." : syncState === "synced" ? "Synced" : "Sync" })
             ]
           }
         )
       ] }),
-jsxRuntime.jsxs("div", { className: "ars-phrase-list", style: { maxHeight: "200px", overflowY: "auto", display: "flex", flexDirection: "column", gap: "0.5rem", marginBottom: "1rem" }, children: [
-        phrases.map((p) => jsxRuntime.jsxs(
+jsxRuntimeExports.jsxs("div", { className: "ars-phrase-list", style: { maxHeight: "200px", overflowY: "auto", display: "flex", flexDirection: "column", gap: "0.5rem", marginBottom: "1rem" }, children: [
+        phrases.map((p) => jsxRuntimeExports.jsxs(
           "div",
           {
             className: "ars-phrase-item",
@@ -9837,7 +9869,7 @@ jsxRuntime.jsxs("div", { className: "ars-phrase-list", style: { maxHeight: "200p
               borderRadius: "4px"
             },
             children: [
-jsxRuntime.jsxs(
+jsxRuntimeExports.jsxs(
                 "div",
                 {
                   style: { flex: 1, cursor: "pointer", overflow: "hidden" },
@@ -9847,12 +9879,12 @@ jsxRuntime.jsxs(
                   },
                   title: p.content,
                   children: [
-jsxRuntime.jsx("span", { style: { fontWeight: 500, display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }, children: p.label || p.content }),
-                    p.label && jsxRuntime.jsx("span", { style: { fontSize: "0.75rem", color: "var(--ars-color-text-secondary)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", display: "block" }, children: p.content })
+jsxRuntimeExports.jsx("span", { style: { fontWeight: 500, display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }, children: p.label || p.content }),
+                    p.label && jsxRuntimeExports.jsx("span", { style: { fontSize: "0.75rem", color: "var(--ars-color-text-secondary)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", display: "block" }, children: p.content })
                   ]
                 }
               ),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx(
                 "button",
                 {
                   onClick: (e) => {
@@ -9869,17 +9901,17 @@ jsxRuntime.jsx(
                     alignItems: "center"
                   },
                   title: "Delete phrase",
-                  children: jsxRuntime.jsx(Trash2, { size: 14 })
+                  children: jsxRuntimeExports.jsx(Trash2, { size: 14 })
                 }
               )
             ]
           },
           p.id
         )),
-        phrases.length === 0 && jsxRuntime.jsx("div", { style: { textAlign: "center", padding: "1rem", color: "var(--ars-color-text-secondary)", fontSize: "0.875rem" }, children: "No saved phrases." })
+        phrases.length === 0 && jsxRuntimeExports.jsx("div", { style: { textAlign: "center", padding: "1rem", color: "var(--ars-color-text-secondary)", fontSize: "0.875rem" }, children: "No saved phrases." })
       ] }),
-      isAdding ? jsxRuntime.jsxs("div", { style: { display: "flex", flexDirection: "column", gap: "0.5rem", borderTop: "1px solid var(--ars-color-border)", paddingTop: "1rem" }, children: [
-jsxRuntime.jsx(
+      isAdding ? jsxRuntimeExports.jsxs("div", { style: { display: "flex", flexDirection: "column", gap: "0.5rem", borderTop: "1px solid var(--ars-color-border)", paddingTop: "1rem" }, children: [
+jsxRuntimeExports.jsx(
           Input,
           {
             placeholder: "Label (Optional)",
@@ -9888,7 +9920,7 @@ jsxRuntime.jsx(
             autoFocus: true
           }
         ),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx(
           Input,
           {
             placeholder: "Phrase content...",
@@ -9896,18 +9928,18 @@ jsxRuntime.jsx(
             onChange: (e) => setNewContent(e.target.value)
           }
         ),
-jsxRuntime.jsxs("div", { style: { display: "flex", gap: "0.5rem", justifyContent: "flex-end" }, children: [
-jsxRuntime.jsx(Button, { size: "sm", variant: "ghost", onClick: () => setIsAdding(false), children: "Cancel" }),
-jsxRuntime.jsx(Button, { size: "sm", variant: "primary", onClick: handleAdd, children: "Add" })
+jsxRuntimeExports.jsxs("div", { style: { display: "flex", gap: "0.5rem", justifyContent: "flex-end" }, children: [
+jsxRuntimeExports.jsx(Button, { size: "sm", variant: "ghost", onClick: () => setIsAdding(false), children: "Cancel" }),
+jsxRuntimeExports.jsx(Button, { size: "sm", variant: "primary", onClick: handleAdd, children: "Add" })
         ] })
-      ] }) : jsxRuntime.jsx(
+      ] }) : jsxRuntimeExports.jsx(
         Button,
         {
           variant: "secondary",
           size: "sm",
           style: { width: "100%" },
           onClick: () => setIsAdding(true),
-          icon: jsxRuntime.jsx(Plus, { size: 14 }),
+          icon: jsxRuntimeExports.jsx(Plus, { size: 14 }),
           children: "Add New Phrase"
         }
       )
@@ -9952,13 +9984,13 @@ jsxRuntime.jsx(Button, { size: "sm", variant: "primary", onClick: handleAdd, chi
       setNewTitle("");
       setIsSaving(false);
     };
-    return jsxRuntime.jsxs("div", { className: "ars-template-selector", style: { width: "300px", padding: "1rem" }, children: [
-jsxRuntime.jsxs("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }, children: [
-jsxRuntime.jsxs("h3", { style: { margin: 0, fontSize: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }, children: [
-jsxRuntime.jsx(PanelsTopLeft, { size: 16 }),
+    return jsxRuntimeExports.jsxs("div", { className: "ars-template-selector", style: { width: "300px", padding: "1rem" }, children: [
+jsxRuntimeExports.jsxs("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }, children: [
+jsxRuntimeExports.jsxs("h3", { style: { margin: 0, fontSize: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }, children: [
+jsxRuntimeExports.jsx(PanelsTopLeft, { size: 16 }),
           " Templates"
         ] }),
-jsxRuntime.jsxs(
+jsxRuntimeExports.jsxs(
           "div",
           {
             onClick: handleSync,
@@ -9968,14 +10000,14 @@ jsxRuntime.jsxs(
                     `,
             title: "Sync Templates to Cloud",
             children: [
-              syncState === "syncing" ? jsxRuntime.jsx(RefreshCw, { size: 10, className: "animate-spin text-orange-500" }) : syncState === "synced" ? jsxRuntime.jsx(Check, { size: 10, className: "text-green-600" }) : jsxRuntime.jsx(RefreshCw, { size: 10 }),
-jsxRuntime.jsx("span", { children: syncState === "syncing" ? "Syncing..." : syncState === "synced" ? "Synced" : "Sync" })
+              syncState === "syncing" ? jsxRuntimeExports.jsx(RefreshCw, { size: 10, className: "animate-spin text-orange-500" }) : syncState === "synced" ? jsxRuntimeExports.jsx(Check, { size: 10, className: "text-green-600" }) : jsxRuntimeExports.jsx(RefreshCw, { size: 10 }),
+jsxRuntimeExports.jsx("span", { children: syncState === "syncing" ? "Syncing..." : syncState === "synced" ? "Synced" : "Sync" })
             ]
           }
         )
       ] }),
-jsxRuntime.jsxs("div", { className: "ars-template-list", style: { maxHeight: "200px", overflowY: "auto", display: "flex", flexDirection: "column", gap: "0.5rem", marginBottom: "1rem" }, children: [
-        templates.map((t) => jsxRuntime.jsxs(
+jsxRuntimeExports.jsxs("div", { className: "ars-template-list", style: { maxHeight: "200px", overflowY: "auto", display: "flex", flexDirection: "column", gap: "0.5rem", marginBottom: "1rem" }, children: [
+        templates.map((t) => jsxRuntimeExports.jsxs(
           "div",
           {
             className: "ars-template-item",
@@ -9995,8 +10027,8 @@ jsxRuntime.jsxs("div", { className: "ars-template-list", style: { maxHeight: "20
             onMouseEnter: (e) => e.currentTarget.style.backgroundColor = "var(--ars-color-bg-tertiary)",
             onMouseLeave: (e) => e.currentTarget.style.backgroundColor = "var(--ars-color-bg-secondary)",
             children: [
-jsxRuntime.jsx(FileText, { size: 16, style: { marginRight: "0.75rem", color: "var(--ars-color-text-secondary)", flexShrink: 0 } }),
-jsxRuntime.jsx("span", { style: {
+jsxRuntimeExports.jsx(FileText, { size: 16, style: { marginRight: "0.75rem", color: "var(--ars-color-text-secondary)", flexShrink: 0 } }),
+jsxRuntimeExports.jsx("span", { style: {
                 fontSize: "0.875rem",
                 fontWeight: 500,
                 whiteSpace: "nowrap",
@@ -10007,11 +10039,11 @@ jsxRuntime.jsx("span", { style: {
           },
           t.id
         )),
-        templates.length === 0 && jsxRuntime.jsx("div", { style: { textAlign: "center", padding: "1rem", color: "var(--ars-color-text-secondary)", fontSize: "0.875rem" }, children: "No templates saved." })
+        templates.length === 0 && jsxRuntimeExports.jsx("div", { style: { textAlign: "center", padding: "1rem", color: "var(--ars-color-text-secondary)", fontSize: "0.875rem" }, children: "No templates saved." })
       ] }),
-jsxRuntime.jsxs("div", { style: { display: "flex", flexDirection: "column", gap: "0.5rem", borderTop: "1px solid var(--ars-color-border)", paddingTop: "1rem" }, children: [
-        isSaving ? jsxRuntime.jsxs("div", { style: { display: "flex", flexDirection: "column", gap: "0.5rem" }, children: [
-jsxRuntime.jsx(
+jsxRuntimeExports.jsxs("div", { style: { display: "flex", flexDirection: "column", gap: "0.5rem", borderTop: "1px solid var(--ars-color-border)", paddingTop: "1rem" }, children: [
+        isSaving ? jsxRuntimeExports.jsxs("div", { style: { display: "flex", flexDirection: "column", gap: "0.5rem" }, children: [
+jsxRuntimeExports.jsx(
             "input",
             {
               type: "text",
@@ -10029,27 +10061,27 @@ jsxRuntime.jsx(
               }
             }
           ),
-jsxRuntime.jsxs("div", { style: { display: "flex", gap: "0.5rem", justifyContent: "flex-end" }, children: [
-jsxRuntime.jsx(Button, { size: "sm", variant: "ghost", onClick: () => setIsSaving(false), children: "Cancel" }),
-jsxRuntime.jsx(Button, { size: "sm", variant: "primary", onClick: confirmSave, children: "Create" })
+jsxRuntimeExports.jsxs("div", { style: { display: "flex", gap: "0.5rem", justifyContent: "flex-end" }, children: [
+jsxRuntimeExports.jsx(Button, { size: "sm", variant: "ghost", onClick: () => setIsSaving(false), children: "Cancel" }),
+jsxRuntimeExports.jsx(Button, { size: "sm", variant: "primary", onClick: confirmSave, children: "Create" })
           ] })
-        ] }) : jsxRuntime.jsx(
+        ] }) : jsxRuntimeExports.jsx(
           Button,
           {
             variant: "secondary",
             size: "sm",
-            icon: jsxRuntime.jsx(Save, { size: 14 }),
+            icon: jsxRuntimeExports.jsx(Save, { size: 14 }),
             onClick: handleSaveAsTemplate,
             style: { width: "100%", justifyContent: "flex-start" },
             children: "Save Current as Template"
           }
         ),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx(
           Button,
           {
             variant: "ghost",
             size: "sm",
-            icon: jsxRuntime.jsx(Settings, { size: 14 }),
+            icon: jsxRuntimeExports.jsx(Settings, { size: 14 }),
             onClick: () => {
               onManage();
               onClose();
@@ -10067,7 +10099,7 @@ jsxRuntime.jsx(
     padding = "md",
     ...props
   }) => {
-    return jsxRuntime.jsx(
+    return jsxRuntimeExports.jsx(
       "div",
       {
         className: cn("ars-card", `ars-card--p-${padding}`, className),
@@ -10154,69 +10186,69 @@ jsxRuntime.jsx(
         setSetting("amazon_ai_enabled", false);
       }
     };
-    return jsxRuntime.jsx(
+    return jsxRuntimeExports.jsx(
       Modal,
       {
         isOpen,
         onClose,
         title: "Amazon Review Studio Settings",
         width: "740px",
-        children: jsxRuntime.jsxs("div", { className: "ars-settings-layout p-2", children: [
-jsxRuntime.jsxs("aside", { className: "ars-settings-sidebar", children: [
-jsxRuntime.jsx(
+        children: jsxRuntimeExports.jsxs("div", { className: "ars-settings-layout p-2", children: [
+jsxRuntimeExports.jsxs("aside", { className: "ars-settings-sidebar", children: [
+jsxRuntimeExports.jsx(
               Button,
               {
                 variant: activeTab === "sync" ? "secondary" : "ghost",
                 className: "ars-tab-btn",
                 onClick: () => setActiveTab("sync"),
-                icon: jsxRuntime.jsx(Cloud, { size: 18 }),
+                icon: jsxRuntimeExports.jsx(Cloud, { size: 18 }),
                 children: "Cloud Sync"
               }
             ),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx(
               Button,
               {
                 variant: activeTab === "ai" ? "secondary" : "ghost",
                 className: "ars-tab-btn",
                 onClick: () => setActiveTab("ai"),
-                icon: jsxRuntime.jsx(Cpu, { size: 18 }),
+                icon: jsxRuntimeExports.jsx(Cpu, { size: 18 }),
                 children: "AI Configuration"
               }
             ),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx(
               Button,
               {
                 variant: activeTab === "about" ? "secondary" : "ghost",
                 className: "ars-tab-btn",
                 onClick: () => setActiveTab("about"),
-                icon: jsxRuntime.jsx(Info, { size: 18 }),
+                icon: jsxRuntimeExports.jsx(Info, { size: 18 }),
                 children: "About"
               }
             ),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx(
               Button,
               {
                 variant: activeTab === "debug" ? "secondary" : "ghost",
                 className: "ars-tab-btn",
                 onClick: () => setActiveTab("debug"),
-                icon: jsxRuntime.jsx(Bug, { size: 18 }),
+                icon: jsxRuntimeExports.jsx(Bug, { size: 18 }),
                 children: "Debug"
               }
             )
           ] }),
-jsxRuntime.jsxs("main", { className: "ars-settings-content", children: [
-            activeTab === "ai" && jsxRuntime.jsxs("div", { className: "ars-settings-section", children: [
-jsxRuntime.jsx("h3", { children: "AI Engine Settings" }),
-jsxRuntime.jsx("div", { className: "ars-setting-group border border-indigo-100 bg-indigo-50/30 p-4 rounded-xl mb-6", children: jsxRuntime.jsxs("div", { className: "flex items-center justify-between", children: [
-jsxRuntime.jsxs("div", { className: "flex items-center gap-3", children: [
-jsxRuntime.jsx("div", { className: `p-2 rounded-lg ${settings.amazon_ai_enabled ? "bg-indigo-600 text-white" : "bg-gray-200 text-gray-500"}`, children: jsxRuntime.jsx(Cpu, { size: 20 }) }),
-jsxRuntime.jsxs("div", { children: [
-jsxRuntime.jsx("label", { className: "font-semibold text-gray-900 block cursor-pointer select-none", htmlFor: "ai-toggle", children: "AI Features" }),
-jsxRuntime.jsx("p", { className: "text-xs text-gray-500", children: "Enable automated content generation" })
+jsxRuntimeExports.jsxs("main", { className: "ars-settings-content", children: [
+            activeTab === "ai" && jsxRuntimeExports.jsxs("div", { className: "ars-settings-section", children: [
+jsxRuntimeExports.jsx("h3", { children: "AI Engine Settings" }),
+jsxRuntimeExports.jsx("div", { className: "ars-setting-group border border-indigo-100 bg-indigo-50/30 p-4 rounded-xl mb-6", children: jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between", children: [
+jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
+jsxRuntimeExports.jsx("div", { className: `p-2 rounded-lg ${settings.amazon_ai_enabled ? "bg-indigo-600 text-white" : "bg-gray-200 text-gray-500"}`, children: jsxRuntimeExports.jsx(Cpu, { size: 20 }) }),
+jsxRuntimeExports.jsxs("div", { children: [
+jsxRuntimeExports.jsx("label", { className: "font-semibold text-gray-900 block cursor-pointer select-none", htmlFor: "ai-toggle", children: "AI Features" }),
+jsxRuntimeExports.jsx("p", { className: "text-xs text-gray-500", children: "Enable automated content generation" })
                   ] })
                 ] }),
-jsxRuntime.jsxs("div", { className: "relative inline-block w-12 h-6 transition duration-200 ease-in-out rounded-full cursor-pointer", children: [
-jsxRuntime.jsx(
+jsxRuntimeExports.jsxs("div", { className: "relative inline-block w-12 h-6 transition duration-200 ease-in-out rounded-full cursor-pointer", children: [
+jsxRuntimeExports.jsx(
                     "input",
                     {
                       id: "ai-toggle",
@@ -10226,20 +10258,20 @@ jsxRuntime.jsx(
                       onChange: (e) => handleAIEnabledChange(e.target.checked)
                     }
                   ),
-jsxRuntime.jsx("div", { className: "w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-indigo-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600" })
+jsxRuntimeExports.jsx("div", { className: "w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-indigo-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600" })
                 ] })
               ] }) }),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx(
                 "div",
                 {
                   className: `transition-all duration-500 ease-in-out ${settings.amazon_ai_enabled ? "opacity-100" : "opacity-40 pointer-events-none grayscale"}`,
-                  children: jsxRuntime.jsxs("div", { className: "ars-setting-group border border-gray-100 bg-white p-5 rounded-xl shadow-sm mb-6", children: [
-jsxRuntime.jsx("h4", { className: "text-sm font-semibold text-gray-700 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2", children: "Provider Configuration" }),
-jsxRuntime.jsxs("div", { className: "grid gap-6", children: [
-jsxRuntime.jsxs("div", { className: "ars-setting-item", children: [
-jsxRuntime.jsx("label", { className: "text-sm font-medium text-gray-700 mb-1.5 block", children: "Primary AI Provider" }),
-jsxRuntime.jsxs("div", { className: "relative", children: [
-jsxRuntime.jsxs(
+                  children: jsxRuntimeExports.jsxs("div", { className: "ars-setting-group border border-gray-100 bg-white p-5 rounded-xl shadow-sm mb-6", children: [
+jsxRuntimeExports.jsx("h4", { className: "text-sm font-semibold text-gray-700 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2", children: "Provider Configuration" }),
+jsxRuntimeExports.jsxs("div", { className: "grid gap-6", children: [
+jsxRuntimeExports.jsxs("div", { className: "ars-setting-item", children: [
+jsxRuntimeExports.jsx("label", { className: "text-sm font-medium text-gray-700 mb-1.5 block", children: "Primary AI Provider" }),
+jsxRuntimeExports.jsxs("div", { className: "relative", children: [
+jsxRuntimeExports.jsxs(
                             "select",
                             {
                               value: settings.amazon_ai_provider,
@@ -10247,19 +10279,19 @@ jsxRuntime.jsxs(
                               className: "ars-select w-full pl-10 pr-12 h-10 bg-gray-50 border-gray-200 focus:bg-white transition-colors appearance-none leading-normal",
                               disabled: !settings.amazon_ai_enabled,
                               children: [
-jsxRuntime.jsx("option", { value: "gemini", children: "Google Gemini (Recommended)" }),
-jsxRuntime.jsx("option", { value: "local", children: "Local LLM Server" })
+jsxRuntimeExports.jsx("option", { value: "gemini", children: "Google Gemini (Recommended)" }),
+jsxRuntimeExports.jsx("option", { value: "local", children: "Local LLM Server" })
                               ]
                             }
                           ),
-jsxRuntime.jsx("div", { className: "absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none", children: settings.amazon_ai_provider === "gemini" ? jsxRuntime.jsx(Cloud, { size: 16 }) : jsxRuntime.jsx(Cpu, { size: 16 }) })
+jsxRuntimeExports.jsx("div", { className: "absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none", children: settings.amazon_ai_provider === "gemini" ? jsxRuntimeExports.jsx(Cloud, { size: 16 }) : jsxRuntimeExports.jsx(Cpu, { size: 16 }) })
                         ] })
                       ] }),
-                      settings.amazon_ai_provider === "gemini" ? jsxRuntime.jsxs("div", { className: "space-y-5 animate-in fade-in slide-in-from-top-2", children: [
-jsxRuntime.jsxs("div", { className: "ars-setting-item", children: [
-jsxRuntime.jsx("label", { className: "text-sm font-medium text-gray-700 mb-1.5 block", children: "Model Selection" }),
-jsxRuntime.jsxs("div", { className: "flex items-center gap-3", children: [
-jsxRuntime.jsx("div", { className: "relative flex-1 min-w-0", children: jsxRuntime.jsxs(
+                      settings.amazon_ai_provider === "gemini" ? jsxRuntimeExports.jsxs("div", { className: "space-y-5 animate-in fade-in slide-in-from-top-2", children: [
+jsxRuntimeExports.jsxs("div", { className: "ars-setting-item", children: [
+jsxRuntimeExports.jsx("label", { className: "text-sm font-medium text-gray-700 mb-1.5 block", children: "Model Selection" }),
+jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
+jsxRuntimeExports.jsx("div", { className: "relative flex-1 min-w-0", children: jsxRuntimeExports.jsxs(
                               "select",
                               {
                                 value: settings.amazon_ai_gemini_model,
@@ -10267,23 +10299,23 @@ jsxRuntime.jsx("div", { className: "relative flex-1 min-w-0", children: jsxRunti
                                 className: "ars-select w-full pl-3 pr-12 h-10 bg-gray-50 border-gray-200 focus:bg-white leading-normal",
                                 disabled: !settings.amazon_ai_enabled,
                                 children: [
-jsxRuntime.jsx("option", { value: "gemini-2.5-flash", children: "Gemini 2.5 Flash" }),
-jsxRuntime.jsx("option", { value: "gemini-3-flash-preview", children: "Gemini 3 Flash Preview" })
+jsxRuntimeExports.jsx("option", { value: "gemini-2.5-flash", children: "Gemini 2.5 Flash" }),
+jsxRuntimeExports.jsx("option", { value: "gemini-3-flash-preview", children: "Gemini 3 Flash Preview" })
                                 ]
                               }
                             ) }),
-                            settings.amazon_ai_gemini_model === "gemini-2.5-flash" && jsxRuntime.jsxs("span", { className: "shrink-0 text-[11px] font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100 shadow-sm flex items-center gap-1", children: [
-jsxRuntime.jsx("div", { className: "w-1.5 h-1.5 rounded-full bg-emerald-500" }),
+                            settings.amazon_ai_gemini_model === "gemini-2.5-flash" && jsxRuntimeExports.jsxs("span", { className: "shrink-0 text-[11px] font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100 shadow-sm flex items-center gap-1", children: [
+jsxRuntimeExports.jsx("div", { className: "w-1.5 h-1.5 rounded-full bg-emerald-500" }),
                               "Faster & Stable"
                             ] }),
-                            settings.amazon_ai_gemini_model === "gemini-3-flash-preview" && jsxRuntime.jsxs("span", { className: "shrink-0 text-[11px] font-bold text-indigo-700 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100 shadow-sm flex items-center gap-1", children: [
-jsxRuntime.jsx("div", { className: "w-1.5 h-1.5 rounded-full bg-indigo-500" }),
+                            settings.amazon_ai_gemini_model === "gemini-3-flash-preview" && jsxRuntimeExports.jsxs("span", { className: "shrink-0 text-[11px] font-bold text-indigo-700 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100 shadow-sm flex items-center gap-1", children: [
+jsxRuntimeExports.jsx("div", { className: "w-1.5 h-1.5 rounded-full bg-indigo-500" }),
                               "Smarter"
                             ] })
                           ] })
                         ] }),
-jsxRuntime.jsxs("div", { className: "ars-setting-item", children: [
-jsxRuntime.jsx(
+jsxRuntimeExports.jsxs("div", { className: "ars-setting-item", children: [
+jsxRuntimeExports.jsx(
                             Input,
                             {
                               label: "API Key",
@@ -10291,21 +10323,21 @@ jsxRuntime.jsx(
                               placeholder: "Paste your Gemini API key here...",
                               value: settings.amazon_ai_gemini_key,
                               onChange: (e) => setSetting("amazon_ai_gemini_key", e.target.value),
-                              icon: jsxRuntime.jsx(Key, { size: 16, className: "text-gray-400" }),
+                              icon: jsxRuntimeExports.jsx(Key, { size: 16, className: "text-gray-400" }),
                               disabled: !settings.amazon_ai_enabled,
                               className: "font-mono text-sm",
                               autoComplete: "off"
                             }
                           ),
-jsxRuntime.jsxs("p", { className: "mt-2 text-xs text-gray-500 flex items-center gap-1", children: [
-jsxRuntime.jsx(Info, { size: 12 }),
+jsxRuntimeExports.jsxs("p", { className: "mt-2 text-xs text-gray-500 flex items-center gap-1", children: [
+jsxRuntimeExports.jsx(Info, { size: 12 }),
                             "Get a free key from ",
-jsxRuntime.jsx("a", { href: "https://aistudio.google.com/", target: "_blank", className: "text-indigo-600 hover:text-indigo-700 hover:underline font-medium", children: "Google AI Studio" }),
+jsxRuntimeExports.jsx("a", { href: "https://aistudio.google.com/", target: "_blank", className: "text-indigo-600 hover:text-indigo-700 hover:underline font-medium", children: "Google AI Studio" }),
                             "."
                           ] })
                         ] })
-                      ] }) : jsxRuntime.jsx("div", { className: "space-y-5 animate-in fade-in slide-in-from-top-2", children: jsxRuntime.jsxs("div", { className: "ars-setting-item", children: [
-jsxRuntime.jsx(
+                      ] }) : jsxRuntimeExports.jsx("div", { className: "space-y-5 animate-in fade-in slide-in-from-top-2", children: jsxRuntimeExports.jsxs("div", { className: "ars-setting-item", children: [
+jsxRuntimeExports.jsx(
                           Input,
                           {
                             label: "Local Server URL",
@@ -10313,50 +10345,50 @@ jsxRuntime.jsx(
                             value: settings.amazon_ai_llm_server_url,
                             onChange: (e) => setSetting("amazon_ai_llm_server_url", e.target.value),
                             disabled: !settings.amazon_ai_enabled,
-                            icon: jsxRuntime.jsx(RefreshCw, { size: 16, className: "text-gray-400" })
+                            icon: jsxRuntimeExports.jsx(RefreshCw, { size: 16, className: "text-gray-400" })
                           }
                         ),
-jsxRuntime.jsx("p", { className: "mt-2 text-xs text-gray-500", children: "Compatible with LM Studio, Ollama, or LocalAI API endpoints." })
+jsxRuntimeExports.jsx("p", { className: "mt-2 text-xs text-gray-500", children: "Compatible with LM Studio, Ollama, or LocalAI API endpoints." })
                       ] }) })
                     ] })
                   ] })
                 }
               )
             ] }),
-            activeTab === "sync" && jsxRuntime.jsxs("div", { className: "ars-settings-section", children: [
-jsxRuntime.jsxs("div", { className: "flex justify-between items-center mb-4", children: [
-jsxRuntime.jsxs("div", { children: [
-jsxRuntime.jsx("h3", { className: "text-lg font-bold text-gray-900", children: "Cloud Sync Settings" }),
-                  syncStatus && jsxRuntime.jsx("div", { className: `mt-2 text-xs px-3 py-1.5 rounded-md font-medium inline-block animate-in fade-in slide-in-from-top-1 ${syncStatus.type === "error" ? "bg-red-50 text-red-600 border border-red-100" : syncStatus.type === "success" ? "bg-green-50 text-green-600 border border-green-100" : "bg-blue-50 text-blue-600 border border-blue-100"}`, children: syncStatus.message })
+            activeTab === "sync" && jsxRuntimeExports.jsxs("div", { className: "ars-settings-section", children: [
+jsxRuntimeExports.jsxs("div", { className: "flex justify-between items-center mb-4", children: [
+jsxRuntimeExports.jsxs("div", { children: [
+jsxRuntimeExports.jsx("h3", { className: "text-lg font-bold text-gray-900", children: "Cloud Sync Settings" }),
+                  syncStatus && jsxRuntimeExports.jsx("div", { className: `mt-2 text-xs px-3 py-1.5 rounded-md font-medium inline-block animate-in fade-in slide-in-from-top-1 ${syncStatus.type === "error" ? "bg-red-50 text-red-600 border border-red-100" : syncStatus.type === "success" ? "bg-green-50 text-green-600 border border-green-100" : "bg-blue-50 text-blue-600 border border-blue-100"}`, children: syncStatus.message })
                 ] }),
-jsxRuntime.jsx(Button, { variant: "ghost", className: "text-red-500 hover:bg-red-50", onClick: handleClearCloud, icon: jsxRuntime.jsx(Trash2, { size: 16 }), children: "Clear Cloud" })
+jsxRuntimeExports.jsx(Button, { variant: "ghost", className: "text-red-500 hover:bg-red-50", onClick: handleClearCloud, icon: jsxRuntimeExports.jsx(Trash2, { size: 16 }), children: "Clear Cloud" })
               ] }),
-              !settings.amazon_pastebin_api_user_key && jsxRuntime.jsxs("div", { className: "mb-6 p-3 bg-amber-50 border border-amber-200 rounded-lg flex items-start gap-3", children: [
-jsxRuntime.jsx(Info, { size: 18, className: "text-amber-600 shrink-0 mt-0.5" }),
-jsxRuntime.jsxs("div", { className: "text-sm text-amber-800", children: [
-jsxRuntime.jsx("p", { className: "font-semibold mb-1", children: "Important Privacy Note:" }),
-jsxRuntime.jsxs("p", { children: [
+              !settings.amazon_pastebin_api_user_key && jsxRuntimeExports.jsxs("div", { className: "mb-6 p-3 bg-amber-50 border border-amber-200 rounded-lg flex items-start gap-3", children: [
+jsxRuntimeExports.jsx(Info, { size: 18, className: "text-amber-600 shrink-0 mt-0.5" }),
+jsxRuntimeExports.jsxs("div", { className: "text-sm text-amber-800", children: [
+jsxRuntimeExports.jsx("p", { className: "font-semibold mb-1", children: "Important Privacy Note:" }),
+jsxRuntimeExports.jsxs("p", { children: [
                     "Due to Pastebin limits on private pastes, all ",
-jsxRuntime.jsx("strong", { children: "reviews" }),
+jsxRuntimeExports.jsx("strong", { children: "reviews" }),
                     " saved to the cloud will be created as ",
-jsxRuntime.jsx("strong", { children: "Public" }),
+jsxRuntimeExports.jsx("strong", { children: "Public" }),
                     ". Templates and Phrases will remain ",
-jsxRuntime.jsx("strong", { children: "Private" }),
+jsxRuntimeExports.jsx("strong", { children: "Private" }),
                     "."
                   ] })
                 ] })
               ] }),
-jsxRuntime.jsxs("div", { className: "space-y-6", children: [
-jsxRuntime.jsxs("div", { className: "ars-setting-group border border-gray-100 bg-white p-5 rounded-xl shadow-sm", children: [
-jsxRuntime.jsx("h4", { className: "text-sm font-semibold text-gray-700 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2", children: "Auto-Sync Preferences" }),
-jsxRuntime.jsxs("div", { className: "space-y-4", children: [
-jsxRuntime.jsxs("div", { className: "flex items-center justify-between", children: [
-jsxRuntime.jsxs("div", { children: [
-jsxRuntime.jsx("label", { className: "font-medium text-gray-900", children: "Auto-Sync Templates" }),
-jsxRuntime.jsx("p", { className: "text-xs text-gray-500", children: "Automatically backup templates when modified" })
+jsxRuntimeExports.jsxs("div", { className: "space-y-6", children: [
+jsxRuntimeExports.jsxs("div", { className: "ars-setting-group border border-gray-100 bg-white p-5 rounded-xl shadow-sm", children: [
+jsxRuntimeExports.jsx("h4", { className: "text-sm font-semibold text-gray-700 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2", children: "Auto-Sync Preferences" }),
+jsxRuntimeExports.jsxs("div", { className: "space-y-4", children: [
+jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between", children: [
+jsxRuntimeExports.jsxs("div", { children: [
+jsxRuntimeExports.jsx("label", { className: "font-medium text-gray-900", children: "Auto-Sync Templates" }),
+jsxRuntimeExports.jsx("p", { className: "text-xs text-gray-500", children: "Automatically backup templates when modified" })
                       ] }),
-jsxRuntime.jsxs("div", { className: "relative inline-block w-10 h-5 transition duration-200 ease-in-out rounded-full cursor-pointer", children: [
-jsxRuntime.jsx(
+jsxRuntimeExports.jsxs("div", { className: "relative inline-block w-10 h-5 transition duration-200 ease-in-out rounded-full cursor-pointer", children: [
+jsxRuntimeExports.jsx(
                           "input",
                           {
                             type: "checkbox",
@@ -10365,16 +10397,16 @@ jsxRuntime.jsx(
                             onChange: (e) => setSetting("amazon_auto_sync_templates", e.target.checked)
                           }
                         ),
-jsxRuntime.jsx("div", { className: "w-10 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-indigo-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600" })
+jsxRuntimeExports.jsx("div", { className: "w-10 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-indigo-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600" })
                       ] })
                     ] }),
-jsxRuntime.jsxs("div", { className: "flex items-center justify-between", children: [
-jsxRuntime.jsxs("div", { children: [
-jsxRuntime.jsx("label", { className: "font-medium text-gray-900", children: "Auto-Sync Phrases" }),
-jsxRuntime.jsx("p", { className: "text-xs text-gray-500", children: "Automatically backup phrases when modified" })
+jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between", children: [
+jsxRuntimeExports.jsxs("div", { children: [
+jsxRuntimeExports.jsx("label", { className: "font-medium text-gray-900", children: "Auto-Sync Phrases" }),
+jsxRuntimeExports.jsx("p", { className: "text-xs text-gray-500", children: "Automatically backup phrases when modified" })
                       ] }),
-jsxRuntime.jsxs("div", { className: "relative inline-block w-10 h-5 transition duration-200 ease-in-out rounded-full cursor-pointer", children: [
-jsxRuntime.jsx(
+jsxRuntimeExports.jsxs("div", { className: "relative inline-block w-10 h-5 transition duration-200 ease-in-out rounded-full cursor-pointer", children: [
+jsxRuntimeExports.jsx(
                           "input",
                           {
                             type: "checkbox",
@@ -10383,17 +10415,17 @@ jsxRuntime.jsx(
                             onChange: (e) => setSetting("amazon_auto_sync_phrases", e.target.checked)
                           }
                         ),
-jsxRuntime.jsx("div", { className: "w-10 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-indigo-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600" })
+jsxRuntimeExports.jsx("div", { className: "w-10 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-indigo-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600" })
                       ] })
                     ] })
                   ] })
                 ] }),
-jsxRuntime.jsxs("div", { className: "ars-setting-group border border-gray-100 bg-gray-50/30 p-4 rounded-xl space-y-4", children: [
-jsxRuntime.jsxs("div", { className: "flex items-center gap-2 mb-1", children: [
-jsxRuntime.jsx(Key, { size: 16, className: "text-orange-500" }),
-jsxRuntime.jsx("span", { className: "text-sm font-semibold text-gray-700", children: "Pastebin Credentials" })
+jsxRuntimeExports.jsxs("div", { className: "ars-setting-group border border-gray-100 bg-gray-50/30 p-4 rounded-xl space-y-4", children: [
+jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 mb-1", children: [
+jsxRuntimeExports.jsx(Key, { size: 16, className: "text-orange-500" }),
+jsxRuntimeExports.jsx("span", { className: "text-sm font-semibold text-gray-700", children: "Pastebin Credentials" })
                   ] }),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx(
                     Input,
                     {
                       label: "API Dev Key",
@@ -10402,8 +10434,8 @@ jsxRuntime.jsx(
                       onChange: (e) => setSetting("amazon_pastebin_api_dev_key", e.target.value)
                     }
                   ),
-jsxRuntime.jsxs("div", { className: "grid grid-cols-2 gap-4", children: [
-jsxRuntime.jsx(
+jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-2 gap-4", children: [
+jsxRuntimeExports.jsx(
                       Input,
                       {
                         label: "Pastebin Username",
@@ -10412,7 +10444,7 @@ jsxRuntime.jsx(
                         onChange: (e) => setSetting("amazon_pastebin_api_user_name", e.target.value)
                       }
                     ),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx(
                       Input,
                       {
                         label: "Pastebin Password",
@@ -10423,43 +10455,43 @@ jsxRuntime.jsx(
                       }
                     )
                   ] }),
-jsxRuntime.jsxs("div", { className: "flex gap-3 pt-2", children: [
-jsxRuntime.jsx(
+jsxRuntimeExports.jsxs("div", { className: "flex gap-3 pt-2", children: [
+jsxRuntimeExports.jsx(
                       Button,
                       {
                         onClick: handleGenerateKey,
                         variant: "secondary",
                         disabled: isLoading || !settings.amazon_pastebin_api_dev_key || !settings.amazon_pastebin_api_user_name || !settings.amazon_pastebin_api_user_password,
                         className: "flex-1",
-                        icon: isLoading ? jsxRuntime.jsx(RefreshCw, { size: 16, className: "animate-spin" }) : jsxRuntime.jsx(ShieldCheck, { size: 16 }),
+                        icon: isLoading ? jsxRuntimeExports.jsx(RefreshCw, { size: 16, className: "animate-spin" }) : jsxRuntimeExports.jsx(ShieldCheck, { size: 16 }),
                         children: "Generate User Key"
                       }
                     ),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx(
                       Button,
                       {
                         onClick: handleTestConnection,
                         variant: "outline",
                         disabled: isLoading || !settings.amazon_pastebin_api_dev_key || !settings.amazon_pastebin_api_user_key,
                         className: "flex-1",
-                        icon: jsxRuntime.jsx(RefreshCw, { size: 16 }),
+                        icon: jsxRuntimeExports.jsx(RefreshCw, { size: 16 }),
                         children: "Test Connection"
                       }
                     )
                   ] }),
-jsxRuntime.jsxs("p", { className: "ars-help-text", children: [
+jsxRuntimeExports.jsxs("p", { className: "ars-help-text", children: [
                     "Get your key from the ",
-jsxRuntime.jsx("a", { href: "https://pastebin.com/doc_api", target: "_blank", className: "text-blue-600 hover:underline", children: "Pastebin API documentation" }),
+jsxRuntimeExports.jsx("a", { href: "https://pastebin.com/doc_api", target: "_blank", className: "text-blue-600 hover:underline", children: "Pastebin API documentation" }),
                     "."
                   ] })
                 ] }),
-jsxRuntime.jsxs("div", { className: "ars-setting-group border border-gray-100 bg-gray-50/30 p-4 rounded-xl space-y-4", children: [
-jsxRuntime.jsxs("div", { className: "flex items-center gap-2 mb-1", children: [
-jsxRuntime.jsx(ShieldCheck, { size: 16, className: "text-blue-500" }),
-jsxRuntime.jsx("span", { className: "text-sm font-semibold text-gray-700", children: "Key & Recovery Management" })
+jsxRuntimeExports.jsxs("div", { className: "ars-setting-group border border-gray-100 bg-gray-50/30 p-4 rounded-xl space-y-4", children: [
+jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 mb-1", children: [
+jsxRuntimeExports.jsx(ShieldCheck, { size: 16, className: "text-blue-500" }),
+jsxRuntimeExports.jsx("span", { className: "text-sm font-semibold text-gray-700", children: "Key & Recovery Management" })
                   ] }),
-jsxRuntime.jsxs("div", { className: "relative", children: [
-jsxRuntime.jsx(
+jsxRuntimeExports.jsxs("div", { className: "relative", children: [
+jsxRuntimeExports.jsx(
                       Input,
                       {
                         label: "API User Key (Auto-generated)",
@@ -10468,28 +10500,28 @@ jsxRuntime.jsx(
                         placeholder: "Will be generated automatically",
                         readOnly: !isUserKeyEditable,
                         className: !isUserKeyEditable ? "bg-gray-50 text-gray-500 cursor-not-allowed" : "",
-                        icon: jsxRuntime.jsx(ShieldCheck, { size: 16, className: "text-gray-400" })
+                        icon: jsxRuntimeExports.jsx(ShieldCheck, { size: 16, className: "text-gray-400" })
                       }
                     ),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx(
                       "button",
                       {
                         type: "button",
                         onClick: () => setIsUserKeyEditable(!isUserKeyEditable),
                         className: "absolute right-3 top-[34px] text-gray-400 hover:text-blue-600 transition-colors",
                         title: "Edit User Key manually",
-                        children: jsxRuntime.jsx(Pen, { size: 16 })
+                        children: jsxRuntimeExports.jsx(Pen, { size: 16 })
                       }
                     ),
-jsxRuntime.jsx("p", { className: "ars-help-text mt-2", children: "Generated from your credentials or recovered from cloud." })
+jsxRuntimeExports.jsx("p", { className: "ars-help-text mt-2", children: "Generated from your credentials or recovered from cloud." })
                   ] }),
-jsxRuntime.jsxs("div", { className: "pt-4 border-t border-gray-100 mt-2", children: [
-jsxRuntime.jsxs("label", { className: "text-xs font-semibold text-gray-700 uppercase tracking-wider flex items-center gap-1.5 mb-2", children: [
+jsxRuntimeExports.jsxs("div", { className: "pt-4 border-t border-gray-100 mt-2", children: [
+jsxRuntimeExports.jsxs("label", { className: "text-xs font-semibold text-gray-700 uppercase tracking-wider flex items-center gap-1.5 mb-2", children: [
                       "Recovery Paste ID",
-jsxRuntime.jsx(CircleQuestionMark, { size: 14, className: "text-gray-400 cursor-help", title: "Your User Key can be stored in a rescue paste, allowing multi-device sync." })
+jsxRuntimeExports.jsx(CircleQuestionMark, { size: 14, className: "text-gray-400 cursor-help", title: "Your User Key can be stored in a rescue paste, allowing multi-device sync." })
                     ] }),
-jsxRuntime.jsxs("div", { className: "flex gap-2", children: [
-jsxRuntime.jsx(
+jsxRuntimeExports.jsxs("div", { className: "flex gap-2", children: [
+jsxRuntimeExports.jsx(
                         Input,
                         {
                           value: settings.amazon_pastebin_recovery_id,
@@ -10498,33 +10530,33 @@ jsxRuntime.jsx(
                           className: "font-mono flex-1"
                         }
                       ),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx(
                         Button,
                         {
                           variant: "secondary",
                           size: "sm",
                           onClick: handleFindRecoveryPaste,
                           disabled: isLoading,
-                          icon: jsxRuntime.jsx(Search, { size: 14 }),
+                          icon: jsxRuntimeExports.jsx(Search, { size: 14 }),
                           className: "whitespace-nowrap px-3 text-[11px] h-[38px]",
                           children: "Find ID"
                         }
                       ),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx(
                         Button,
                         {
                           variant: "secondary",
                           size: "sm",
                           onClick: handleFetchKey,
                           disabled: isLoading || !settings.amazon_pastebin_recovery_id,
-                          icon: jsxRuntime.jsx(CloudDownload, { size: 14 }),
+                          icon: jsxRuntimeExports.jsx(CloudDownload, { size: 14 }),
                           className: "whitespace-nowrap px-3 text-[11px] h-[38px]",
                           children: "Fetch Key"
                         }
                       )
                     ] }),
-jsxRuntime.jsx("p", { className: "ars-help-text mt-1.5", children: "Recover your key from another device, or search for an existing recovery paste." }),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx("p", { className: "ars-help-text mt-1.5", children: "Recover your key from another device, or search for an existing recovery paste." }),
+jsxRuntimeExports.jsx(
                       Button,
                       {
                         onClick: handleSaveUserKeyToCloud,
@@ -10539,22 +10571,22 @@ jsxRuntime.jsx(
                 ] })
               ] })
             ] }),
-            activeTab === "about" && jsxRuntime.jsxs("div", { className: "ars-settings-section ars-about-section", children: [
-jsxRuntime.jsxs("div", { className: "ars-brand", children: [
-jsxRuntime.jsx(Settings, { size: 48, className: "ars-brand-icon" }),
-jsxRuntime.jsx("h1", { children: "Amazon Review Studio" }),
-jsxRuntime.jsx("span", { className: "ars-version", children: "v2.0.0-react" })
+            activeTab === "about" && jsxRuntimeExports.jsxs("div", { className: "ars-settings-section ars-about-section", children: [
+jsxRuntimeExports.jsxs("div", { className: "ars-brand", children: [
+jsxRuntimeExports.jsx(Settings, { size: 48, className: "ars-brand-icon" }),
+jsxRuntimeExports.jsx("h1", { children: "Amazon Review Studio" }),
+jsxRuntimeExports.jsx("span", { className: "ars-version", children: "v2.0.0-react" })
               ] }),
-jsxRuntime.jsx("p", { children: "A premium userscript for Amazon reviewers." }),
-jsxRuntime.jsx(Card, { padding: "md", children: jsxRuntime.jsx("p", { children: "Designed for power users who want professional formatting and AI-assisted content creation directly within the Amazon review form." }) })
+jsxRuntimeExports.jsx("p", { children: "A premium userscript for Amazon reviewers." }),
+jsxRuntimeExports.jsx(Card, { padding: "md", children: jsxRuntimeExports.jsx("p", { children: "Designed for power users who want professional formatting and AI-assisted content creation directly within the Amazon review form." }) })
             ] }),
-            activeTab === "debug" && jsxRuntime.jsxs("div", { className: "ars-settings-section", children: [
-jsxRuntime.jsx("h3", { children: "Troubleshooting" }),
-jsxRuntime.jsxs("div", { className: "ars-setting-group border border-red-100 bg-red-50/30 p-4 rounded-xl space-y-4", children: [
-jsxRuntime.jsx("p", { className: "text-sm text-gray-700", children: "Tools to help diagnose issues with form submission or injection." }),
-jsxRuntime.jsxs("div", { className: "ars-setting-item checkbox-row", children: [
-jsxRuntime.jsxs("label", { className: "flex items-center gap-3 cursor-pointer", children: [
-jsxRuntime.jsx(
+            activeTab === "debug" && jsxRuntimeExports.jsxs("div", { className: "ars-settings-section", children: [
+jsxRuntimeExports.jsx("h3", { children: "Troubleshooting" }),
+jsxRuntimeExports.jsxs("div", { className: "ars-setting-group border border-red-100 bg-red-50/30 p-4 rounded-xl space-y-4", children: [
+jsxRuntimeExports.jsx("p", { className: "text-sm text-gray-700", children: "Tools to help diagnose issues with form submission or injection." }),
+jsxRuntimeExports.jsxs("div", { className: "ars-setting-item checkbox-row", children: [
+jsxRuntimeExports.jsxs("label", { className: "flex items-center gap-3 cursor-pointer", children: [
+jsxRuntimeExports.jsx(
                       "input",
                       {
                         type: "checkbox",
@@ -10562,12 +10594,12 @@ jsxRuntime.jsx(
                         onChange: (e) => setSetting("amazon_ai_convert_markdown", e.target.checked)
                       }
                     ),
-jsxRuntime.jsx("span", { children: "Convert AI Markdown to Unicode" })
+jsxRuntimeExports.jsx("span", { children: "Convert AI Markdown to Unicode" })
                   ] }),
-jsxRuntime.jsx("p", { className: "ars-help-text ml-7", children: "Automatically formats AI-generated headers and lists with unicode styles. Disable if you prefer raw text output." })
+jsxRuntimeExports.jsx("p", { className: "ars-help-text ml-7", children: "Automatically formats AI-generated headers and lists with unicode styles. Disable if you prefer raw text output." })
                 ] }),
-jsxRuntime.jsx("div", { className: "ars-setting-item checkbox-row", children: jsxRuntime.jsxs("label", { className: "flex items-center gap-3 cursor-pointer", children: [
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx("div", { className: "ars-setting-item checkbox-row", children: jsxRuntimeExports.jsxs("label", { className: "flex items-center gap-3 cursor-pointer", children: [
+jsxRuntimeExports.jsx(
                     "input",
                     {
                       type: "checkbox",
@@ -10575,11 +10607,11 @@ jsxRuntime.jsx(
                       onChange: (e) => setSetting("debug_mode", e.target.checked)
                     }
                   ),
-jsxRuntime.jsx("span", { children: "Enable Verbose Logging (Console)" })
+jsxRuntimeExports.jsx("span", { children: "Enable Verbose Logging (Console)" })
                 ] }) }),
-jsxRuntime.jsxs("div", { className: "ars-setting-item checkbox-row", children: [
-jsxRuntime.jsxs("label", { className: "flex items-center gap-3 cursor-pointer", children: [
-jsxRuntime.jsx(
+jsxRuntimeExports.jsxs("div", { className: "ars-setting-item checkbox-row", children: [
+jsxRuntimeExports.jsxs("label", { className: "flex items-center gap-3 cursor-pointer", children: [
+jsxRuntimeExports.jsx(
                       "input",
                       {
                         type: "checkbox",
@@ -10589,9 +10621,9 @@ jsxRuntime.jsx(
                         }
                       }
                     ),
-jsxRuntime.jsx("span", { children: "Unhide Native Amazon Form (Requires Refresh)" })
+jsxRuntimeExports.jsx("span", { children: "Unhide Native Amazon Form (Requires Refresh)" })
                   ] }),
-jsxRuntime.jsx("p", { className: "ars-help-text ml-7", children: "Reveals the original Amazon review form below the Studio interface. Useful to check if data is syncing correctly." })
+jsxRuntimeExports.jsx("p", { className: "ars-help-text ml-7", children: "Reveals the original Amazon review form below the Studio interface. Useful to check if data is syncing correctly." })
                 ] })
               ] })
             ] })
@@ -10764,29 +10796,29 @@ User Key: ${settings.amazon_pastebin_api_user_key ? "✓" : "✗"}`);
       }
       setShowCloudPopover(false);
     };
-    const SerifIcon = () => jsxRuntime.jsx("svg", { xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", children: jsxRuntime.jsx("text", { x: "12", y: "19", textAnchor: "middle", fontSize: "25", fontFamily: "serif", fontWeight: "bold", stroke: "none", fill: "currentColor", children: "S" }) });
-    const CursiveIcon = () => jsxRuntime.jsx("svg", { xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "0.5", strokeLinecap: "round", strokeLinejoin: "round", children: jsxRuntime.jsx("text", { x: "12", y: "19", textAnchor: "middle", fontSize: "20", fontFamily: "cursive", fontWeight: "bold", stroke: "none", fill: "currentColor", children: "C" }) });
-    const MonospaceIcon = () => jsxRuntime.jsx("svg", { xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", children: jsxRuntime.jsx("text", { x: "12", y: "19", textAnchor: "middle", fontSize: "22", fontFamily: "monospace", fontWeight: "bold", stroke: "none", fill: "currentColor", children: "M" }) });
-    const WideIcon = () => jsxRuntime.jsx("svg", { xmlns: "http://www.w3.org/2000/svg", width: "22", height: "18", viewBox: "0 0 32 24", fill: "none", stroke: "currentColor", strokeWidth: "2.3", strokeLinecap: "round", strokeLinejoin: "round", children: jsxRuntime.jsx("path", { d: "M4 5l6 14 6-10 6 10 6-14" }) });
-    const SuperscriptIcon = () => jsxRuntime.jsxs("svg", { xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", children: [
-jsxRuntime.jsx("path", { d: "M4 19l7-7" }),
-jsxRuntime.jsx("path", { d: "M11 19l-7-7" }),
-jsxRuntime.jsx("path", { d: "M19 5c0-1-.8-2-2-2s-2 1-2 2c0 2.2 4 1.8 4 4 0 1-1 2-2 2s-2-1-2-2" })
+    const SerifIcon = () => jsxRuntimeExports.jsx("svg", { xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", children: jsxRuntimeExports.jsx("text", { x: "12", y: "19", textAnchor: "middle", fontSize: "25", fontFamily: "serif", fontWeight: "bold", stroke: "none", fill: "currentColor", children: "S" }) });
+    const CursiveIcon = () => jsxRuntimeExports.jsx("svg", { xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "0.5", strokeLinecap: "round", strokeLinejoin: "round", children: jsxRuntimeExports.jsx("text", { x: "12", y: "19", textAnchor: "middle", fontSize: "20", fontFamily: "cursive", fontWeight: "bold", stroke: "none", fill: "currentColor", children: "C" }) });
+    const MonospaceIcon = () => jsxRuntimeExports.jsx("svg", { xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", children: jsxRuntimeExports.jsx("text", { x: "12", y: "19", textAnchor: "middle", fontSize: "22", fontFamily: "monospace", fontWeight: "bold", stroke: "none", fill: "currentColor", children: "M" }) });
+    const WideIcon = () => jsxRuntimeExports.jsx("svg", { xmlns: "http://www.w3.org/2000/svg", width: "22", height: "18", viewBox: "0 0 32 24", fill: "none", stroke: "currentColor", strokeWidth: "2.3", strokeLinecap: "round", strokeLinejoin: "round", children: jsxRuntimeExports.jsx("path", { d: "M4 5l6 14 6-10 6 10 6-14" }) });
+    const SuperscriptIcon = () => jsxRuntimeExports.jsxs("svg", { xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", children: [
+jsxRuntimeExports.jsx("path", { d: "M4 19l7-7" }),
+jsxRuntimeExports.jsx("path", { d: "M11 19l-7-7" }),
+jsxRuntimeExports.jsx("path", { d: "M19 5c0-1-.8-2-2-2s-2 1-2 2c0 2.2 4 1.8 4 4 0 1-1 2-2 2s-2-1-2-2" })
     ] });
     const tools = [
-      { id: "bold", icon: jsxRuntime.jsx(Bold, { size: 16 }), label: "Bold" },
-      { id: "italic", icon: jsxRuntime.jsx(Italic, { size: 16 }), label: "Italic" },
-      { id: "serif", icon: jsxRuntime.jsx(SerifIcon, {}), label: "Serif" },
-      { id: "cursive", icon: jsxRuntime.jsx(CursiveIcon, {}), label: "Cursive" },
-      { id: "monospace", icon: jsxRuntime.jsx(MonospaceIcon, {}), label: "Monospace" },
-      { id: "underline", icon: jsxRuntime.jsx(Underline, { size: 16 }), label: "Underline" },
-      { id: "strikethrough", icon: jsxRuntime.jsx(Strikethrough, { size: 16 }), label: "Strikethrough" },
-      { id: "wide", icon: jsxRuntime.jsx(WideIcon, {}), label: "Wide" },
-      { id: "superscript", icon: jsxRuntime.jsx(SuperscriptIcon, {}), label: "Superscript" }
+      { id: "bold", icon: jsxRuntimeExports.jsx(Bold, { size: 16 }), label: "Bold" },
+      { id: "italic", icon: jsxRuntimeExports.jsx(Italic, { size: 16 }), label: "Italic" },
+      { id: "serif", icon: jsxRuntimeExports.jsx(SerifIcon, {}), label: "Serif" },
+      { id: "cursive", icon: jsxRuntimeExports.jsx(CursiveIcon, {}), label: "Cursive" },
+      { id: "monospace", icon: jsxRuntimeExports.jsx(MonospaceIcon, {}), label: "Monospace" },
+      { id: "underline", icon: jsxRuntimeExports.jsx(Underline, { size: 16 }), label: "Underline" },
+      { id: "strikethrough", icon: jsxRuntimeExports.jsx(Strikethrough, { size: 16 }), label: "Strikethrough" },
+      { id: "wide", icon: jsxRuntimeExports.jsx(WideIcon, {}), label: "Wide" },
+      { id: "superscript", icon: jsxRuntimeExports.jsx(SuperscriptIcon, {}), label: "Superscript" }
     ];
-    return jsxRuntime.jsxs("div", { className: "ars-editor-toolbar", children: [
-jsxRuntime.jsxs("div", { className: "ars-toolbar-group", children: [
-        tools.map((tool) => jsxRuntime.jsx(
+    return jsxRuntimeExports.jsxs("div", { className: "ars-editor-toolbar", children: [
+jsxRuntimeExports.jsxs("div", { className: "ars-toolbar-group", children: [
+        tools.map((tool) => jsxRuntimeExports.jsx(
           Button,
           {
             variant: activeStyles.has(tool.id) ? "primary" : "ghost",
@@ -10798,10 +10830,10 @@ jsxRuntime.jsxs("div", { className: "ars-toolbar-group", children: [
           },
           tool.id
         )),
-        onListToggle && jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-jsxRuntime.jsx("div", { className: "ars-toolbar-divider" }),
-jsxRuntime.jsxs("div", { className: "ars-bullet-btn-wrapper", style: { position: "relative" }, children: [
-jsxRuntime.jsxs(
+        onListToggle && jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+jsxRuntimeExports.jsx("div", { className: "ars-toolbar-divider" }),
+jsxRuntimeExports.jsxs("div", { className: "ars-bullet-btn-wrapper", style: { position: "relative" }, children: [
+jsxRuntimeExports.jsxs(
               Button,
               {
                 ref: bulletBtnRef,
@@ -10812,17 +10844,17 @@ jsxRuntime.jsxs(
                 title: `Bullet List (Right-click to change style: ${settings.amazon_bullet_style})`,
                 className: "ars-toolbar-btn ars-bullet-btn",
                 children: [
-jsxRuntime.jsx(List, { size: 16 }),
-jsxRuntime.jsx("span", { className: "ars-bullet-indicator", children: settings.amazon_bullet_style })
+jsxRuntimeExports.jsx(List, { size: 16 }),
+jsxRuntimeExports.jsx("span", { className: "ars-bullet-indicator", children: settings.amazon_bullet_style })
                 ]
               }
             ),
-            showBulletSelector && jsxRuntime.jsx(
+            showBulletSelector && jsxRuntimeExports.jsx(
               "div",
               {
                 ref: bulletSelectorRef,
                 className: "ars-bullet-selector",
-                children: bulletOptions.map((bullet) => jsxRuntime.jsx(
+                children: bulletOptions.map((bullet) => jsxRuntimeExports.jsx(
                   "div",
                   {
                     className: `ars-bullet-option ${settings.amazon_bullet_style === bullet ? "active" : ""}`,
@@ -10837,7 +10869,7 @@ jsxRuntime.jsx("span", { className: "ars-bullet-indicator", children: settings.a
               }
             )
           ] }),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx(
             Button,
             {
               variant: "ghost",
@@ -10845,16 +10877,16 @@ jsxRuntime.jsx(
               onClick: () => onListToggle("number"),
               title: "Numbered List",
               className: "ars-toolbar-btn",
-              children: jsxRuntime.jsx(ListOrdered, { size: 16 })
+              children: jsxRuntimeExports.jsx(ListOrdered, { size: 16 })
             }
           )
         ] }),
-        showUtilities && jsxRuntime.jsx("div", { className: "ars-toolbar-divider" })
+        showUtilities && jsxRuntimeExports.jsx("div", { className: "ars-toolbar-divider" })
       ] }),
-      showUtilities && jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-jsxRuntime.jsxs("div", { className: "ars-toolbar-group", children: [
-jsxRuntime.jsxs("div", { style: { position: "relative" }, children: [
-jsxRuntime.jsx(
+      showUtilities && jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+jsxRuntimeExports.jsxs("div", { className: "ars-toolbar-group", children: [
+jsxRuntimeExports.jsxs("div", { style: { position: "relative" }, children: [
+jsxRuntimeExports.jsx(
               Button,
               {
                 ref: templateBtnRef,
@@ -10863,10 +10895,10 @@ jsxRuntime.jsx(
                 onClick: () => setShowTemplatePopover(!showTemplatePopover),
                 title: "Templates",
                 className: "ars-toolbar-btn",
-                children: jsxRuntime.jsx(PanelsTopLeft, { size: 16 })
+                children: jsxRuntimeExports.jsx(PanelsTopLeft, { size: 16 })
               }
             ),
-            showTemplatePopover && jsxRuntime.jsx("div", { ref: templatePopoverRef, className: "ars-phrase-popover", children: jsxRuntime.jsx(
+            showTemplatePopover && jsxRuntimeExports.jsx("div", { ref: templatePopoverRef, className: "ars-phrase-popover", children: jsxRuntimeExports.jsx(
               TemplateSelector,
               {
                 onInsert,
@@ -10876,8 +10908,8 @@ jsxRuntime.jsx(
               }
             ) })
           ] }),
-jsxRuntime.jsxs("div", { style: { position: "relative" }, children: [
-jsxRuntime.jsx(
+jsxRuntimeExports.jsxs("div", { style: { position: "relative" }, children: [
+jsxRuntimeExports.jsx(
               Button,
               {
                 ref: phraseBtnRef,
@@ -10886,10 +10918,10 @@ jsxRuntime.jsx(
                 onClick: () => setShowPhrases(!showPhrases),
                 title: "Insert Phrase",
                 className: "ars-toolbar-btn",
-                children: jsxRuntime.jsx(MessageSquare, { size: 16 })
+                children: jsxRuntimeExports.jsx(MessageSquare, { size: 16 })
               }
             ),
-            showPhrases && jsxRuntime.jsx("div", { ref: phrasePopoverRef, className: "ars-phrase-popover", children: jsxRuntime.jsx(
+            showPhrases && jsxRuntimeExports.jsx("div", { ref: phrasePopoverRef, className: "ars-phrase-popover", children: jsxRuntimeExports.jsx(
               PhraseManager,
               {
                 onInsert,
@@ -10897,8 +10929,8 @@ jsxRuntime.jsx(
               }
             ) })
           ] }),
-jsxRuntime.jsxs("div", { style: { position: "relative" }, children: [
-jsxRuntime.jsx(
+jsxRuntimeExports.jsxs("div", { style: { position: "relative" }, children: [
+jsxRuntimeExports.jsx(
               Button,
               {
                 ref: cloudBtnRef,
@@ -10907,16 +10939,16 @@ jsxRuntime.jsx(
                 onClick: () => setShowCloudPopover(!showCloudPopover),
                 title: "Cloud Sync",
                 className: "ars-toolbar-btn",
-                children: jsxRuntime.jsx(Cloud, { size: 16 })
+                children: jsxRuntimeExports.jsx(Cloud, { size: 16 })
               }
             ),
-            showCloudPopover && jsxRuntime.jsxs("div", { ref: cloudPopoverRef, className: "ars-phrase-popover", style: { width: "220px" }, children: [
-jsxRuntime.jsxs("div", { className: "ars-popover-header", style: { padding: "12px 16px", borderBottom: "1px solid var(--ars-color-border)", marginBottom: "4px" }, children: [
-jsxRuntime.jsxs("h3", { style: { margin: 0, fontSize: "1rem", display: "flex", alignItems: "center", gap: "0.5rem", fontWeight: 600 }, children: [
-jsxRuntime.jsx(Cloud, { size: 16 }),
+            showCloudPopover && jsxRuntimeExports.jsxs("div", { ref: cloudPopoverRef, className: "ars-phrase-popover", style: { width: "220px" }, children: [
+jsxRuntimeExports.jsxs("div", { className: "ars-popover-header", style: { padding: "12px 16px", borderBottom: "1px solid var(--ars-color-border)", marginBottom: "4px" }, children: [
+jsxRuntimeExports.jsxs("h3", { style: { margin: 0, fontSize: "1rem", display: "flex", alignItems: "center", gap: "0.5rem", fontWeight: 600 }, children: [
+jsxRuntimeExports.jsx(Cloud, { size: 16 }),
                   " Cloud Sync"
                 ] }),
-                quota && jsxRuntime.jsxs("div", { style: {
+                quota && jsxRuntimeExports.jsxs("div", { style: {
                   fontSize: "0.7rem",
                   fontWeight: 600,
                   color: quota.count >= 20 ? "#dc2626" : quota.count >= 15 ? "#d97706" : "#6b7280",
@@ -10928,69 +10960,69 @@ jsxRuntime.jsx(Cloud, { size: 16 }),
                   "/20"
                 ] })
               ] }),
-jsxRuntime.jsxs("div", { className: "ars-popover-content", children: [
-                !settings.amazon_pastebin_api_user_key ? jsxRuntime.jsxs("div", { className: "p-3 text-sm text-gray-500 text-center", children: [
-jsxRuntime.jsx("p", { className: "mb-2", children: "Setup API to sync data" }),
-jsxRuntime.jsx(Button, { variant: "primary", size: "sm", onClick: () => {
+jsxRuntimeExports.jsxs("div", { className: "ars-popover-content", children: [
+                !settings.amazon_pastebin_api_user_key ? jsxRuntimeExports.jsxs("div", { className: "p-3 text-sm text-gray-500 text-center", children: [
+jsxRuntimeExports.jsx("p", { className: "mb-2", children: "Setup API to sync data" }),
+jsxRuntimeExports.jsx(Button, { variant: "primary", size: "sm", onClick: () => {
                     setSettingsTab("sync");
                     setShowSettings(true);
                     setShowCloudPopover(false);
                   }, children: "Open Settings" })
-                ] }) : jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-jsxRuntime.jsxs("button", { onClick: () => handleCloudAction("save"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors", children: [
-jsxRuntime.jsx(Save, { size: 14, className: "text-blue-500" }),
+                ] }) : jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+jsxRuntimeExports.jsxs("button", { onClick: () => handleCloudAction("save"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors", children: [
+jsxRuntimeExports.jsx(Save, { size: 14, className: "text-blue-500" }),
                     " Save Review to Cloud"
                   ] }),
-jsxRuntime.jsxs("button", { onClick: () => handleCloudAction("fetch"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors", children: [
-jsxRuntime.jsx(Download, { size: 14, className: "text-green-500" }),
+jsxRuntimeExports.jsxs("button", { onClick: () => handleCloudAction("fetch"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors", children: [
+jsxRuntimeExports.jsx(Download, { size: 14, className: "text-green-500" }),
                     " Fetch Review from Cloud"
                   ] }),
-jsxRuntime.jsx("div", { className: "my-1 border-t border-gray-100" }),
-jsxRuntime.jsxs("button", { onClick: () => handleCloudAction("create-manual"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors", children: [
-jsxRuntime.jsx(Clipboard, { size: 14, className: "text-gray-500" }),
+jsxRuntimeExports.jsx("div", { className: "my-1 border-t border-gray-100" }),
+jsxRuntimeExports.jsxs("button", { onClick: () => handleCloudAction("create-manual"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors", children: [
+jsxRuntimeExports.jsx(Clipboard, { size: 14, className: "text-gray-500" }),
                     " Create Manual Paste"
                   ] }),
-jsxRuntime.jsxs("button", { onClick: () => handleCloudAction("import-manual"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors", children: [
-jsxRuntime.jsx(Link2, { size: 14, className: "text-gray-500" }),
+jsxRuntimeExports.jsxs("button", { onClick: () => handleCloudAction("import-manual"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors", children: [
+jsxRuntimeExports.jsx(Link2, { size: 14, className: "text-gray-500" }),
                     " Import from Paste URL"
                   ] }),
-jsxRuntime.jsx("div", { className: "my-1 border-t border-gray-100" }),
-jsxRuntime.jsxs("button", { onClick: () => handleCloudAction("sync-templates"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors", children: [
-jsxRuntime.jsx(RefreshCw, { size: 14, className: "text-orange-500" }),
+jsxRuntimeExports.jsx("div", { className: "my-1 border-t border-gray-100" }),
+jsxRuntimeExports.jsxs("button", { onClick: () => handleCloudAction("sync-templates"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors", children: [
+jsxRuntimeExports.jsx(RefreshCw, { size: 14, className: "text-orange-500" }),
                     " Sync Templates/Phrases"
                   ] }),
-jsxRuntime.jsxs("button", { onClick: () => handleCloudAction("import-templates"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors", children: [
-jsxRuntime.jsx(PanelsTopLeft, { size: 14, className: "text-purple-500" }),
+jsxRuntimeExports.jsxs("button", { onClick: () => handleCloudAction("import-templates"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors", children: [
+jsxRuntimeExports.jsx(PanelsTopLeft, { size: 14, className: "text-purple-500" }),
                     " Import Templates/Phrases"
                   ] }),
-jsxRuntime.jsxs("button", { onClick: () => handleCloudAction("my-pastebin"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors", children: [
-jsxRuntime.jsx(ExternalLink, { size: 14, className: "text-gray-500" }),
+jsxRuntimeExports.jsxs("button", { onClick: () => handleCloudAction("my-pastebin"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors", children: [
+jsxRuntimeExports.jsx(ExternalLink, { size: 14, className: "text-gray-500" }),
                     " My Pastebin"
                   ] }),
-jsxRuntime.jsx("div", { className: "my-1 border-t border-gray-100" }),
-jsxRuntime.jsxs("button", { onClick: () => {
+jsxRuntimeExports.jsx("div", { className: "my-1 border-t border-gray-100" }),
+jsxRuntimeExports.jsxs("button", { onClick: () => {
                     setSettingsTab("sync");
                     setShowSettings(true);
                     setShowCloudPopover(false);
                   }, className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors", children: [
-jsxRuntime.jsx(Settings, { size: 14, className: "text-gray-500" }),
+jsxRuntimeExports.jsx(Settings, { size: 14, className: "text-gray-500" }),
                     " API Settings"
                   ] }),
-jsxRuntime.jsxs("button", { onClick: () => handleCloudAction("status"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors", children: [
-jsxRuntime.jsx(ChartNoAxesColumn, { size: 14, className: "text-gray-500" }),
+jsxRuntimeExports.jsxs("button", { onClick: () => handleCloudAction("status"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors", children: [
+jsxRuntimeExports.jsx(ChartNoAxesColumn, { size: 14, className: "text-gray-500" }),
                     " Sync Status"
                   ] }),
-jsxRuntime.jsxs("button", { onClick: () => handleCloudAction("clear"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors text-red-500 hover:bg-red-50", children: [
-jsxRuntime.jsx(Trash2, { size: 14 }),
+jsxRuntimeExports.jsxs("button", { onClick: () => handleCloudAction("clear"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors text-red-500 hover:bg-red-50", children: [
+jsxRuntimeExports.jsx(Trash2, { size: 14 }),
                     " Clear Cloud Data"
                   ] })
                 ] }),
-                isCloudLoading && jsxRuntime.jsx("div", { className: "text-xs text-center text-blue-500 py-1", children: "Processing..." })
+                isCloudLoading && jsxRuntimeExports.jsx("div", { className: "text-xs text-center text-blue-500 py-1", children: "Processing..." })
               ] })
             ] })
           ] })
         ] }),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx(
           TemplateManager,
           {
             isOpen: showTemplateManager,
@@ -10998,7 +11030,7 @@ jsxRuntime.jsx(
             onInsert
           }
         ),
-        showSettings && jsxRuntime.jsx(
+        showSettings && jsxRuntimeExports.jsx(
           SettingsDashboard,
           {
             isOpen: showSettings,
@@ -12170,8 +12202,8 @@ ${nextNum}) `;
         textarea.focus();
       }, 0);
     }, [value, onChange]);
-    return jsxRuntime.jsxs("div", { className: cn("ars-rich-editor", className), children: [
-jsxRuntime.jsx(
+    return jsxRuntimeExports.jsxs("div", { className: cn("ars-rich-editor", className), children: [
+jsxRuntimeExports.jsx(
         EditorToolbar,
         {
           onStyleToggle: handleStyleToggle,
@@ -12183,7 +12215,7 @@ jsxRuntime.jsx(
           onListToggle: handleListToggle
         }
       ),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx(
         "textarea",
         {
           ref: textareaRef,
@@ -12194,9 +12226,9 @@ jsxRuntime.jsx(
           placeholder
         }
       ),
-jsxRuntime.jsxs("div", { className: "ars-editor-footer", children: [
-jsxRuntime.jsx("div", { className: "ars-editor-options", children: jsxRuntime.jsxs("label", { className: "ars-checkbox-label", title: "Automatically resize textbox to fit content", children: [
-jsxRuntime.jsx(
+jsxRuntimeExports.jsxs("div", { className: "ars-editor-footer", children: [
+jsxRuntimeExports.jsx("div", { className: "ars-editor-options", children: jsxRuntimeExports.jsxs("label", { className: "ars-checkbox-label", title: "Automatically resize textbox to fit content", children: [
+jsxRuntimeExports.jsx(
             "input",
             {
               type: "checkbox",
@@ -12204,9 +12236,9 @@ jsxRuntime.jsx(
               onChange: handleAutoResizeToggle
             }
           ),
-jsxRuntime.jsx("span", { children: "Auto-resize" })
+jsxRuntimeExports.jsx("span", { children: "Auto-resize" })
         ] }) }),
-jsxRuntime.jsxs("span", { className: "ars-char-count", children: [
+jsxRuntimeExports.jsxs("span", { className: "ars-char-count", children: [
           value.length,
           " characters"
         ] })
@@ -12761,22 +12793,22 @@ ${currentThoughts}`;
       onInsert(generatedText);
       onClose();
     };
-    const footer = jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-jsxRuntime.jsx(Button, { variant: "ghost", onClick: onClose, children: "Cancel" }),
-jsxRuntime.jsxs(
+    const footer = jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+jsxRuntimeExports.jsx(Button, { variant: "ghost", onClick: onClose, children: "Cancel" }),
+jsxRuntimeExports.jsxs(
         Button,
         {
           variant: "primary",
           onClick: handleInsert,
           disabled: !generatedText || isGenerating,
           children: [
-jsxRuntime.jsx(Copy, { size: 16, style: { marginRight: 8 } }),
+jsxRuntimeExports.jsx(Copy, { size: 16, style: { marginRight: 8 } }),
             "Insert into Review"
           ]
         }
       )
     ] });
-    return jsxRuntime.jsx(
+    return jsxRuntimeExports.jsx(
       Modal,
       {
         isOpen,
@@ -12784,26 +12816,26 @@ jsxRuntime.jsx(Copy, { size: 16, style: { marginRight: 8 } }),
         title: "AI Review Assistant",
         width: "700px",
         footer,
-        children: jsxRuntime.jsxs("div", { className: "ars-ai-modal-body", children: [
-jsxRuntime.jsxs("div", { className: "ars-ai-settings-compact", children: [
-jsxRuntime.jsxs(Card, { padding: "sm", className: "ars-ai-provider-card", children: [
-jsxRuntime.jsx("span", { className: "ars-label", children: "Provider:" }),
-jsxRuntime.jsxs(
+        children: jsxRuntimeExports.jsxs("div", { className: "ars-ai-modal-body", children: [
+jsxRuntimeExports.jsxs("div", { className: "ars-ai-settings-compact", children: [
+jsxRuntimeExports.jsxs(Card, { padding: "sm", className: "ars-ai-provider-card", children: [
+jsxRuntimeExports.jsx("span", { className: "ars-label", children: "Provider:" }),
+jsxRuntimeExports.jsxs(
                 "select",
                 {
                   value: settings.amazon_ai_provider,
                   onChange: (e) => setSetting("amazon_ai_provider", e.target.value),
                   className: "ars-select",
                   children: [
-jsxRuntime.jsx("option", { value: "gemini", children: "Google Gemini" }),
-jsxRuntime.jsx("option", { value: "local", children: "Local LLM (LM Studio/Ollama)" })
+jsxRuntimeExports.jsx("option", { value: "gemini", children: "Google Gemini" }),
+jsxRuntimeExports.jsx("option", { value: "local", children: "Local LLM (LM Studio/Ollama)" })
                   ]
                 }
               )
             ] }),
-jsxRuntime.jsxs(Card, { padding: "sm", className: "ars-ai-length-card", children: [
-jsxRuntime.jsx("span", { className: "ars-label", children: "Length:" }),
-jsxRuntime.jsx("div", { className: "ars-ai-length-selector", children: ["short", "normal", "long", "detailed"].map((len) => jsxRuntime.jsx(
+jsxRuntimeExports.jsxs(Card, { padding: "sm", className: "ars-ai-length-card", children: [
+jsxRuntimeExports.jsx("span", { className: "ars-label", children: "Length:" }),
+jsxRuntimeExports.jsx("div", { className: "ars-ai-length-selector", children: ["short", "normal", "long", "detailed"].map((len) => jsxRuntimeExports.jsx(
                 "button",
                 {
                   className: `ars-ai-length-btn ${reviewLength === len ? "active" : ""}`,
@@ -12814,8 +12846,8 @@ jsxRuntime.jsx("div", { className: "ars-ai-length-selector", children: ["short",
                 len
               )) })
             ] }),
-jsxRuntime.jsx(Card, { padding: "sm", className: "ars-ai-vision-card", children: jsxRuntime.jsxs("label", { className: "flex items-center gap-2 cursor-pointer", children: [
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx(Card, { padding: "sm", className: "ars-ai-vision-card", children: jsxRuntimeExports.jsxs("label", { className: "flex items-center gap-2 cursor-pointer", children: [
+jsxRuntimeExports.jsx(
                 "input",
                 {
                   type: "checkbox",
@@ -12824,21 +12856,21 @@ jsxRuntime.jsx(
                   className: "ars-checkbox"
                 }
               ),
-jsxRuntime.jsxs("span", { className: "ars-label mb-0 flex items-center gap-1", children: [
-jsxRuntime.jsx(Image$1, { size: 14 }),
+jsxRuntimeExports.jsxs("span", { className: "ars-label mb-0 flex items-center gap-1", children: [
+jsxRuntimeExports.jsx(Image$1, { size: 14 }),
                 "Include Images"
               ] })
             ] }) })
           ] }),
-jsxRuntime.jsxs("div", { className: "ars-ai-prompt-section", children: [
-jsxRuntime.jsxs("div", { className: "flex justify-between items-end mb-2", children: [
-jsxRuntime.jsxs("div", { className: "flex flex-col gap-1", children: [
-jsxRuntime.jsxs("label", { className: "ars-label mb-0 flex items-center gap-1", children: [
+jsxRuntimeExports.jsxs("div", { className: "ars-ai-prompt-section", children: [
+jsxRuntimeExports.jsxs("div", { className: "flex justify-between items-end mb-2", children: [
+jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1", children: [
+jsxRuntimeExports.jsxs("label", { className: "ars-label mb-0 flex items-center gap-1", children: [
                   "Your Initial Thoughts ",
-jsxRuntime.jsx("span", { style: { color: "#dc2626" }, children: "*" })
+jsxRuntimeExports.jsx("span", { style: { color: "#dc2626" }, children: "*" })
                 ] }),
-                existingReviewText.length >= 300 && jsxRuntime.jsxs("label", { className: "flex items-center gap-2 text-[11px] cursor-pointer select-none text-gray-500 hover:text-gray-700 transition-colors", children: [
-jsxRuntime.jsx(
+                existingReviewText.length >= 300 && jsxRuntimeExports.jsxs("label", { className: "flex items-center gap-2 text-[11px] cursor-pointer select-none text-gray-500 hover:text-gray-700 transition-colors", children: [
+jsxRuntimeExports.jsx(
                     "input",
                     {
                       type: "checkbox",
@@ -12847,23 +12879,23 @@ jsxRuntime.jsx(
                       className: "ars-checkbox"
                     }
                   ),
-jsxRuntime.jsx("span", { style: { color: useExistingReview ? "var(--ars-color-primary)" : "inherit", fontWeight: useExistingReview ? 600 : 400 }, children: "Use existing review text as prompt" })
+jsxRuntimeExports.jsx("span", { style: { color: useExistingReview ? "var(--ars-color-primary)" : "inherit", fontWeight: useExistingReview ? 600 : 400 }, children: "Use existing review text as prompt" })
                 ] })
               ] }),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx(
                 Button,
                 {
                   variant: "ghost",
                   size: "sm",
                   onClick: () => setShowPreview(!showPreview),
                   className: "text-[10px] h-7 px-2 border border-gray-200",
-                  icon: showPreview ? jsxRuntime.jsx(EyeOff, { size: 11 }) : jsxRuntime.jsx(Eye, { size: 11 }),
+                  icon: showPreview ? jsxRuntimeExports.jsx(EyeOff, { size: 11 }) : jsxRuntimeExports.jsx(Eye, { size: 11 }),
                   children: showPreview ? "Hide Full Prompt" : "Preview Full Prompt"
                 }
               )
             ] }),
-jsxRuntime.jsxs("div", { style: { position: "relative" }, children: [
-jsxRuntime.jsx(
+jsxRuntimeExports.jsxs("div", { style: { position: "relative" }, children: [
+jsxRuntimeExports.jsx(
                 "textarea",
                 {
                   className: "ars-ai-prompt-input",
@@ -12880,37 +12912,37 @@ jsxRuntime.jsx(
                   disabled: useExistingReview
                 }
               ),
-              !useExistingReview && jsxRuntime.jsxs("div", { className: `absolute bottom-2 right-3 text-[10px] font-bold px-1.5 py-0.5 rounded ${userThoughts.length >= 300 ? "text-green-600 bg-green-50" : "text-gray-400 bg-gray-50"}`, children: [
+              !useExistingReview && jsxRuntimeExports.jsxs("div", { className: `absolute bottom-2 right-3 text-[10px] font-bold px-1.5 py-0.5 rounded ${userThoughts.length >= 300 ? "text-green-600 bg-green-50" : "text-gray-400 bg-gray-50"}`, children: [
                 userThoughts.length,
                 " / 300"
               ] }),
-              useExistingReview && jsxRuntime.jsxs("div", { className: "absolute bottom-2 right-3 text-[10px] font-bold px-1.5 py-0.5 rounded text-blue-600 bg-blue-50", children: [
+              useExistingReview && jsxRuntimeExports.jsxs("div", { className: "absolute bottom-2 right-3 text-[10px] font-bold px-1.5 py-0.5 rounded text-blue-600 bg-blue-50", children: [
                 "Existing Text Used (",
                 existingReviewText.length,
                 " chars)"
               ] })
             ] }),
-            showPreview && jsxRuntime.jsx("div", { className: "ars-ai-prompt-preview mt-2 p-3 bg-gray-50 border rounded text-xs font-mono text-gray-600 overflow-y-auto max-h-40 whitespace-pre-wrap", children: finalPrompt }),
-jsxRuntime.jsx(
+            showPreview && jsxRuntimeExports.jsx("div", { className: "ars-ai-prompt-preview mt-2 p-3 bg-gray-50 border rounded text-xs font-mono text-gray-600 overflow-y-auto max-h-40 whitespace-pre-wrap", children: finalPrompt }),
+jsxRuntimeExports.jsx(
               Button,
               {
                 className: "ars-generate-btn mt-3",
                 onClick: handleGenerate,
                 isLoading: isGenerating,
                 disabled: isGenerating || (useExistingReview ? existingReviewText.length < 300 : userThoughts.length < 300),
-                icon: jsxRuntime.jsx(Sparkles, { size: 18 }),
+                icon: jsxRuntimeExports.jsx(Sparkles, { size: 18 }),
                 children: "Generate Review"
               }
             ),
-            visionStatus && jsxRuntime.jsxs("div", { className: "ars-ai-vision-status mt-2 text-xs text-blue-600 flex items-center gap-1", children: [
-              isGenerating && includeImages && visionStatus.includes("Extracting") ? jsxRuntime.jsx(LoaderCircle, { size: 12, className: "animate-spin" }) : jsxRuntime.jsx(Image$1, { size: 12 }),
+            visionStatus && jsxRuntimeExports.jsxs("div", { className: "ars-ai-vision-status mt-2 text-xs text-blue-600 flex items-center gap-1", children: [
+              isGenerating && includeImages && visionStatus.includes("Extracting") ? jsxRuntimeExports.jsx(LoaderCircle, { size: 12, className: "animate-spin" }) : jsxRuntimeExports.jsx(Image$1, { size: 12 }),
               visionStatus
             ] })
           ] }),
-          error && jsxRuntime.jsx("div", { className: "ars-ai-error", children: error }),
-jsxRuntime.jsxs("div", { className: "ars-ai-result-section", children: [
-jsxRuntime.jsx("label", { className: "ars-label", children: "Generated Review:" }),
-jsxRuntime.jsx("div", { className: "ars-ai-result-container", children: generatedText ? jsxRuntime.jsx("p", { className: "ars-ai-result-text", children: generatedText }) : jsxRuntime.jsx("div", { className: "ars-ai-placeholder", children: "Your generated review will appear here..." }) })
+          error && jsxRuntimeExports.jsx("div", { className: "ars-ai-error", children: error }),
+jsxRuntimeExports.jsxs("div", { className: "ars-ai-result-section", children: [
+jsxRuntimeExports.jsx("label", { className: "ars-label", children: "Generated Review:" }),
+jsxRuntimeExports.jsx("div", { className: "ars-ai-result-container", children: generatedText ? jsxRuntimeExports.jsx("p", { className: "ars-ai-result-text", children: generatedText }) : jsxRuntimeExports.jsx("div", { className: "ars-ai-placeholder", children: "Your generated review will appear here..." }) })
           ] })
         ] })
       }
@@ -12919,14 +12951,14 @@ jsxRuntime.jsx("div", { className: "ars-ai-result-container", children: generate
   const SaveIndicator = ({ status }) => {
     if (status === "idle") return null;
     const config = {
-      saving: { icon: jsxRuntime.jsx(LoaderCircle, { size: 12, className: "animate-spin" }), text: "Saving draft...", color: "text-gray-500" },
-      saved: { icon: jsxRuntime.jsx(Check, { size: 12 }), text: "Draft saved", color: "text-green-600" },
-      error: { icon: jsxRuntime.jsx(CircleAlert, { size: 12 }), text: "Save failed", color: "text-red-500" }
+      saving: { icon: jsxRuntimeExports.jsx(LoaderCircle, { size: 12, className: "animate-spin" }), text: "Saving draft...", color: "text-gray-500" },
+      saved: { icon: jsxRuntimeExports.jsx(Check, { size: 12 }), text: "Draft saved", color: "text-green-600" },
+      error: { icon: jsxRuntimeExports.jsx(CircleAlert, { size: 12 }), text: "Save failed", color: "text-red-500" }
     }[status];
     if (!config) return null;
-    return jsxRuntime.jsxs("div", { className: `ars-save-indicator flex items-center gap-1.5 text-xs font-medium transition-opacity duration-300 ${config.color}`, children: [
+    return jsxRuntimeExports.jsxs("div", { className: `ars-save-indicator flex items-center gap-1.5 text-xs font-medium transition-opacity duration-300 ${config.color}`, children: [
       config.icon,
-jsxRuntime.jsx("span", { children: config.text })
+jsxRuntimeExports.jsx("span", { children: config.text })
     ] });
   };
   const ReviewFormShell = () => {
@@ -13043,19 +13075,19 @@ jsxRuntime.jsx("span", { children: config.text })
       }
     };
     if (!amazon.isReady) {
-      return jsxRuntime.jsx("div", { className: "ars-review-shell ars-review-shell--loading", children: jsxRuntime.jsx("p", { children: "Loading review form..." }) }, "loading");
+      return jsxRuntimeExports.jsx("div", { className: "ars-review-shell ars-review-shell--loading", children: jsxRuntimeExports.jsx("p", { children: "Loading review form..." }) }, "loading");
     }
-    return jsxRuntime.jsxs("div", { className: "ars-review-shell", children: [
-jsxRuntime.jsx(
+    return jsxRuntimeExports.jsxs("div", { className: "ars-review-shell", children: [
+jsxRuntimeExports.jsx(
         ProfileSection,
         {
           avatarSrc: amazon.profile.avatarSrc,
           name: amazon.profile.name
         }
       ),
-jsxRuntime.jsxs("form", { className: "ars-review-form-container", autoComplete: "off", onSubmit: (e) => e.preventDefault(), children: [
-jsxRuntime.jsx("input", { type: "text", style: { display: "none" }, tabIndex: -1, "aria-hidden": "true", value: "", readOnly: true, autoComplete: "false" }),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsxs("form", { className: "ars-review-form-container", autoComplete: "off", onSubmit: (e) => e.preventDefault(), children: [
+jsxRuntimeExports.jsx("input", { type: "text", style: { display: "none" }, tabIndex: -1, "aria-hidden": "true", value: "", readOnly: true, autoComplete: "false" }),
+jsxRuntimeExports.jsx(
           ProductHeader,
           {
             imageSrc: amazon.product.imageSrc,
@@ -13064,21 +13096,21 @@ jsxRuntime.jsx(
             productUrl: amazon.product.productUrl || void 0
           }
         ),
-jsxRuntime.jsxs("div", { className: "ars-review-form-fields", children: [
-jsxRuntime.jsx("div", { className: "ars-form-field", children: jsxRuntime.jsx(
+jsxRuntimeExports.jsxs("div", { className: "ars-review-form-fields", children: [
+jsxRuntimeExports.jsx("div", { className: "ars-form-field", children: jsxRuntimeExports.jsx(
             StarRating,
             {
               value: amazon.state.starRating,
               onChange: amazon.setStarRating
             }
           ) }),
-jsxRuntime.jsxs("div", { className: "ars-form-field", children: [
-jsxRuntime.jsxs("div", { className: "ars-form-field-label-row", children: [
-jsxRuntime.jsxs("div", { className: "flex items-center gap-3", children: [
-jsxRuntime.jsx("label", { className: "ars-form-label", children: "Write a review" }),
-jsxRuntime.jsx(SaveIndicator, { status: amazon.syncStatus })
+jsxRuntimeExports.jsxs("div", { className: "ars-form-field", children: [
+jsxRuntimeExports.jsxs("div", { className: "ars-form-field-label-row", children: [
+jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
+jsxRuntimeExports.jsx("label", { className: "ars-form-label", children: "Write a review" }),
+jsxRuntimeExports.jsx(SaveIndicator, { status: amazon.syncStatus })
               ] }),
-              settings.amazon_ai_enabled && jsxRuntime.jsxs(
+              settings.amazon_ai_enabled && jsxRuntimeExports.jsxs(
                 Button,
                 {
                   variant: "outline",
@@ -13086,13 +13118,13 @@ jsxRuntime.jsx(SaveIndicator, { status: amazon.syncStatus })
                   onClick: () => setIsAIModalOpen(true),
                   className: "ars-ai-trigger",
                   children: [
-jsxRuntime.jsx(Sparkles, { size: 14 }),
+jsxRuntimeExports.jsx(Sparkles, { size: 14 }),
                     "AI Assistant"
                   ]
                 }
               )
             ] }),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx(
               RichEditor,
               {
                 value: amazon.state.reviewText,
@@ -13103,9 +13135,9 @@ jsxRuntime.jsx(
               }
             )
           ] }),
-jsxRuntime.jsxs("div", { className: "ars-form-field", children: [
-jsxRuntime.jsx("label", { className: "ars-form-label", children: "Share a video or photo" }),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsxs("div", { className: "ars-form-field", children: [
+jsxRuntimeExports.jsx("label", { className: "ars-form-label", children: "Share a video or photo" }),
+jsxRuntimeExports.jsx(
               MediaUpload,
               {
                 onTrigger: amazon.triggerMediaUpload,
@@ -13119,7 +13151,7 @@ jsxRuntime.jsx(
               }
             )
           ] }),
-jsxRuntime.jsx("div", { className: "ars-form-field", children: jsxRuntime.jsx(
+jsxRuntimeExports.jsx("div", { className: "ars-form-field", children: jsxRuntimeExports.jsx(
             Input,
             {
               label: "Title your review (required)",
@@ -13131,7 +13163,7 @@ jsxRuntime.jsx("div", { className: "ars-form-field", children: jsxRuntime.jsx(
               spellCheck: false,
               autoCorrect: "off",
               autoCapitalize: "off",
-              suffix: settings.amazon_ai_enabled && jsxRuntime.jsx(
+              suffix: settings.amazon_ai_enabled && jsxRuntimeExports.jsx(
                 Button,
                 {
                   type: "button",
@@ -13146,21 +13178,21 @@ jsxRuntime.jsx("div", { className: "ars-form-field", children: jsxRuntime.jsx(
                   isLoading: isGeneratingTitle,
                   className: "ars-ai-trigger",
                   title: "Generate title from review body",
-                  children: !isGeneratingTitle && jsxRuntime.jsx(Sparkles, { size: 14 })
+                  children: !isGeneratingTitle && jsxRuntimeExports.jsx(Sparkles, { size: 14 })
                 }
               )
             }
           ) })
         ] })
       ] }),
-jsxRuntime.jsxs("div", { className: "ars-review-submit", children: [
-jsxRuntime.jsx("div", { className: "flex items-center gap-4", children: amazon.lastSaved && jsxRuntime.jsxs("div", { className: "text-xs text-gray-500 font-medium", children: [
+jsxRuntimeExports.jsxs("div", { className: "ars-review-submit", children: [
+jsxRuntimeExports.jsx("div", { className: "flex items-center gap-4", children: amazon.lastSaved && jsxRuntimeExports.jsxs("div", { className: "text-xs text-gray-500 font-medium", children: [
           "Draft saved ",
           amazon.lastSaved.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
         ] }) }),
-jsxRuntime.jsxs("div", { className: "ars-submit-group", children: [
-jsxRuntime.jsx(SaveIndicator, { status: amazon.syncStatus }),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsxs("div", { className: "ars-submit-group", children: [
+jsxRuntimeExports.jsx(SaveIndicator, { status: amazon.syncStatus }),
+jsxRuntimeExports.jsx(
             Button,
             {
               variant: "outline",
@@ -13176,24 +13208,24 @@ jsxRuntime.jsx(
                 }
               },
               className: "ars-back-button",
-              icon: jsxRuntime.jsx("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", "stroke-width": "2", "stroke-linecap": "round", "stroke-linejoin": "round", children: jsxRuntime.jsx("path", { d: "M19 12H5M12 19l-7-7 7-7" }) }),
+              icon: jsxRuntimeExports.jsx("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", "stroke-width": "2", "stroke-linecap": "round", "stroke-linejoin": "round", children: jsxRuntimeExports.jsx("path", { d: "M19 12H5M12 19l-7-7 7-7" }) }),
               children: "Back"
             }
           ),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx(
             Button,
             {
               variant: "primary",
               size: "lg",
               onClick: amazon.submit,
-              icon: jsxRuntime.jsx(Send, { size: 20 }),
+              icon: jsxRuntimeExports.jsx(Send, { size: 20 }),
               type: "button",
               children: "Submit"
             }
           )
         ] })
       ] }),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx(
         AIModal,
         {
           isOpen: isAIModalOpen,
@@ -13205,15 +13237,15 @@ jsxRuntime.jsx(
           existingReviewText: amazon.state.reviewText
         }
       ),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx(
         SettingsDashboard,
         {
           isOpen: isSettingsOpen,
           onClose: () => setIsSettingsOpen(false)
         }
       ),
-jsxRuntime.jsxs("div", { className: "ars-header-actions", children: [
-jsxRuntime.jsx(
+jsxRuntimeExports.jsxs("div", { className: "ars-header-actions", children: [
+jsxRuntimeExports.jsx(
           "button",
           {
             type: "button",
@@ -13221,17 +13253,17 @@ jsxRuntime.jsx(
             onClick: () => setSetting("amazon_ui_lights_off", !settings.amazon_ui_lights_off),
             "aria-label": "Lights Off",
             title: "Lights Off",
-            children: jsxRuntime.jsx(Moon, { size: 18 })
+            children: jsxRuntimeExports.jsx(Moon, { size: 18 })
           }
         ),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx(
           "button",
           {
             type: "button",
             className: "ars-action-button",
             onClick: () => setIsSettingsOpen(true),
             "aria-label": "Settings",
-            children: jsxRuntime.jsx(Settings, { size: 18 })
+            children: jsxRuntimeExports.jsx(Settings, { size: 18 })
           }
         )
       ] })
@@ -13355,7 +13387,7 @@ jsxRuntime.jsx(
       updateDimensions();
       return () => observer2.disconnect();
     }, [scale2]);
-    return jsxRuntime.jsx(
+    return jsxRuntimeExports.jsx(
       "div",
       {
         ref: containerRef,
@@ -13365,7 +13397,7 @@ jsxRuntime.jsx(
           width: "100%",
           position: "relative"
         },
-        children: jsxRuntime.jsx(
+        children: jsxRuntimeExports.jsx(
           "div",
           {
             className: "ars-scaling-content",
@@ -13375,14 +13407,14 @@ jsxRuntime.jsx(
               width: "100%",
               position: "relative"
             },
-            children: jsxRuntime.jsxs("div", { style: {
+            children: jsxRuntimeExports.jsxs("div", { style: {
               position: "relative",
               width: "fit-content",
               margin: "0 auto",
               maxWidth: "100%"
             }, children: [
-jsxRuntime.jsx("div", { ref: contentRef, children }),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx("div", { ref: contentRef, children }),
+jsxRuntimeExports.jsx(
                 "div",
                 {
                   className: "ars-resize-handle",
@@ -13398,9 +13430,9 @@ jsxRuntime.jsx(
     );
   };
   function App() {
-    return jsxRuntime.jsxs(SettingsProvider, { children: [
-jsxRuntime.jsx(AutoSyncWatcher, {}),
-jsxRuntime.jsx(ScalingWrapper, { children: jsxRuntime.jsx(ReviewFormShell, {}) })
+    return jsxRuntimeExports.jsxs(SettingsProvider, { children: [
+jsxRuntimeExports.jsx(AutoSyncWatcher, {}),
+jsxRuntimeExports.jsx(ScalingWrapper, { children: jsxRuntimeExports.jsx(ReviewFormShell, {}) })
     ] });
   }
   const useReviewCandidates = () => {
@@ -13595,8 +13627,8 @@ jsxRuntime.jsx(ScalingWrapper, { children: jsxRuntime.jsx(ReviewFormShell, {}) }
       setRating(0);
     };
     if (layoutMode === "list") {
-      return jsxRuntime.jsxs("div", { className: `rounded-xl border overflow-hidden flex flex-row items-center gap-4 px-4 py-1.5 group transition-all duration-300 bg-white border-gray-100 hover:shadow-md h-14`, children: [
-jsxRuntime.jsx(
+      return jsxRuntimeExports.jsxs("div", { className: `rounded-xl border overflow-hidden flex flex-row items-center gap-4 px-4 py-1.5 group transition-all duration-300 bg-white border-gray-100 hover:shadow-md h-14`, children: [
+jsxRuntimeExports.jsx(
           "a",
           {
             href: productUrl,
@@ -13604,7 +13636,7 @@ jsxRuntime.jsx(
             rel: "noreferrer",
             className: "w-10 h-10 shrink-0 flex items-center justify-center",
             title: "View Product Page",
-            children: jsxRuntime.jsx(
+            children: jsxRuntimeExports.jsx(
               "img",
               {
                 src: candidate.imageUrl,
@@ -13614,21 +13646,21 @@ jsxRuntime.jsx(
             )
           }
         ),
-jsxRuntime.jsxs("div", { className: "flex-1 min-w-0", children: [
-jsxRuntime.jsx("h3", { className: `text-[11px] font-bold truncate leading-tight text-gray-900`, children: candidate.title }),
-jsxRuntime.jsxs("div", { className: `flex items-center gap-3 mt-0.5 text-[8px] font-bold uppercase tracking-wider text-gray-400`, children: [
-            candidate.purchaseDate && jsxRuntime.jsxs("div", { className: "flex items-center gap-1", children: [
-jsxRuntime.jsx(Calendar, { size: 8 }),
-jsxRuntime.jsx("span", { children: candidate.purchaseDate.toLocaleDateString() })
+jsxRuntimeExports.jsxs("div", { className: "flex-1 min-w-0", children: [
+jsxRuntimeExports.jsx("h3", { className: `text-[11px] font-bold truncate leading-tight text-gray-900`, children: candidate.title }),
+jsxRuntimeExports.jsxs("div", { className: `flex items-center gap-3 mt-0.5 text-[8px] font-bold uppercase tracking-wider text-gray-400`, children: [
+            candidate.purchaseDate && jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-1", children: [
+jsxRuntimeExports.jsx(Calendar, { size: 8 }),
+jsxRuntimeExports.jsx("span", { children: candidate.purchaseDate.toLocaleDateString() })
             ] }),
-            candidate.category && jsxRuntime.jsxs("div", { className: "flex items-center gap-1", children: [
-jsxRuntime.jsx(Tag, { size: 8 }),
-jsxRuntime.jsx("span", { children: candidate.category })
+            candidate.category && jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-1", children: [
+jsxRuntimeExports.jsx(Tag, { size: 8 }),
+jsxRuntimeExports.jsx("span", { children: candidate.category })
             ] })
           ] })
         ] }),
-jsxRuntime.jsxs("div", { className: "flex items-center gap-2", children: [
-jsxRuntime.jsx("div", { className: "scale-[0.55] origin-right", children: jsxRuntime.jsx(
+jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+jsxRuntimeExports.jsx("div", { className: "scale-[0.55] origin-right", children: jsxRuntimeExports.jsx(
             StarRating,
             {
               value: rating,
@@ -13636,16 +13668,16 @@ jsxRuntime.jsx("div", { className: "scale-[0.55] origin-right", children: jsxRun
               hideClear: true
             }
           ) }),
-          rating > 0 && jsxRuntime.jsx(
+          rating > 0 && jsxRuntimeExports.jsx(
             "button",
             {
               onClick: handleReset,
               className: `p-1 rounded-lg transition-colors text-gray-400 hover:text-gray-600`,
-              children: jsxRuntime.jsx(RotateCcw, { size: 10 })
+              children: jsxRuntimeExports.jsx(RotateCcw, { size: 10 })
             }
           )
         ] }),
-jsxRuntime.jsx("div", { className: "w-28 shrink-0 flex justify-end", children: jsxRuntime.jsxs(
+jsxRuntimeExports.jsx("div", { className: "w-28 shrink-0 flex justify-end", children: jsxRuntimeExports.jsxs(
           "a",
           {
             href: candidate.reviewUrl,
@@ -13655,14 +13687,14 @@ jsxRuntime.jsx("div", { className: "w-28 shrink-0 flex justify-end", children: j
             onClick: (e) => rating === 0 && e.preventDefault(),
             children: [
               "Review",
-jsxRuntime.jsx(ChevronRight, { size: 10, className: "ml-0.5" })
+jsxRuntimeExports.jsx(ChevronRight, { size: 10, className: "ml-0.5" })
             ]
           }
         ) })
       ] });
     }
-    return jsxRuntime.jsxs("div", { className: `rounded-xl border overflow-hidden flex flex-row relative group shadow-sm hover:shadow-md transition-all duration-300 h-30 bg-white border-gray-100`, children: [
-jsxRuntime.jsx(
+    return jsxRuntimeExports.jsxs("div", { className: `rounded-xl border overflow-hidden flex flex-row relative group shadow-sm hover:shadow-md transition-all duration-300 h-30 bg-white border-gray-100`, children: [
+jsxRuntimeExports.jsx(
         "a",
         {
           href: productUrl,
@@ -13670,8 +13702,8 @@ jsxRuntime.jsx(
           rel: "noreferrer",
           className: "w-28 shrink-0 p-2 flex items-center justify-center",
           title: "View Product Page",
-          children: jsxRuntime.jsxs("div", { className: "w-full h-full relative", children: [
-jsxRuntime.jsx(
+          children: jsxRuntimeExports.jsxs("div", { className: "w-full h-full relative", children: [
+jsxRuntimeExports.jsx(
               "img",
               {
                 src: candidate.imageUrl,
@@ -13679,22 +13711,22 @@ jsxRuntime.jsx(
                 className: "w-full h-full object-contain mix-blend-multiply"
               }
             ),
-            candidate.isVideoRequired && jsxRuntime.jsx("div", { className: "absolute top-0 left-0", children: jsxRuntime.jsx("span", { className: "bg-blue-600 text-white text-[7px] font-black px-1.5 py-0.5 rounded shadow-sm", children: "VIDEO" }) })
+            candidate.isVideoRequired && jsxRuntimeExports.jsx("div", { className: "absolute top-0 left-0", children: jsxRuntimeExports.jsx("span", { className: "bg-blue-600 text-white text-[7px] font-black px-1.5 py-0.5 rounded shadow-sm", children: "VIDEO" }) })
           ] })
         }
       ),
-jsxRuntime.jsxs("div", { className: "flex-1 p-2.5 pl-1 flex flex-col items-start min-w-0", children: [
-jsxRuntime.jsxs("div", { className: "w-full", children: [
-jsxRuntime.jsx("h3", { className: `text-[11px] font-bold line-clamp-3 leading-tight mb-0.5 tracking-tight text-left text-gray-900`, children: candidate.title }),
-jsxRuntime.jsx("div", { className: `flex items-center gap-2 text-[8px] font-bold uppercase tracking-wider text-left text-gray-400`, children: candidate.purchaseDate ? jsxRuntime.jsxs("div", { className: "flex items-center gap-1", children: [
-jsxRuntime.jsx(Calendar, { size: 8 }),
-jsxRuntime.jsx("span", { children: candidate.purchaseDate.toLocaleDateString() })
-          ] }) : candidate.category ? jsxRuntime.jsxs("div", { className: "flex items-center gap-1", children: [
-jsxRuntime.jsx(Tag, { size: 8 }),
-jsxRuntime.jsx("span", { className: "truncate max-w-[80px]", children: candidate.category })
+jsxRuntimeExports.jsxs("div", { className: "flex-1 p-2.5 pl-1 flex flex-col items-start min-w-0", children: [
+jsxRuntimeExports.jsxs("div", { className: "w-full", children: [
+jsxRuntimeExports.jsx("h3", { className: `text-[11px] font-bold line-clamp-3 leading-tight mb-0.5 tracking-tight text-left text-gray-900`, children: candidate.title }),
+jsxRuntimeExports.jsx("div", { className: `flex items-center gap-2 text-[8px] font-bold uppercase tracking-wider text-left text-gray-400`, children: candidate.purchaseDate ? jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-1", children: [
+jsxRuntimeExports.jsx(Calendar, { size: 8 }),
+jsxRuntimeExports.jsx("span", { children: candidate.purchaseDate.toLocaleDateString() })
+          ] }) : candidate.category ? jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-1", children: [
+jsxRuntimeExports.jsx(Tag, { size: 8 }),
+jsxRuntimeExports.jsx("span", { className: "truncate max-w-[80px]", children: candidate.category })
           ] }) : null })
         ] }),
-jsxRuntime.jsx("div", { className: "mt-0.5 flex items-center justify-center w-full", children: jsxRuntime.jsx("div", { className: "inline-flex items-center", children: jsxRuntime.jsx(
+jsxRuntimeExports.jsx("div", { className: "mt-0.5 flex items-center justify-center w-full", children: jsxRuntimeExports.jsx("div", { className: "inline-flex items-center", children: jsxRuntimeExports.jsx(
           StarRating,
           {
             value: rating,
@@ -13703,7 +13735,7 @@ jsxRuntime.jsx("div", { className: "mt-0.5 flex items-center justify-center w-fu
             hideClear: true
           }
         ) }) }),
-jsxRuntime.jsx("div", { className: "mt-auto w-full px-1 mb-0.5", children: jsxRuntime.jsx(AnimatePresence, { children: rating > 0 && jsxRuntime.jsxs(
+jsxRuntimeExports.jsx("div", { className: "mt-auto w-full px-1 mb-0.5", children: jsxRuntimeExports.jsx(AnimatePresence, { children: rating > 0 && jsxRuntimeExports.jsxs(
           motion.div,
           {
             className: "flex items-center gap-1.5",
@@ -13712,7 +13744,7 @@ jsxRuntime.jsx("div", { className: "mt-auto w-full px-1 mb-0.5", children: jsxRu
             exit: { opacity: 0, y: 5 },
             transition: { type: "spring", damping: 15, stiffness: 200 },
             children: [
-jsxRuntime.jsxs(
+jsxRuntimeExports.jsxs(
                 motion.a,
                 {
                   href: candidate.reviewUrl,
@@ -13721,17 +13753,17 @@ jsxRuntime.jsxs(
                   className: `flex-1 flex items-center justify-center gap-1 py-1 rounded-lg text-[9px] font-black transition-all duration-300 uppercase tracking-widest shadow-sm bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white shadow-amber-200/50`,
                   children: [
                     "Review",
-jsxRuntime.jsx(ChevronRight, { size: 10 })
+jsxRuntimeExports.jsx(ChevronRight, { size: 10 })
                   ]
                 }
               ),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx(
                 "button",
                 {
                   onClick: handleReset,
                   className: `p-1.5 rounded-lg transition-colors flex items-center justify-center bg-gray-100 hover:bg-gray-200 text-gray-500 hover:text-gray-700`,
                   title: "Reset Rating",
-                  children: jsxRuntime.jsx(RotateCcw, { size: 14 })
+                  children: jsxRuntimeExports.jsx(RotateCcw, { size: 14 })
                 }
               )
             ]
@@ -13754,8 +13786,8 @@ jsxRuntime.jsx(
       { id: "category", label: "Category" },
       { id: "alpha", label: "A-Z" }
     ];
-    return jsxRuntime.jsx("div", { className: "max-w-[1200px] mx-auto px-6", children: jsxRuntime.jsxs("div", { className: "flex flex-col items-center gap-6 py-2", children: [
-jsxRuntime.jsx("div", { className: "flex items-center justify-center w-full", children: jsxRuntime.jsx("div", { className: `flex items-center gap-1 p-1 rounded-2xl bg-gray-100`, children: tabs.map((tab) => jsxRuntime.jsx(
+    return jsxRuntimeExports.jsx("div", { className: "max-w-[1200px] mx-auto px-6", children: jsxRuntimeExports.jsxs("div", { className: "flex flex-col items-center gap-6 py-2", children: [
+jsxRuntimeExports.jsx("div", { className: "flex items-center justify-center w-full", children: jsxRuntimeExports.jsx("div", { className: `flex items-center gap-1 p-1 rounded-2xl bg-gray-100`, children: tabs.map((tab) => jsxRuntimeExports.jsx(
         "button",
         {
           onClick: () => onSortChange(tab.id),
@@ -13767,8 +13799,8 @@ jsxRuntime.jsx("div", { className: "flex items-center justify-center w-full", ch
         },
         tab.id
       )) }) }),
-jsxRuntime.jsx("div", { className: "flex flex-col sm:flex-row items-center gap-4 w-full justify-center", children: jsxRuntime.jsxs("div", { className: "relative w-full max-w-md", children: [
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx("div", { className: "flex flex-col sm:flex-row items-center gap-4 w-full justify-center", children: jsxRuntimeExports.jsxs("div", { className: "relative w-full max-w-md", children: [
+jsxRuntimeExports.jsx(
           "input",
           {
             type: "text",
@@ -13778,10 +13810,10 @@ jsxRuntime.jsx(
             onChange: (e) => onSearchChange(e.target.value)
           }
         ),
-jsxRuntime.jsx("div", { className: "absolute left-4 top-1/2 -translate-y-1/2 text-gray-400", children: jsxRuntime.jsx(Search, { size: 16 }) }),
-        isLoading && jsxRuntime.jsx("div", { className: "absolute right-4 top-1/2 -translate-y-1/2 text-amber-500", children: jsxRuntime.jsx(LoaderCircle, { size: 16, className: "animate-spin" }) })
+jsxRuntimeExports.jsx("div", { className: "absolute left-4 top-1/2 -translate-y-1/2 text-gray-400", children: jsxRuntimeExports.jsx(Search, { size: 16 }) }),
+        isLoading && jsxRuntimeExports.jsx("div", { className: "absolute right-4 top-1/2 -translate-y-1/2 text-amber-500", children: jsxRuntimeExports.jsx(LoaderCircle, { size: 16, className: "animate-spin" }) })
       ] }) }),
-jsxRuntime.jsxs("div", { className: `text-[10px] uppercase tracking-widest font-bold text-gray-400`, children: [
+jsxRuntimeExports.jsxs("div", { className: `text-[10px] uppercase tracking-widest font-bold text-gray-400`, children: [
         totalItems,
         " Available Products"
       ] })
@@ -13846,40 +13878,40 @@ jsxRuntime.jsxs("div", { className: `text-[10px] uppercase tracking-widest font-
         if (el) el.remove();
       };
     }, [settings.amazon_ui_lights_off]);
-    return jsxRuntime.jsxs("div", { className: "max-w-[1200px] mx-auto transition-all duration-500", children: [
-jsxRuntime.jsxs("div", { className: `rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] overflow-hidden pb-12 bg-white border-gray-100 border`, children: [
-jsxRuntime.jsxs("div", { className: "relative", children: [
-jsxRuntime.jsx(
+    return jsxRuntimeExports.jsxs("div", { className: "max-w-[1200px] mx-auto transition-all duration-500", children: [
+jsxRuntimeExports.jsxs("div", { className: `rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] overflow-hidden pb-12 bg-white border-gray-100 border`, children: [
+jsxRuntimeExports.jsxs("div", { className: "relative", children: [
+jsxRuntimeExports.jsx(
             ProfileSection,
             {
               avatarSrc: profile.avatarSrc,
               name: profile.name || "Amazon Shopper"
             }
           ),
-jsxRuntime.jsxs("div", { className: "absolute top-1/2 -translate-y-1/2 right-8 flex items-center gap-2", children: [
-jsxRuntime.jsx(
+jsxRuntimeExports.jsxs("div", { className: "absolute top-1/2 -translate-y-1/2 right-8 flex items-center gap-2", children: [
+jsxRuntimeExports.jsx(
               "button",
               {
                 type: "button",
                 className: `p-2.5 rounded-xl transition-all ${settings.amazon_ui_lights_off ? "bg-amber-500/10 text-amber-500 font-bold" : "text-gray-400 hover:bg-gray-100 hover:text-gray-600"}`,
                 onClick: () => setSetting("amazon_ui_lights_off", !settings.amazon_ui_lights_off),
                 title: "Lights Off",
-                children: jsxRuntime.jsx(Moon, { size: 20 })
+                children: jsxRuntimeExports.jsx(Moon, { size: 20 })
               }
             ),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx(
               "button",
               {
                 type: "button",
                 className: "p-2.5 text-gray-400 hover:bg-gray-100 hover:text-gray-600 rounded-xl transition-all",
                 onClick: () => setIsSettingsOpen(true),
                 title: "Settings",
-                children: jsxRuntime.jsx(Settings, { size: 20 })
+                children: jsxRuntimeExports.jsx(Settings, { size: 20 })
               }
             )
           ] })
         ] }),
-jsxRuntime.jsx(AnimatePresence, { children: thankYouHtml && jsxRuntime.jsx(
+jsxRuntimeExports.jsx(AnimatePresence, { children: thankYouHtml && jsxRuntimeExports.jsx(
           motion.div,
           {
             className: "px-10 pt-10",
@@ -13887,29 +13919,29 @@ jsxRuntime.jsx(AnimatePresence, { children: thankYouHtml && jsxRuntime.jsx(
             animate: { opacity: 1, y: 0 },
             exit: { opacity: 0, scale: 0.95 },
             transition: { duration: 0.6, ease: "easeOut" },
-            children: jsxRuntime.jsxs("div", { className: `rounded-3xl p-8 flex items-start gap-6 border shadow-lg bg-gradient-to-br from-green-50 to-emerald-50/50 border-green-200/50`, children: [
-jsxRuntime.jsx(
+            children: jsxRuntimeExports.jsxs("div", { className: `rounded-3xl p-8 flex items-start gap-6 border shadow-lg bg-gradient-to-br from-green-50 to-emerald-50/50 border-green-200/50`, children: [
+jsxRuntimeExports.jsx(
                 motion.div,
                 {
                   className: `w-16 h-16 rounded-2xl flex items-center justify-center shrink-0 bg-green-100`,
                   initial: { scale: 0, rotate: -180 },
                   animate: { scale: 1, rotate: 0 },
                   transition: { duration: 0.5, delay: 0.2, type: "spring", stiffness: 200 },
-                  children: jsxRuntime.jsx(CircleCheck, { className: "text-green-600", size: 32, strokeWidth: 2 })
+                  children: jsxRuntimeExports.jsx(CircleCheck, { className: "text-green-600", size: 32, strokeWidth: 2 })
                 }
               ),
-jsxRuntime.jsxs("div", { className: "flex-1", children: [
-jsxRuntime.jsx(
+jsxRuntimeExports.jsxs("div", { className: "flex-1", children: [
+jsxRuntimeExports.jsx(
                   motion.h3,
                   {
                     className: `text-2xl mb-2 text-green-800`,
                     initial: { opacity: 0, x: -20 },
                     animate: { opacity: 1, x: 0 },
                     transition: { duration: 0.5, delay: 0.3 },
-                    children: jsxRuntime.jsx("span", { className: "font-black tracking-tight", children: "Review Submitted" })
+                    children: jsxRuntimeExports.jsx("span", { className: "font-black tracking-tight", children: "Review Submitted" })
                   }
                 ),
-jsxRuntime.jsxs(
+jsxRuntimeExports.jsxs(
                   motion.p,
                   {
                     className: `text-lg mb-3 text-green-700`,
@@ -13917,12 +13949,12 @@ jsxRuntime.jsxs(
                     animate: { opacity: 1, x: 0 },
                     transition: { duration: 0.5, delay: 0.4 },
                     children: [
-jsxRuntime.jsx("span", { className: "font-light", children: "Awesome! " }),
-jsxRuntime.jsx("span", { className: "font-bold", children: "Thank you for helping other shoppers!" })
+jsxRuntimeExports.jsx("span", { className: "font-light", children: "Awesome! " }),
+jsxRuntimeExports.jsx("span", { className: "font-bold", children: "Thank you for helping other shoppers!" })
                     ]
                   }
                 ),
-jsxRuntime.jsxs(
+jsxRuntimeExports.jsxs(
                   motion.p,
                   {
                     className: `text-sm text-green-600/70`,
@@ -13930,8 +13962,8 @@ jsxRuntime.jsxs(
                     animate: { opacity: 1 },
                     transition: { duration: 0.5, delay: 0.5 },
                     children: [
-jsxRuntime.jsx("span", { className: "font-light italic", children: "Your feedback helps " }),
-jsxRuntime.jsx("span", { className: "font-bold", children: "millions of shoppers" })
+jsxRuntimeExports.jsx("span", { className: "font-light italic", children: "Your feedback helps " }),
+jsxRuntimeExports.jsx("span", { className: "font-bold", children: "millions of shoppers" })
                     ]
                   }
                 )
@@ -13939,7 +13971,7 @@ jsxRuntime.jsx("span", { className: "font-bold", children: "millions of shoppers
             ] })
           }
         ) }),
-jsxRuntime.jsx("div", { className: "pt-10 pb-6 px-4", children: jsxRuntime.jsx(
+jsxRuntimeExports.jsx("div", { className: "pt-10 pb-6 px-4", children: jsxRuntimeExports.jsx(
           SortFilterTabs,
           {
             searchQuery,
@@ -13950,44 +13982,44 @@ jsxRuntime.jsx("div", { className: "pt-10 pb-6 px-4", children: jsxRuntime.jsx(
             isLoading
           }
         ) }),
-jsxRuntime.jsxs("main", { className: "px-10 py-6 min-h-[400px]", children: [
-          !isLoading && candidates.length > 0 && jsxRuntime.jsx("div", { className: "flex justify-end mb-6", children: jsxRuntime.jsxs("div", { className: `p-1 rounded-xl flex items-center gap-1 border shadow-sm bg-gray-50 border-gray-100`, children: [
-jsxRuntime.jsx(
+jsxRuntimeExports.jsxs("main", { className: "px-10 py-6 min-h-[400px]", children: [
+          !isLoading && candidates.length > 0 && jsxRuntimeExports.jsx("div", { className: "flex justify-end mb-6", children: jsxRuntimeExports.jsxs("div", { className: `p-1 rounded-xl flex items-center gap-1 border shadow-sm bg-gray-50 border-gray-100`, children: [
+jsxRuntimeExports.jsx(
               "button",
               {
                 onClick: () => setLayoutMode("grid"),
                 className: `p-1.5 rounded-lg transition-all ${layoutMode === "grid" ? "bg-amber-600 text-white shadow-sm shadow-amber-900/20" : "text-gray-400 hover:text-gray-600"}`,
                 title: "Grid View",
-                children: jsxRuntime.jsx(LayoutGrid, { size: 16 })
+                children: jsxRuntimeExports.jsx(LayoutGrid, { size: 16 })
               }
             ),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx(
               "button",
               {
                 onClick: () => setLayoutMode("list"),
                 className: `p-1.5 rounded-lg transition-all ${layoutMode === "list" ? "bg-amber-600 text-white shadow-sm shadow-amber-900/20" : "text-gray-400 hover:text-gray-600"}`,
                 title: "List View",
-                children: jsxRuntime.jsx(List, { size: 16 })
+                children: jsxRuntimeExports.jsx(List, { size: 16 })
               }
             )
           ] }) }),
-          isLoading && candidates.length === 0 ? jsxRuntime.jsxs("div", { className: "flex flex-col items-center justify-center py-24 text-center", children: [
-jsxRuntime.jsx(
+          isLoading && candidates.length === 0 ? jsxRuntimeExports.jsxs("div", { className: "flex flex-col items-center justify-center py-24 text-center", children: [
+jsxRuntimeExports.jsx(
               motion.div,
               {
                 className: `w-24 h-24 rounded-2xl flex items-center justify-center mb-8 bg-gray-50`,
                 animate: { rotate: 360 },
                 transition: { duration: 4, repeat: Infinity, ease: "linear" },
-                children: jsxRuntime.jsx(LoaderCircle, { className: "text-amber-600", size: 32 })
+                children: jsxRuntimeExports.jsx(LoaderCircle, { className: "text-amber-600", size: 32 })
               }
             ),
-jsxRuntime.jsx("h3", { className: `text-xl font-black tracking-tight text-gray-900`, children: "Syncing Studio" }),
-jsxRuntime.jsx("p", { className: `font-bold uppercase tracking-widest text-[9px] mt-2 text-gray-400`, children: "Finding your recent purchases..." })
-          ] }) : candidates.length === 0 ? jsxRuntime.jsxs("div", { className: "flex flex-col items-center justify-center py-24 text-center", children: [
-jsxRuntime.jsx("div", { className: `w-24 h-24 rounded-2xl flex items-center justify-center mb-8 bg-gray-50`, children: jsxRuntime.jsx("svg", { className: `w-12 h-12 text-gray-200`, fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: jsxRuntime.jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: "M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" }) }) }),
-jsxRuntime.jsx("h3", { className: `text-xl font-black tracking-tight text-gray-900`, children: "No Items to Review" }),
-jsxRuntime.jsx("p", { className: `font-bold uppercase tracking-widest text-[9px] mt-2 text-gray-400`, children: searchQuery ? "Try refining your search query" : "Your review queue is currently empty" })
-          ] }) : jsxRuntime.jsx(AnimatePresence, { mode: "wait", children: jsxRuntime.jsx(
+jsxRuntimeExports.jsx("h3", { className: `text-xl font-black tracking-tight text-gray-900`, children: "Syncing Studio" }),
+jsxRuntimeExports.jsx("p", { className: `font-bold uppercase tracking-widest text-[9px] mt-2 text-gray-400`, children: "Finding your recent purchases..." })
+          ] }) : candidates.length === 0 ? jsxRuntimeExports.jsxs("div", { className: "flex flex-col items-center justify-center py-24 text-center", children: [
+jsxRuntimeExports.jsx("div", { className: `w-24 h-24 rounded-2xl flex items-center justify-center mb-8 bg-gray-50`, children: jsxRuntimeExports.jsx("svg", { className: `w-12 h-12 text-gray-200`, fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: jsxRuntimeExports.jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: "M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" }) }) }),
+jsxRuntimeExports.jsx("h3", { className: `text-xl font-black tracking-tight text-gray-900`, children: "No Items to Review" }),
+jsxRuntimeExports.jsx("p", { className: `font-bold uppercase tracking-widest text-[9px] mt-2 text-gray-400`, children: searchQuery ? "Try refining your search query" : "Your review queue is currently empty" })
+          ] }) : jsxRuntimeExports.jsx(AnimatePresence, { mode: "wait", children: jsxRuntimeExports.jsx(
             motion.div,
             {
               initial: { opacity: 0 },
@@ -14002,17 +14034,17 @@ jsxRuntime.jsx("p", { className: `font-bold uppercase tracking-widest text-[9px]
                   if (!groups[cat]) groups[cat] = [];
                   groups[cat].push(c);
                 });
-                return Object.entries(groups).map(([category, items]) => jsxRuntime.jsxs(React__default.Fragment, { children: [
-jsxRuntime.jsxs("div", { className: `col-span-full pt-6 pb-2 border-b mb-2 flex items-center gap-3 border-gray-100`, children: [
-jsxRuntime.jsx("h3", { className: `text-sm font-black uppercase tracking-[0.2em] text-amber-600`, children: category }),
-jsxRuntime.jsx("div", { className: `h-px flex-1 bg-gray-100/50` }),
-jsxRuntime.jsxs("span", { className: `text-[10px] font-bold text-gray-400`, children: [
+                return Object.entries(groups).map(([category, items]) => jsxRuntimeExports.jsxs(React__default.Fragment, { children: [
+jsxRuntimeExports.jsxs("div", { className: `col-span-full pt-6 pb-2 border-b mb-2 flex items-center gap-3 border-gray-100`, children: [
+jsxRuntimeExports.jsx("h3", { className: `text-sm font-black uppercase tracking-[0.2em] text-amber-600`, children: category }),
+jsxRuntimeExports.jsx("div", { className: `h-px flex-1 bg-gray-100/50` }),
+jsxRuntimeExports.jsxs("span", { className: `text-[10px] font-bold text-gray-400`, children: [
                       items.length,
                       " ",
                       items.length === 1 ? "Item" : "Items"
                     ] })
                   ] }),
-                  items.map((candidate) => jsxRuntime.jsx(
+                  items.map((candidate) => jsxRuntimeExports.jsx(
                     ReviewCandidateCard,
                     {
                       candidate,
@@ -14021,7 +14053,7 @@ jsxRuntime.jsxs("span", { className: `text-[10px] font-bold text-gray-400`, chil
                     candidate.asin
                   ))
                 ] }, category));
-              })() : candidates.map((candidate) => jsxRuntime.jsx(
+              })() : candidates.map((candidate) => jsxRuntimeExports.jsx(
                 ReviewCandidateCard,
                 {
                   candidate,
@@ -14033,13 +14065,13 @@ jsxRuntime.jsxs("span", { className: `text-[10px] font-bold text-gray-400`, chil
             `${layoutMode}-${sortMode}`
           ) })
         ] }),
-jsxRuntime.jsxs("div", { className: "px-12 pt-8 flex items-center justify-center gap-3", children: [
-jsxRuntime.jsx("div", { className: `h-px flex-1 bg-gray-100` }),
-jsxRuntime.jsx("span", { className: `text-[9px] font-black uppercase tracking-[0.2em] text-gray-300`, children: "Powered by Review Studio" }),
-jsxRuntime.jsx("div", { className: `h-px flex-1 bg-gray-100` })
+jsxRuntimeExports.jsxs("div", { className: "px-12 pt-8 flex items-center justify-center gap-3", children: [
+jsxRuntimeExports.jsx("div", { className: `h-px flex-1 bg-gray-100` }),
+jsxRuntimeExports.jsx("span", { className: `text-[9px] font-black uppercase tracking-[0.2em] text-gray-300`, children: "Powered by Review Studio" }),
+jsxRuntimeExports.jsx("div", { className: `h-px flex-1 bg-gray-100` })
         ] })
       ] }),
-jsxRuntime.jsx(
+jsxRuntimeExports.jsx(
         SettingsDashboard,
         {
           isOpen: isSettingsOpen,
@@ -14049,9 +14081,9 @@ jsxRuntime.jsx(
     ] });
   };
   const ReviewPurchasesPage = () => {
-    return jsxRuntime.jsxs(SettingsProvider, { children: [
-jsxRuntime.jsx(AutoSyncWatcher, {}),
-jsxRuntime.jsx(ScalingWrapper, { children: jsxRuntime.jsx(ReviewPurchasesContent, {}) })
+    return jsxRuntimeExports.jsxs(SettingsProvider, { children: [
+jsxRuntimeExports.jsx(AutoSyncWatcher, {}),
+jsxRuntimeExports.jsx(ScalingWrapper, { children: jsxRuntimeExports.jsx(ReviewPurchasesContent, {}) })
     ] });
   };
   const style = `.ars-profile-section{background:linear-gradient(135deg,#232f3e,#131921)}.ars-profile-container{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem}.ars-profile-info{display:flex;align-items:center;gap:1rem}.ars-profile-avatar-wrapper{flex-shrink:0}.ars-profile-avatar{display:block;width:44px;height:44px;border-radius:50%;overflow:hidden;background-color:#ffffff1a;transition:transform .2s ease,box-shadow .2s ease;border:2px solid transparent}.ars-profile-avatar:hover{transform:scale(1.08);border-color:#ffffff4d;box-shadow:0 0 15px #ffffff1a}.ars-profile-avatar img{width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.ars-profile-avatar-placeholder{display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-size:1.25rem;font-weight:600;color:#f90;background-color:#fff}.ars-profile-name{font-size:1rem;font-weight:500;color:#fff}.ars-profile-edit-link{font-size:.875rem;color:#54b4e8;text-decoration:none;transition:color .2s ease}.ars-profile-edit-link:hover{color:#7ec8f0;text-decoration:underline}.ars-product-header{display:flex;align-items:flex-start;gap:1rem;margin-top:1.5rem}.ars-product-image-link{flex-shrink:0;display:block}.ars-product-image-link:hover .ars-product-image{opacity:.9}.ars-product-image{flex-shrink:0;width:64px;height:64px;-o-object-fit:contain;object-fit:contain;border-radius:8px;box-shadow:0 2px 8px #00000014;transition:opacity .2s ease}.ars-product-info{display:flex;flex-direction:column;gap:.25rem;min-width:0}.ars-product-title{font-size:1.125rem;font-weight:700;color:#0f1111;letter-spacing:-.01em}.ars-product-name{font-size:.875rem;color:#565959;line-height:1.4}.ars-star-rating{display:flex;align-items:center;gap:1rem}.ars-star-rating-stars{display:flex;gap:4px}.ars-star-button{display:flex;align-items:center;justify-content:center;padding:4px;border:none;background:transparent;color:#d5d9d9;cursor:pointer;transition:color .2s ease,transform .2s cubic-bezier(.175,.885,.32,1.275)}.ars-star-button:hover{color:#e68a00;transform:scale(1.15)}.ars-star-button:active{transform:scale(.9)}.ars-star-button:focus-visible{outline:2px solid #FF9900;outline-offset:2px}.ars-star-button--filled{color:#f90}.ars-star-rating-stars:hover .ars-star-button--filled{color:#e68a00}.ars-star-clear{font-size:.875rem;color:#54b4e8;background:none;border:none;cursor:pointer;padding:4px 0;transition:color .2s ease}.ars-star-clear:hover{color:#2d9fd8;text-decoration:underline}.ars-media-upload{display:flex;align-items:center;justify-content:center;min-height:120px;padding:1.5rem;border:2px dashed #d5d9d9;border-radius:12px;background-color:#f9fafb;cursor:pointer;transition:all .2s ease;width:100%}.ars-media-upload--compact{width:80px;height:80px;min-height:80px;padding:0;border-radius:8px;border-width:1.5px}.ars-media-upload:hover{border-color:#f90;background-color:#ff99000a}.ars-media-upload--dragging{border-color:#f90;background-color:#ff99001a;box-shadow:inset 0 0 0 4px #ff99000d}.ars-media-upload:focus-visible{outline:2px solid #FF9900;outline-offset:2px}.ars-media-upload-content{display:flex;flex-direction:column;align-items:center;gap:.5rem}.ars-media-upload-icon{color:#565959}.ars-media-upload--dragging .ars-media-upload-icon,.ars-media-upload:hover .ars-media-upload-icon{color:#f90}.ars-media-upload-placeholder{font-size:.875rem;color:#565959}.ars-media-upload-wrapper{display:flex;flex-direction:column;gap:.75rem}.ars-media-upload--uploading{pointer-events:none}.ars-media-upload-feedback{font-size:.875rem;color:#067d62;font-weight:500}.ars-media-upload-actions{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap}.ars-media-upload-action-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem .875rem;font-size:.875rem;border-radius:8px;cursor:pointer;transition:all .2s ease;text-decoration:none;width:-moz-fit-content;width:fit-content}.ars-media-upload-paste-btn,.ars-media-upload-google-btn,.ars-media-upload-icloud-btn{color:#565959;background:#fff;border:1px solid #d5d9d9}.ars-media-upload-paste-btn:hover,.ars-media-upload-google-btn:hover,.ars-media-upload-icloud-btn:hover{border-color:#f90;color:#f90;background:#fff}.ars-media-thumbnails{display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:.5rem}.ars-media-thumbnail{position:relative;width:80px;height:80px;border-radius:8px;overflow:hidden;border:1px solid #d5d9d9;background-color:#f3f4f6;flex-shrink:0}.ars-media-thumbnail-image{width:100%;height:100%;background-size:cover;background-position:center;background-repeat:no-repeat}.ars-media-thumbnail-remove{position:absolute;top:4px;right:4px;width:20px;height:20px;border-radius:50%;background-color:#0009;color:#fff;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transition:opacity .2s ease,background-color .2s ease;padding:0}.ars-media-thumbnail:hover .ars-media-thumbnail-remove{opacity:1}.ars-media-thumbnail-remove:hover{background-color:#c00}.ars-media-upload-dragging-content{display:flex;flex-direction:column;align-items:center;gap:.75rem;pointer-events:none}@keyframes bounce{0%,to{transform:translateY(-10%);animation-timing-function:cubic-bezier(.8,0,1,1)}50%{transform:translateY(0);animation-timing-function:cubic-bezier(0,0,.2,1)}}.ars-review-shell{position:relative;display:flex;flex-direction:column;max-width:800px;margin-left:auto;margin-right:auto;background-color:#fff;color:#0f1111;border-radius:12px;overflow:hidden;box-shadow:0 4px 24px #00000014;animation:ars-fade-zoom .5s cubic-bezier(.2,.8,.2,1) forwards}.ars-review-shell--loading{padding:2rem;text-align:center;color:#565959}.ars-review-form-container{padding:1.5rem 2rem 0}.ars-review-form-fields{display:flex;flex-direction:column;gap:1.5rem;margin-top:1.5rem}.ars-form-field{display:flex;flex-direction:column;gap:.5rem}.ars-form-field-label-row{display:flex;align-items:center;justify-content:space-between}.ars-form-label{font-size:.875rem;font-weight:600;color:#0f1111}.ars-ai-trigger{color:#f90!important;border-color:#f90!important}.ars-ai-trigger:hover{background-color:#ff990014!important}.ars-review-submit{display:flex;align-items:center;justify-content:space-between;margin-top:1.5rem;padding:1.25rem 2rem;border-top:1px solid #e5e7eb;background-color:#f9fafb}.ars-header-actions{position:absolute;top:1rem;right:1rem;display:flex;align-items:center;gap:.5rem;z-index:20}.ars-action-button{display:flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;border:none;background:transparent;color:#fff;cursor:pointer;border-radius:8px;transition:all .2s ease;opacity:.8}.ars-action-button:hover{background-color:#ffffff1a;color:#fff;opacity:1}.ars-action-button.active{color:#f90;opacity:1}.ars-submit-group{display:flex;align-items:center;gap:1rem}.ars-back-button{background-color:#fff!important;border-color:#d5d9d9!important;color:#0f1111!important;box-shadow:0 2px 5px #d5d9d980}.ars-back-button:hover{background-color:#f7fafa!important;border-color:#adb1b1!important;transform:translateY(-1px)}.ars-back-button:active{transform:translateY(0)}.ars-button{display:inline-flex;align-items:center;justify-content:center;border-radius:var(--ars-radius-md);font-weight:500;transition:all var(--ars-anim-fast);outline:none;border:1px solid transparent;-webkit-user-select:none;-moz-user-select:none;user-select:none;white-space:nowrap}.ars-button:disabled{opacity:.6;cursor:not-allowed;pointer-events:none}.ars-button:focus-visible{box-shadow:0 0 0 2px var(--ars-color-bg-main),0 0 0 4px var(--ars-color-primary)}.ars-button--primary{background-color:var(--ars-color-primary);color:var(--ars-color-text-inverse);box-shadow:0 1px 2px #0000001a}.ars-button--primary:hover{background-color:var(--ars-color-primary-hover);transform:translateY(-1px)}.ars-button--primary:active{transform:translateY(0)}.ars-button--secondary{background-color:var(--ars-color-secondary);color:var(--ars-color-text-inverse)}.ars-button--secondary:hover{background-color:var(--ars-color-secondary-hover)}.ars-button--outline{background-color:transparent;border-color:var(--ars-color-border);color:var(--ars-color-text-main)}.ars-button--outline:hover{background-color:var(--ars-color-bg-secondary);border-color:var(--ars-color-border-focus)}.ars-button--ghost{background-color:transparent;color:var(--ars-color-text-secondary)}.ars-button--ghost:hover{background-color:var(--ars-color-bg-secondary);color:var(--ars-color-text-main)}.ars-button--danger{background-color:var(--ars-color-error);color:var(--ars-color-text-inverse)}.ars-button--danger:hover{background-color:#a8082e}.ars-button--sm{height:28px;padding:0 var(--ars-spacing-sm);font-size:var(--ars-font-size-sm)}.ars-button--md{height:36px;padding:0 var(--ars-spacing-md);font-size:var(--ars-font-size-sm)}.ars-button--lg{height:44px;padding:0 var(--ars-spacing-lg);font-size:var(--ars-font-size-md)}.ars-button--icon{width:36px;height:36px;padding:0;border-radius:50%}.ars-button--icon.ars-button--sm{width:28px;height:28px}.ars-button--icon.ars-button--lg{width:44px;height:44px}.ars-button__loader{animation:ars-spin 1s linear infinite;margin-right:var(--ars-spacing-xs)}.ars-button--icon .ars-button__loader{margin-right:0}.ars-button__icon{margin-right:var(--ars-spacing-xs);display:flex;align-items:center}.ars-button--icon .ars-button__icon{margin-right:0}@keyframes ars-spin{0%{transform:rotate(0)}to{transform:rotate(360deg)}}.ars-input-group{display:flex;flex-direction:column;gap:var(--ars-spacing-xs);width:100%}.ars-input-wrapper{position:relative;display:flex;align-items:center}.ars-input-label{font-size:var(--ars-font-size-sm);font-weight:500;color:var(--ars-color-text-main)}.ars-input{width:100%;height:36px;padding:0 var(--ars-spacing-sm);font-family:inherit;font-size:var(--ars-font-size-md);color:var(--ars-color-text-main);background-color:var(--ars-color-bg-main);border:1px solid var(--ars-color-border);border-radius:var(--ars-radius-md);transition:all var(--ars-anim-fast);outline:none}.ars-input:focus{border-color:var(--ars-color-primary);box-shadow:0 0 0 1px var(--ars-color-primary)}.ars-input:disabled{background-color:var(--ars-color-bg-secondary);cursor:not-allowed;opacity:.7}.ars-input--has-icon{padding-left:32px}.ars-input-icon{position:absolute;left:8px;color:var(--ars-color-text-secondary);display:flex;pointer-events:none}.ars-input--error{border-color:var(--ars-color-error)}.ars-input--error:focus{box-shadow:0 0 0 1px var(--ars-color-error)}.ars-input--has-suffix{padding-right:48px}.ars-input-suffix{position:absolute;right:4px;display:flex;align-items:center;justify-content:center;z-index:10}.ars-input-error{font-size:var(--ars-font-size-xs);color:var(--ars-color-error)}.ars-card{background-color:var(--ars-color-bg-main);border:1px solid var(--ars-color-border);border-radius:var(--ars-radius-md);box-shadow:var(--ars-shadow-sm);overflow:hidden}.ars-card--p-none{padding:0}.ars-card--p-sm{padding:var(--ars-spacing-sm)}.ars-card--p-md{padding:var(--ars-spacing-md)}.ars-card--p-lg{padding:var(--ars-spacing-lg)}.ars-modal-overlay-container{position:fixed;inset:0;z-index:100000;display:flex;align-items:center;justify-content:center;pointer-events:none}.ars-modal-backdrop{position:fixed;inset:0;background-color:#0009;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);pointer-events:auto}.ars-modal-wrapper{position:relative;z-index:100001;pointer-events:none;display:flex;align-items:center;justify-content:center;width:100%;max-height:100vh;padding:20px}.ars-modal{background-color:var(--ars-color-bg-main);border-radius:16px;box-shadow:0 25px 50px -12px #00000040;pointer-events:auto;display:flex;flex-direction:column;max-height:calc(100vh - 80px);outline:none;border:1px solid var(--ars-color-border);overflow:hidden}.ars-modal-header{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid var(--ars-color-border)}.ars-modal-title{margin:0;font-size:1.25rem;font-weight:800;color:var(--ars-color-text-main);letter-spacing:-.025em}.ars-modal-content{padding:0;overflow-y:auto;flex:1}.ars-modal-footer{padding:16px 24px;border-top:1px solid var(--ars-color-border);display:flex;justify-content:flex-end;gap:12px;background-color:var(--ars-color-bg-secondary)}.ars-modal-close{color:var(--ars-color-text-secondary);opacity:.6;transition:all .2s ease}.ars-modal-close:hover{opacity:1;background-color:var(--ars-color-bg-tertiary)}.ars-rich-editor{display:flex;flex-direction:column;width:100%}.ars-editor-textarea{width:100%;min-height:250px;padding:var(--ars-spacing-md);font-family:inherit;font-size:var(--ars-font-size-md);color:var(--ars-color-text-main);background-color:var(--ars-color-bg-main);border:1px solid var(--ars-color-border);resize:vertical;outline:none;line-height:1.6;transition:height .3s cubic-bezier(.4,0,.2,1),min-height .3s cubic-bezier(.4,0,.2,1);will-change:height,min-height}.ars-editor-footer{display:flex;justify-content:space-between;align-items:center;padding:var(--ars-spacing-xs) var(--ars-spacing-sm);background-color:var(--ars-color-bg-secondary);border:1px solid var(--ars-color-border);border-top:none;border-bottom-left-radius:var(--ars-radius-md);border-bottom-right-radius:var(--ars-radius-md)}.ars-editor-options{display:flex;align-items:center}.ars-checkbox-label{display:flex;align-items:center;gap:.5rem;font-size:var(--ars-font-size-xs);color:var(--ars-color-text-secondary);cursor:pointer;-webkit-user-select:none;-moz-user-select:none;user-select:none}.ars-checkbox-label input[type=checkbox]{cursor:pointer}.ars-checkbox-label:hover{color:var(--ars-color-text-main)}.ars-char-count{font-size:var(--ars-font-size-xs);color:var(--ars-color-text-secondary)}.ars-tm-editor{flex:1;min-height:0}.ars-tm-editor .ars-editor-textarea{flex:1;min-height:200px;resize:none}.ars-editor-toolbar{display:flex;justify-content:space-between;align-items:center;padding:var(--ars-spacing-xs);background-color:var(--ars-color-bg-secondary);border:1px solid var(--ars-color-border);border-bottom:none;border-top-left-radius:var(--ars-radius-md);border-top-right-radius:var(--ars-radius-md)}.ars-toolbar-group{display:flex;align-items:center;gap:var(--ars-spacing-xs)}.ars-toolbar-divider{width:1px;height:20px;background-color:var(--ars-color-border);margin:0 var(--ars-spacing-xs)}.ars-toolbar-btn{height:28px!important;width:28px!important;padding:0!important;display:flex;align-items:center;justify-content:center}.ars-toolbar-btn[data-variant=primary]{background-color:var(--ars-color-primary)!important;color:#fff!important}.ars-toolbar-paste{width:auto!important;min-width:28px;padding:0 8px!important}.ars-toolbar-paste-label{margin-left:4px}.ars-phrase-popover{position:absolute;top:100%;right:0;z-index:1000;margin-top:4px;background-color:#fff;border-radius:8px;box-shadow:0 4px 12px #00000026;border:1px solid var(--ars-color-border)}.ars-bullet-selector{position:absolute!important;top:100%!important;left:0!important;margin-top:5px!important;background:#fff!important;border:1px solid #ddd!important;border-radius:8px!important;box-shadow:0 8px 24px #0003!important;display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:6px!important;padding:10px!important;z-index:99999!important;width:auto!important;min-width:140px!important;pointer-events:auto!important}.ars-bullet-selector-overlay{display:none!important}.ars-bullet-option{width:30px!important;height:30px!important;display:flex!important;align-items:center!important;justify-content:center!important;cursor:pointer!important;border-radius:4px!important;font-size:16px!important;color:#333!important;transition:all .2s ease!important;background:transparent!important}.ars-bullet-option:hover{background-color:#f0f0f0!important}.ars-bullet-option.active{background-color:var(--ars-color-primary)!important;color:#fff!important}.ars-bullet-btn{position:relative!important}.ars-bullet-indicator{position:absolute!important;bottom:-1px!important;right:-1px!important;font-size:11px!important;color:inherit!important;opacity:.8!important;width:12px!important;height:12px!important;display:flex!important;align-items:center!important;justify-content:center!important;pointer-events:none!important;z-index:1!important;font-weight:700!important}.ars-ai-modal-body{display:flex;flex-direction:column;gap:var(--ars-spacing-md)}.ars-ai-settings-compact{display:flex;gap:var(--ars-spacing-sm);background:#f8fafc;padding:var(--ars-spacing-xs);border-radius:var(--ars-radius-lg);border:1px solid #e2e8f0}.ars-ai-provider-card,.ars-ai-length-card,.ars-ai-vision-card{background:#fff!important;border:1px solid #e2e8f0!important;transition:transform var(--ars-anim-fast),box-shadow var(--ars-anim-fast)}.ars-ai-provider-card:hover,.ars-ai-length-card:hover,.ars-ai-vision-card:hover{box-shadow:0 4px 6px -1px #0000000d}.ars-ai-provider-card{display:flex;align-items:center;gap:var(--ars-spacing-sm);flex:1}.ars-ai-length-card{display:flex;align-items:center;gap:var(--ars-spacing-sm);flex:2}.ars-ai-vision-card{flex:1;display:flex;align-items:center}.ars-ai-length-selector{display:flex;gap:4px;flex:1}.ars-ai-length-btn{flex:1;padding:6px 8px;font-size:var(--ars-font-size-xs);border:1px solid var(--ars-color-border);background-color:var(--ars-color-bg-main);color:var(--ars-color-text-secondary);border-radius:var(--ars-radius-sm);cursor:pointer;transition:all var(--ars-anim-fast)}.ars-ai-length-btn:hover{background-color:var(--ars-color-bg-secondary)}.ars-ai-length-btn.active{background-color:var(--ars-color-primary);color:#fff;border-color:var(--ars-color-primary);font-weight:600}.ars-label{font-size:var(--ars-font-size-sm);font-weight:600;color:var(--ars-color-text-main)}.ars-select{flex:1;height:32px;border-radius:var(--ars-radius-sm);border:1px solid var(--ars-color-border);padding:0 var(--ars-spacing-xs);outline:none;font-family:inherit}.ars-ai-prompt-section{display:flex;flex-direction:column;gap:var(--ars-spacing-sm)}.ars-ai-prompt-input{width:100%;min-height:80px;padding:var(--ars-spacing-md);border:1px solid var(--ars-color-border);border-radius:var(--ars-radius-lg);font-family:inherit;font-size:var(--ars-font-size-md);line-height:1.6;resize:vertical;outline:none;transition:all var(--ars-anim-fast)}.ars-ai-prompt-input:focus{border-color:var(--ars-color-primary)}.ars-ai-result-section{display:flex;flex-direction:column;gap:var(--ars-spacing-xs)}.ars-ai-result-container{min-height:150px;padding:var(--ars-spacing-md);background-color:var(--ars-color-bg-secondary);border:1px dotted var(--ars-color-border);border-radius:var(--ars-radius-md);position:relative}.ars-ai-result-text{margin:0;line-height:1.6;white-space:pre-wrap}.ars-ai-placeholder{color:var(--ars-color-text-secondary);display:flex;align-items:center;justify-content:center;height:100%;font-style:italic}.ars-ai-error{padding:var(--ars-spacing-sm);background-color:#ba09331a;color:var(--ars-color-error);border-radius:var(--ars-radius-sm);font-size:var(--ars-font-size-sm)}.ars-settings-layout{display:flex;min-height:380px;gap:var(--ars-spacing-md)}.ars-settings-sidebar{width:180px;display:flex;flex-direction:column;gap:var(--ars-spacing-xs);border-right:1px solid var(--ars-color-border);padding-right:var(--ars-spacing-md)}.ars-tab-btn{justify-content:flex-start!important;width:100%}.ars-settings-content{flex:1;overflow-y:auto}.ars-settings-section{display:flex;flex-direction:column;gap:var(--ars-spacing-md)}.ars-settings-section h3{margin:0;font-size:var(--ars-font-size-lg);color:var(--ars-color-text-main)}.ars-setting-item{display:flex;flex-direction:column;gap:var(--ars-spacing-xs)}.ars-setting-subgroup{padding-left:var(--ars-spacing-md);border-left:2px solid var(--ars-color-bg-tertiary);display:flex;flex-direction:column;gap:var(--ars-spacing-md)}.ars-help-text{font-size:var(--ars-font-size-xs);color:var(--ars-color-text-secondary);margin-top:-8px}.ars-description{font-size:var(--ars-font-size-sm);color:var(--ars-color-text-secondary);margin-top:-12px}.ars-about-section{align-items:center;text-align:center}.ars-brand{display:flex;flex-direction:column;align-items:center;margin-bottom:var(--ars-spacing-lg)}.ars-brand h1{font-size:var(--ars-font-size-xl);margin:var(--ars-spacing-sm) 0 0 0}.ars-brand-icon{color:var(--ars-color-primary)}.ars-version{font-size:var(--ars-font-size-xs);color:var(--ars-color-text-secondary)}.ars-scaling-wrapper{transition:height .2s ease-out,width .2s ease-out}.ars-scaling-wrapper.is-resizing{transition:none;cursor:nwse-resize}.ars-scaling-content{transition:transform .2s ease-out;pointer-events:auto}.is-resizing .ars-scaling-content{transition:none}.ars-resize-handle{position:absolute;bottom:5px;right:5px;width:12px;height:12px;cursor:nwse-resize;z-index:1000;opacity:.6;transition:opacity .2s ease;background:linear-gradient(-45deg,transparent 20%,#ccc 20%,#ccc 30%,transparent 30%,transparent 45%,#ccc 45%,#ccc 55%,transparent 55%)}.ars-resize-handle:hover,.is-resizing .ars-resize-handle{opacity:1}.ars-resize-handle svg{display:none}.ars-studio-container{display:flex;flex-direction:column;background-color:var(--ars-color-bg-main);border:1px solid var(--ars-color-border);border-radius:var(--ars-radius-lg);box-shadow:var(--ars-shadow-lg);overflow:hidden;max-width:900px;margin:0 auto}.ars-studio-header{display:flex;align-items:center;justify-content:space-between;padding:var(--ars-spacing-md) var(--ars-spacing-lg);background-color:var(--ars-color-secondary);color:#fff}.ars-title-group{display:flex;align-items:center;gap:var(--ars-spacing-sm)}.ars-title-group h1{font-size:var(--ars-font-size-lg);margin:0;font-weight:700;letter-spacing:-.5px}.ars-logo{color:var(--ars-color-primary)}.ars-studio-main{padding:var(--ars-spacing-lg);display:flex;flex-direction:column;gap:var(--ars-spacing-xl)}.ars-form-section{display:flex;flex-direction:column;gap:var(--ars-spacing-md)}.ars-editor-label-row{display:flex;align-items:center;justify-content:space-between}.ars-editor-label-row label{font-size:var(--ars-font-size-sm);font-weight:600;color:var(--ars-color-text-main)}.ars-ai-trigger{color:var(--ars-color-primary)!important;border-color:var(--ars-color-primary)!important}.ars-ai-trigger:hover{background-color:#ff99000d!important}.ars-actions-section{display:flex;flex-direction:column;align-items:center;gap:var(--ars-spacing-sm);padding-top:var(--ars-spacing-lg);border-top:1px solid var(--ars-color-bg-tertiary)}.ars-apply-btn{width:100%;max-width:400px;height:48px!important;font-size:var(--ars-font-size-md)!important}.ars-hint{font-size:var(--ars-font-size-xs);color:var(--ars-color-text-secondary);margin:0}*,:before,:after{--tw-border-spacing-x: 0;--tw-border-spacing-y: 0;--tw-translate-x: 0;--tw-translate-y: 0;--tw-rotate: 0;--tw-skew-x: 0;--tw-skew-y: 0;--tw-scale-x: 1;--tw-scale-y: 1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness: proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width: 0px;--tw-ring-offset-color: #fff;--tw-ring-color: rgb(59 130 246 / .5);--tw-ring-offset-shadow: 0 0 #0000;--tw-ring-shadow: 0 0 #0000;--tw-shadow: 0 0 #0000;--tw-shadow-colored: 0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x: 0;--tw-border-spacing-y: 0;--tw-translate-x: 0;--tw-translate-y: 0;--tw-rotate: 0;--tw-skew-x: 0;--tw-skew-y: 0;--tw-scale-x: 1;--tw-scale-y: 1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness: proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width: 0px;--tw-ring-offset-color: #fff;--tw-ring-color: rgb(59 130 246 / .5);--tw-ring-offset-shadow: 0 0 #0000;--tw-ring-shadow: 0 0 #0000;--tw-shadow: 0 0 #0000;--tw-shadow-colored: 0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }*,:before,:after{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}:before,:after{--tw-content: ""}html,:host{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:Inter,system-ui,Avenir,Helvetica,Arial,sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,samp,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dl,dd,h1,h2,h3,h4,h5,h6,hr,figure,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}ol,ul,menu{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}button,[role=button]{cursor:pointer}:disabled{cursor:default}img,svg,video,canvas,audio,iframe,embed,object{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.\\!container{width:100%!important}.container{width:100%}@media(min-width:640px){.\\!container{max-width:640px!important}.container{max-width:640px}}@media(min-width:768px){.\\!container{max-width:768px!important}.container{max-width:768px}}@media(min-width:1024px){.\\!container{max-width:1024px!important}.container{max-width:1024px}}@media(min-width:1280px){.\\!container{max-width:1280px!important}.container{max-width:1280px}}@media(min-width:1536px){.\\!container{max-width:1536px!important}.container{max-width:1536px}}.pointer-events-none{pointer-events:none}.visible{visibility:visible}.collapse{visibility:collapse}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.bottom-2{bottom:.5rem}.left-0{left:0}.left-3{left:.75rem}.left-4{left:1rem}.right-2{right:.5rem}.right-3{right:.75rem}.right-4{right:1rem}.right-8{right:2rem}.top-0{top:0}.top-1\\/2{top:50%}.top-\\[34px\\]{top:34px}.z-10{z-index:10}.z-20{z-index:20}.col-span-full{grid-column:1 / -1}.mx-auto{margin-left:auto;margin-right:auto}.my-1{margin-top:.25rem;margin-bottom:.25rem}.mb-0{margin-bottom:0}.mb-0\\.5{margin-bottom:.125rem}.mb-1{margin-bottom:.25rem}.mb-1\\.5{margin-bottom:.375rem}.mb-2{margin-bottom:.5rem}.mb-3{margin-bottom:.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.ml-0\\.5{margin-left:.125rem}.ml-7{margin-left:1.75rem}.mt-0\\.5{margin-top:.125rem}.mt-1\\.5{margin-top:.375rem}.mt-2{margin-top:.5rem}.mt-3{margin-top:.75rem}.mt-4{margin-top:1rem}.mt-auto{margin-top:auto}.line-clamp-3{overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3}.block{display:block}.inline-block{display:inline-block}.inline{display:inline}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.contents{display:contents}.hidden{display:none}.h-1\\.5{height:.375rem}.h-10{height:2.5rem}.h-12{height:3rem}.h-14{height:3.5rem}.h-16{height:4rem}.h-24{height:6rem}.h-4{height:1rem}.h-5{height:1.25rem}.h-6{height:1.5rem}.h-7{height:1.75rem}.h-\\[38px\\]{height:38px}.h-full{height:100%}.h-px{height:1px}.max-h-40{max-height:10rem}.min-h-\\[400px\\]{min-height:400px}.w-1\\.5{width:.375rem}.w-10{width:2.5rem}.w-11{width:2.75rem}.w-12{width:3rem}.w-16{width:4rem}.w-24{width:6rem}.w-28{width:7rem}.w-4{width:1rem}.w-full{width:100%}.min-w-0{min-width:0px}.max-w-7xl{max-width:80rem}.max-w-\\[1200px\\]{max-width:1200px}.max-w-\\[80px\\]{max-width:80px}.max-w-md{max-width:28rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.origin-center{transform-origin:center}.origin-right{transform-origin:right}.-translate-y-1\\/2{--tw-translate-y: -50%;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.scale-\\[0\\.55\\]{--tw-scale-x: .55;--tw-scale-y: .55;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.scale-\\[0\\.7\\]{--tw-scale-x: .7;--tw-scale-y: .7;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes bounce{0%,to{transform:translateY(-25%);animation-timing-function:cubic-bezier(.8,0,1,1)}50%{transform:none;animation-timing-function:cubic-bezier(0,0,.2,1)}}.animate-bounce{animation:bounce 1s infinite}@keyframes spin{to{transform:rotate(360deg)}}.animate-spin{animation:spin 1s linear infinite}.cursor-help{cursor:help}.cursor-not-allowed{cursor:not-allowed}.cursor-pointer{cursor:pointer}.select-none{-webkit-user-select:none;-moz-user-select:none;user-select:none}.resize{resize:both}.appearance-none{-webkit-appearance:none;-moz-appearance:none;appearance:none}.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.flex-row{flex-direction:row}.flex-col{flex-direction:column}.items-start{align-items:flex-start}.items-end{align-items:flex-end}.items-center{align-items:center}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:.25rem}.gap-1\\.5{gap:.375rem}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.space-y-4>:not([hidden])~:not([hidden]){--tw-space-y-reverse: 0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.space-y-5>:not([hidden])~:not([hidden]){--tw-space-y-reverse: 0;margin-top:calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.25rem * var(--tw-space-y-reverse))}.space-y-6>:not([hidden])~:not([hidden]){--tw-space-y-reverse: 0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-y-auto{overflow-y:auto}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.whitespace-nowrap{white-space:nowrap}.whitespace-pre-wrap{white-space:pre-wrap}.rounded{border-radius:.25rem}.rounded-2xl{border-radius:1rem}.rounded-3xl{border-radius:1.5rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:.5rem}.rounded-md{border-radius:.375rem}.rounded-xl{border-radius:.75rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-amber-200{--tw-border-opacity: 1;border-color:rgb(253 230 138 / var(--tw-border-opacity, 1))}.border-blue-100{--tw-border-opacity: 1;border-color:rgb(219 234 254 / var(--tw-border-opacity, 1))}.border-emerald-100{--tw-border-opacity: 1;border-color:rgb(209 250 229 / var(--tw-border-opacity, 1))}.border-gray-100{--tw-border-opacity: 1;border-color:rgb(243 244 246 / var(--tw-border-opacity, 1))}.border-gray-200{--tw-border-opacity: 1;border-color:rgb(229 231 235 / var(--tw-border-opacity, 1))}.border-gray-300{--tw-border-opacity: 1;border-color:rgb(209 213 219 / var(--tw-border-opacity, 1))}.border-green-100{--tw-border-opacity: 1;border-color:rgb(220 252 231 / var(--tw-border-opacity, 1))}.border-green-200{--tw-border-opacity: 1;border-color:rgb(187 247 208 / var(--tw-border-opacity, 1))}.border-green-200\\/50{border-color:#bbf7d080}.border-indigo-100{--tw-border-opacity: 1;border-color:rgb(224 231 255 / var(--tw-border-opacity, 1))}.border-red-100{--tw-border-opacity: 1;border-color:rgb(254 226 226 / var(--tw-border-opacity, 1))}.bg-amber-100{--tw-bg-opacity: 1;background-color:rgb(254 243 199 / var(--tw-bg-opacity, 1))}.bg-amber-50{--tw-bg-opacity: 1;background-color:rgb(255 251 235 / var(--tw-bg-opacity, 1))}.bg-amber-500\\/10{background-color:#f59e0b1a}.bg-amber-600{--tw-bg-opacity: 1;background-color:rgb(217 119 6 / var(--tw-bg-opacity, 1))}.bg-blue-50{--tw-bg-opacity: 1;background-color:rgb(239 246 255 / var(--tw-bg-opacity, 1))}.bg-blue-600{--tw-bg-opacity: 1;background-color:rgb(37 99 235 / var(--tw-bg-opacity, 1))}.bg-emerald-50{--tw-bg-opacity: 1;background-color:rgb(236 253 245 / var(--tw-bg-opacity, 1))}.bg-emerald-500{--tw-bg-opacity: 1;background-color:rgb(16 185 129 / var(--tw-bg-opacity, 1))}.bg-gray-100{--tw-bg-opacity: 1;background-color:rgb(243 244 246 / var(--tw-bg-opacity, 1))}.bg-gray-100\\/50{background-color:#f3f4f680}.bg-gray-200{--tw-bg-opacity: 1;background-color:rgb(229 231 235 / var(--tw-bg-opacity, 1))}.bg-gray-50{--tw-bg-opacity: 1;background-color:rgb(249 250 251 / var(--tw-bg-opacity, 1))}.bg-gray-50\\/30{background-color:#f9fafb4d}.bg-green-100{--tw-bg-opacity: 1;background-color:rgb(220 252 231 / var(--tw-bg-opacity, 1))}.bg-green-50{--tw-bg-opacity: 1;background-color:rgb(240 253 244 / var(--tw-bg-opacity, 1))}.bg-indigo-50{--tw-bg-opacity: 1;background-color:rgb(238 242 255 / var(--tw-bg-opacity, 1))}.bg-indigo-50\\/30{background-color:#eef2ff4d}.bg-indigo-500{--tw-bg-opacity: 1;background-color:rgb(99 102 241 / var(--tw-bg-opacity, 1))}.bg-indigo-600{--tw-bg-opacity: 1;background-color:rgb(79 70 229 / var(--tw-bg-opacity, 1))}.bg-red-50{--tw-bg-opacity: 1;background-color:rgb(254 242 242 / var(--tw-bg-opacity, 1))}.bg-red-50\\/30{background-color:#fef2f24d}.bg-white{--tw-bg-opacity: 1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-gradient-to-br{background-image:linear-gradient(to bottom right,var(--tw-gradient-stops))}.bg-gradient-to-r{background-image:linear-gradient(to right,var(--tw-gradient-stops))}.from-amber-500{--tw-gradient-from: #f59e0b var(--tw-gradient-from-position);--tw-gradient-to: rgb(245 158 11 / 0) var(--tw-gradient-to-position);--tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to)}.from-green-50{--tw-gradient-from: #f0fdf4 var(--tw-gradient-from-position);--tw-gradient-to: rgb(240 253 244 / 0) var(--tw-gradient-to-position);--tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to)}.to-amber-600{--tw-gradient-to: #d97706 var(--tw-gradient-to-position)}.to-emerald-50\\/50{--tw-gradient-to: rgb(236 253 245 / .5) var(--tw-gradient-to-position)}.object-contain{-o-object-fit:contain;object-fit:contain}.p-1{padding:.25rem}.p-1\\.5{padding:.375rem}.p-2{padding:.5rem}.p-2\\.5{padding:.625rem}.p-3{padding:.75rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-8{padding:2rem}.px-1{padding-left:.25rem;padding-right:.25rem}.px-1\\.5{padding-left:.375rem;padding-right:.375rem}.px-10{padding-left:2.5rem;padding-right:2.5rem}.px-12{padding-left:3rem;padding-right:3rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-2\\.5{padding-left:.625rem;padding-right:.625rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-0\\.5{padding-top:.125rem;padding-bottom:.125rem}.py-1{padding-top:.25rem;padding-bottom:.25rem}.py-1\\.5{padding-top:.375rem;padding-bottom:.375rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-24{padding-top:6rem;padding-bottom:6rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-6{padding-top:1.5rem;padding-bottom:1.5rem}.pb-12{padding-bottom:3rem}.pb-2{padding-bottom:.5rem}.pb-6{padding-bottom:1.5rem}.pl-1{padding-left:.25rem}.pl-10{padding-left:2.5rem}.pl-3{padding-left:.75rem}.pr-10{padding-right:2.5rem}.pr-12{padding-right:3rem}.pr-4{padding-right:1rem}.pr-8{padding-right:2rem}.pt-10{padding-top:2.5rem}.pt-2{padding-top:.5rem}.pt-4{padding-top:1rem}.pt-6{padding-top:1.5rem}.pt-8{padding-top:2rem}.text-left{text-align:left}.text-center{text-align:center}.font-mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace}.text-2xl{font-size:1.5rem;line-height:2rem}.text-\\[10px\\]{font-size:10px}.text-\\[11px\\]{font-size:11px}.text-\\[7px\\]{font-size:7px}.text-\\[8px\\]{font-size:8px}.text-\\[9px\\]{font-size:9px}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:.75rem;line-height:1rem}.font-black{font-weight:900}.font-bold{font-weight:700}.font-light{font-weight:300}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.italic{font-style:italic}.leading-normal{line-height:1.5}.leading-tight{line-height:1.25}.tracking-\\[0\\.2em\\]{letter-spacing:.2em}.tracking-tight{letter-spacing:-.025em}.tracking-wider{letter-spacing:.05em}.tracking-widest{letter-spacing:.1em}.text-amber-500{--tw-text-opacity: 1;color:rgb(245 158 11 / var(--tw-text-opacity, 1))}.text-amber-600{--tw-text-opacity: 1;color:rgb(217 119 6 / var(--tw-text-opacity, 1))}.text-amber-800{--tw-text-opacity: 1;color:rgb(146 64 14 / var(--tw-text-opacity, 1))}.text-blue-500{--tw-text-opacity: 1;color:rgb(59 130 246 / var(--tw-text-opacity, 1))}.text-blue-600{--tw-text-opacity: 1;color:rgb(37 99 235 / var(--tw-text-opacity, 1))}.text-emerald-700{--tw-text-opacity: 1;color:rgb(4 120 87 / var(--tw-text-opacity, 1))}.text-gray-200{--tw-text-opacity: 1;color:rgb(229 231 235 / var(--tw-text-opacity, 1))}.text-gray-300{--tw-text-opacity: 1;color:rgb(209 213 219 / var(--tw-text-opacity, 1))}.text-gray-400{--tw-text-opacity: 1;color:rgb(156 163 175 / var(--tw-text-opacity, 1))}.text-gray-500{--tw-text-opacity: 1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}.text-gray-600{--tw-text-opacity: 1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity: 1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-gray-900{--tw-text-opacity: 1;color:rgb(17 24 39 / var(--tw-text-opacity, 1))}.text-green-500{--tw-text-opacity: 1;color:rgb(34 197 94 / var(--tw-text-opacity, 1))}.text-green-600{--tw-text-opacity: 1;color:rgb(22 163 74 / var(--tw-text-opacity, 1))}.text-green-600\\/70{color:#16a34ab3}.text-green-700{--tw-text-opacity: 1;color:rgb(21 128 61 / var(--tw-text-opacity, 1))}.text-green-800{--tw-text-opacity: 1;color:rgb(22 101 52 / var(--tw-text-opacity, 1))}.text-indigo-600{--tw-text-opacity: 1;color:rgb(79 70 229 / var(--tw-text-opacity, 1))}.text-indigo-700{--tw-text-opacity: 1;color:rgb(67 56 202 / var(--tw-text-opacity, 1))}.text-orange-500{--tw-text-opacity: 1;color:rgb(249 115 22 / var(--tw-text-opacity, 1))}.text-purple-500{--tw-text-opacity: 1;color:rgb(168 85 247 / var(--tw-text-opacity, 1))}.text-red-500{--tw-text-opacity: 1;color:rgb(239 68 68 / var(--tw-text-opacity, 1))}.text-red-600{--tw-text-opacity: 1;color:rgb(220 38 38 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity: 1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.underline{text-decoration-line:underline}.placeholder-gray-400::-moz-placeholder{--tw-placeholder-opacity: 1;color:rgb(156 163 175 / var(--tw-placeholder-opacity, 1))}.placeholder-gray-400::placeholder{--tw-placeholder-opacity: 1;color:rgb(156 163 175 / var(--tw-placeholder-opacity, 1))}.opacity-0{opacity:0}.opacity-100{opacity:1}.opacity-40{opacity:.4}.opacity-50{opacity:.5}.mix-blend-multiply{mix-blend-mode:multiply}.shadow{--tw-shadow: 0 1px 3px 0 rgb(0 0 0 / .1), 0 1px 2px -1px rgb(0 0 0 / .1);--tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow)}.shadow-\\[0_20px_50px_rgba\\(0\\,0\\,0\\,0\\.1\\)\\]{--tw-shadow: 0 20px 50px rgba(0,0,0,.1);--tw-shadow-colored: 0 20px 50px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow)}.shadow-lg{--tw-shadow: 0 10px 15px -3px rgb(0 0 0 / .1), 0 4px 6px -4px rgb(0 0 0 / .1);--tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow)}.shadow-md{--tw-shadow: 0 4px 6px -1px rgb(0 0 0 / .1), 0 2px 4px -2px rgb(0 0 0 / .1);--tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow)}.shadow-sm{--tw-shadow: 0 1px 2px 0 rgb(0 0 0 / .05);--tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow)}.shadow-amber-200\\/50{--tw-shadow-color: rgb(253 230 138 / .5);--tw-shadow: var(--tw-shadow-colored)}.shadow-amber-900\\/20{--tw-shadow-color: rgb(120 53 15 / .2);--tw-shadow: var(--tw-shadow-colored)}.outline{outline-style:solid}.blur{--tw-blur: blur(8px);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.grayscale{--tw-grayscale: grayscale(100%);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-colors{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-opacity{transition-property:opacity;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.duration-200{transition-duration:.2s}.duration-300{transition-duration:.3s}.duration-500{transition-duration:.5s}.ease-in-out{transition-timing-function:cubic-bezier(.4,0,.2,1)}:host{display:block;animation:ars-fade-zoom .6s cubic-bezier(.2,.8,.2,1) forwards;font-family:Inter,system-ui,Avenir,Helvetica,Arial,sans-serif;line-height:1.5;font-weight:400;color-scheme:light;color:var(--ars-color-text-main);background-color:transparent;font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;--ars-color-primary: #FF9900;--ars-color-primary-hover: #e68a00;--ars-color-secondary: #232f3e;--ars-color-secondary-hover: #131921;--ars-color-text-main: #0f1111;--ars-color-text-secondary: #565959;--ars-color-text-inverse: #ffffff;--ars-color-bg-main: #ffffff;--ars-color-bg-secondary: #f0f2f2;--ars-color-bg-tertiary: #e7e9ec;--ars-color-border: #d5d9d9;--ars-color-border-focus: #e77600;--ars-color-success: #067d62;--ars-color-error: #ba0933;--ars-color-warning: #ffa41c;--ars-radius-sm: 4px;--ars-radius-md: 8px;--ars-radius-lg: 12px;--ars-radius-xl: 20px;--ars-shadow-sm: 0 1px 3px rgba(0, 0, 0, .12);--ars-shadow-md: 0 4px 6px rgba(0, 0, 0, .1);--ars-shadow-lg: 0 10px 15px rgba(0, 0, 0, .1);--ars-spacing-xs: 4px;--ars-spacing-sm: 8px;--ars-spacing-md: 16px;--ars-spacing-lg: 24px;--ars-spacing-xl: 32px;--ars-font-size-xs: 11px;--ars-font-size-sm: 13px;--ars-font-size-md: 15px;--ars-font-size-lg: 18px;--ars-font-size-xl: 24px;--ars-anim-fast: .15s ease;--ars-anim-normal: .25s ease}:host{padding:60px 24px!important}*{box-sizing:border-box}button{cursor:pointer;font-family:inherit}::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#ccc;border-radius:4px}::-webkit-scrollbar-thumb:hover{background:#bbb}@keyframes ars-fade-zoom{0%{opacity:0;transform:scale(.98) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}.ars-review-shell-listing{animation:ars-fade-zoom .6s cubic-bezier(.2,.8,.2,1) forwards}.ryp__desktop{display:none!important}.after\\:absolute:after{content:var(--tw-content);position:absolute}.after\\:left-\\[2px\\]:after{content:var(--tw-content);left:2px}.after\\:top-\\[2px\\]:after{content:var(--tw-content);top:2px}.after\\:h-4:after{content:var(--tw-content);height:1rem}.after\\:h-5:after{content:var(--tw-content);height:1.25rem}.after\\:w-4:after{content:var(--tw-content);width:1rem}.after\\:w-5:after{content:var(--tw-content);width:1.25rem}.after\\:rounded-full:after{content:var(--tw-content);border-radius:9999px}.after\\:border:after{content:var(--tw-content);border-width:1px}.after\\:border-gray-300:after{content:var(--tw-content);--tw-border-opacity: 1;border-color:rgb(209 213 219 / var(--tw-border-opacity, 1))}.after\\:bg-white:after{content:var(--tw-content);--tw-bg-opacity: 1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.after\\:transition-all:after{content:var(--tw-content);transition-property:all;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.after\\:content-\\[\\'\\'\\]:after{--tw-content: "";content:var(--tw-content)}.hover\\:bg-blue-50:hover{--tw-bg-opacity: 1;background-color:rgb(239 246 255 / var(--tw-bg-opacity, 1))}.hover\\:bg-gray-100:hover{--tw-bg-opacity: 1;background-color:rgb(243 244 246 / var(--tw-bg-opacity, 1))}.hover\\:bg-gray-200:hover{--tw-bg-opacity: 1;background-color:rgb(229 231 235 / var(--tw-bg-opacity, 1))}.hover\\:bg-red-50:hover{--tw-bg-opacity: 1;background-color:rgb(254 242 242 / var(--tw-bg-opacity, 1))}.hover\\:from-amber-600:hover{--tw-gradient-from: #d97706 var(--tw-gradient-from-position);--tw-gradient-to: rgb(217 119 6 / 0) var(--tw-gradient-to-position);--tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to)}.hover\\:to-amber-700:hover{--tw-gradient-to: #b45309 var(--tw-gradient-to-position)}.hover\\:text-blue-600:hover{--tw-text-opacity: 1;color:rgb(37 99 235 / var(--tw-text-opacity, 1))}.hover\\:text-gray-600:hover{--tw-text-opacity: 1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.hover\\:text-gray-700:hover{--tw-text-opacity: 1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.hover\\:text-indigo-700:hover{--tw-text-opacity: 1;color:rgb(67 56 202 / var(--tw-text-opacity, 1))}.hover\\:underline:hover{text-decoration-line:underline}.hover\\:shadow-md:hover{--tw-shadow: 0 4px 6px -1px rgb(0 0 0 / .1), 0 2px 4px -2px rgb(0 0 0 / .1);--tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow)}.focus\\:border-amber-500:focus{--tw-border-opacity: 1;border-color:rgb(245 158 11 / var(--tw-border-opacity, 1))}.focus\\:bg-white:focus{--tw-bg-opacity: 1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.focus\\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.focus\\:ring-2:focus{--tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow, 0 0 #0000)}.focus\\:ring-amber-500:focus{--tw-ring-opacity: 1;--tw-ring-color: rgb(245 158 11 / var(--tw-ring-opacity, 1))}.focus\\:ring-amber-500\\/20:focus{--tw-ring-color: rgb(245 158 11 / .2)}.active\\:scale-95:active{--tw-scale-x: .95;--tw-scale-y: .95;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.peer:checked~.peer-checked\\:bg-indigo-600{--tw-bg-opacity: 1;background-color:rgb(79 70 229 / var(--tw-bg-opacity, 1))}.peer:checked~.peer-checked\\:after\\:translate-x-full:after{content:var(--tw-content);--tw-translate-x: 100%;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.peer:checked~.peer-checked\\:after\\:border-white:after{content:var(--tw-content);--tw-border-opacity: 1;border-color:rgb(255 255 255 / var(--tw-border-opacity, 1))}.peer:focus~.peer-focus\\:outline-none{outline:2px solid transparent;outline-offset:2px}.peer:focus~.peer-focus\\:ring-2{--tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow, 0 0 #0000)}.peer:focus~.peer-focus\\:ring-4{--tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(4px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow, 0 0 #0000)}.peer:focus~.peer-focus\\:ring-indigo-300{--tw-ring-opacity: 1;--tw-ring-color: rgb(165 180 252 / var(--tw-ring-opacity, 1))}@media(min-width:640px){.sm\\:w-auto{width:auto}.sm\\:max-w-xs{max-width:20rem}.sm\\:flex-row{flex-direction:row}.sm\\:px-6{padding-left:1.5rem;padding-right:1.5rem}}@media(min-width:768px){.md\\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(min-width:1024px){.lg\\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.lg\\:px-8{padding-left:2rem;padding-right:2rem}}@media(min-width:1280px){.xl\\:grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}}@media(prefers-color-scheme:dark){.dark\\:border-zinc-600{--tw-border-opacity: 1;border-color:rgb(82 82 91 / var(--tw-border-opacity, 1))}.dark\\:border-zinc-700{--tw-border-opacity: 1;border-color:rgb(63 63 70 / var(--tw-border-opacity, 1))}.dark\\:bg-amber-900{--tw-bg-opacity: 1;background-color:rgb(120 53 15 / var(--tw-bg-opacity, 1))}.dark\\:bg-zinc-700{--tw-bg-opacity: 1;background-color:rgb(63 63 70 / var(--tw-bg-opacity, 1))}.dark\\:bg-zinc-800{--tw-bg-opacity: 1;background-color:rgb(39 39 42 / var(--tw-bg-opacity, 1))}.dark\\:text-amber-300{--tw-text-opacity: 1;color:rgb(252 211 77 / var(--tw-text-opacity, 1))}.dark\\:text-white{--tw-text-opacity: 1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.dark\\:hover\\:text-gray-200:hover{--tw-text-opacity: 1;color:rgb(229 231 235 / var(--tw-text-opacity, 1))}}`;
@@ -14131,15 +14163,19 @@ paddingTop: "40px",
       document.body.appendChild(host);
     }
     const shadow = host.attachShadow({ mode: "open" });
-    const styleSheet = new CSSStyleSheet();
-    styleSheet.replaceSync(style);
-    shadow.adoptedStyleSheets = [styleSheet];
+    const styleEl = document.createElement("style");
+    styleEl.textContent = style;
+    shadow.appendChild(styleEl);
+    const rootContainer = document.createElement("div");
+    rootContainer.className = "ars-root-container";
+    shadow.appendChild(rootContainer);
     const path = window.location.pathname;
     const searchParams = new URLSearchParams(window.location.search);
     const hasAsin = searchParams.has("asin");
     const isReviewPurchasesListing = path.toLowerCase().includes("thankyou") || path.includes("/listing") || path.includes("/review-your-purchases") && !hasAsin && !path.includes("/edit") || !!document.querySelector(".in-context-ryp__thankyou-container-desktop") || !!document.querySelector(".ryp__review-candidates-list-container__container");
-    ReactDOM.createRoot(shadow).render(
-jsxRuntime.jsx(React__default.StrictMode, { children: isReviewPurchasesListing ? jsxRuntime.jsx(ReviewPurchasesPage, {}) : jsxRuntime.jsx(App, {}) })
+    console.log("[Amazon Review Studio] Rendering React tree...");
+    ReactDOM.createRoot(rootContainer).render(
+      isReviewPurchasesListing ? jsxRuntimeExports.jsx(ReviewPurchasesPage, {}) : jsxRuntimeExports.jsx(App, {})
     );
   }
   function watchAndMount() {
@@ -14158,4 +14194,4 @@ jsxRuntime.jsx(React__default.StrictMode, { children: isReviewPurchasesListing ?
   });
   observer.observe(document.documentElement, { childList: true, subtree: true });
 
-})(React, React, ReactDOM, Swal);
+})(React, ReactDOM, Swal);

@@ -106,9 +106,16 @@ function mount() {
 
     // Use shadow DOM for style isolation
     const shadow = host.attachShadow({ mode: 'open' });
-    const styleSheet = new CSSStyleSheet();
-    styleSheet.replaceSync(style);
-    shadow.adoptedStyleSheets = [styleSheet];
+
+    // Inject styles via a simple style tag for best compatibility
+    const styleEl = document.createElement('style');
+    styleEl.textContent = style;
+    shadow.appendChild(styleEl);
+
+    // Create a container for React inside the shadow root
+    const rootContainer = document.createElement('div');
+    rootContainer.className = 'ars-root-container';
+    shadow.appendChild(rootContainer);
 
     const path = window.location.pathname;
     const searchParams = new URLSearchParams(window.location.search);
@@ -122,10 +129,9 @@ function mount() {
         !!document.querySelector('.in-context-ryp__thankyou-container-desktop') ||
         !!document.querySelector('.ryp__review-candidates-list-container__container');
 
-    ReactDOM.createRoot(shadow).render(
-        <React.StrictMode>
-            {isReviewPurchasesListing ? <ReviewPurchasesPage /> : <App />}
-        </React.StrictMode>
+    console.log('[Amazon Review Studio] Rendering React tree...');
+    ReactDOM.createRoot(rootContainer).render(
+        isReviewPurchasesListing ? <ReviewPurchasesPage /> : <App />
     );
 }
 

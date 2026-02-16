@@ -1,11 +1,11 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import monkey, { cdn } from 'vite-plugin-monkey';
+import monkey from 'vite-plugin-monkey';
 
 // https://vitejs.dev/config/
 export default defineConfig({
     build: {
-        minify: false,
+        minify: false, // Ensure readability for Greasy Fork reviewers
     },
     plugins: [
         react(),
@@ -14,7 +14,7 @@ export default defineConfig({
             userscript: {
                 name: 'Amazon Review Toolkit 2.0',
                 namespace: 'https://github.com/Prismaria/Amazon-Review-Studio',
-                version: '2.0.0',
+                version: '2.0.3',
                 description: 'Complete review writing tookit for Amazon.',
                 author: 'Prismaris',
                 match: [
@@ -28,6 +28,11 @@ export default defineConfig({
                     '*://*.amazon.co.jp/*',
                     '*://*.amazon.in/*',
                     '*://*.amazon.com.au/*'
+                ],
+                require: [
+                    'https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js',
+                    'https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js',
+                    'https://cdn.jsdelivr.net/npm/sweetalert2@11.10/dist/sweetalert2.all.min.js'
                 ],
                 connect: [
                     'pastebin.com',
@@ -47,11 +52,10 @@ export default defineConfig({
             },
             build: {
                 externalGlobals: {
-                    react: cdn.jsdelivr('React', 'umd/react.production.min.js'),
-                    'react-dom': cdn.jsdelivr('ReactDOM', 'umd/react-dom.production.min.js'),
+                    'react': 'React',
+                    'react-dom': 'ReactDOM',
                     'react-dom/client': 'ReactDOM',
-                    'react/jsx-runtime': 'React',
-                    'sweetalert2': cdn.jsdelivr('Swal', 'dist/sweetalert2.all.min.js'),
+                    'sweetalert2': 'Swal',
                 },
             },
         }),
