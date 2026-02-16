@@ -247,19 +247,21 @@ ${markdownInstruction}`;
                 </div>
 
                 <div className="ars-ai-prompt-section">
-                    <div className="flex justify-between items-center mb-2">
-                        <div className="flex items-center gap-3">
-                            <label className="ars-label mb-0">Your Initial Thoughts (Required - 300+ chars):</label>
+                    <div className="flex justify-between items-end mb-2">
+                        <div className="flex flex-col gap-1">
+                            <label className="ars-label mb-0 flex items-center gap-1">
+                                Your Initial Thoughts <span style={{ color: '#dc2626' }}>*</span>
+                            </label>
                             {existingReviewText.length >= 300 && (
-                                <label className="flex items-center gap-1 text-xs cursor-pointer select-none">
+                                <label className="flex items-center gap-2 text-[11px] cursor-pointer select-none text-gray-500 hover:text-gray-700 transition-colors">
                                     <input
                                         type="checkbox"
                                         checked={useExistingReview}
                                         onChange={(e) => setUseExistingReview(e.target.checked)}
                                         className="ars-checkbox"
                                     />
-                                    <span style={{ color: useExistingReview ? 'var(--ars-color-primary)' : 'inherit' }}>
-                                        Use existing review content
+                                    <span style={{ color: useExistingReview ? 'var(--ars-color-primary)' : 'inherit', fontWeight: useExistingReview ? 600 : 400 }}>
+                                        Use existing review text as prompt
                                     </span>
                                 </label>
                             )}
@@ -268,8 +270,8 @@ ${markdownInstruction}`;
                             variant="ghost"
                             size="sm"
                             onClick={() => setShowPreview(!showPreview)}
-                            className="text-xs h-6 px-2"
-                            icon={showPreview ? <EyeOff size={12} /> : <Eye size={12} />}
+                            className="text-[10px] h-7 px-2 border border-gray-200"
+                            icon={showPreview ? <EyeOff size={11} /> : <Eye size={11} />}
                         >
                             {showPreview ? 'Hide Full Prompt' : 'Preview Full Prompt'}
                         </Button>
@@ -282,21 +284,22 @@ ${markdownInstruction}`;
                             value={useExistingReview ? existingReviewText : userThoughts}
                             onChange={(e) => !useExistingReview && setUserThoughts(e.target.value)}
                             style={{
-                                minHeight: '120px',
-                                opacity: useExistingReview ? 0.6 : 1,
+                                minHeight: '140px',
+                                opacity: useExistingReview ? 0.7 : 1,
                                 cursor: useExistingReview ? 'not-allowed' : 'text',
-                                backgroundColor: useExistingReview ? '#f9fafb' : 'white'
+                                backgroundColor: useExistingReview ? '#fbfcfd' : 'white',
+                                borderColor: !useExistingReview && userThoughts.length > 0 && userThoughts.length < 300 ? '#fca5a5' : 'var(--ars-color-border)'
                             }}
                             disabled={useExistingReview}
                         />
-                        {!useExistingReview && userThoughts.length > 0 && userThoughts.length < 300 && (
-                            <div className="absolute bottom-2 right-3 text-[10px] text-red-500 font-medium">
+                        {!useExistingReview && (
+                            <div className={`absolute bottom-2 right-3 text-[10px] font-bold px-1.5 py-0.5 rounded ${userThoughts.length >= 300 ? 'text-green-600 bg-green-50' : 'text-gray-400 bg-gray-50'}`}>
                                 {userThoughts.length} / 300
                             </div>
                         )}
-                        {!useExistingReview && userThoughts.length >= 300 && (
-                            <div className="absolute bottom-2 right-3 text-[10px] text-green-500 font-medium">
-                                {userThoughts.length} characters
+                        {useExistingReview && (
+                            <div className="absolute bottom-2 right-3 text-[10px] font-bold px-1.5 py-0.5 rounded text-blue-600 bg-blue-50">
+                                Existing Text Used ({existingReviewText.length} chars)
                             </div>
                         )}
                     </div>

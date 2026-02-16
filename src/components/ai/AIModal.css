@@ -7,6 +7,24 @@
 .ars-ai-settings-compact {
     display: flex;
     gap: var(--ars-spacing-sm);
+    background: #f8fafc;
+    padding: var(--ars-spacing-xs);
+    border-radius: var(--ars-radius-lg);
+    border: 1px solid #e2e8f0;
+}
+
+.ars-ai-provider-card,
+.ars-ai-length-card,
+.ars-ai-vision-card {
+    background: white !important;
+    border: 1px solid #e2e8f0 !important;
+    transition: transform var(--ars-anim-fast), box-shadow var(--ars-anim-fast);
+}
+
+.ars-ai-provider-card:hover,
+.ars-ai-length-card:hover,
+.ars-ai-vision-card:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 .ars-ai-provider-card {
@@ -20,7 +38,13 @@
     display: flex;
     align-items: center;
     gap: var(--ars-spacing-sm);
-    flex: 1.5;
+    flex: 2;
+}
+
+.ars-ai-vision-card {
+    flex: 1;
+    display: flex;
+    align-items: center;
 }
 
 .ars-ai-length-selector {
@@ -77,13 +101,15 @@
 .ars-ai-prompt-input {
     width: 100%;
     min-height: 80px;
-    padding: var(--ars-spacing-sm);
+    padding: var(--ars-spacing-md);
     border: 1px solid var(--ars-color-border);
-    border-radius: var(--ars-radius-md);
+    border-radius: var(--ars-radius-lg);
     font-family: inherit;
     font-size: var(--ars-font-size-md);
+    line-height: 1.6;
     resize: vertical;
     outline: none;
+    transition: all var(--ars-anim-fast);
 }
 
 .ars-ai-prompt-input:focus {
