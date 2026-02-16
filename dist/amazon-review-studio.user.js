@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Amazon Review Toolkit 2.0
-// @namespace    http://tampermonkey.net/
+// @namespace    https://github.com/Prismaria/Amazon-Review-Studio
 // @version      2.0.0
 // @author       Prismaris
 // @description  Complete review writing tookit for Amazon.
