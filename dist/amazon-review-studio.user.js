@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Amazon Review Toolkit 2.0
 // @namespace    https://github.com/Prismaria/Amazon-Review-Studio
-// @version      2.0.3
+// @version      2.0.4
 // @author       Prismaris
 // @description  Complete review writing tookit for Amazon.
 // @match        *://*.amazon.com/*
@@ -159,14 +159,14 @@
     Component2.displayName = toPascalCase(iconName);
     return Component2;
   };
-  const __iconNode$N = [
+  const __iconNode$O = [
     [
       "path",
       { d: "M6 12h9a4 4 0 0 1 0 8H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h7a4 4 0 0 1 0 8", key: "mg9rjx" }
     ]
   ];
-  const Bold = createLucideIcon("bold", __iconNode$N);
-  const __iconNode$M = [
+  const Bold = createLucideIcon("bold", __iconNode$O);
+  const __iconNode$N = [
     ["path", { d: "M12 20v-9", key: "1qisl0" }],
     ["path", { d: "M14 7a4 4 0 0 1 4 4v3a6 6 0 0 1-12 0v-3a4 4 0 0 1 4-4z", key: "uouzyp" }],
     ["path", { d: "M14.12 3.88 16 2", key: "qol33r" }],
@@ -179,15 +179,15 @@
     ["path", { d: "m8 2 1.88 1.88", key: "fmnt4t" }],
     ["path", { d: "M9 7.13V6a3 3 0 1 1 6 0v1.13", key: "1vgav8" }]
   ];
-  const Bug = createLucideIcon("bug", __iconNode$M);
-  const __iconNode$L = [
+  const Bug = createLucideIcon("bug", __iconNode$N);
+  const __iconNode$M = [
     ["path", { d: "M8 2v4", key: "1cmpym" }],
     ["path", { d: "M16 2v4", key: "4m81vk" }],
     ["rect", { width: "18", height: "18", x: "3", y: "4", rx: "2", key: "1hopcy" }],
     ["path", { d: "M3 10h18", key: "8toen8" }]
   ];
-  const Calendar = createLucideIcon("calendar", __iconNode$L);
-  const __iconNode$K = [
+  const Calendar = createLucideIcon("calendar", __iconNode$M);
+  const __iconNode$L = [
     [
       "path",
       {
@@ -197,43 +197,43 @@
     ],
     ["circle", { cx: "12", cy: "13", r: "3", key: "1vg3eu" }]
   ];
-  const Camera = createLucideIcon("camera", __iconNode$K);
-  const __iconNode$J = [
+  const Camera = createLucideIcon("camera", __iconNode$L);
+  const __iconNode$K = [
     ["path", { d: "M5 21v-6", key: "1hz6c0" }],
     ["path", { d: "M12 21V3", key: "1lcnhd" }],
     ["path", { d: "M19 21V9", key: "unv183" }]
   ];
-  const ChartNoAxesColumn = createLucideIcon("chart-no-axes-column", __iconNode$J);
-  const __iconNode$I = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
-  const Check = createLucideIcon("check", __iconNode$I);
-  const __iconNode$H = [["path", { d: "m9 18 6-6-6-6", key: "mthhwq" }]];
-  const ChevronRight = createLucideIcon("chevron-right", __iconNode$H);
-  const __iconNode$G = [
+  const ChartNoAxesColumn = createLucideIcon("chart-no-axes-column", __iconNode$K);
+  const __iconNode$J = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
+  const Check = createLucideIcon("check", __iconNode$J);
+  const __iconNode$I = [["path", { d: "m9 18 6-6-6-6", key: "mthhwq" }]];
+  const ChevronRight = createLucideIcon("chevron-right", __iconNode$I);
+  const __iconNode$H = [
     ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
     ["line", { x1: "12", x2: "12", y1: "8", y2: "12", key: "1pkeuh" }],
     ["line", { x1: "12", x2: "12.01", y1: "16", y2: "16", key: "4dfq90" }]
   ];
-  const CircleAlert = createLucideIcon("circle-alert", __iconNode$G);
-  const __iconNode$F = [
+  const CircleAlert = createLucideIcon("circle-alert", __iconNode$H);
+  const __iconNode$G = [
     ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
     ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
   ];
-  const CircleCheck = createLucideIcon("circle-check", __iconNode$F);
-  const __iconNode$E = [
+  const CircleCheck = createLucideIcon("circle-check", __iconNode$G);
+  const __iconNode$F = [
     ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
     ["path", { d: "M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3", key: "1u773s" }],
     ["path", { d: "M12 17h.01", key: "p32p05" }]
   ];
-  const CircleQuestionMark = createLucideIcon("circle-question-mark", __iconNode$E);
-  const __iconNode$D = [
+  const CircleQuestionMark = createLucideIcon("circle-question-mark", __iconNode$F);
+  const __iconNode$E = [
     ["path", { d: "M11 14h10", key: "1w8e9d" }],
     ["path", { d: "M16 4h2a2 2 0 0 1 2 2v1.344", key: "1e62lh" }],
     ["path", { d: "m17 18 4-4-4-4", key: "z2g111" }],
     ["path", { d: "M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 1.793-1.113", key: "bjbb7m" }],
     ["rect", { x: "8", y: "2", width: "8", height: "4", rx: "1", key: "ublpy" }]
   ];
-  const ClipboardPaste = createLucideIcon("clipboard-paste", __iconNode$D);
-  const __iconNode$C = [
+  const ClipboardPaste = createLucideIcon("clipboard-paste", __iconNode$E);
+  const __iconNode$D = [
     ["rect", { width: "8", height: "4", x: "8", y: "2", rx: "1", ry: "1", key: "tgr4d6" }],
     [
       "path",
@@ -243,23 +243,23 @@
       }
     ]
   ];
-  const Clipboard = createLucideIcon("clipboard", __iconNode$C);
-  const __iconNode$B = [
+  const Clipboard = createLucideIcon("clipboard", __iconNode$D);
+  const __iconNode$C = [
     ["path", { d: "M12 13v8l-4-4", key: "1f5nwf" }],
     ["path", { d: "m12 21 4-4", key: "1lfcce" }],
     ["path", { d: "M4.393 15.269A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.436 8.284", key: "ui1hmy" }]
   ];
-  const CloudDownload = createLucideIcon("cloud-download", __iconNode$B);
-  const __iconNode$A = [
+  const CloudDownload = createLucideIcon("cloud-download", __iconNode$C);
+  const __iconNode$B = [
     ["path", { d: "M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z", key: "p7xjir" }]
   ];
-  const Cloud = createLucideIcon("cloud", __iconNode$A);
-  const __iconNode$z = [
+  const Cloud = createLucideIcon("cloud", __iconNode$B);
+  const __iconNode$A = [
     ["rect", { width: "14", height: "14", x: "8", y: "8", rx: "2", ry: "2", key: "17jyea" }],
     ["path", { d: "M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2", key: "zix9uf" }]
   ];
-  const Copy = createLucideIcon("copy", __iconNode$z);
-  const __iconNode$y = [
+  const Copy = createLucideIcon("copy", __iconNode$A);
+  const __iconNode$z = [
     ["path", { d: "M12 20v2", key: "1lh1kg" }],
     ["path", { d: "M12 2v2", key: "tus03m" }],
     ["path", { d: "M17 20v2", key: "1rnc9c" }],
@@ -275,13 +275,24 @@
     ["rect", { x: "4", y: "4", width: "16", height: "16", rx: "2", key: "1vbyd7" }],
     ["rect", { x: "8", y: "8", width: "8", height: "8", rx: "1", key: "z9xiuo" }]
   ];
-  const Cpu = createLucideIcon("cpu", __iconNode$y);
-  const __iconNode$x = [
+  const Cpu = createLucideIcon("cpu", __iconNode$z);
+  const __iconNode$y = [
     ["path", { d: "M12 15V3", key: "m9g1x1" }],
     ["path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", key: "ih7n3h" }],
     ["path", { d: "m7 10 5 5 5-5", key: "brsn70" }]
   ];
-  const Download = createLucideIcon("download", __iconNode$x);
+  const Download = createLucideIcon("download", __iconNode$y);
+  const __iconNode$x = [
+    [
+      "path",
+      {
+        d: "M21 21H8a2 2 0 0 1-1.42-.587l-3.994-3.999a2 2 0 0 1 0-2.828l10-10a2 2 0 0 1 2.829 0l5.999 6a2 2 0 0 1 0 2.828L12.834 21",
+        key: "g5wo59"
+      }
+    ],
+    ["path", { d: "m5.082 11.09 8.828 8.828", key: "1wx5vj" }]
+  ];
+  const Eraser = createLucideIcon("eraser", __iconNode$x);
   const __iconNode$w = [
     ["path", { d: "M15 3h6v6", key: "1q9fwt" }],
     ["path", { d: "M10 14 21 3", key: "gplh6r" }],
@@ -10637,6 +10648,7 @@ jsxRuntimeExports.jsx("p", { className: "ars-help-text ml-7", children: "Reveals
     activeStyles,
     onInsert,
     onReplace,
+    onClearStyles,
     showUtilities = true,
     currentValue = "",
     onListToggle
@@ -10881,7 +10893,20 @@ jsxRuntimeExports.jsx(
             }
           )
         ] }),
-        showUtilities && jsxRuntimeExports.jsx("div", { className: "ars-toolbar-divider" })
+        showUtilities && jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+jsxRuntimeExports.jsx("div", { className: "ars-toolbar-divider" }),
+jsxRuntimeExports.jsx(
+            Button,
+            {
+              variant: "ghost",
+              size: "sm",
+              onClick: onClearStyles,
+              title: "Clear All Styling",
+              className: "ars-toolbar-btn hover:bg-red-50",
+              children: jsxRuntimeExports.jsx(Eraser, { size: 16 })
+            }
+          )
+        ] })
       ] }),
       showUtilities && jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
 jsxRuntimeExports.jsxs("div", { className: "ars-toolbar-group", children: [
@@ -11041,811 +11066,36 @@ jsxRuntimeExports.jsx(
       ] })
     ] });
   };
+  const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const makeAlphabetMap = (target, source = ALPHABET) => {
+    const map = {};
+    const targetChars = [...target];
+    const sourceChars = [...source];
+    targetChars.forEach((ch, i) => {
+      if (sourceChars[i]) map[sourceChars[i]] = ch;
+    });
+    return map;
+  };
+  const makeCombiningMap = (mark) => {
+    const map = {};
+    [...ALPHABET].forEach((ch) => map[ch] = ch + mark);
+    return map;
+  };
   const UNICODE_MAPS = {
-    bold: {
-      A: "𝗔",
-      B: "𝗕",
-      C: "𝗖",
-      D: "𝗗",
-      E: "𝗘",
-      F: "𝗙",
-      G: "𝗚",
-      H: "𝗛",
-      I: "𝗜",
-      J: "𝗝",
-      K: "𝗞",
-      L: "𝗟",
-      M: "𝗠",
-      N: "𝗡",
-      O: "𝗢",
-      P: "𝗣",
-      Q: "𝗤",
-      R: "𝗥",
-      S: "𝗦",
-      T: "𝗧",
-      U: "𝗨",
-      V: "𝗩",
-      W: "𝗪",
-      X: "𝗫",
-      Y: "𝗬",
-      Z: "𝗭",
-      a: "𝗮",
-      b: "𝗯",
-      c: "𝗰",
-      d: "𝗱",
-      e: "𝗲",
-      f: "𝗳",
-      g: "𝗴",
-      h: "𝗵",
-      i: "𝗶",
-      j: "𝗷",
-      k: "𝗸",
-      l: "𝗹",
-      m: "𝗺",
-      n: "𝗻",
-      o: "𝗼",
-      p: "𝗽",
-      q: "𝗾",
-      r: "𝗿",
-      s: "𝘀",
-      t: "𝘁",
-      u: "𝘂",
-      v: "𝘃",
-      w: "𝘄",
-      x: "𝘅",
-      y: "𝘆",
-      z: "𝘇",
-      0: "𝟬",
-      1: "𝟭",
-      2: "𝟮",
-      3: "𝟯",
-      4: "𝟰",
-      5: "𝟱",
-      6: "𝟲",
-      7: "𝟳",
-      8: "𝟴",
-      9: "𝟵"
-    },
-    boldserif: {
-      A: "𝐀",
-      B: "𝐁",
-      C: "𝐂",
-      D: "𝐃",
-      E: "𝐄",
-      F: "𝐅",
-      G: "𝐆",
-      H: "𝐇",
-      I: "𝐈",
-      J: "𝐉",
-      K: "𝐊",
-      L: "𝐋",
-      M: "𝐌",
-      N: "𝐍",
-      O: "𝐎",
-      P: "𝐏",
-      Q: "𝐐",
-      R: "𝐑",
-      S: "𝐒",
-      T: "𝐓",
-      U: "𝐔",
-      V: "𝐕",
-      W: "𝐖",
-      X: "𝐗",
-      Y: "𝐘",
-      Z: "𝐙",
-      a: "𝐚",
-      b: "𝐛",
-      c: "𝐜",
-      d: "𝐝",
-      e: "𝐞",
-      f: "𝐟",
-      g: "𝐠",
-      h: "𝐡",
-      i: "𝐢",
-      j: "𝐣",
-      k: "𝐤",
-      l: "𝐥",
-      m: "𝐦",
-      n: "𝐧",
-      o: "𝐨",
-      p: "𝐩",
-      q: "𝐪",
-      r: "𝐫",
-      s: "𝐬",
-      t: "𝐭",
-      u: "𝐮",
-      v: "𝐯",
-      w: "𝐰",
-      x: "𝐱",
-      y: "𝐲",
-      z: "𝐳",
-      0: "𝟎",
-      1: "𝟏",
-      2: "𝟐",
-      3: "𝟑",
-      4: "𝟒",
-      5: "𝟓",
-      6: "𝟔",
-      7: "𝟕",
-      8: "𝟖",
-      9: "𝟗"
-    },
-    italic: {
-      A: "𝘐",
-      B: "𝘉",
-      C: "𝘊",
-      D: "𝘋",
-      E: "𝘌",
-      F: "𝘍",
-      G: "𝘎",
-      H: "𝘏",
-      I: "𝘐",
-      J: "𝘑",
-      K: "𝘒",
-      L: "𝘓",
-      M: "𝘔",
-      N: "𝘕",
-      O: "𝘖",
-      P: "𝘗",
-      Q: "𝘘",
-      R: "𝘙",
-      S: "𝘚",
-      T: "𝘛",
-      U: "𝘜",
-      V: "𝘝",
-      W: "𝘞",
-      X: "𝘟",
-      Y: "𝘠",
-      Z: "𝘡",
-      a: "𝘢",
-      b: "𝘣",
-      c: "𝘤",
-      d: "𝘥",
-      e: "𝘦",
-      f: "𝘧",
-      g: "𝘨",
-      h: "𝘩",
-      i: "𝘪",
-      j: "𝘫",
-      k: "𝘬",
-      l: "𝘭",
-      m: "𝘮",
-      n: "𝘯",
-      o: "𝘰",
-      p: "𝘱",
-      q: "𝘲",
-      r: "𝘳",
-      s: "𝘴",
-      t: "𝘵",
-      u: "𝘶",
-      v: "𝘷",
-      w: "𝘸",
-      x: "𝘹",
-      y: "𝘺",
-      z: "𝘻"
-    },
-    bolditalic: {
-      A: "𝘼",
-      B: "𝘽",
-      C: "𝘾",
-      D: "𝘿",
-      E: "𝙀",
-      F: "𝙁",
-      G: "𝙂",
-      H: "𝙃",
-      I: "𝙄",
-      J: "𝙅",
-      K: "𝙆",
-      L: "𝙇",
-      M: "𝙈",
-      N: "𝙉",
-      O: "𝙊",
-      P: "𝙋",
-      Q: "𝙌",
-      R: "𝙍",
-      S: "𝙎",
-      T: "𝙏",
-      U: "𝙐",
-      V: "𝙑",
-      W: "𝙒",
-      X: "𝙓",
-      Y: "𝙔",
-      Z: "𝙕",
-      a: "𝙖",
-      b: "𝙗",
-      c: "𝙘",
-      d: "𝙙",
-      e: "𝙚",
-      f: "𝙛",
-      g: "𝙜",
-      h: "𝙝",
-      i: "𝙞",
-      j: "𝙟",
-      k: "𝙠",
-      l: "𝙡",
-      m: "𝙢",
-      n: "𝙣",
-      o: "𝙤",
-      p: "𝙥",
-      q: "𝙦",
-      r: "𝙧",
-      s: "𝙨",
-      t: "𝙩",
-      u: "𝙪",
-      v: "𝙫",
-      w: "𝙬",
-      x: "𝙭",
-      y: "𝙮",
-      z: "𝙯"
-    },
-    serif: {
-      A: "𝐴",
-      B: "𝐵",
-      C: "𝐶",
-      D: "𝐷",
-      E: "𝐸",
-      F: "𝐹",
-      G: "𝐺",
-      H: "𝐻",
-      I: "𝐼",
-      J: "𝐽",
-      K: "𝐾",
-      L: "𝐿",
-      M: "𝑀",
-      N: "𝑁",
-      O: "𝑂",
-      P: "𝑃",
-      Q: "𝑄",
-      R: "𝑅",
-      S: "𝑆",
-      T: "𝑇",
-      U: "𝑈",
-      V: "𝑉",
-      W: "𝑊",
-      X: "𝑋",
-      Y: "𝑌",
-      Z: "𝑍",
-      a: "𝑎",
-      b: "𝑏",
-      c: "𝑐",
-      d: "𝑑",
-      e: "𝑒",
-      f: "𝑓",
-      g: "𝑔",
-      h: "ℎ",
-      i: "𝑖",
-      j: "𝑗",
-      k: "𝑘",
-      l: "𝑙",
-      m: "𝑚",
-      n: "𝑛",
-      o: "𝑜",
-      p: "𝑝",
-      q: "𝑞",
-      r: "𝑟",
-      s: "𝑠",
-      t: "𝑡",
-      u: "𝑢",
-      v: "𝑣",
-      w: "𝑤",
-      x: "𝑥",
-      y: "𝑦",
-      z: "𝑧"
-    },
-    serifitalic: {
-      A: "𝐴",
-      B: "𝐵",
-      C: "𝐶",
-      D: "𝐷",
-      E: "𝐸",
-      F: "𝐹",
-      G: "𝐺",
-      H: "𝐻",
-      I: "𝐼",
-      J: "𝐽",
-      K: "𝐾",
-      L: "𝐿",
-      M: "𝑀",
-      N: "𝑁",
-      O: "𝑂",
-      P: "𝑃",
-      Q: "𝑄",
-      R: "𝑅",
-      S: "𝑆",
-      T: "𝑇",
-      U: "𝑈",
-      V: "𝑉",
-      W: "𝑊",
-      X: "𝑋",
-      Y: "𝑌",
-      Z: "𝑍",
-      a: "𝑎",
-      b: "𝑏",
-      c: "𝑐",
-      d: "𝑑",
-      e: "𝑒",
-      f: "𝑓",
-      g: "𝑔",
-      h: "ℎ",
-      i: "𝑖",
-      j: "𝑗",
-      k: "𝑘",
-      l: "𝑙",
-      m: "𝑚",
-      n: "𝑛",
-      o: "𝑜",
-      p: "𝑝",
-      q: "𝑞",
-      r: "𝑟",
-      s: "𝑠",
-      t: "𝑡",
-      u: "𝑢",
-      v: "𝑣",
-      w: "𝑤",
-      x: "𝑥",
-      y: "𝑦",
-      z: "𝑧"
-    },
-    serifbolditalic: {
-      A: "𝑨",
-      B: "𝑩",
-      C: "𝑪",
-      D: "𝑫",
-      E: "𝑬",
-      F: "𝑭",
-      G: "𝑮",
-      H: "𝑯",
-      I: "𝑰",
-      J: "𝑱",
-      K: "𝑲",
-      L: "𝑳",
-      M: "𝑴",
-      N: "𝑵",
-      O: "𝑶",
-      P: "𝑷",
-      Q: "𝑸",
-      R: "𝑹",
-      S: "𝑺",
-      T: "𝑻",
-      U: "𝑼",
-      V: "𝑽",
-      W: "𝑾",
-      X: "𝑿",
-      Y: "𝒀",
-      Z: "𝒁",
-      a: "𝒂",
-      b: "𝒃",
-      c: "𝒄",
-      d: "𝒅",
-      e: "𝒆",
-      f: "𝒇",
-      g: "𝒈",
-      h: "𝒉",
-      i: "𝒊",
-      j: "𝒋",
-      k: "𝒌",
-      l: "𝒍",
-      m: "𝒎",
-      n: "𝒏",
-      o: "𝒐",
-      p: "𝒑",
-      q: "𝒒",
-      r: "𝒓",
-      s: "𝒔",
-      t: "𝒕",
-      u: "𝒖",
-      v: "𝒗",
-      w: "𝒘",
-      x: "𝒙",
-      y: "𝒚",
-      z: "𝒛"
-    },
-    cursive: {
-      A: "𝓐",
-      B: "𝓑",
-      C: "𝓒",
-      D: "𝓓",
-      E: "𝓔",
-      F: "𝓕",
-      G: "𝓖",
-      H: "𝓗",
-      I: "𝓘",
-      J: "𝓙",
-      K: "𝓚",
-      L: "𝓛",
-      M: "𝓜",
-      N: "𝓝",
-      O: "𝓞",
-      P: "𝓟",
-      Q: "𝓠",
-      R: "𝓡",
-      S: "𝓢",
-      T: "𝓣",
-      U: "𝓤",
-      V: "𝓥",
-      W: "𝓦",
-      X: "𝓧",
-      Y: "𝓨",
-      Z: "𝓩",
-      a: "𝒶",
-      b: "𝒷",
-      c: "𝒸",
-      d: "𝒹",
-      e: "𝑒",
-      f: "𝒻",
-      g: "𝑔",
-      h: "𝒽",
-      i: "𝒾",
-      j: "𝒿",
-      k: "𝓀",
-      l: "𝓁",
-      m: "𝓂",
-      n: "𝓃",
-      o: "𝑜",
-      p: "𝓅",
-      q: "𝓆",
-      r: "𝓇",
-      s: "𝓈",
-      t: "𝓉",
-      u: "𝓾",
-      v: "𝓋",
-      w: "𝓌",
-      x: "𝓍",
-      y: "𝓎",
-      z: "𝓏"
-    },
-    cursivebold: {
-      A: "𝓐",
-      B: "𝓑",
-      C: "𝓒",
-      D: "𝓓",
-      E: "𝓔",
-      F: "𝓕",
-      G: "𝓖",
-      H: "𝓗",
-      I: "𝓘",
-      J: "𝓙",
-      K: "𝓚",
-      L: "𝓛",
-      M: "𝓜",
-      N: "𝓝",
-      O: "𝓞",
-      P: "𝓟",
-      Q: "𝓠",
-      R: "𝓡",
-      S: "𝓢",
-      T: "𝓣",
-      U: "𝓤",
-      V: "𝓥",
-      W: "𝓦",
-      X: "𝓧",
-      Y: "𝓨",
-      Z: "𝓩",
-      a: "𝓪",
-      b: "𝓫",
-      c: "𝓬",
-      d: "𝓭",
-      e: "𝓮",
-      f: "𝓯",
-      g: "𝓰",
-      h: "𝓱",
-      i: "𝓲",
-      j: "𝓳",
-      k: "𝓴",
-      l: "𝓵",
-      m: "𝓶",
-      n: "𝓷",
-      o: "𝓸",
-      p: "𝓹",
-      q: "𝓺",
-      r: "𝓻",
-      s: "𝓼",
-      t: "𝓽",
-      u: "𝓾",
-      v: "𝓿",
-      w: "𝔀",
-      x: "𝔁",
-      y: "𝔂",
-      z: "𝔃"
-    },
-    superscript: {
-      A: "ᴬ",
-      B: "ᴮ",
-      C: "ᶜ",
-      D: "ᴰ",
-      E: "ᴱ",
-      F: "ᶠ",
-      G: "ᴳ",
-      H: "ᴴ",
-      I: "ᴵ",
-      J: "ᴶ",
-      K: "ᴷ",
-      L: "ᴸ",
-      M: "ᴹ",
-      N: "ᴺ",
-      O: "ᴼ",
-      P: "ᴾ",
-      R: "ᴿ",
-      S: "ˢ",
-      T: "ᵀ",
-      U: "ᵁ",
-      V: "ⱽ",
-      W: "ᵂ",
-      X: "ˣ",
-      Y: "ʸ",
-      Z: "ᶻ",
-      a: "ᵃ",
-      b: "ᵇ",
-      c: "ᶜ",
-      d: "ᵈ",
-      e: "ᵉ",
-      f: "ᶠ",
-      g: "ᵍ",
-      h: "ʰ",
-      i: "ᶦ",
-      j: "ʲ",
-      k: "ᵏ",
-      l: "ˡ",
-      m: "ᵐ",
-      n: "ⁿ",
-      o: "ᵒ",
-      p: "ᵖ",
-      r: "ʳ",
-      s: "ˢ",
-      t: "ᵗ",
-      u: "ᵘ",
-      v: "ᵛ",
-      w: "ʷ",
-      x: "ˣ",
-      y: "ʸ",
-      z: "ᶻ",
-      0: "⁰",
-      1: "¹",
-      2: "²",
-      3: "³",
-      4: "⁴",
-      5: "⁵",
-      6: "⁶",
-      7: "⁷",
-      8: "⁸",
-      9: "⁹"
-    },
-    underline: {
-      A: "A͟",
-      B: "B͟",
-      C: "C͟",
-      D: "D͟",
-      E: "E͟",
-      F: "F͟",
-      G: "G͟",
-      H: "H͟",
-      I: "I͟",
-      J: "J͟",
-      K: "K͟",
-      L: "L͟",
-      M: "M͟",
-      N: "N͟",
-      O: "O͟",
-      P: "P͟",
-      Q: "Q͟",
-      R: "R͟",
-      S: "S͟",
-      T: "T͟",
-      U: "U͟",
-      V: "V͟",
-      W: "W͟",
-      X: "X͟",
-      Y: "Y͟",
-      Z: "Z͟",
-      a: "a͟",
-      b: "b͟",
-      c: "c͟",
-      d: "d͟",
-      e: "e͟",
-      f: "f͟",
-      g: "g͟",
-      h: "h͟",
-      i: "i͟",
-      j: "j͟",
-      k: "k͟",
-      l: "l͟",
-      m: "m͟",
-      n: "n͟",
-      o: "o͟",
-      p: "p͟",
-      q: "q͟",
-      r: "r͟",
-      s: "s͟",
-      t: "t͟",
-      u: "u͟",
-      v: "v͟",
-      w: "w͟",
-      x: "x͟",
-      y: "y͟",
-      z: "z͟"
-    },
-    monospace: {
-      A: "𝙰",
-      B: "𝙱",
-      C: "𝙲",
-      D: "𝙳",
-      E: "𝙴",
-      F: "𝙵",
-      G: "𝙶",
-      H: "𝙷",
-      I: "𝙸",
-      J: "𝙹",
-      K: "𝙺",
-      L: "𝙻",
-      M: "𝙼",
-      N: "𝙽",
-      O: "𝙾",
-      P: "𝙿",
-      Q: "𝚀",
-      R: "𝚁",
-      S: "𝚂",
-      T: "𝚃",
-      U: "𝚄",
-      V: "𝚅",
-      W: "𝚆",
-      X: "𝚇",
-      Y: "𝚈",
-      Z: "𝚉",
-      a: "𝚊",
-      b: "𝚋",
-      c: "𝚌",
-      d: "𝚍",
-      e: "𝚎",
-      f: "𝚏",
-      g: "𝚐",
-      h: "𝚑",
-      i: "𝚒",
-      j: "𝚓",
-      k: "𝚔",
-      l: "𝚕",
-      m: "𝚖",
-      n: "𝚗",
-      o: "𝚘",
-      p: "𝚙",
-      q: "𝚚",
-      r: "𝚛",
-      s: "𝚜",
-      t: "𝚝",
-      u: "𝚞",
-      v: "𝚟",
-      w: "𝚠",
-      x: "𝚡",
-      y: "𝚢",
-      z: "𝚣",
-      0: "0",
-      1: "𝟷",
-      2: "𝟸",
-      3: "𝟹",
-      4: "𝟺",
-      5: "𝟻",
-      6: "𝟼",
-      7: "𝟽",
-      8: "𝟾",
-      9: "𝟿"
-    },
-    wide: {
-      A: "Ａ",
-      B: "Ｂ",
-      C: "Ｃ",
-      D: "Ｄ",
-      E: "Ｅ",
-      F: "Ｆ",
-      G: "Ｇ",
-      H: "Ｈ",
-      I: "Ｉ",
-      J: "Ｊ",
-      K: "Ｋ",
-      L: "Ｌ",
-      M: "Ｍ",
-      N: "Ｎ",
-      O: "Ｏ",
-      P: "Ｐ",
-      Q: "Ｑ",
-      R: "Ｒ",
-      S: "Ｓ",
-      T: "Ｔ",
-      U: "Ｕ",
-      V: "Ｖ",
-      W: "Ｗ",
-      X: "Ｘ",
-      Y: "Ｙ",
-      Z: "Ｚ",
-      a: "ａ",
-      b: "ｂ",
-      c: "ｃ",
-      d: "ｄ",
-      e: "ｅ",
-      f: "ｆ",
-      g: "ｇ",
-      h: "ｈ",
-      i: "ｉ",
-      j: "ｊ",
-      k: "ｋ",
-      l: "ｌ",
-      m: "ｍ",
-      n: "ｎ",
-      o: "ｏ",
-      p: "ｐ",
-      q: "ｑ",
-      r: "ｒ",
-      s: "ｓ",
-      t: "ｔ",
-      u: "ｕ",
-      v: "ｖ",
-      w: "ｗ",
-      x: "ｘ",
-      y: "ｙ",
-      z: "ｚ",
-      0: "０",
-      1: "１",
-      2: "２",
-      3: "３",
-      4: "４",
-      5: "５",
-      6: "６",
-      7: "７",
-      8: "８",
-      9: "９"
-    },
-    strikethrough: {
-      A: "A̶",
-      B: "B̶",
-      C: "C̶",
-      D: "D̶",
-      E: "E̶",
-      F: "F̶",
-      G: "G̶",
-      H: "H̶",
-      I: "I̶",
-      J: "J̶",
-      K: "K̶",
-      L: "L̶",
-      M: "M̶",
-      N: "N̶",
-      O: "O̶",
-      P: "P̶",
-      Q: "Q̶",
-      R: "R̶",
-      S: "S̶",
-      T: "T̶",
-      U: "U̶",
-      V: "V̶",
-      W: "W̶",
-      X: "X̶",
-      Y: "Y̶",
-      Z: "Z̶",
-      a: "a̶",
-      b: "b̶",
-      c: "c̶",
-      d: "d̶",
-      e: "e̶",
-      f: "f̶",
-      g: "g̶",
-      h: "h̶",
-      i: "i̶",
-      j: "j̶",
-      k: "k̶",
-      l: "l̶",
-      m: "m̶",
-      n: "n̶",
-      o: "o̶",
-      p: "p̶",
-      q: "q̶",
-      r: "r̶",
-      s: "s̶",
-      t: "t̶",
-      u: "u̶",
-      v: "v̶",
-      w: "w̶",
-      x: "x̶",
-      y: "y̶",
-      z: "z̶"
-    }
+    bold: makeAlphabetMap("𝗔𝗕𝗖𝗗𝗘𝗙𝗚𝗛𝗜𝗝𝗞𝗟𝗠𝗡𝗢𝗣𝗤𝗥𝗦𝗧𝗨𝗩𝗪𝗫𝗬𝗭𝗮𝗯𝗰𝗱𝗲𝗳𝗴𝗵𝗶𝗷𝗸𝗹𝗺𝗻𝗼𝗽𝗾𝗿𝘀𝘁𝘂𝘃𝘄𝘅𝘆𝘇𝟬𝟭𝟮𝟯𝟰𝟱𝟲𝟳𝟴𝟵"),
+    boldserif: makeAlphabetMap("𝐀𝐁𝐂𝐃𝐄𝐅𝐆𝐇𝐈𝐉𝐊𝐋𝐌𝐍𝐎𝐏𝐐𝐑𝐒𝐓𝐔𝐕𝐖𝐗𝐘𝐙𝐚𝐛𝐜𝐝𝐞𝐟𝐠𝐡𝐢𝐣𝐤𝐥𝐦𝐧𝐨𝐩𝐪𝐫𝐬𝐭𝐮𝐯𝐰𝐱𝐲𝐳𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗"),
+    italic: makeAlphabetMap("𝘐𝘉𝘊𝘋𝘌𝘍𝘎𝘏𝘐𝘑𝘒𝘓𝘔𝘕𝘖𝘗𝘘𝘙𝘚𝘛𝘜𝘝𝘞𝘟𝘠𝘡𝘢𝘣𝘤𝘥𝘦𝘧𝘨𝘩𝘪𝘫𝘬𝘭𝘮𝘯𝘰𝘱𝘲𝘳𝘴𝘵𝘶𝘷𝘸𝘹𝘺𝘻"),
+    bolditalic: makeAlphabetMap("𝘼𝘽𝘾𝘿𝙀𝙁𝙂𝙃𝙄𝙅𝙆𝙇𝙈𝙉𝙊𝙋𝙌𝙍𝙎𝙏𝙐𝙑𝙒𝙓𝙔𝙕𝙖𝙗𝙘𝙙𝙚𝙛𝙜𝙝𝙞𝙟𝙠𝙡𝙢𝙣𝙤𝙥𝙦𝙧𝙨𝙩𝙪𝙫𝙬𝙭𝙮𝙯"),
+    serif: makeAlphabetMap("𝐴𝐵𝐶𝐷𝐸𝐹𝐺𝐻𝐼𝐽𝐾𝐿𝑀𝑁𝑂𝑃𝑄𝑅𝑆𝑇𝑈𝑉𝑊𝑋𝑌𝑍𝑎𝑏𝑐𝑑𝑒𝑓𝑔ℎ𝑖𝑗𝑘𝑙𝑚𝑛𝑜𝑝𝑞𝑟𝑠𝑡𝑢𝑣𝑤𝑥𝑦𝑧"),
+    serifitalic: makeAlphabetMap("𝐴𝐵𝐶𝐷𝐸𝐹𝐺𝐻𝐼𝐽𝐾𝐿𝑀𝑁𝑂𝑃𝑄𝑅𝑆𝑇𝑈𝑉𝑊𝑋𝑌𝑍𝑎𝑏𝑐𝑑𝑒𝑓𝑔ℎ𝑖𝑗𝑘𝑙𝑚𝑛𝑜𝑝𝑞𝑟𝑠𝑡𝑢𝑣𝑤𝑥𝑦𝑧"),
+    serifbolditalic: makeAlphabetMap("𝑨𝑩𝑪𝑫𝑬𝑭𝑮𝑯𝑰𝑱𝑲𝑳𝑴𝑵𝑶𝑷𝑸𝑹𝑺𝑻𝑼𝑽𝑾𝑿𝒀𝒁𝒂𝒃𝒄𝒅𝒆𝒇𝒈𝒉𝒊𝒋𝒌𝒍𝒎𝒏𝒐𝒑𝒒𝒓𝒔𝒕𝒖𝒗𝒘𝒙𝒚𝒛"),
+    cursive: makeAlphabetMap("𝓐𝓑𝓒𝓓𝓔𝓕𝓖𝓗𝓘𝓙𝓚𝓛𝓜𝓝𝓞𝓟𝓠𝓡𝓢𝓣𝓤𝓥𝓦𝓧𝓨𝓩𝒶𝒷𝒸𝒹𝑒𝒻𝑔𝒽𝒾𝒿𝓀𝓁𝓂𝓃𝑜𝓅𝓆𝓇𝓈𝓉𝓊𝓋𝓌𝓍𝓎𝓏"),
+    cursivebold: makeAlphabetMap("𝓐𝓑𝓒𝓓𝓔𝓕𝓖𝓗𝓘𝓙𝓚𝓛𝓜𝓝𝓞𝓟𝓠𝓡𝓢𝓣𝓤𝓥𝓦𝓧𝓨𝓩𝓪𝓫𝓬𝓭𝓮𝓯𝓰𝓱𝓲𝓳𝓴𝓵𝓶𝓷𝓸𝓹𝓺𝓻𝓼𝓽𝓾𝓿𝔀𝔁𝔂𝔃"),
+    superscript: makeAlphabetMap("ᴬᴮᶜᴰᴱᶠᴳᴴᴵᴶᴷᴸᴹᴺᴼᴾᴿˢᵀᵁⱽᵂˣʸᶻᵃᵇᶜᵈᵉᶠᵍʰᶦʲᵏˡᵐⁿᵒᵖʳˢᵗᵘᵛʷˣʸᶻ⁰¹²³⁴⁵⁶⁷⁸⁹", ALPHABET.replace(/[Qq]/g, "")),
+    underline: makeCombiningMap("͟"),
+    monospace: makeAlphabetMap("𝙰𝙱𝙲𝙳𝙴𝙵𝙶𝙷𝙸𝙹𝙺𝙻𝙼𝙽𝙾𝙿𝚀𝚁𝚂𝚃𝚄𝚅𝚆𝚇𝚈𝚉𝚊𝚋𝚌𝚍𝚎𝚏𝚐𝚑𝚒𝚓𝚔𝚕𝚖𝚗𝚘𝚙𝚚𝚛𝚜𝚝𝚞𝚟𝚠𝚡𝚢𝚣𝟶𝟷𝟸𝟹𝟺𝟻𝟼𝟽𝟾𝟿"),
+    wide: makeAlphabetMap("ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ０１２３４５６７８９"),
+    strikethrough: makeCombiningMap("̶")
   };
   const STYLE_COMBINATIONS = [
     { styles: ["superscript"], key: "superscript" },
@@ -11864,6 +11114,54 @@ jsxRuntimeExports.jsx(
     { styles: ["italic"], key: "italic" }
   ];
   class TextFormattingService {
+    characterToMapKey = null;
+    charToAscii = null;
+    initMaps() {
+      if (this.characterToMapKey) return;
+      this.characterToMapKey = new Map();
+      this.charToAscii = new Map();
+      const priorityOrder = [
+        "cursivebold",
+        "cursive",
+        "monospace",
+        "wide",
+        "superscript",
+        "serifbolditalic",
+        "boldserif",
+        "serif",
+        "serifitalic",
+        "bolditalic",
+        "bold",
+        "italic",
+        "underline",
+        "strikethrough"
+      ];
+      for (const styleName of priorityOrder) {
+        const styleMap = UNICODE_MAPS[styleName];
+        if (!styleMap) continue;
+        for (const [ascii, unicode] of Object.entries(styleMap)) {
+          this.charToAscii.set(unicode, ascii);
+          if (!this.characterToMapKey.has(unicode)) {
+            this.characterToMapKey.set(unicode, styleName);
+          }
+          if (styleName === "underline" || styleName === "strikethrough") {
+            const mark = unicode.slice(ascii.length);
+            if (mark && !this.characterToMapKey.has(mark)) {
+              this.characterToMapKey.set(mark, styleName);
+            }
+          }
+        }
+      }
+    }
+    getStylesForKey(key) {
+      const combo = STYLE_COMBINATIONS.find((c) => c.key === key);
+      if (combo) return combo.styles;
+      const simpleKeys = ["bold", "italic", "serif", "cursive", "superscript", "underline", "monospace", "wide", "strikethrough"];
+      if (simpleKeys.includes(key)) {
+        return [key];
+      }
+      return [];
+    }
 applyStyles(text, activeStyles) {
       const plainText = this.toPlainText(text);
       if (activeStyles.size === 0) return plainText;
@@ -11877,64 +11175,46 @@ applyStyles(text, activeStyles) {
       return plainText;
     }
 detectStyles(text) {
+      this.initMaps();
       const detectedStyles = new Set();
-      for (let i = 0; i < text.length; i++) {
-        const char = text[i];
-        const two_chars = text.substring(i, i + 2);
-        let styleFound = false;
-        for (const [styleName, styleMap] of Object.entries(UNICODE_MAPS)) {
-          for (const [, unicode] of Object.entries(styleMap)) {
-            let match = false;
-            if (unicode.length === 1 && char === unicode) {
-              match = true;
-            } else if (unicode.length > 1 && two_chars === unicode) {
-              match = true;
-            }
-            if (match) {
-              if (unicode.length > 1) i++;
-              if (styleName === "bold") detectedStyles.add("bold");
-              else if (styleName === "italic") detectedStyles.add("italic");
-              else if (styleName === "serif") detectedStyles.add("serif");
-              else if (styleName === "cursive") detectedStyles.add("cursive");
-              else if (styleName === "superscript") detectedStyles.add("superscript");
-              else if (styleName === "underline") detectedStyles.add("underline");
-              else if (styleName === "monospace") detectedStyles.add("monospace");
-              else if (styleName === "wide") detectedStyles.add("wide");
-              else if (styleName === "strikethrough") detectedStyles.add("strikethrough");
-              else if (styleName === "boldserif") {
-                detectedStyles.add("bold");
-                detectedStyles.add("serif");
-              } else if (styleName === "bolditalic") {
-                detectedStyles.add("bold");
-                detectedStyles.add("italic");
-              } else if (styleName === "serifitalic") {
-                detectedStyles.add("serif");
-                detectedStyles.add("italic");
-              } else if (styleName === "serifbolditalic") {
-                detectedStyles.add("serif");
-                detectedStyles.add("bold");
-                detectedStyles.add("italic");
-              } else if (styleName === "cursivebold") {
-                detectedStyles.add("cursive");
-                detectedStyles.add("bold");
-              }
-              styleFound = true;
-              break;
-            }
+      const chars = [...text];
+      for (let i = 0; i < chars.length; i++) {
+        const ch = chars[i];
+        const nextCh = chars[i + 1];
+        if (nextCh) {
+          const combined = ch + nextCh;
+          const mapKey2 = this.characterToMapKey.get(combined);
+          if (mapKey2) {
+            this.getStylesForKey(mapKey2).forEach((s) => detectedStyles.add(s));
+            i++;
+            continue;
           }
-          if (styleFound) break;
+        }
+        const mapKey = this.characterToMapKey.get(ch);
+        if (mapKey) {
+          this.getStylesForKey(mapKey).forEach((s) => detectedStyles.add(s));
         }
       }
       return detectedStyles;
     }
 toPlainText(text) {
-      let plainText = text;
-      for (const [, map] of Object.entries(UNICODE_MAPS)) {
-        for (const [ascii, uni] of Object.entries(map)) {
-          plainText = plainText.replace(new RegExp(uni.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g"), ascii);
+      this.initMaps();
+      let result = "";
+      for (let i = 0; i < text.length; i++) {
+        const chunk2 = text.substring(i, i + 2);
+        if (this.charToAscii.has(chunk2)) {
+          result += this.charToAscii.get(chunk2);
+          i++;
+          continue;
         }
+        const chunk1 = text[i];
+        if (this.charToAscii.has(chunk1)) {
+          result += this.charToAscii.get(chunk1);
+          continue;
+        }
+        result += chunk1;
       }
-      return plainText;
+      return result;
     }
 convertMarkdownToUnicode(markdown) {
       if (!markdown) return "";
@@ -11942,37 +11222,19 @@ convertMarkdownToUnicode(markdown) {
       const processedLines = lines.map((line) => {
         let processed = line;
         const h1Match = processed.match(/^#\s+(.+)$/);
-        if (h1Match) {
-          const content = h1Match[1];
-          return this.applyStyles(content, new Set(["wide"]));
-        }
+        if (h1Match) return this.applyStyles(h1Match[1], new Set(["wide"]));
         const hMultiMatch = processed.match(/^#{2,6}\s+(.+)$/);
-        if (hMultiMatch) {
-          const content = hMultiMatch[1].toUpperCase();
-          return this.applyStyles(content, new Set(["bold"]));
-        }
+        if (hMultiMatch) return this.applyStyles(hMultiMatch[1].toUpperCase(), new Set(["bold"]));
         if (/^(\s*)[-*]\s+(.+)/.test(processed)) {
           processed = processed.replace(/^(\s*)[-*]\s+/, "$1• ");
         }
         let current = processed;
-        current = current.replace(/\*\*(.+?)\*\*/g, (_, content) => {
-          return this.applyStyles(content, new Set(["bold"]));
-        });
-        current = current.replace(/__(.+?)__/g, (_, content) => {
-          return this.applyStyles(content, new Set(["bold"]));
-        });
-        current = current.replace(/\*([^\s*].*?)\*/g, (_, content) => {
-          return this.applyStyles(content, new Set(["italic"]));
-        });
-        current = current.replace(/\b_([^_]+)_\b/g, (_, content) => {
-          return this.applyStyles(content, new Set(["italic"]));
-        });
-        current = current.replace(/~~(.+?)~~/g, (_, content) => {
-          return this.applyStyles(content, new Set(["strikethrough"]));
-        });
-        current = current.replace(/`([^`]+)`/g, (_, content) => {
-          return this.applyStyles(content, new Set(["monospace"]));
-        });
+        current = current.replace(/\*\*(.+?)\*\*/g, (_, c) => this.applyStyles(c, new Set(["bold"])));
+        current = current.replace(/__(.+?)__/g, (_, c) => this.applyStyles(c, new Set(["bold"])));
+        current = current.replace(/\*([^\s*].*?)\*/g, (_, c) => this.applyStyles(c, new Set(["italic"])));
+        current = current.replace(/\b_([^_]+)_\b/g, (_, c) => this.applyStyles(c, new Set(["italic"])));
+        current = current.replace(/~~(.+?)~~/g, (_, c) => this.applyStyles(c, new Set(["strikethrough"])));
+        current = current.replace(/`([^`]+)`/g, (_, c) => this.applyStyles(c, new Set(["monospace"])));
         return current;
       });
       return processedLines.join("\n");
@@ -11993,6 +11255,10 @@ convertMarkdownToUnicode(markdown) {
     const [activeStyles, setActiveStyles] = React__default.useState( new Set());
     const [isAutoResize, setIsAutoResize] = React__default.useState(autoResize);
     const textareaRef = React__default.useRef(null);
+    const valueRef = React__default.useRef(value);
+    React__default.useEffect(() => {
+      valueRef.current = value;
+    }, [value]);
     const bulletStyle = settings.amazon_bullet_style || "•";
     React__default.useEffect(() => {
       setIsAutoResize(autoResize);
@@ -12040,22 +11306,44 @@ convertMarkdownToUnicode(markdown) {
       window.addEventListener("resize", adjustHeight);
       return () => window.removeEventListener("resize", adjustHeight);
     }, [value, isAutoResize]);
+    const updateActiveStyles = React__default.useCallback(() => {
+      const textarea = textareaRef.current;
+      if (!textarea) return;
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+      const currentText = valueRef.current;
+      let textToDetect = "";
+      if (start !== end) {
+        textToDetect = currentText.substring(start, end);
+      } else if (start > 0) {
+        textToDetect = currentText.substring(Math.max(0, start - 4), start);
+      }
+      if (textToDetect) {
+        const detected = textFormattingService.detectStyles(textToDetect);
+        setActiveStyles(detected);
+      } else {
+        setActiveStyles( new Set());
+      }
+    }, []);
     const handleStyleToggle = React__default.useCallback((style2) => {
       const textarea = textareaRef.current;
       if (!textarea) return;
       const start = textarea.selectionStart;
       const end = textarea.selectionEnd;
-      const selection = value.substring(start, end);
+      const selection = valueRef.current.substring(start, end);
       if (start !== end) {
-        const newStyles = new Set(activeStyles);
+        const currentSelectionStyles = textFormattingService.detectStyles(selection);
+        const newStyles = new Set(currentSelectionStyles);
         if (newStyles.has(style2)) {
           newStyles.delete(style2);
         } else {
           newStyles.add(style2);
         }
         const styledText = textFormattingService.applyStyles(selection, newStyles);
-        const newValue = value.substring(0, start) + styledText + value.substring(end);
+        const newValue = valueRef.current.substring(0, start) + styledText + valueRef.current.substring(end);
+        valueRef.current = newValue;
         onChange(newValue);
+        setActiveStyles(newStyles);
         setTimeout(() => {
           textarea.setSelectionRange(start, start + styledText.length);
           textarea.focus();
@@ -12069,7 +11357,7 @@ convertMarkdownToUnicode(markdown) {
         });
         textarea.focus();
       }
-    }, [value, onChange, activeStyles]);
+    }, [value, onChange, activeStyles, updateActiveStyles]);
     const handleListToggle = React__default.useCallback((type) => {
       const textarea = textareaRef.current;
       if (!textarea) return;
@@ -12202,6 +11490,30 @@ ${nextNum}) `;
         textarea.focus();
       }, 0);
     }, [value, onChange]);
+    const handleClearStyles = React__default.useCallback(() => {
+      const textarea = textareaRef.current;
+      if (!textarea) return;
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+      if (start !== end) {
+        const selection = valueRef.current.substring(start, end);
+        const plainText = textFormattingService.toPlainText(selection);
+        const newValue = valueRef.current.substring(0, start) + plainText + valueRef.current.substring(end);
+        valueRef.current = newValue;
+        onChange(newValue);
+        setActiveStyles( new Set());
+        setTimeout(() => {
+          textarea.setSelectionRange(start, start + plainText.length);
+          textarea.focus();
+        }, 0);
+      } else {
+        const plainText = textFormattingService.toPlainText(valueRef.current);
+        valueRef.current = plainText;
+        onChange(plainText);
+        setActiveStyles( new Set());
+        textarea.focus();
+      }
+    }, [onChange]);
     return jsxRuntimeExports.jsxs("div", { className: cn("ars-rich-editor", className), children: [
 jsxRuntimeExports.jsx(
         EditorToolbar,
@@ -12210,6 +11522,7 @@ jsxRuntimeExports.jsx(
           activeStyles,
           onInsert: handleInsert,
           onReplace: onChange,
+          onClearStyles: handleClearStyles,
           showUtilities,
           currentValue: value,
           onListToggle: handleListToggle
@@ -12222,7 +11535,10 @@ jsxRuntimeExports.jsx(
           className: "ars-editor-textarea",
           value,
           onChange: (e) => onChange(e.target.value),
+          onSelect: updateActiveStyles,
+          onClick: updateActiveStyles,
           onKeyDown: handleKeyDown,
+          onKeyUp: updateActiveStyles,
           placeholder
         }
       ),

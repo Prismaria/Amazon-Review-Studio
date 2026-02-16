@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Bold, Italic, Underline, Strikethrough, Layout, MessageSquare, Cloud, Save, Download, RefreshCw, Settings, Trash2, ExternalLink, BarChart2, Clipboard, Link2, List, ListOrdered } from 'lucide-react';
+import { Bold, Italic, Underline, Strikethrough, Layout, MessageSquare, Cloud, Save, Download, RefreshCw, Settings, Trash2, ExternalLink, BarChart2, Clipboard, Link2, List, ListOrdered, Eraser } from 'lucide-react';
 import { Button } from '../common/Button';
 import { UnicodeStyle } from '../../services/textFormatting';
 import { TemplateManager } from '../content/TemplateManager';
@@ -14,6 +14,7 @@ export interface EditorToolbarProps {
     activeStyles: Set<UnicodeStyle>;
     onInsert: (text: string) => void;
     onReplace: (text: string) => void;
+    onClearStyles?: () => void;
     showUtilities?: boolean;
     currentValue?: string;
     onListToggle?: (type: 'bullet' | 'number') => void;
@@ -24,6 +25,7 @@ export const EditorToolbar: React.FC<EditorToolbarProps> = ({
     activeStyles,
     onInsert,
     onReplace,
+    onClearStyles,
     showUtilities = true,
     currentValue = '',
     onListToggle
@@ -257,6 +259,7 @@ export const EditorToolbar: React.FC<EditorToolbarProps> = ({
         </svg>
     );
 
+
     const tools: { id: UnicodeStyle; icon: React.ReactNode; label: string }[] = [
         { id: 'bold', icon: <Bold size={16} />, label: 'Bold' },
         { id: 'italic', icon: <Italic size={16} />, label: 'Italic' },
@@ -333,7 +336,20 @@ export const EditorToolbar: React.FC<EditorToolbarProps> = ({
                         </Button>
                     </>
                 )}
-                {showUtilities && <div className="ars-toolbar-divider" />}
+                {showUtilities && (
+                    <>
+                        <div className="ars-toolbar-divider" />
+                        <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={onClearStyles}
+                            title="Clear All Styling"
+                            className="ars-toolbar-btn hover:bg-red-50"
+                        >
+                            <Eraser size={16} />
+                        </Button>
+                    </>
+                )}
             </div>
 
             {showUtilities && (
