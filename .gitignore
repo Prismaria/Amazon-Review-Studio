@@ -1,5 +1,5 @@
 # Build outputs
-dist
+# dist  <-- Commmenting this out or adding exception below
 dist-ssr
 *.local
 
@@ -32,3 +32,6 @@ list-of-all-localstorage-keys.md
 amazon-review-textbox-tools.user.js
 Fix-*-implementation_plan.md
 amazon-review-native-react-app.html
+
+# EXCEPTIONS - Keep the compiled userscript
+!dist/amazon-review-studio.user.js
