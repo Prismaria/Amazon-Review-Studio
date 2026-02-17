@@ -88,7 +88,7 @@ export const ScalingWrapper: React.FC<ScalingWrapperProps> = ({ children }) => {
     return (
         <div
             ref={containerRef}
-            className={`ars-scaling-wrapper ${isResizing ? 'is-resizing' : ''}`}
+            className={`ars-scaling-wrapper ${isResizing ? 'is-resizing' : ''} ${settings.dark_mode ? 'ars-dark-mode' : ''}`}
             style={{
                 height: compHeight || 'auto',
                 width: '100%',

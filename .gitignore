@@ -1,5 +1,5 @@
 # Build outputs
-# dist  <-- Commmenting this out or adding exception below
+dist
 dist-ssr
 *.local
 
@@ -33,5 +33,16 @@ amazon-review-textbox-tools.user.js
 Fix-*-implementation_plan.md
 amazon-review-native-react-app.html
 
+# Irrelevant / Temporary Files
+Demo.mp4
+entries.txt
+extract_maps.cjs
+extracted_maps.json
+maps_extracted.json
+final_fix.js
+greasyfork_description.html
+unicode-formatter-main.js
+
 # EXCEPTIONS - Keep the compiled userscript
 !dist/amazon-review-studio.user.js
+

@@ -46,6 +46,34 @@ const CONTAINER_SELECTORS = [
     '.ryp__review-candidates-list-container__container', // For Thank You page
 ] as const;
 
+function detectPageType(): 'listing' | 'review' {
+    const path = window.location.pathname;
+    const searchParams = new URLSearchParams(window.location.search);
+    const hasAsin = searchParams.has('asin');
+
+    // Check for standard "Thank You" pages OR the "Review Your Purchases" listing.
+    // Note: thankyou pages often have ASIN in URL, but should still show the grid
+    const isThankYouPage = path.toLowerCase().includes('thankyou');
+    const isListingPage = path.includes('/listing');
+    const isReviewPurchasesWithoutEdit = path.includes('/review-your-purchases') && !hasAsin && !path.includes('/edit');
+    const hasDOMIndicators = !!document.querySelector('.in-context-ryp__thankyou-container-desktop') ||
+        !!document.querySelector('.ryp__review-candidates-list-container__container');
+
+    const shouldShowListing = isThankYouPage || isListingPage || isReviewPurchasesWithoutEdit || hasDOMIndicators;
+
+    console.log('[Amazon Review Studio] Page Detection:', {
+        path,
+        hasAsin,
+        isThankYouPage,
+        isListingPage,
+        isReviewPurchasesWithoutEdit,
+        hasDOMIndicators,
+        shouldShowListing
+    });
+
+    return shouldShowListing ? 'listing' : 'review';
+}
+
 function findAmazonReviewContainer(): Element | null {
     for (const sel of CONTAINER_SELECTORS) {
         const el = document.querySelector(sel);
@@ -59,10 +87,22 @@ function findAmazonReviewContainer(): Element | null {
 
 function hideAmazonReviewUI(container: Element) {
     const debugUnhide = settingsService.get('debug_unhide_native');
+    const sideBySide = settingsService.get('debug_native_side_by_side');
+
     if (debugUnhide) {
         (container as HTMLElement).style.display = 'block';
-        (container as HTMLElement).style.opacity = '0.5'; // dimmed to show it's "background"
-        (container as HTMLElement).style.marginTop = '600px'; // Push it down below our app
+
+        if (sideBySide) {
+            // Side-by-side mode: opaque, no margin, will be positioned with flexbox
+            (container as HTMLElement).style.opacity = '1';
+            (container as HTMLElement).style.marginTop = '0';
+            (container as HTMLElement).style.flex = '1';
+            (container as HTMLElement).style.minWidth = '0';
+        } else {
+            // Default: dimmed and pushed below
+            (container as HTMLElement).style.opacity = '0.5';
+            (container as HTMLElement).style.marginTop = '600px';
+        }
     } else {
         (container as HTMLElement).style.display = 'none';
     }
@@ -85,12 +125,16 @@ function mount() {
     const host = document.createElement('div');
     host.id = MOUNT_ID;
 
+    // Check settings for side-by-side mode
+    const debugUnhide = settingsService.get('debug_unhide_native');
+    const sideBySide = settingsService.get('debug_native_side_by_side');
+
     Object.assign(host.style, {
         position: 'relative',
         width: '100%',
         maxWidth: '100%',
         minHeight: '600px', // Maintain vertical space during load
-        paddingTop: '40px',
+        paddingTop: (debugUnhide && sideBySide) ? '0' : '40px', // Remove top padding in side-by-side mode
         paddingLeft: '24px',
         paddingRight: '24px',
         boxSizing: 'border-box',
@@ -98,8 +142,33 @@ function mount() {
 
     // Insert our host as sibling after the hidden container so it takes its visual place
     const parent = container.parentNode;
+
     if (parent) {
-        parent.insertBefore(host, container.nextSibling);
+        if (debugUnhide && sideBySide) {
+            // Create a wrapper for side-by-side layout
+            const wrapper = document.createElement('div');
+            wrapper.style.display = 'flex';
+            wrapper.style.gap = '20px';
+            wrapper.style.alignItems = 'flex-start';
+            wrapper.style.width = '100%';
+            wrapper.style.maxWidth = '100%';
+
+            // Insert wrapper before the container
+            parent.insertBefore(wrapper, container);
+
+            // Move both container and host into wrapper (native form on left, Review Studio on right)
+            wrapper.appendChild(container);
+            wrapper.appendChild(host);
+
+            // Adjust host styling for side-by-side
+            Object.assign(host.style, {
+                flex: '1',
+                minWidth: '0',
+            });
+        } else {
+            // Default: insert host after container
+            parent.insertBefore(host, container.nextSibling);
+        }
     } else {
         document.body.appendChild(host);
     }
@@ -117,22 +186,36 @@ function mount() {
     rootContainer.className = 'ars-root-container';
     shadow.appendChild(rootContainer);
 
-    const path = window.location.pathname;
-    const searchParams = new URLSearchParams(window.location.search);
-    const hasAsin = searchParams.has('asin');
+    const pageType = detectPageType();
 
-    // Check for standard "Thank You" pages OR the "Review Your Purchases" listing.
-    const isReviewPurchasesListing =
-        path.toLowerCase().includes('thankyou') ||
-        path.includes('/listing') ||
-        (path.includes('/review-your-purchases') && !hasAsin && !path.includes('/edit')) ||
-        !!document.querySelector('.in-context-ryp__thankyou-container-desktop') ||
-        !!document.querySelector('.ryp__review-candidates-list-container__container');
-
-    console.log('[Amazon Review Studio] Rendering React tree...');
-    ReactDOM.createRoot(rootContainer).render(
-        isReviewPurchasesListing ? <ReviewPurchasesPage /> : <App />
+    console.log('[Amazon Review Studio] Rendering React tree...', `Component: ${pageType === 'listing' ? 'ReviewPurchasesPage' : 'App'}`);
+    const root = ReactDOM.createRoot(rootContainer);
+    root.render(
+        pageType === 'listing' ? <ReviewPurchasesPage /> : <App />
     );
+
+    // Store the current page type and root for remounting
+    (window as any).__arsCurrentPageType = pageType;
+    (window as any).__arsReactRoot = { root, rootContainer };
+}
+
+function remountIfNeeded() {
+    const currentPageType = (window as any).__arsCurrentPageType;
+    const newPageType = detectPageType();
+
+    if (currentPageType && currentPageType !== newPageType) {
+        console.log('[Amazon Review Studio] Page type changed, remounting...', { from: currentPageType, to: newPageType });
+
+        // Get the root container info
+        const rootInfo = (window as any).__arsReactRoot;
+        if (rootInfo?.root) {
+            // Re-render using the existing root to ensure proper unmounting/cleanup
+            rootInfo.root.render(
+                newPageType === 'listing' ? <ReviewPurchasesPage /> : <App />
+            );
+            (window as any).__arsCurrentPageType = newPageType;
+        }
+    }
 }
 
 function watchAndMount() {
@@ -152,7 +235,28 @@ if (document.readyState === 'loading') {
 // Amazon may load the review form dynamically
 const observer = new MutationObserver(() => {
     watchAndMount();
+    remountIfNeeded(); // Check if URL changed and we need to remount
 });
 
 // Observe documentElement if body isn't ready, to catch earliest possible container injection
 observer.observe(document.documentElement, { childList: true, subtree: true });
+
+// Listen for URL changes (SPA navigation)
+let lastUrl = window.location.href;
+const urlObserver = new MutationObserver(() => {
+    const currentUrl = window.location.href;
+    if (currentUrl !== lastUrl) {
+        console.log('[Amazon Review Studio] URL changed:', { from: lastUrl, to: currentUrl });
+        lastUrl = currentUrl;
+        remountIfNeeded();
+    }
+});
+
+// Observe URL changes
+urlObserver.observe(document, { subtree: true, childList: true });
+
+// Also listen for popstate (back/forward button)
+window.addEventListener('popstate', () => {
+    console.log('[Amazon Review Studio] Popstate detected');
+    remountIfNeeded();
+});

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Settings, Cpu, Cloud, Info, ShieldCheck, Key, RefreshCw, DownloadCloud, HelpCircle, Edit2, Search, Trash2, Bug } from 'lucide-react';
+import { Settings, Cpu, Cloud, Info, ShieldCheck, Key, RefreshCw, DownloadCloud, HelpCircle, Edit2, Search, Trash2, Bug, PlayCircle } from 'lucide-react';
 import { Modal } from '../common/Modal';
 import { Button } from '../common/Button';
 import { Input } from '../common/Input';
@@ -195,12 +195,12 @@ export const SettingsDashboard: React.FC<SettingsDashboardProps> = ({ isOpen, on
                                 </div>
                             </div>
 
-                            <div 
+                            <div
                                 className={`transition-all duration-500 ease-in-out ${settings.amazon_ai_enabled ? 'opacity-100' : 'opacity-40 pointer-events-none grayscale'}`}
                             >
                                 <div className="ars-setting-group border border-gray-100 bg-white p-5 rounded-xl shadow-sm mb-6">
                                     <h4 className="text-sm font-semibold text-gray-700 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Provider Configuration</h4>
-                                    
+
                                     <div className="grid gap-6">
                                         <div className="ars-setting-item">
                                             <label className="text-sm font-medium text-gray-700 mb-1.5 block">Primary AI Provider</label>
@@ -318,7 +318,7 @@ export const SettingsDashboard: React.FC<SettingsDashboardProps> = ({ isOpen, on
                                     <div className="text-sm text-amber-800">
                                         <p className="font-semibold mb-1">Important Privacy Note:</p>
                                         <p>
-                                            Due to Pastebin limits on private pastes, all <strong>reviews</strong> saved to the cloud will be created as <strong>Public</strong>. 
+                                            Due to Pastebin limits on private pastes, all <strong>reviews</strong> saved to the cloud will be created as <strong>Public</strong>.
                                             Templates and Phrases will remain <strong>Private</strong>.
                                         </p>
                                     </div>
@@ -563,8 +563,125 @@ export const SettingsDashboard: React.FC<SettingsDashboardProps> = ({ isOpen, on
                                         Reveals the original Amazon review form below the Studio interface.
                                         Useful to check if data is syncing correctly.
                                     </p>
+
+                                    {settings.debug_unhide_native && (
+                                        <div className="ml-7 mt-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
+                                            <label className="flex items-center gap-3 cursor-pointer">
+                                                <input
+                                                    type="checkbox"
+                                                    checked={settings.debug_native_side_by_side}
+                                                    onChange={(e) => setSetting('debug_native_side_by_side', e.target.checked)}
+                                                />
+                                                <span className="text-sm font-medium">Display Side-by-Side (Requires Refresh)</span>
+                                            </label>
+                                            <p className="ars-help-text ml-7 text-xs mt-1">
+                                                Shows the native form alongside Review Studio instead of below it. Makes native form opaque for demo/showcase purposes.
+                                            </p>
+                                        </div>
+                                    )}
+                                </div>
+
+                                <div className="ars-setting-item checkbox-row pt-2 border-t border-red-100/50">
+                                    <label className="flex items-center gap-3 cursor-pointer">
+                                        <input
+                                            type="checkbox"
+                                            checked={settings.show_demo_settings}
+                                            onChange={(e) => setSetting('show_demo_settings', e.target.checked)}
+                                        />
+                                        <span className="font-medium text-indigo-700">Display Demo & Presentation Settings</span>
+                                    </label>
                                 </div>
                             </div>
+
+
+                            {settings.show_demo_settings && (
+                                <div className="animate-in fade-in slide-in-from-top-4 duration-500">
+                                    <h3 className="mt-8 flex items-center gap-2 text-sm font-semibold text-gray-700 uppercase tracking-wider">
+                                        <PlayCircle size={18} className="text-indigo-600" />
+                                        Demo & Presentation
+                                    </h3>
+                                    <div className="ars-setting-group border border-indigo-100 bg-indigo-50/30 p-4 rounded-xl space-y-6 mt-4">
+                                        <div className="ars-setting-item checkbox-row">
+                                            <label className="flex items-center justify-between cursor-pointer w-full">
+                                                <div className="flex items-center gap-3">
+                                                    <input
+                                                        type="checkbox"
+                                                        checked={settings.demo_enabled}
+                                                        onChange={(e) => setSetting('demo_enabled', e.target.checked)}
+                                                    />
+                                                    <div className="flex flex-col">
+                                                        <span className="font-semibold text-gray-900 text-sm">Enable Demo Mode</span>
+                                                        <span className="text-xs text-gray-500">Overrides PFP/Name and triggers simulated typing on load</span>
+                                                    </div>
+                                                </div>
+                                                <div className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase transition-colors ${settings.demo_enabled ? 'bg-indigo-600 text-white' : 'bg-gray-200 text-gray-500'}`}>
+                                                    {settings.demo_enabled ? 'Active' : 'Disabled'}
+                                                </div>
+                                            </label>
+                                        </div>
+
+                                        <div className={`space-y-4 transition-all duration-300 ${settings.demo_enabled ? 'opacity-100' : 'opacity-40 pointer-events-none grayscale'}`}>
+                                            <div className="grid grid-cols-2 gap-4">
+                                                <Input
+                                                    label="Custom Display Name"
+                                                    placeholder="e.g. John Doe"
+                                                    value={settings.demo_name}
+                                                    onChange={(e) => setSetting('demo_name', e.target.value)}
+                                                />
+                                                <Input
+                                                    label="Custom PFP URL"
+                                                    placeholder="https://example.com/image.jpg"
+                                                    value={settings.demo_pfp_url}
+                                                    onChange={(e) => setSetting('demo_pfp_url', e.target.value)}
+                                                />
+                                            </div>
+
+                                            <Input
+                                                label="Simulated Review Title"
+                                                placeholder="Enter the title to be typed..."
+                                                value={settings.demo_review_title}
+                                                onChange={(e) => setSetting('demo_review_title', e.target.value)}
+                                            />
+
+                                            <div className="ars-setting-item">
+                                                <label className="text-sm font-medium text-gray-700 mb-1.5 block">Simulated Review Body</label>
+                                                <textarea
+                                                    className="ars-textarea w-full p-3 text-sm border-gray-200 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 min-h-[100px] leading-relaxed resize-none bg-white/50"
+                                                    placeholder="Enter the review content to be typed..."
+                                                    value={settings.demo_review_body}
+                                                    onChange={(e) => setSetting('demo_review_body', e.target.value)}
+                                                />
+                                            </div>
+
+                                            <div className="grid grid-cols-2 gap-4">
+                                                <div className="ars-setting-item">
+                                                    <label className="text-sm font-medium text-gray-700 mb-1.5 block">Typing Start Delay (seconds)</label>
+                                                    <input
+                                                        type="number"
+                                                        min="0"
+                                                        step="0.5"
+                                                        className="ars-input w-full h-10 px-3 bg-white/50 border border-gray-200 rounded-lg"
+                                                        value={settings.demo_typing_delay}
+                                                        onChange={(e) => setSetting('demo_typing_delay', parseFloat(e.target.value))}
+                                                    />
+                                                </div>
+                                                <div className="ars-setting-item">
+                                                    <label className="text-sm font-medium text-gray-700 mb-1.5 block">Typing Speed</label>
+                                                    <select
+                                                        className="ars-select w-full h-10 px-3 bg-white/50 border border-gray-200 rounded-lg"
+                                                        value={settings.demo_typing_speed}
+                                                        onChange={(e) => setSetting('demo_typing_speed', e.target.value as any)}
+                                                    >
+                                                        <option value="slow">Slow</option>
+                                                        <option value="normal">Normal</option>
+                                                        <option value="fast">Fast</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     )}
                 </main>

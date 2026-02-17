@@ -64,7 +64,8 @@ ${toneInstructions}
 
 REQUIREMENTS:
 - The title must be faithful to the specific content and opinion expressed in the review.
-- CRITICAL: Absolutely NO marketing language (avoid phrases like "game changer", "must have", "look no further", or clickbaity rhetorical questions).
+- Absolutely NO marketing language. Avoid phrases like "game changer", "must have", "look no further", "It's not X, it's Y", or rhetorical questions. 
+- You must never use em dashes (—).
 - Capture the main sentiment honestly, using natural and conversational language.
 - Avoid being too clinical or matter-of-fact
 - STYLE: The title should be ${amazon_review_title_style === 'short' ? 'brief (3-6 words)' : 'descriptive (6-12 words)'}.

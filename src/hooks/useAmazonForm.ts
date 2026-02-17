@@ -155,7 +155,23 @@ function syncToElement(el: HTMLInputElement | HTMLTextAreaElement | null, value:
 
 /** Attempt to set star rating via Amazon's star elements */
 function setAmazonStarRating(rating: number, container: Document | Element) {
-    if (rating === 0) return;
+    // Handle rating 0 (Clear)
+    if (rating === 0) {
+        console.log('[ARS] Clearing star rating...');
+        const clearBtn = query<HTMLElement>(SELECTORS.starClear, container);
+        if (clearBtn) {
+            console.log('[ARS] Clicking native clear button:', clearBtn);
+            clearBtn.click();
+            // Sometimes it needs a click on the inner span or mouse events
+            const mouseEventProps = { bubbles: true, cancelable: true, view: window };
+            clearBtn.dispatchEvent(new MouseEvent('mousedown', mouseEventProps));
+            clearBtn.dispatchEvent(new MouseEvent('mouseup', mouseEventProps));
+            clearBtn.querySelector('span')?.click();
+        } else {
+            console.warn('[ARS] Native clear button not found');
+        }
+        return;
+    }
 
     // Try to find the wrapper first
     const wrapper = query<HTMLElement>(SELECTORS.starRating, container)

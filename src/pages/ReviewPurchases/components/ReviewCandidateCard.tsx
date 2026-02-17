@@ -26,10 +26,24 @@ export const ReviewCandidateCard: React.FC<Props> = ({ candidate, layoutMode }) 
             });
 
         if (nativeCard) {
-            const nativeStars = nativeCard.querySelectorAll('button[data-hook="ryp-star"]');
-            if (nativeStars && nativeStars.length >= newRating && newRating > 0) {
-                const targetStar = nativeStars[newRating - 1] as HTMLButtonElement;
-                targetStar.click();
+            if (newRating > 0) {
+                const nativeStars = nativeCard.querySelectorAll('button[data-hook="ryp-star"]');
+                if (nativeStars && nativeStars.length >= newRating) {
+                    const targetStar = nativeStars[newRating - 1] as HTMLButtonElement;
+                    targetStar.click();
+                }
+            } else {
+                // CLEAR RATING: Find the native clear button
+                const clearBtn = nativeCard.querySelector('.in-context-ryp__form-field--starRating--clear, [class*="starRating--clear"], [aria-label="Clear"]') as HTMLElement | null;
+                if (clearBtn) {
+                    console.log('[ARS] Clicking native clear button in card');
+                    clearBtn.click();
+                    // Sometimes need inner span or mouse events
+                    clearBtn.querySelector('span')?.click();
+                    const mouseEventProps = { bubbles: true, cancelable: true, view: window };
+                    clearBtn.dispatchEvent(new MouseEvent('mousedown', mouseEventProps));
+                    clearBtn.dispatchEvent(new MouseEvent('mouseup', mouseEventProps));
+                }
             }
         }
     };
@@ -37,7 +51,7 @@ export const ReviewCandidateCard: React.FC<Props> = ({ candidate, layoutMode }) 
     const handleReset = (e: React.MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
-        setRating(0);
+        handleRatingChange(0);
     };
 
     if (layoutMode === 'list') {

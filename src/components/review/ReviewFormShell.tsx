@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Sparkles, Settings, Send } from 'lucide-react';
+import { Sparkles, Settings, Send, Check, Cloud, Loader2, AlertCircle, Moon } from 'lucide-react';
 import { useAmazonForm } from '../../hooks/useAmazonForm';
 import { ProfileSection } from './ProfileSection';
 import { ProductHeader } from './ProductHeader';
@@ -10,10 +10,34 @@ import { Input } from '../common/Input';
 import { Button } from '../common/Button';
 import { AIModal } from '../ai/AIModal';
 import { SettingsDashboard } from '../settings/SettingsDashboard';
-import { Check, Cloud, Loader2, AlertCircle } from 'lucide-react';
 import { SyncStatus } from '../../hooks/useAmazonForm';
 import { useSettings } from '../../hooks/useSettings';
-import { Moon } from 'lucide-react';
+
+const StarsIcon = ({ size = 18, className = "" }: { size?: number, className?: string }) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width={size}
+        height={size}
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className={className}
+    >
+        {/* Large Crescent Moon at Bottom Left - Adjusted to fit 24x24 */}
+        <path d="M11 21c-4.97 0-9-4.03-9-9s4.03-9 9-9c.83 0 1.62.11 2.37.32-2.18 1.39-3.62 3.8-3.62 6.5s1.44 5.11 3.62 6.5c-.75.21-1.54.32-2.37.32z" />
+
+        {/* Sprinkled Stars */}
+        <circle cx="18" cy="5" r="1.2" />
+        <circle cx="21" cy="9" r="0.8" />
+        <circle cx="15" cy="4" r="0.6" />
+        <circle cx="22" cy="3" r="0.5" />
+        <circle cx="17" cy="11" r="0.7" />
+        <circle cx="20" cy="16" r="0.6" />
+
+        {/* 4-pointed sparkles */}
+        <path d="M19 14l.3 1.1 1.1.3-1.1.3-.3 1.1-.3-1.1-1.1-.3 1.1-.3z" />
+        <path d="M12 7l.2.8.8.2-.8.2-.2.8-.2-.8-.8-.2.8-.2z" />
+    </svg>
+);
 import { aiService } from '../../services/ai';
 
 const SaveIndicator: React.FC<{ status: SyncStatus }> = ({ status }) => {
@@ -40,7 +64,35 @@ export const ReviewFormShell: React.FC = () => {
     const [isAIModalOpen, setIsAIModalOpen] = useState(false);
     const [isSettingsOpen, setIsSettingsOpen] = useState(false);
     const [showPasteFeedback, setShowPasteFeedback] = useState(false);
+    const [isGeneratingTitle, setIsGeneratingTitle] = useState(false);
 
+    // Long press logic for Dark Mode
+    const pressTimer = useRef<NodeJS.Timeout | null>(null);
+    const isLongPress = useRef(false);
+
+    const handleLightsPressStart = () => {
+        isLongPress.current = false;
+        pressTimer.current = setTimeout(() => {
+            isLongPress.current = true;
+            setSetting('dark_mode', !settings.dark_mode);
+        }, 600);
+    };
+
+    const handleLightsPressEnd = (e: React.MouseEvent | React.TouchEvent) => {
+        if (pressTimer.current) {
+            clearTimeout(pressTimer.current);
+            pressTimer.current = null;
+        }
+
+        if (!isLongPress.current) {
+            // Normal click: Toggle Lights Off
+            setSetting('amazon_ui_lights_off', !settings.amazon_ui_lights_off);
+        }
+        // Prevent default click if it was a long press? 
+        // We're handling the "click" logic here, so we don't use onClick on the button.
+    };
+
+    // Typing Simulation logic for Demo Mode
     useEffect(() => {
         const styleId = 'ars-lights-off-global';
         if (settings.amazon_ui_lights_off) {
@@ -114,6 +166,60 @@ export const ReviewFormShell: React.FC = () => {
         return () => document.removeEventListener('paste', handler, true);
     }, []);
 
+    // Typing Simulation logic for Demo Mode
+    useEffect(() => {
+        if (!settings.demo_enabled || !amazon.isReady) return;
+
+        let isCancelled = false;
+        const bodyText = settings.demo_review_body || '';
+        const titleText = settings.demo_review_title || '';
+        const initialDelay = settings.demo_typing_delay * 1000;
+
+        // Speed in ms per character
+        const charDelay = settings.demo_typing_speed === 'slow' ? 80 :
+            settings.demo_typing_speed === 'fast' ? 20 : 45;
+
+        const typeSimulation = async () => {
+            // Initial wait
+            await new Promise(resolve => setTimeout(resolve, initialDelay));
+            if (isCancelled) return;
+
+            // Type body
+            if (bodyText) {
+                for (let i = 0; i <= bodyText.length; i++) {
+                    if (isCancelled) break;
+                    amazon.setReviewText(bodyText.substring(0, i));
+                    await new Promise(resolve => setTimeout(resolve, charDelay));
+
+                    // Pause after typing the first letter
+                    if (i === 1) {
+                        await new Promise(resolve => setTimeout(resolve, 1000));
+                    }
+                }
+            }
+
+            if (isCancelled) return;
+            // Short pause between body and title
+            await new Promise(resolve => setTimeout(resolve, 500));
+            if (isCancelled) return;
+
+            // Type title
+            if (titleText) {
+                for (let i = 0; i <= titleText.length; i++) {
+                    if (isCancelled) break;
+                    amazon.setReviewTitle(titleText.substring(0, i));
+                    await new Promise(resolve => setTimeout(resolve, charDelay));
+                }
+            }
+        };
+
+        typeSimulation();
+
+        return () => {
+            isCancelled = true;
+        };
+    }, [settings.demo_enabled, amazon.isReady]); // Only run when demo mode or ready state changes
+
     useEffect(() => {
         const handleBeforeUnload = (e: BeforeUnloadEvent) => {
             if (amazon.state.reviewText.trim().length > 0) {
@@ -130,7 +236,6 @@ export const ReviewFormShell: React.FC = () => {
         amazon.setReviewText(prev + (prev ? '\n\n' : '') + text);
     };
 
-    const [isGeneratingTitle, setIsGeneratingTitle] = useState(false);
     const handleGenerateTitle = async () => {
         const reviewText = amazon.state.reviewText.trim();
         if (!reviewText) {
@@ -337,12 +442,21 @@ export const ReviewFormShell: React.FC = () => {
             <div className="ars-header-actions">
                 <button
                     type="button"
-                    className={`ars-action-button ${settings.amazon_ui_lights_off ? 'active' : ''}`}
-                    onClick={() => setSetting('amazon_ui_lights_off', !settings.amazon_ui_lights_off)}
-                    aria-label="Lights Off"
-                    title="Lights Off"
+                    className={`ars-action-button ${settings.amazon_ui_lights_off ? 'active' : ''} ${settings.dark_mode ? '!text-yellow-400' : ''}`}
+                    onMouseDown={handleLightsPressStart}
+                    onMouseUp={handleLightsPressEnd}
+                    onMouseLeave={() => {
+                        if (pressTimer.current) {
+                            clearTimeout(pressTimer.current);
+                            pressTimer.current = null;
+                        }
+                    }}
+                    onTouchStart={handleLightsPressStart}
+                    onTouchEnd={handleLightsPressEnd}
+                    aria-label={settings.dark_mode ? "Dark Mode On (Long Press to Toggle)" : "Lights Off"}
+                    title="Lights Off (Long Press for Dark Mode)"
                 >
-                    <Moon size={18} />
+                    {settings.dark_mode ? <StarsIcon size={18} /> : <Moon size={18} />}
                 </button>
                 <button
                     type="button"

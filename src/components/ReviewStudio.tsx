@@ -6,6 +6,7 @@ import { Input } from './common/Input';
 import { RichEditor } from './editor/RichEditor';
 import { AIModal } from './ai/AIModal';
 import { SettingsDashboard } from './settings/SettingsDashboard';
+import { useSettings } from '../hooks/useSettings';
 export const ReviewStudio: React.FC = () => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
@@ -28,6 +29,57 @@ export const ReviewStudio: React.FC = () => {
             setAsin(foundAsin);
         }
     }, []);
+
+    const { settings } = useSettings();
+
+    // Typing Simulation logic for Demo Mode
+    useEffect(() => {
+        if (!settings.demo_enabled) return;
+
+        let isCancelled = false;
+        const bodyText = settings.demo_review_body || '';
+        const titleText = settings.demo_review_title || '';
+        const initialDelay = settings.demo_typing_delay * 1000;
+
+        // Speed in ms per character
+        const charDelay = settings.demo_typing_speed === 'slow' ? 80 :
+            settings.demo_typing_speed === 'fast' ? 20 : 45;
+
+        const typeSimulation = async () => {
+            // Initial wait
+            await new Promise(resolve => setTimeout(resolve, initialDelay));
+            if (isCancelled) return;
+
+            // Type body
+            if (bodyText) {
+                for (let i = 0; i <= bodyText.length; i++) {
+                    if (isCancelled) break;
+                    setContent(bodyText.substring(0, i));
+                    await new Promise(resolve => setTimeout(resolve, charDelay));
+                }
+            }
+
+            if (isCancelled) return;
+            // Short pause between body and title
+            await new Promise(resolve => setTimeout(resolve, 500));
+            if (isCancelled) return;
+
+            // Type title
+            if (titleText) {
+                for (let i = 0; i <= titleText.length; i++) {
+                    if (isCancelled) break;
+                    setTitle(titleText.substring(0, i));
+                    await new Promise(resolve => setTimeout(resolve, charDelay));
+                }
+            }
+        };
+
+        typeSimulation();
+
+        return () => {
+            isCancelled = true;
+        };
+    }, [settings.demo_enabled]); // Runs on load if enabled, or when toggled
 
     const handleApplyToAmazon = () => {
         // Logic to push content into the real Amazon textarea

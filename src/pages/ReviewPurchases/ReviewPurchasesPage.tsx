@@ -12,6 +12,32 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { LayoutMode } from './types';
 import { ScalingWrapper } from '../../components/common/ScalingWrapper';
 
+const StarsIcon = ({ size = 20, className = "" }: { size?: number, className?: string }) => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width={size}
+        height={size}
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className={className}
+    >
+        {/* Large Crescent Moon at Bottom Left - Adjusted to fit 24x24 */}
+        <path d="M11 21c-4.97 0-9-4.03-9-9s4.03-9 9-9c.83 0 1.62.11 2.37.32-2.18 1.39-3.62 3.8-3.62 6.5s1.44 5.11 3.62 6.5c-.75.21-1.54.32-2.37.32z" />
+
+        {/* Sprinkled Stars */}
+        <circle cx="18" cy="5" r="1.2" />
+        <circle cx="21" cy="9" r="0.8" />
+        <circle cx="15" cy="4" r="0.6" />
+        <circle cx="22" cy="3" r="0.5" />
+        <circle cx="17" cy="11" r="0.7" />
+        <circle cx="20" cy="16" r="0.6" />
+
+        {/* 4-pointed sparkles */}
+        <path d="M19 14l.3 1.1 1.1.3-1.1.3-.3 1.1-.3-1.1-1.1-.3 1.1-.3z" />
+        <path d="M12 7l.2.8.8.2-.8.2-.2.8-.2-.8-.8-.2.8-.2z" />
+    </svg>
+);
+
 
 const ReviewPurchasesContent: React.FC = () => {
     const {
@@ -28,6 +54,30 @@ const ReviewPurchasesContent: React.FC = () => {
     const { settings, setSetting } = useAppSettings();
     const [isSettingsOpen, setIsSettingsOpen] = React.useState(false);
     const [layoutMode, setLayoutMode] = React.useState<LayoutMode>('grid');
+
+    // Long press logic for Dark Mode
+    const pressTimer = React.useRef<NodeJS.Timeout | null>(null);
+    const isLongPress = React.useRef(false);
+
+    const handleLightsPressStart = () => {
+        isLongPress.current = false;
+        pressTimer.current = setTimeout(() => {
+            isLongPress.current = true;
+            setSetting('dark_mode', !settings.dark_mode);
+        }, 600);
+    };
+
+    const handleLightsPressEnd = () => {
+        if (pressTimer.current) {
+            clearTimeout(pressTimer.current);
+            pressTimer.current = null;
+        }
+
+        if (!isLongPress.current) {
+            // Normal click: Toggle Lights Off
+            setSetting('amazon_ui_lights_off', !settings.amazon_ui_lights_off);
+        }
+    };
 
     React.useEffect(() => {
         const styleId = 'ars-lights-off-global';
@@ -93,11 +143,20 @@ const ReviewPurchasesContent: React.FC = () => {
                             className={`p-2.5 rounded-xl transition-all ${settings.amazon_ui_lights_off
                                 ? 'bg-amber-500/10 text-amber-500 font-bold'
                                 : 'text-gray-400 hover:bg-gray-100 hover:text-gray-600'
-                                }`}
-                            onClick={() => setSetting('amazon_ui_lights_off', !settings.amazon_ui_lights_off)}
-                            title="Lights Off"
+                                } ${settings.dark_mode ? '!text-yellow-400' : ''}`}
+                            onMouseDown={handleLightsPressStart}
+                            onMouseUp={handleLightsPressEnd}
+                            onMouseLeave={() => {
+                                if (pressTimer.current) {
+                                    clearTimeout(pressTimer.current);
+                                    pressTimer.current = null;
+                                }
+                            }}
+                            onTouchStart={handleLightsPressStart}
+                            onTouchEnd={handleLightsPressEnd}
+                            title={settings.dark_mode ? "Dark Mode On (Long Press to Toggle)" : "Lights Off (Long Press for Dark Mode)"}
                         >
-                            <Moon size={20} />
+                            {settings.dark_mode ? <StarsIcon size={20} /> : <Moon size={20} />}
                         </button>
                         <button
                             type="button"

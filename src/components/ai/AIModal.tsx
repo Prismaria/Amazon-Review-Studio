@@ -22,8 +22,13 @@ export interface AIModalProps {
 }
 
 export const AIModal: React.FC<AIModalProps> = ({ isOpen, onClose, onInsert, productTitle = "", asin, starRating, existingReviewText = "" }) => {
+    // DEVELOPER FLAG: Set to false to disable minimum character requirement
+    const DEVELOPER_ENFORCE_MIN_CHARS = true;
+    const MIN_CHARS = 500;
+
     const { settings, setSetting } = useSettings();
     const [userThoughts, setUserThoughts] = useState('');
+    const [additionalInstructions, setAdditionalInstructions] = useState('');
     const [useExistingReview, setUseExistingReview] = useState(false);
     const [reviewLength, setReviewLength] = useState<'short' | 'normal' | 'long' | 'detailed'>('normal');
     const [isGenerating, setIsGenerating] = useState(false);
@@ -108,7 +113,11 @@ Formatting Instructions:
 
         let p = `Write a helpful product review for: ${productTitle || 'this product'}.
         
-IMPORTANT: Output ONLY the review content. Do not include any introductory or concluding remarks like "Here is a review" or "I hope this helps". Start directly with the review title or body.
+IMPORTANT: Output ONLY the review content. Do not include any introductory or concluding remarks like "Here is a review" or "I hope this helps". Start directly with the review title or body. 
+
+RULES: Absolutely NO marketing language, no hype, no exaggerated claims, keep language plain and grounded. Avoid phrases like "game changer", "must have", "look no further", "It's not X, it's Y", or rhetorical questions. You must never use em dashes (—). 
+
+TONE: Write in a candid way, like you're jotting your own thoughts as they come up while using the product. Structure can be loose or out of order. Don’t give an overview of the product or list features; only mention specifics that naturally surfaced during one's use of the product.
 
 ${lengthInstruction}
 ${markdownInstruction}`;
@@ -130,6 +139,10 @@ ${markdownInstruction}`;
 
         if (currentThoughts.trim()) {
             p += `\n\nUser's Initial Thoughts / Specific Points to Cover:\n${currentThoughts}`;
+        }
+
+        if (additionalInstructions.trim()) {
+            p += `\n\nAdditional User Instructions (Tone, Focus, etc.):\n${additionalInstructions}`;
         }
 
         return p;
@@ -252,7 +265,7 @@ ${markdownInstruction}`;
                             <label className="ars-label mb-0 flex items-center gap-1">
                                 Your Initial Thoughts <span style={{ color: '#dc2626' }}>*</span>
                             </label>
-                            {existingReviewText.length >= 300 && (
+                            {existingReviewText.length >= MIN_CHARS && (
                                 <label className="flex items-center gap-2 text-[11px] cursor-pointer select-none text-gray-500 hover:text-gray-700 transition-colors">
                                     <input
                                         type="checkbox"
@@ -280,7 +293,7 @@ ${markdownInstruction}`;
                     <div style={{ position: 'relative' }}>
                         <textarea
                             className="ars-ai-prompt-input"
-                            placeholder="Enter your opinion, pros/cons, or specific points you want the AI to cover (min. 300 characters)..."
+                            placeholder={`Enter your opinion, pros/cons, or specific points you want the AI to cover${DEVELOPER_ENFORCE_MIN_CHARS ? ` (min. ${MIN_CHARS} characters)` : ''}...`}
                             value={useExistingReview ? existingReviewText : userThoughts}
                             onChange={(e) => !useExistingReview && setUserThoughts(e.target.value)}
                             style={{
@@ -288,13 +301,13 @@ ${markdownInstruction}`;
                                 opacity: useExistingReview ? 0.7 : 1,
                                 cursor: useExistingReview ? 'not-allowed' : 'text',
                                 backgroundColor: useExistingReview ? '#fbfcfd' : 'white',
-                                borderColor: !useExistingReview && userThoughts.length > 0 && userThoughts.length < 300 ? '#fca5a5' : 'var(--ars-color-border)'
+                                borderColor: DEVELOPER_ENFORCE_MIN_CHARS && !useExistingReview && userThoughts.length > 0 && userThoughts.length < MIN_CHARS ? '#fca5a5' : 'var(--ars-color-border)'
                             }}
                             disabled={useExistingReview}
                         />
                         {!useExistingReview && (
-                            <div className={`absolute bottom-2 right-3 text-[10px] font-bold px-1.5 py-0.5 rounded ${userThoughts.length >= 300 ? 'text-green-600 bg-green-50' : 'text-gray-400 bg-gray-50'}`}>
-                                {userThoughts.length} / 300
+                            <div className={`absolute bottom-2 right-3 text-[10px] font-bold px-1.5 py-0.5 rounded ${userThoughts.length >= MIN_CHARS ? 'text-green-600 bg-green-50' : 'text-gray-400 bg-gray-50'}`}>
+                                {userThoughts.length} / {MIN_CHARS}
                             </div>
                         )}
                         {useExistingReview && (
@@ -302,6 +315,20 @@ ${markdownInstruction}`;
                                 Existing Text Used ({existingReviewText.length} chars)
                             </div>
                         )}
+                    </div>
+
+                    <div className="mt-3">
+                        <label className="ars-label mb-1 text-xs text-gray-500 font-medium">
+                            Additional Instructions <span className="text-[10px] text-gray-400 font-normal ml-1">(Optional)</span>
+                        </label>
+                        <input
+                            type="text"
+                            className="ars-ai-prompt-input !text-xs !py-2 !px-3 !h-auto"
+                            placeholder="e.g. Keep it humorous, focus on durability, avoid mentioning price..."
+                            value={additionalInstructions}
+                            onChange={(e) => setAdditionalInstructions(e.target.value)}
+                            style={{ minHeight: '38px' }}
+                        />
                     </div>
 
                     {showPreview && (
@@ -314,7 +341,7 @@ ${markdownInstruction}`;
                         className="ars-generate-btn mt-3"
                         onClick={handleGenerate}
                         isLoading={isGenerating}
-                        disabled={isGenerating || (useExistingReview ? existingReviewText.length < 300 : userThoughts.length < 300)}
+                        disabled={isGenerating || (DEVELOPER_ENFORCE_MIN_CHARS && (useExistingReview ? existingReviewText.length < MIN_CHARS : userThoughts.length < MIN_CHARS))}
                         icon={<Sparkles size={18} />}
                     >
                         Generate Review

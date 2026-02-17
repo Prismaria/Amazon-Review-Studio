@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Amazon Review Toolkit 2.0
 // @namespace    https://github.com/Prismaria/Amazon-Review-Studio
-// @version      2.0.4
+// @version      2.0.5
 // @author       Prismaris
 // @description  Complete review writing tookit for Amazon.
 // @match        *://*.amazon.com/*
@@ -52,37 +52,6 @@
 
   const React__default__namespace = _interopNamespaceDefault(React__default);
 
-  var jsxRuntime = { exports: {} };
-  var reactJsxRuntime_production_min = {};
-  var hasRequiredReactJsxRuntime_production_min;
-  function requireReactJsxRuntime_production_min() {
-    if (hasRequiredReactJsxRuntime_production_min) return reactJsxRuntime_production_min;
-    hasRequiredReactJsxRuntime_production_min = 1;
-    var f = React__default, k = Symbol.for("react.element"), l = Symbol.for("react.fragment"), m = Object.prototype.hasOwnProperty, n = f.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner, p = { key: true, ref: true, __self: true, __source: true };
-    function q(c, a, g) {
-      var b, d = {}, e = null, h = null;
-      void 0 !== g && (e = "" + g);
-      void 0 !== a.key && (e = "" + a.key);
-      void 0 !== a.ref && (h = a.ref);
-      for (b in a) m.call(a, b) && !p.hasOwnProperty(b) && (d[b] = a[b]);
-      if (c && c.defaultProps) for (b in a = c.defaultProps, a) void 0 === d[b] && (d[b] = a[b]);
-      return { $$typeof: k, type: c, key: e, ref: h, props: d, _owner: n.current };
-    }
-    reactJsxRuntime_production_min.Fragment = l;
-    reactJsxRuntime_production_min.jsx = q;
-    reactJsxRuntime_production_min.jsxs = q;
-    return reactJsxRuntime_production_min;
-  }
-  var hasRequiredJsxRuntime;
-  function requireJsxRuntime() {
-    if (hasRequiredJsxRuntime) return jsxRuntime.exports;
-    hasRequiredJsxRuntime = 1;
-    {
-      jsxRuntime.exports = requireReactJsxRuntime_production_min();
-    }
-    return jsxRuntime.exports;
-  }
-  var jsxRuntimeExports = requireJsxRuntime();
   const mergeClasses = (...classes) => classes.filter((className, index, array) => {
     return Boolean(className) && className.trim() !== "" && array.indexOf(className) === index;
   }).join(" ").trim();
@@ -159,14 +128,14 @@
     Component2.displayName = toPascalCase(iconName);
     return Component2;
   };
-  const __iconNode$O = [
+  const __iconNode$P = [
     [
       "path",
       { d: "M6 12h9a4 4 0 0 1 0 8H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h7a4 4 0 0 1 0 8", key: "mg9rjx" }
     ]
   ];
-  const Bold = createLucideIcon("bold", __iconNode$O);
-  const __iconNode$N = [
+  const Bold = createLucideIcon("bold", __iconNode$P);
+  const __iconNode$O = [
     ["path", { d: "M12 20v-9", key: "1qisl0" }],
     ["path", { d: "M14 7a4 4 0 0 1 4 4v3a6 6 0 0 1-12 0v-3a4 4 0 0 1 4-4z", key: "uouzyp" }],
     ["path", { d: "M14.12 3.88 16 2", key: "qol33r" }],
@@ -179,15 +148,15 @@
     ["path", { d: "m8 2 1.88 1.88", key: "fmnt4t" }],
     ["path", { d: "M9 7.13V6a3 3 0 1 1 6 0v1.13", key: "1vgav8" }]
   ];
-  const Bug = createLucideIcon("bug", __iconNode$N);
-  const __iconNode$M = [
+  const Bug = createLucideIcon("bug", __iconNode$O);
+  const __iconNode$N = [
     ["path", { d: "M8 2v4", key: "1cmpym" }],
     ["path", { d: "M16 2v4", key: "4m81vk" }],
     ["rect", { width: "18", height: "18", x: "3", y: "4", rx: "2", key: "1hopcy" }],
     ["path", { d: "M3 10h18", key: "8toen8" }]
   ];
-  const Calendar = createLucideIcon("calendar", __iconNode$M);
-  const __iconNode$L = [
+  const Calendar = createLucideIcon("calendar", __iconNode$N);
+  const __iconNode$M = [
     [
       "path",
       {
@@ -197,28 +166,39 @@
     ],
     ["circle", { cx: "12", cy: "13", r: "3", key: "1vg3eu" }]
   ];
-  const Camera = createLucideIcon("camera", __iconNode$L);
-  const __iconNode$K = [
+  const Camera = createLucideIcon("camera", __iconNode$M);
+  const __iconNode$L = [
     ["path", { d: "M5 21v-6", key: "1hz6c0" }],
     ["path", { d: "M12 21V3", key: "1lcnhd" }],
     ["path", { d: "M19 21V9", key: "unv183" }]
   ];
-  const ChartNoAxesColumn = createLucideIcon("chart-no-axes-column", __iconNode$K);
-  const __iconNode$J = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
-  const Check = createLucideIcon("check", __iconNode$J);
-  const __iconNode$I = [["path", { d: "m9 18 6-6-6-6", key: "mthhwq" }]];
-  const ChevronRight = createLucideIcon("chevron-right", __iconNode$I);
-  const __iconNode$H = [
+  const ChartNoAxesColumn = createLucideIcon("chart-no-axes-column", __iconNode$L);
+  const __iconNode$K = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
+  const Check = createLucideIcon("check", __iconNode$K);
+  const __iconNode$J = [["path", { d: "m9 18 6-6-6-6", key: "mthhwq" }]];
+  const ChevronRight = createLucideIcon("chevron-right", __iconNode$J);
+  const __iconNode$I = [
     ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
     ["line", { x1: "12", x2: "12", y1: "8", y2: "12", key: "1pkeuh" }],
     ["line", { x1: "12", x2: "12.01", y1: "16", y2: "16", key: "4dfq90" }]
   ];
-  const CircleAlert = createLucideIcon("circle-alert", __iconNode$H);
-  const __iconNode$G = [
+  const CircleAlert = createLucideIcon("circle-alert", __iconNode$I);
+  const __iconNode$H = [
     ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
     ["path", { d: "m9 12 2 2 4-4", key: "dzmm74" }]
   ];
-  const CircleCheck = createLucideIcon("circle-check", __iconNode$G);
+  const CircleCheck = createLucideIcon("circle-check", __iconNode$H);
+  const __iconNode$G = [
+    [
+      "path",
+      {
+        d: "M9 9.003a1 1 0 0 1 1.517-.859l4.997 2.997a1 1 0 0 1 0 1.718l-4.997 2.997A1 1 0 0 1 9 14.996z",
+        key: "kmsa83"
+      }
+    ],
+    ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }]
+  ];
+  const CirclePlay = createLucideIcon("circle-play", __iconNode$G);
   const __iconNode$F = [
     ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
     ["path", { d: "M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3", key: "1u773s" }],
@@ -580,6 +560,7 @@
     thumbnailImage: ".in-context-ryp__form-field___thumbnails--image",
     mediaDelete: ".in-context-ryp__media-delete",
     starRating: ".in-context-ryp__form-field--starRating",
+    starClear: ".in-context-ryp__form-field--starRating--clear",
     profileAvatar: ".a-profile-avatar img, .ryp__profile__info img",
     profileName: ".a-profile-name, .ryp__profile__info .a-profile-content span",
     profileEditLink: '#ryp__profile__edit-link, [data-hook="ryp-profile-edit-link"]',
@@ -641,7 +622,21 @@
     el.dispatchEvent(new Event("blur", { bubbles: true }));
   }
   function setAmazonStarRating(rating, container) {
-    if (rating === 0) return;
+    if (rating === 0) {
+      console.log("[ARS] Clearing star rating...");
+      const clearBtn = query(SELECTORS.starClear, container);
+      if (clearBtn) {
+        console.log("[ARS] Clicking native clear button:", clearBtn);
+        clearBtn.click();
+        const mouseEventProps = { bubbles: true, cancelable: true, view: window };
+        clearBtn.dispatchEvent(new MouseEvent("mousedown", mouseEventProps));
+        clearBtn.dispatchEvent(new MouseEvent("mouseup", mouseEventProps));
+        clearBtn.querySelector("span")?.click();
+      } else {
+        console.warn("[ARS] Native clear button not found");
+      }
+      return;
+    }
     const wrapper = query(SELECTORS.starRating, container) || query(".in-context-ryp__form-field--starRating", container);
     if (!wrapper) {
       console.warn("[ARS] Star rating wrapper not found");
@@ -1079,15 +1074,169 @@
   function cn(...classes) {
     return classes.filter(Boolean).join(" ");
   }
+  const DEFAULT_SETTINGS = {
+    amazon_ai_enabled: false,
+    amazon_ai_tos_accepted: false,
+    amazon_ai_provider: "local",
+    amazon_ai_llm_server_url: "http://localhost:1234",
+    amazon_ai_gemini_key: "",
+    amazon_ai_gemini_model: "gemini-3-flash-preview",
+    amazon_ai_local_text_model: "",
+    amazon_ai_local_vlm_model: "huihui-qwen3-vl-8b-instruct-abliterated",
+    amazon_ai_gemini_min_interval_ms: 0,
+    amazon_ai_timeout_llm: 45e3,
+    amazon_ai_timeout_connect: 7e3,
+    amazon_ai_timeout_vision_image: 2e4,
+    amazon_ai_timeout_vision_total: 45e3,
+    amazon_ai_main_retries: 2,
+    amazon_ai_main_backoff: 1500,
+    amazon_ai_vision_autoskip: true,
+    amazon_ai_skip_length_on_retry: false,
+    amazon_ai_disable_corruption_detection: false,
+    amazon_ai_detailed_snowball_enabled: false,
+    amazon_ai_convert_markdown: true,
+    amazon_ai_include_images_default: true,
+    amazon_review_title_style: "normal",
+    amazon_review_templates: [],
+    amazon_review_phrases: [],
+    amazon_pastebin_api_dev_key: "",
+    amazon_pastebin_api_user_name: "",
+    amazon_pastebin_api_user_password: "",
+    amazon_pastebin_api_user_key: "",
+    amazon_pastebin_recovery_id: "",
+    amazon_auto_sync_templates: true,
+    amazon_auto_sync_phrases: false,
+    amazon_ui_lights_off: false,
+    amazon_editor_auto_resize: false,
+    amazon_ui_scale: 1,
+    amazon_bullet_style: "•",
+    debug_mode: false,
+    debug_unhide_native: false,
+    debug_native_side_by_side: false,
+    dark_mode: false,
+    demo_enabled: false,
+    demo_pfp_url: "",
+    demo_name: "",
+    demo_review_body: "",
+    demo_review_title: "",
+    demo_typing_delay: 2,
+    demo_typing_speed: "normal"
+  };
+  class SettingsService {
+get(key) {
+      const rawValue = localStorage.getItem(key);
+      if (rawValue === null) {
+        return DEFAULT_SETTINGS[key];
+      }
+      const defaultValue = DEFAULT_SETTINGS[key];
+      const type = typeof defaultValue;
+      if (type === "number") {
+        const num = Number(rawValue);
+        return Number.isNaN(num) ? defaultValue : num;
+      }
+      if (type === "boolean") {
+        return rawValue === "true";
+      }
+      if (key === "amazon_review_templates" || key === "amazon_review_phrases") {
+        try {
+          return JSON.parse(rawValue);
+        } catch (e) {
+          console.warn(`Failed to parse setting ${key}:`, e);
+          return defaultValue;
+        }
+      }
+      return rawValue;
+    }
+set(key, value) {
+      if (typeof value === "object" && value !== null) {
+        localStorage.setItem(key, JSON.stringify(value));
+      } else {
+        localStorage.setItem(key, String(value));
+      }
+    }
+getAll() {
+      const settings = { ...DEFAULT_SETTINGS };
+      Object.keys(DEFAULT_SETTINGS).forEach((key) => {
+        settings[key] = this.get(key);
+      });
+      return settings;
+    }
+  }
+  const settingsService = new SettingsService();
+  const SettingsContext = React__default.createContext(void 0);
+  const DEFAULT_PHRASES = [
+    { id: "p1", label: "Highly Recommended", content: "I highly recommend this product!" },
+    { id: "p2", label: "Game Changer", content: "This item is a total game changer." },
+    { id: "p3", label: "Good Value", content: "Great quality for the price." },
+    { id: "p4", label: "Pros/Cons Intro", content: "Here are the pros and cons based on my experience:" }
+  ];
+  const SettingsProvider = ({ children }) => {
+    const [settings, setSettingsState] = React__default.useState(settingsService.getAll());
+    const [templates, setTemplatesState] = React__default.useState([]);
+    const [phrases, setPhrasesState] = React__default.useState([]);
+    const [isLoaded, setIsLoaded] = React__default.useState(false);
+    React__default.useEffect(() => {
+      const savedT = localStorage.getItem("amazon_review_templates");
+      if (savedT) setTemplatesState(JSON.parse(savedT));
+      const savedP = localStorage.getItem("amazon_review_phrases");
+      if (savedP) {
+        setPhrasesState(JSON.parse(savedP));
+      } else {
+        setPhrasesState(DEFAULT_PHRASES);
+        localStorage.setItem("amazon_review_phrases", JSON.stringify(DEFAULT_PHRASES));
+      }
+      setIsLoaded(true);
+      const handleStorageChange = () => {
+        setSettingsState(settingsService.getAll());
+        const updatedT = localStorage.getItem("amazon_review_templates");
+        if (updatedT) setTemplatesState(JSON.parse(updatedT));
+        const updatedP = localStorage.getItem("amazon_review_phrases");
+        if (updatedP) setPhrasesState(JSON.parse(updatedP));
+      };
+      window.addEventListener("storage", handleStorageChange);
+      return () => window.removeEventListener("storage", handleStorageChange);
+    }, []);
+    const setSetting = React__default.useCallback((key, value) => {
+      settingsService.set(key, value);
+      setSettingsState((prev) => ({ ...prev, [key]: value }));
+    }, []);
+    const setTemplates = React__default.useCallback((t) => {
+      localStorage.setItem("amazon_review_templates", JSON.stringify(t));
+      setTemplatesState(t);
+    }, []);
+    const setPhrases = React__default.useCallback((p) => {
+      localStorage.setItem("amazon_review_phrases", JSON.stringify(p));
+      setPhrasesState(p);
+    }, []);
+    return React__default.createElement(SettingsContext.Provider, { value: {
+      settings,
+      setSetting,
+      templates,
+      phrases,
+      isLoaded,
+      setTemplates,
+      setPhrases
+    } }, children);
+  };
+  const useSettingsContext = () => {
+    const context = React__default.useContext(SettingsContext);
+    if (!context) {
+      throw new Error("useSettingsContext must be used within a SettingsProvider");
+    }
+    return context;
+  };
+  function useSettings() {
+    return useSettingsContext();
+  }
   const ProfileSection = ({
     avatarSrc,
     name,
     className
   }) => {
-    return jsxRuntimeExports.jsx("div", { className: cn("ars-profile-section", className), children: jsxRuntimeExports.jsx("div", { className: "ars-profile-container", children: jsxRuntimeExports.jsxs("div", { className: "ars-profile-info", children: [
-jsxRuntimeExports.jsx("div", { className: "ars-profile-avatar-wrapper", children: jsxRuntimeExports.jsx("a", { href: "/gp/profile", className: "ars-profile-avatar", target: "_blank", rel: "noopener noreferrer", children: avatarSrc ? jsxRuntimeExports.jsx("img", { src: avatarSrc, alt: "" }) : jsxRuntimeExports.jsx("span", { className: "ars-profile-avatar-placeholder", children: name.charAt(0).toUpperCase() || "?" }) }) }),
-jsxRuntimeExports.jsx("span", { className: "ars-profile-name", children: name })
-    ] }) }) });
+    const { settings } = useSettings();
+    const displayAvatar = settings.demo_enabled && settings.demo_pfp_url ? settings.demo_pfp_url : avatarSrc;
+    const displayName = settings.demo_enabled && settings.demo_name ? settings.demo_name : name;
+    return React__default.createElement("div", { className: cn("ars-profile-section", className) }, React__default.createElement("div", { className: "ars-profile-container" }, React__default.createElement("div", { className: "ars-profile-info" }, React__default.createElement("div", { className: "ars-profile-avatar-wrapper" }, React__default.createElement("a", { href: "/gp/profile", className: "ars-profile-avatar", target: "_blank", rel: "noopener noreferrer" }, displayAvatar ? React__default.createElement("img", { src: displayAvatar, alt: "" }) : React__default.createElement("span", { className: "ars-profile-avatar-placeholder" }, displayName.charAt(0).toUpperCase() || "?"))), React__default.createElement("span", { className: "ars-profile-name" }, displayName))));
   };
   const ProductHeader = ({
     imageSrc,
@@ -1096,7 +1245,7 @@ jsxRuntimeExports.jsx("span", { className: "ars-profile-name", children: name })
     productUrl,
     className
   }) => {
-    const imageNode = imageSrc ? jsxRuntimeExports.jsx(
+    const imageNode = imageSrc ? React__default.createElement(
       "img",
       {
         className: "ars-product-image",
@@ -1106,81 +1255,69 @@ jsxRuntimeExports.jsx("span", { className: "ars-profile-name", children: name })
         height: 64
       }
     ) : null;
-    return jsxRuntimeExports.jsxs("div", { className: cn("ars-product-header", className), children: [
-      imageNode && (productUrl ? jsxRuntimeExports.jsx("a", { href: productUrl, target: "_blank", rel: "noopener noreferrer", className: "ars-product-image-link", children: imageNode }) : imageNode),
-jsxRuntimeExports.jsxs("div", { className: "ars-product-info", children: [
-jsxRuntimeExports.jsx("span", { className: "ars-product-title", children: title }),
-jsxRuntimeExports.jsx("span", { className: "ars-product-name", children: name })
-      ] })
-    ] });
+    return React__default.createElement("div", { className: cn("ars-product-header", className) }, imageNode && (productUrl ? React__default.createElement("a", { href: productUrl, target: "_blank", rel: "noopener noreferrer", className: "ars-product-image-link" }, imageNode) : imageNode), React__default.createElement("div", { className: "ars-product-info" }, React__default.createElement("span", { className: "ars-product-title" }, title), React__default.createElement("span", { className: "ars-product-name" }, name)));
   };
   const StarRating = ({ value, onChange, className, hideClear }) => {
     const [hoverValue, setHoverValue] = React__default.useState(0);
     const displayValue = hoverValue || value;
-    return jsxRuntimeExports.jsxs("div", { className: cn("ars-star-rating", className), children: [
-jsxRuntimeExports.jsx(
-        "div",
-        {
-          className: "ars-star-rating-stars",
-          onMouseLeave: () => setHoverValue(0),
-          children: [1, 2, 3, 4, 5].map((rating) => jsxRuntimeExports.jsx(
-            "button",
-            {
-              type: "button",
-              className: cn(
-                "ars-star-button",
-                rating <= displayValue && "ars-star-button--filled"
-              ),
-              onClick: () => onChange(rating),
-              onMouseEnter: () => setHoverValue(rating),
-              onKeyDown: (e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault();
-                  onChange(rating);
-                }
-              },
-              "aria-label": `${rating} star${rating > 1 ? "s" : ""}`,
-              "aria-pressed": rating <= value,
-              children: jsxRuntimeExports.jsx(Star, { size: 28, strokeWidth: 1.5, fill: "currentColor" })
-            },
-            rating
-          ))
-        }
-      ),
-      !hideClear && jsxRuntimeExports.jsx(
-        "button",
-        {
-          type: "button",
-          className: "ars-star-clear",
-          onClick: () => onChange(0),
-          tabIndex: 0,
-          children: "Clear"
-        }
-      )
-    ] });
-  };
-  const PreviewThumbnail = ({ src, onRemove }) => jsxRuntimeExports.jsxs("div", { className: "ars-media-thumbnail", children: [
-jsxRuntimeExports.jsx(
+    return React__default.createElement("div", { className: cn("ars-star-rating", className) }, React__default.createElement(
       "div",
       {
-        className: "ars-media-thumbnail-image",
-        style: { backgroundImage: `url(${src})` }
-      }
-    ),
-jsxRuntimeExports.jsx(
+        className: "ars-star-rating-stars",
+        onMouseLeave: () => setHoverValue(0)
+      },
+      [1, 2, 3, 4, 5].map((rating) => React__default.createElement(
+        "button",
+        {
+          key: rating,
+          type: "button",
+          className: cn(
+            "ars-star-button",
+            rating <= displayValue && "ars-star-button--filled"
+          ),
+          onClick: () => onChange(rating),
+          onMouseEnter: () => setHoverValue(rating),
+          onKeyDown: (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              onChange(rating);
+            }
+          },
+          "aria-label": `${rating} star${rating > 1 ? "s" : ""}`,
+          "aria-pressed": rating <= value
+        },
+React__default.createElement(Star, { size: 28, strokeWidth: 1.5, fill: "currentColor" })
+      ))
+    ), !hideClear && React__default.createElement(
       "button",
       {
         type: "button",
-        className: "ars-media-thumbnail-remove",
-        onClick: (e) => {
-          e.stopPropagation();
-          onRemove();
-        },
-        title: "Remove media",
-        children: jsxRuntimeExports.jsx(X, { size: 14 })
-      }
-    )
-  ] });
+        className: "ars-star-clear",
+        onClick: () => onChange(0),
+        tabIndex: 0
+      },
+      "Clear"
+    ));
+  };
+  const PreviewThumbnail = ({ src, onRemove }) => React__default.createElement("div", { className: "ars-media-thumbnail" }, React__default.createElement(
+    "div",
+    {
+      className: "ars-media-thumbnail-image",
+      style: { backgroundImage: `url(${src})` }
+    }
+  ), React__default.createElement(
+    "button",
+    {
+      type: "button",
+      className: "ars-media-thumbnail-remove",
+      onClick: (e) => {
+        e.stopPropagation();
+        onRemove();
+      },
+      title: "Remove media"
+    },
+React__default.createElement(X, { size: 14 })
+  ));
   const MediaUpload = ({
     onTrigger,
     onPasteFromClipboard,
@@ -1242,92 +1379,70 @@ jsxRuntimeExports.jsx(
         onFilesDropped(files);
       }
     };
-    return jsxRuntimeExports.jsxs("div", { className: "ars-media-upload-wrapper", children: [
-jsxRuntimeExports.jsxs("div", { className: "ars-media-thumbnails", children: [
-        thumbnails.map((src, i) => jsxRuntimeExports.jsx(
-          PreviewThumbnail,
-          {
-            src,
-            onRemove: () => onRemove?.(i)
-          },
-          `${src}-${i}`
-        )),
-jsxRuntimeExports.jsx(
-          "div",
-          {
-            className: cn(
-              "ars-media-upload",
-              thumbnails.length > 0 && "ars-media-upload--compact",
-              showPasteFeedback && "ars-media-upload--uploading",
-              isDragging2 && "ars-media-upload--dragging",
-              className
-            ),
-            role: "button",
-            tabIndex: 0,
-            onClick: handleClick,
-            onKeyDown: handleKeyDown,
-            onDragOver: handleDragOver,
-            onDragLeave: handleDragLeave,
-            onDrop: handleDrop,
-            "aria-label": "Share a video or photo",
-            children: showPasteFeedback ? jsxRuntimeExports.jsx("div", { className: "ars-media-upload-feedback", children: thumbnails.length > 0 ? "..." : "Image pasted! Uploading..." }) : jsxRuntimeExports.jsx("div", { className: "ars-media-upload-content", children: isDragging2 ? jsxRuntimeExports.jsxs("div", { className: "ars-media-upload-dragging-content", children: [
-jsxRuntimeExports.jsx(Camera, { size: thumbnails.length > 0 ? 24 : 32, className: "ars-media-upload-icon animate-bounce" }),
-              thumbnails.length === 0 && jsxRuntimeExports.jsx("span", { className: "ars-media-upload-placeholder font-bold", children: "Drop files to upload" })
-            ] }) : jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-jsxRuntimeExports.jsx(Camera, { size: thumbnails.length > 0 ? 24 : 32, className: "ars-media-upload-icon" }),
-              thumbnails.length === 0 && jsxRuntimeExports.jsx("span", { className: "ars-media-upload-placeholder", children: placeholder })
-            ] }) })
-          }
-        )
-      ] }),
-jsxRuntimeExports.jsxs("div", { className: "ars-media-upload-actions", children: [
-        onPasteFromClipboard && jsxRuntimeExports.jsxs(
-          "button",
-          {
-            type: "button",
-            className: "ars-media-upload-action-btn ars-media-upload-paste-btn",
-            onClick: handlePasteClick,
-            title: "Paste image from clipboard",
-            children: [
-jsxRuntimeExports.jsx(ClipboardPaste, { size: 18 }),
-              "Paste from Clipboard..."
-            ]
-          }
+    return React__default.createElement("div", { className: "ars-media-upload-wrapper" }, React__default.createElement("div", { className: "ars-media-thumbnails" }, thumbnails.map((src, i) => React__default.createElement(
+      PreviewThumbnail,
+      {
+        key: `${src}-${i}`,
+        src,
+        onRemove: () => onRemove?.(i)
+      }
+    )), React__default.createElement(
+      "div",
+      {
+        className: cn(
+          "ars-media-upload",
+          thumbnails.length > 0 && "ars-media-upload--compact",
+          showPasteFeedback && "ars-media-upload--uploading",
+          isDragging2 && "ars-media-upload--dragging",
+          className
         ),
-jsxRuntimeExports.jsxs(
-          "a",
-          {
-            href: "https://photos.google.com/",
-            target: "_blank",
-            rel: "noopener noreferrer",
-            className: "ars-media-upload-action-btn ars-media-upload-google-btn",
-            title: "Open Google Photos",
-            children: [
-jsxRuntimeExports.jsx(Image$1, { size: 18 }),
-              "Google Photos"
-            ]
-          }
-        ),
-jsxRuntimeExports.jsxs(
-          "a",
-          {
-            href: "https://www.icloud.com/photos",
-            target: "_blank",
-            rel: "noopener noreferrer",
-            className: "ars-media-upload-action-btn ars-media-upload-icloud-btn",
-            title: "Open iCloud Photos",
-            children: [
-jsxRuntimeExports.jsx(Cloud, { size: 18 }),
-              "iCloud Photos"
-            ]
-          }
-        )
-      ] })
-    ] });
+        role: "button",
+        tabIndex: 0,
+        onClick: handleClick,
+        onKeyDown: handleKeyDown,
+        onDragOver: handleDragOver,
+        onDragLeave: handleDragLeave,
+        onDrop: handleDrop,
+        "aria-label": "Share a video or photo"
+      },
+      showPasteFeedback ? React__default.createElement("div", { className: "ars-media-upload-feedback" }, thumbnails.length > 0 ? "..." : "Image pasted! Uploading...") : React__default.createElement("div", { className: "ars-media-upload-content" }, isDragging2 ? React__default.createElement("div", { className: "ars-media-upload-dragging-content" }, React__default.createElement(Camera, { size: thumbnails.length > 0 ? 24 : 32, className: "ars-media-upload-icon animate-bounce" }), thumbnails.length === 0 && React__default.createElement("span", { className: "ars-media-upload-placeholder font-bold" }, "Drop files to upload")) : React__default.createElement(React__default.Fragment, null, React__default.createElement(Camera, { size: thumbnails.length > 0 ? 24 : 32, className: "ars-media-upload-icon" }), thumbnails.length === 0 && React__default.createElement("span", { className: "ars-media-upload-placeholder" }, placeholder)))
+    )), React__default.createElement("div", { className: "ars-media-upload-actions" }, onPasteFromClipboard && React__default.createElement(
+      "button",
+      {
+        type: "button",
+        className: "ars-media-upload-action-btn ars-media-upload-paste-btn",
+        onClick: handlePasteClick,
+        title: "Paste image from clipboard"
+      },
+React__default.createElement(ClipboardPaste, { size: 18 }),
+      "Paste from Clipboard..."
+    ), React__default.createElement(
+      "a",
+      {
+        href: "https://photos.google.com/",
+        target: "_blank",
+        rel: "noopener noreferrer",
+        className: "ars-media-upload-action-btn ars-media-upload-google-btn",
+        title: "Open Google Photos"
+      },
+React__default.createElement(Image$1, { size: 18 }),
+      "Google Photos"
+    ), React__default.createElement(
+      "a",
+      {
+        href: "https://www.icloud.com/photos",
+        target: "_blank",
+        rel: "noopener noreferrer",
+        className: "ars-media-upload-action-btn ars-media-upload-icloud-btn",
+        title: "Open iCloud Photos"
+      },
+React__default.createElement(Cloud, { size: 18 }),
+      "iCloud Photos"
+    )));
   };
   const Button = React__default.forwardRef(
     ({ className, variant = "primary", size = "md", isLoading, icon, children, disabled, ...props }, ref) => {
-      return jsxRuntimeExports.jsxs(
+      return React__default.createElement(
         "button",
         {
           ref,
@@ -1339,17 +1454,46 @@ jsxRuntimeExports.jsx(Cloud, { size: 18 }),
             className
           ),
           disabled: disabled || isLoading,
-          ...props,
-          children: [
-            isLoading && jsxRuntimeExports.jsx(LoaderCircle, { className: "ars-button__loader", size: 16 }),
-            !isLoading && icon && jsxRuntimeExports.jsx("span", { className: "ars-button__icon", children: icon }),
-            children
-          ]
-        }
+          ...props
+        },
+        isLoading && React__default.createElement(LoaderCircle, { className: "ars-button__loader", size: 16 }),
+        !isLoading && icon && React__default.createElement("span", { className: "ars-button__icon" }, icon),
+        children
       );
     }
   );
   Button.displayName = "Button";
+  var jsxRuntime = { exports: {} };
+  var reactJsxRuntime_production_min = {};
+  var hasRequiredReactJsxRuntime_production_min;
+  function requireReactJsxRuntime_production_min() {
+    if (hasRequiredReactJsxRuntime_production_min) return reactJsxRuntime_production_min;
+    hasRequiredReactJsxRuntime_production_min = 1;
+    var f = React__default, k = Symbol.for("react.element"), l = Symbol.for("react.fragment"), m = Object.prototype.hasOwnProperty, n = f.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner, p = { key: true, ref: true, __self: true, __source: true };
+    function q(c, a, g) {
+      var b, d = {}, e = null, h = null;
+      void 0 !== g && (e = "" + g);
+      void 0 !== a.key && (e = "" + a.key);
+      void 0 !== a.ref && (h = a.ref);
+      for (b in a) m.call(a, b) && !p.hasOwnProperty(b) && (d[b] = a[b]);
+      if (c && c.defaultProps) for (b in a = c.defaultProps, a) void 0 === d[b] && (d[b] = a[b]);
+      return { $$typeof: k, type: c, key: e, ref: h, props: d, _owner: n.current };
+    }
+    reactJsxRuntime_production_min.Fragment = l;
+    reactJsxRuntime_production_min.jsx = q;
+    reactJsxRuntime_production_min.jsxs = q;
+    return reactJsxRuntime_production_min;
+  }
+  var hasRequiredJsxRuntime;
+  function requireJsxRuntime() {
+    if (hasRequiredJsxRuntime) return jsxRuntime.exports;
+    hasRequiredJsxRuntime = 1;
+    {
+      jsxRuntime.exports = requireReactJsxRuntime_production_min();
+    }
+    return jsxRuntime.exports;
+  }
+  var jsxRuntimeExports = requireJsxRuntime();
   const LayoutGroupContext = React__default.createContext({});
   function useConstant(init) {
     const ref = React__default.useRef(null);
@@ -8810,223 +8954,65 @@ componentDidMount() {
       }
       return () => window.removeEventListener("keydown", handleEsc);
     }, [isOpen, onClose]);
-    return jsxRuntimeExports.jsx(AnimatePresence, { children: isOpen && jsxRuntimeExports.jsxs("div", { className: "ars-modal-overlay-container", children: [
-jsxRuntimeExports.jsx(
-        motion.div,
+    return React__default.createElement(AnimatePresence, null, isOpen && React__default.createElement("div", { className: "ars-modal-overlay-container" }, React__default.createElement(
+      motion.div,
+      {
+        className: "ars-modal-backdrop",
+        variants: backdropVariants,
+        initial: "hidden",
+        animate: "visible",
+        exit: "hidden",
+        transition: { duration: 0.2 },
+        onClick: onClose
+      }
+    ), React__default.createElement("div", { className: "ars-modal-wrapper" }, React__default.createElement(
+      motion.div,
+      {
+        className: "ars-modal",
+        style: { width, maxWidth: "90vw" },
+        variants: modalVariants,
+        initial: "hidden",
+        animate: "visible",
+        exit: "hidden",
+        transition: { type: "spring", damping: 25, stiffness: 300 },
+        role: "dialog",
+        "aria-modal": "true"
+      },
+React__default.createElement("div", { className: "ars-modal-header" }, title && React__default.createElement("h2", { className: "ars-modal-title" }, title), React__default.createElement(
+        Button,
         {
-          className: "ars-modal-backdrop",
-          variants: backdropVariants,
-          initial: "hidden",
-          animate: "visible",
-          exit: "hidden",
-          transition: { duration: 0.2 },
-          onClick: onClose
-        }
-      ),
-jsxRuntimeExports.jsx("div", { className: "ars-modal-wrapper", children: jsxRuntimeExports.jsxs(
-        motion.div,
-        {
-          className: "ars-modal",
-          style: { width, maxWidth: "90vw" },
-          variants: modalVariants,
-          initial: "hidden",
-          animate: "visible",
-          exit: "hidden",
-          transition: { type: "spring", damping: 25, stiffness: 300 },
-          role: "dialog",
-          "aria-modal": "true",
-          children: [
-jsxRuntimeExports.jsxs("div", { className: "ars-modal-header", children: [
-              title && jsxRuntimeExports.jsx("h2", { className: "ars-modal-title", children: title }),
-jsxRuntimeExports.jsx(
-                Button,
-                {
-                  variant: "ghost",
-                  size: "icon",
-                  onClick: onClose,
-                  className: "ars-modal-close",
-                  "aria-label": "Close modal",
-                  children: jsxRuntimeExports.jsx(X, { size: 20 })
-                }
-              )
-            ] }),
-jsxRuntimeExports.jsx("div", { className: "ars-modal-content", children }),
-            footer && jsxRuntimeExports.jsx("div", { className: "ars-modal-footer", children: footer })
-          ]
-        }
-      ) })
-    ] }) });
+          variant: "ghost",
+          size: "icon",
+          onClick: onClose,
+          className: "ars-modal-close",
+          "aria-label": "Close modal"
+        },
+React__default.createElement(X, { size: 20 })
+      )),
+React__default.createElement("div", { className: "ars-modal-content" }, children),
+      footer && React__default.createElement("div", { className: "ars-modal-footer" }, footer)
+    ))));
   };
   const Input = React__default.forwardRef(
     ({ className, label, error, icon, suffix, id: id2, ...props }, ref) => {
       const inputId = id2 || `input-${Math.random().toString(36).substr(2, 9)}`;
-      return jsxRuntimeExports.jsxs("div", { className: cn("ars-input-group", className), children: [
-        label && jsxRuntimeExports.jsx("label", { htmlFor: inputId, className: "ars-input-label", children: label }),
-jsxRuntimeExports.jsxs("div", { className: "ars-input-wrapper", children: [
-          icon && jsxRuntimeExports.jsx("span", { className: "ars-input-icon", children: icon }),
-jsxRuntimeExports.jsx(
-            "input",
-            {
-              ref,
-              id: inputId,
-              className: cn(
-                "ars-input",
-                icon && "ars-input--has-icon",
-                suffix && "ars-input--has-suffix",
-                error && "ars-input--error"
-              ),
-              ...props
-            }
+      return React__default.createElement("div", { className: cn("ars-input-group", className) }, label && React__default.createElement("label", { htmlFor: inputId, className: "ars-input-label" }, label), React__default.createElement("div", { className: "ars-input-wrapper" }, icon && React__default.createElement("span", { className: "ars-input-icon" }, icon), React__default.createElement(
+        "input",
+        {
+          ref,
+          id: inputId,
+          className: cn(
+            "ars-input",
+            icon && "ars-input--has-icon",
+            suffix && "ars-input--has-suffix",
+            error && "ars-input--error"
           ),
-          suffix && jsxRuntimeExports.jsx("div", { className: "ars-input-suffix", children: suffix })
-        ] }),
-        error && jsxRuntimeExports.jsx("span", { className: "ars-input-error", children: error })
-      ] });
+          ...props
+        }
+      ), suffix && React__default.createElement("div", { className: "ars-input-suffix" }, suffix)), error && React__default.createElement("span", { className: "ars-input-error" }, error));
     }
   );
   Input.displayName = "Input";
-  const DEFAULT_SETTINGS = {
-    amazon_ai_enabled: false,
-    amazon_ai_tos_accepted: false,
-    amazon_ai_provider: "local",
-    amazon_ai_llm_server_url: "http://localhost:1234",
-    amazon_ai_gemini_key: "",
-    amazon_ai_gemini_model: "gemini-3-flash-preview",
-    amazon_ai_local_text_model: "",
-    amazon_ai_local_vlm_model: "huihui-qwen3-vl-8b-instruct-abliterated",
-    amazon_ai_gemini_min_interval_ms: 0,
-    amazon_ai_timeout_llm: 45e3,
-    amazon_ai_timeout_connect: 7e3,
-    amazon_ai_timeout_vision_image: 2e4,
-    amazon_ai_timeout_vision_total: 45e3,
-    amazon_ai_main_retries: 2,
-    amazon_ai_main_backoff: 1500,
-    amazon_ai_vision_autoskip: true,
-    amazon_ai_skip_length_on_retry: false,
-    amazon_ai_disable_corruption_detection: false,
-    amazon_ai_detailed_snowball_enabled: false,
-    amazon_ai_convert_markdown: true,
-    amazon_ai_include_images_default: true,
-    amazon_review_title_style: "normal",
-    amazon_review_templates: [],
-    amazon_review_phrases: [],
-    amazon_pastebin_api_dev_key: "",
-    amazon_pastebin_api_user_name: "",
-    amazon_pastebin_api_user_password: "",
-    amazon_pastebin_api_user_key: "",
-    amazon_pastebin_recovery_id: "",
-    amazon_auto_sync_templates: true,
-    amazon_auto_sync_phrases: false,
-    amazon_ui_lights_off: false,
-    amazon_editor_auto_resize: false,
-    amazon_ui_scale: 1,
-    amazon_bullet_style: "•",
-    debug_mode: false,
-    debug_unhide_native: false
-  };
-  class SettingsService {
-get(key) {
-      const rawValue = localStorage.getItem(key);
-      if (rawValue === null) {
-        return DEFAULT_SETTINGS[key];
-      }
-      const defaultValue = DEFAULT_SETTINGS[key];
-      const type = typeof defaultValue;
-      if (type === "number") {
-        const num = Number(rawValue);
-        return Number.isNaN(num) ? defaultValue : num;
-      }
-      if (type === "boolean") {
-        return rawValue === "true";
-      }
-      if (key === "amazon_review_templates" || key === "amazon_review_phrases") {
-        try {
-          return JSON.parse(rawValue);
-        } catch (e) {
-          console.warn(`Failed to parse setting ${key}:`, e);
-          return defaultValue;
-        }
-      }
-      return rawValue;
-    }
-set(key, value) {
-      if (typeof value === "object" && value !== null) {
-        localStorage.setItem(key, JSON.stringify(value));
-      } else {
-        localStorage.setItem(key, String(value));
-      }
-    }
-getAll() {
-      const settings = { ...DEFAULT_SETTINGS };
-      Object.keys(DEFAULT_SETTINGS).forEach((key) => {
-        settings[key] = this.get(key);
-      });
-      return settings;
-    }
-  }
-  const settingsService = new SettingsService();
-  const SettingsContext = React__default.createContext(void 0);
-  const DEFAULT_PHRASES = [
-    { id: "p1", label: "Highly Recommended", content: "I highly recommend this product!" },
-    { id: "p2", label: "Game Changer", content: "This item is a total game changer." },
-    { id: "p3", label: "Good Value", content: "Great quality for the price." },
-    { id: "p4", label: "Pros/Cons Intro", content: "Here are the pros and cons based on my experience:" }
-  ];
-  const SettingsProvider = ({ children }) => {
-    const [settings, setSettingsState] = React__default.useState(settingsService.getAll());
-    const [templates, setTemplatesState] = React__default.useState([]);
-    const [phrases, setPhrasesState] = React__default.useState([]);
-    const [isLoaded, setIsLoaded] = React__default.useState(false);
-    React__default.useEffect(() => {
-      const savedT = localStorage.getItem("amazon_review_templates");
-      if (savedT) setTemplatesState(JSON.parse(savedT));
-      const savedP = localStorage.getItem("amazon_review_phrases");
-      if (savedP) {
-        setPhrasesState(JSON.parse(savedP));
-      } else {
-        setPhrasesState(DEFAULT_PHRASES);
-        localStorage.setItem("amazon_review_phrases", JSON.stringify(DEFAULT_PHRASES));
-      }
-      setIsLoaded(true);
-      const handleStorageChange = () => {
-        setSettingsState(settingsService.getAll());
-        const updatedT = localStorage.getItem("amazon_review_templates");
-        if (updatedT) setTemplatesState(JSON.parse(updatedT));
-        const updatedP = localStorage.getItem("amazon_review_phrases");
-        if (updatedP) setPhrasesState(JSON.parse(updatedP));
-      };
-      window.addEventListener("storage", handleStorageChange);
-      return () => window.removeEventListener("storage", handleStorageChange);
-    }, []);
-    const setSetting = React__default.useCallback((key, value) => {
-      settingsService.set(key, value);
-      setSettingsState((prev) => ({ ...prev, [key]: value }));
-    }, []);
-    const setTemplates = React__default.useCallback((t) => {
-      localStorage.setItem("amazon_review_templates", JSON.stringify(t));
-      setTemplatesState(t);
-    }, []);
-    const setPhrases = React__default.useCallback((p) => {
-      localStorage.setItem("amazon_review_phrases", JSON.stringify(p));
-      setPhrasesState(p);
-    }, []);
-    return jsxRuntimeExports.jsx(SettingsContext.Provider, { value: {
-      settings,
-      setSetting,
-      templates,
-      phrases,
-      isLoaded,
-      setTemplates,
-      setPhrases
-    }, children });
-  };
-  const useSettingsContext = () => {
-    const context = React__default.useContext(SettingsContext);
-    if (!context) {
-      throw new Error("useSettingsContext must be used within a SettingsProvider");
-    }
-    return context;
-  };
   function useContent() {
     const { templates, phrases, isLoaded, setTemplates, setPhrases } = useSettingsContext();
     const addTemplate = React__default.useCallback((template) => {
@@ -9186,148 +9172,118 @@ getAll() {
         onClose();
       }
     };
-    return jsxRuntimeExports.jsx(
+    return React__default.createElement(
       Modal,
       {
         isOpen,
         onClose: handleClose,
         title: "Template Manager",
-        width: "850px",
-        children: jsxRuntimeExports.jsxs("div", { className: "ars-template-manager", style: { display: "flex", height: "600px", gap: "1.5rem", padding: "1.5rem" }, children: [
-jsxRuntimeExports.jsxs("div", { className: "ars-tm-sidebar", style: { width: "240px", borderRight: "1px solid var(--ars-color-border)", paddingRight: "1.5rem", display: "flex", flexDirection: "column" }, children: [
-jsxRuntimeExports.jsx("div", { className: "ars-tm-header", style: { marginBottom: "1rem" }, children: jsxRuntimeExports.jsx(
-              Button,
-              {
-                variant: "primary",
-                size: "sm",
-                style: { width: "100%" },
-                onClick: handleCreateNew,
-                icon: jsxRuntimeExports.jsx(Plus, { size: 16 }),
-                children: "New Template"
-              }
-            ) }),
-jsxRuntimeExports.jsxs("div", { className: "ars-tm-list", style: { flex: 1, overflowY: "auto", display: "flex", flexDirection: "column", gap: "0.5rem" }, children: [
-              templates.map((t) => jsxRuntimeExports.jsxs(
-                "div",
-                {
-                  draggable: true,
-                  onDragStart: (e) => handleDragStart(e, t.id),
-                  onDragOver: (e) => handleDragOver(e, t.id),
-                  onDragLeave: handleDragLeave,
-                  onDrop: (e) => handleDrop(e, t.id),
-                  onDragEnd: handleDragEnd,
-                  className: `ars-tm-item ${selectedId === t.id ? "active" : ""} ${draggedId === t.id ? "dragging" : ""} ${dragOverId === t.id ? "drag-over" : ""}`,
-                  onClick: () => setSelectedId(t.id),
-                  style: {
-                    padding: "0.875rem 1rem",
-                    borderRadius: "8px",
-                    cursor: "pointer",
-                    backgroundColor: dragOverId === t.id ? "var(--ars-color-bg-secondary)" : selectedId === t.id ? "var(--ars-color-bg-secondary)" : "transparent",
-                    border: dragOverId === t.id ? "2px dashed var(--ars-color-primary)" : selectedId === t.id ? "1px solid var(--ars-color-primary)" : "1px solid transparent",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                    opacity: draggedId === t.id ? 0.5 : 1,
-                    transition: "all 0.15s ease"
-                  },
-                  title: "Drag to reorder",
-                  children: [
-jsxRuntimeExports.jsx(
-                      "div",
-                      {
-                        style: {
-                          display: "flex",
-                          alignItems: "center",
-                          cursor: "grab",
-                          color: "var(--ars-color-text-secondary)",
-                          padding: "0.25rem",
-                          borderRadius: "4px"
-                        },
-                        onMouseDown: (e) => e.stopPropagation(),
-                        children: jsxRuntimeExports.jsx(GripVertical, { size: 16 })
-                      }
-                    ),
-jsxRuntimeExports.jsxs("div", { style: { display: "flex", alignItems: "center", gap: "0.5rem", overflow: "hidden", flex: 1 }, children: [
-jsxRuntimeExports.jsx(FileText, { size: 16, color: "var(--ars-color-text-secondary)" }),
-jsxRuntimeExports.jsx("span", { style: { whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", fontWeight: 500 }, children: t.title })
-                    ] })
-                  ]
-                },
-                t.id
-              )),
-              templates.length === 0 && jsxRuntimeExports.jsx("div", { style: { padding: "1rem", textAlign: "center", color: "var(--ars-color-text-secondary)", fontSize: "0.875rem" }, children: "No templates yet. Create one to get started!" })
-            ] })
-          ] }),
-jsxRuntimeExports.jsx("div", { className: "ars-tm-content", style: { flex: 1, display: "flex", flexDirection: "column", gap: "1rem" }, children: selectedId || editTitle ? jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-jsxRuntimeExports.jsxs("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center" }, children: [
-jsxRuntimeExports.jsx(
-                Input,
-                {
-                  value: editTitle,
-                  onChange: (e) => {
-                    setEditTitle(e.target.value);
-                    setIsDirty(true);
-                  },
-                  placeholder: "Template Name",
-                  style: { fontSize: "1.25rem", fontWeight: 600, border: "none", padding: "0.5rem 0", background: "transparent" }
-                }
-              ),
-jsxRuntimeExports.jsxs("div", { style: { display: "flex", gap: "0.5rem" }, children: [
-                selectedId && jsxRuntimeExports.jsx(
-                  Button,
-                  {
-                    variant: "ghost",
-                    onClick: () => handleDelete(selectedId),
-                    title: "Delete Template",
-                    style: { color: "var(--ars-color-error)" },
-                    children: jsxRuntimeExports.jsx(Trash2, { size: 18 })
-                  }
-                ),
-jsxRuntimeExports.jsx(
-                  Button,
-                  {
-                    variant: isDirty ? "primary" : "secondary",
-                    onClick: handleSave,
-                    disabled: !isDirty,
-                    icon: jsxRuntimeExports.jsx(Save, { size: 16 }),
-                    children: "Save"
-                  }
-                )
-              ] })
-            ] }),
-jsxRuntimeExports.jsx(
-              RichEditor,
-              {
-                value: editContent,
-                onChange: (value) => {
-                  setEditContent(value);
-                  setIsDirty(true);
-                },
-                placeholder: "Enter your review template structure here...",
-                showUtilities: false,
-                className: "ars-tm-editor"
-              }
-            ),
-jsxRuntimeExports.jsx("div", { style: { borderTop: "1px solid var(--ars-color-border)", paddingTop: "1rem", display: "flex", justifyContent: "flex-end" }, children: jsxRuntimeExports.jsx(
-              Button,
-              {
-                variant: "primary",
-                onClick: handleInsert,
-                icon: jsxRuntimeExports.jsx(PanelsTopLeft, { size: 16 }),
-                children: "Insert Template"
-              }
-            ) })
-          ] }) : jsxRuntimeExports.jsxs("div", { style: { flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", color: "var(--ars-color-text-secondary)" }, children: [
-jsxRuntimeExports.jsx(PanelsTopLeft, { size: 48, style: { marginBottom: "1rem", opacity: 0.5 } }),
-jsxRuntimeExports.jsx("p", { children: "Select a template to edit or create a new one." })
-          ] }) })
-        ] })
-      }
+        width: "850px"
+      },
+React__default.createElement("div", { className: "ars-template-manager", style: { display: "flex", height: "600px", gap: "1.5rem", padding: "1.5rem" } }, React__default.createElement("div", { className: "ars-tm-sidebar", style: { width: "240px", borderRight: "1px solid var(--ars-color-border)", paddingRight: "1.5rem", display: "flex", flexDirection: "column" } }, React__default.createElement("div", { className: "ars-tm-header", style: { marginBottom: "1rem" } }, React__default.createElement(
+        Button,
+        {
+          variant: "primary",
+          size: "sm",
+          style: { width: "100%" },
+          onClick: handleCreateNew,
+          icon: React__default.createElement(Plus, { size: 16 })
+        },
+        "New Template"
+      )), React__default.createElement("div", { className: "ars-tm-list", style: { flex: 1, overflowY: "auto", display: "flex", flexDirection: "column", gap: "0.5rem" } }, templates.map((t) => React__default.createElement(
+        "div",
+        {
+          key: t.id,
+          draggable: true,
+          onDragStart: (e) => handleDragStart(e, t.id),
+          onDragOver: (e) => handleDragOver(e, t.id),
+          onDragLeave: handleDragLeave,
+          onDrop: (e) => handleDrop(e, t.id),
+          onDragEnd: handleDragEnd,
+          className: `ars-tm-item ${selectedId === t.id ? "active" : ""} ${draggedId === t.id ? "dragging" : ""} ${dragOverId === t.id ? "drag-over" : ""}`,
+          onClick: () => setSelectedId(t.id),
+          style: {
+            padding: "0.875rem 1rem",
+            borderRadius: "8px",
+            cursor: "pointer",
+            backgroundColor: dragOverId === t.id ? "var(--ars-color-bg-secondary)" : selectedId === t.id ? "var(--ars-color-bg-secondary)" : "transparent",
+            border: dragOverId === t.id ? "2px dashed var(--ars-color-primary)" : selectedId === t.id ? "1px solid var(--ars-color-primary)" : "1px solid transparent",
+            display: "flex",
+            alignItems: "center",
+            gap: "0.5rem",
+            opacity: draggedId === t.id ? 0.5 : 1,
+            transition: "all 0.15s ease"
+          },
+          title: "Drag to reorder"
+        },
+React__default.createElement(
+          "div",
+          {
+            style: {
+              display: "flex",
+              alignItems: "center",
+              cursor: "grab",
+              color: "var(--ars-color-text-secondary)",
+              padding: "0.25rem",
+              borderRadius: "4px"
+            },
+            onMouseDown: (e) => e.stopPropagation()
+          },
+React__default.createElement(GripVertical, { size: 16 })
+        ),
+React__default.createElement("div", { style: { display: "flex", alignItems: "center", gap: "0.5rem", overflow: "hidden", flex: 1 } }, React__default.createElement(FileText, { size: 16, color: "var(--ars-color-text-secondary)" }), React__default.createElement("span", { style: { whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", fontWeight: 500 } }, t.title))
+      )), templates.length === 0 && React__default.createElement("div", { style: { padding: "1rem", textAlign: "center", color: "var(--ars-color-text-secondary)", fontSize: "0.875rem" } }, "No templates yet. Create one to get started!"))), React__default.createElement("div", { className: "ars-tm-content", style: { flex: 1, display: "flex", flexDirection: "column", gap: "1rem" } }, selectedId || editTitle ? React__default.createElement(React__default.Fragment, null, React__default.createElement("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center" } }, React__default.createElement(
+        Input,
+        {
+          value: editTitle,
+          onChange: (e) => {
+            setEditTitle(e.target.value);
+            setIsDirty(true);
+          },
+          placeholder: "Template Name",
+          style: { fontSize: "1.25rem", fontWeight: 600, border: "none", padding: "0.5rem 0", background: "transparent" }
+        }
+      ), React__default.createElement("div", { style: { display: "flex", gap: "0.5rem" } }, selectedId && React__default.createElement(
+        Button,
+        {
+          variant: "ghost",
+          onClick: () => handleDelete(selectedId),
+          title: "Delete Template",
+          style: { color: "var(--ars-color-error)" }
+        },
+React__default.createElement(Trash2, { size: 18 })
+      ), React__default.createElement(
+        Button,
+        {
+          variant: isDirty ? "primary" : "secondary",
+          onClick: handleSave,
+          disabled: !isDirty,
+          icon: React__default.createElement(Save, { size: 16 })
+        },
+        "Save"
+      ))), React__default.createElement(
+        RichEditor,
+        {
+          value: editContent,
+          onChange: (value) => {
+            setEditContent(value);
+            setIsDirty(true);
+          },
+          placeholder: "Enter your review template structure here...",
+          showUtilities: false,
+          className: "ars-tm-editor"
+        }
+      ), React__default.createElement("div", { style: { borderTop: "1px solid var(--ars-color-border)", paddingTop: "1rem", display: "flex", justifyContent: "flex-end" } }, React__default.createElement(
+        Button,
+        {
+          variant: "primary",
+          onClick: handleInsert,
+          icon: React__default.createElement(PanelsTopLeft, { size: 16 })
+        },
+        "Insert Template"
+      ))) : React__default.createElement("div", { style: { flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", color: "var(--ars-color-text-secondary)" } }, React__default.createElement(PanelsTopLeft, { size: 48, style: { marginBottom: "1rem", opacity: 0.5 } }), React__default.createElement("p", null, "Select a template to edit or create a new one."))))
     );
   };
-  function useSettings() {
-    return useSettingsContext();
-  }
   const PASTEBIN_API_LOGIN_URL = "https://pastebin.com/api/api_login.php";
   const PASTEBIN_API_POST_URL = "https://pastebin.com/api/api_post.php";
   const PASTEBIN_API_RAW_URL = "https://pastebin.com/raw/";
@@ -9844,117 +9800,91 @@ jsxRuntimeExports.jsx("p", { children: "Select a template to edit or create a ne
       setNewContent("");
       setIsAdding(false);
     };
-    return jsxRuntimeExports.jsxs("div", { className: "ars-phrase-manager", style: { width: "300px", padding: "1rem" }, children: [
-jsxRuntimeExports.jsxs("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }, children: [
-jsxRuntimeExports.jsxs("h3", { style: { margin: 0, fontSize: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }, children: [
-jsxRuntimeExports.jsx(MessageSquare, { size: 16 }),
-          " Saved Phrases"
-        ] }),
-jsxRuntimeExports.jsxs(
-          "div",
-          {
-            onClick: handleSync,
-            className: `
+    return React__default.createElement("div", { className: "ars-phrase-manager", style: { width: "300px", padding: "1rem" } }, React__default.createElement("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" } }, React__default.createElement("h3", { style: { margin: 0, fontSize: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" } }, React__default.createElement(MessageSquare, { size: 16 }), " Saved Phrases"), React__default.createElement(
+      "div",
+      {
+        onClick: handleSync,
+        className: `
                         flex items-center gap-1.5 px-2 py-1 rounded-full text-[10px] font-semibold cursor-pointer transition-all border
                         ${syncState === "synced" ? "bg-green-50 text-green-700 border-green-200" : "bg-gray-50 text-gray-600 border-gray-200 hover:bg-gray-100"}
                     `,
-            title: "Sync Phrases to Cloud",
-            children: [
-              syncState === "syncing" ? jsxRuntimeExports.jsx(RefreshCw, { size: 10, className: "animate-spin text-orange-500" }) : syncState === "synced" ? jsxRuntimeExports.jsx(Check, { size: 10, className: "text-green-600" }) : jsxRuntimeExports.jsx(RefreshCw, { size: 10 }),
-jsxRuntimeExports.jsx("span", { children: syncState === "syncing" ? "Syncing..." : syncState === "synced" ? "Synced" : "Sync" })
-            ]
-          }
-        )
-      ] }),
-jsxRuntimeExports.jsxs("div", { className: "ars-phrase-list", style: { maxHeight: "200px", overflowY: "auto", display: "flex", flexDirection: "column", gap: "0.5rem", marginBottom: "1rem" }, children: [
-        phrases.map((p) => jsxRuntimeExports.jsxs(
-          "div",
-          {
-            className: "ars-phrase-item",
-            style: {
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              padding: "0.5rem",
-              backgroundColor: "var(--ars-color-bg-secondary)",
-              borderRadius: "4px"
-            },
-            children: [
-jsxRuntimeExports.jsxs(
-                "div",
-                {
-                  style: { flex: 1, cursor: "pointer", overflow: "hidden" },
-                  onClick: () => {
-                    onInsert(p.content);
-                    onClose();
-                  },
-                  title: p.content,
-                  children: [
-jsxRuntimeExports.jsx("span", { style: { fontWeight: 500, display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }, children: p.label || p.content }),
-                    p.label && jsxRuntimeExports.jsx("span", { style: { fontSize: "0.75rem", color: "var(--ars-color-text-secondary)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", display: "block" }, children: p.content })
-                  ]
-                }
-              ),
-jsxRuntimeExports.jsx(
-                "button",
-                {
-                  onClick: (e) => {
-                    e.stopPropagation();
-                    deletePhrase(p.id);
-                  },
-                  style: {
-                    background: "transparent",
-                    border: "none",
-                    color: "var(--ars-color-text-secondary)",
-                    cursor: "pointer",
-                    padding: "4px",
-                    display: "flex",
-                    alignItems: "center"
-                  },
-                  title: "Delete phrase",
-                  children: jsxRuntimeExports.jsx(Trash2, { size: 14 })
-                }
-              )
-            ]
-          },
-          p.id
-        )),
-        phrases.length === 0 && jsxRuntimeExports.jsx("div", { style: { textAlign: "center", padding: "1rem", color: "var(--ars-color-text-secondary)", fontSize: "0.875rem" }, children: "No saved phrases." })
-      ] }),
-      isAdding ? jsxRuntimeExports.jsxs("div", { style: { display: "flex", flexDirection: "column", gap: "0.5rem", borderTop: "1px solid var(--ars-color-border)", paddingTop: "1rem" }, children: [
-jsxRuntimeExports.jsx(
-          Input,
-          {
-            placeholder: "Label (Optional)",
-            value: newLabel,
-            onChange: (e) => setNewLabel(e.target.value),
-            autoFocus: true
-          }
-        ),
-jsxRuntimeExports.jsx(
-          Input,
-          {
-            placeholder: "Phrase content...",
-            value: newContent,
-            onChange: (e) => setNewContent(e.target.value)
-          }
-        ),
-jsxRuntimeExports.jsxs("div", { style: { display: "flex", gap: "0.5rem", justifyContent: "flex-end" }, children: [
-jsxRuntimeExports.jsx(Button, { size: "sm", variant: "ghost", onClick: () => setIsAdding(false), children: "Cancel" }),
-jsxRuntimeExports.jsx(Button, { size: "sm", variant: "primary", onClick: handleAdd, children: "Add" })
-        ] })
-      ] }) : jsxRuntimeExports.jsx(
-        Button,
-        {
-          variant: "secondary",
-          size: "sm",
-          style: { width: "100%" },
-          onClick: () => setIsAdding(true),
-          icon: jsxRuntimeExports.jsx(Plus, { size: 14 }),
-          children: "Add New Phrase"
+        title: "Sync Phrases to Cloud"
+      },
+      syncState === "syncing" ? React__default.createElement(RefreshCw, { size: 10, className: "animate-spin text-orange-500" }) : syncState === "synced" ? React__default.createElement(Check, { size: 10, className: "text-green-600" }) : React__default.createElement(RefreshCw, { size: 10 }),
+React__default.createElement("span", null, syncState === "syncing" ? "Syncing..." : syncState === "synced" ? "Synced" : "Sync")
+    )), React__default.createElement("div", { className: "ars-phrase-list", style: { maxHeight: "200px", overflowY: "auto", display: "flex", flexDirection: "column", gap: "0.5rem", marginBottom: "1rem" } }, phrases.map((p) => React__default.createElement(
+      "div",
+      {
+        key: p.id,
+        className: "ars-phrase-item",
+        style: {
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          padding: "0.5rem",
+          backgroundColor: "var(--ars-color-bg-secondary)",
+          borderRadius: "4px"
         }
+      },
+React__default.createElement(
+        "div",
+        {
+          style: { flex: 1, cursor: "pointer", overflow: "hidden" },
+          onClick: () => {
+            onInsert(p.content);
+            onClose();
+          },
+          title: p.content
+        },
+React__default.createElement("span", { style: { fontWeight: 500, display: "block", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" } }, p.label || p.content),
+        p.label && React__default.createElement("span", { style: { fontSize: "0.75rem", color: "var(--ars-color-text-secondary)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", display: "block" } }, p.content)
+      ),
+React__default.createElement(
+        "button",
+        {
+          onClick: (e) => {
+            e.stopPropagation();
+            deletePhrase(p.id);
+          },
+          style: {
+            background: "transparent",
+            border: "none",
+            color: "var(--ars-color-text-secondary)",
+            cursor: "pointer",
+            padding: "4px",
+            display: "flex",
+            alignItems: "center"
+          },
+          title: "Delete phrase"
+        },
+React__default.createElement(Trash2, { size: 14 })
       )
-    ] });
+    )), phrases.length === 0 && React__default.createElement("div", { style: { textAlign: "center", padding: "1rem", color: "var(--ars-color-text-secondary)", fontSize: "0.875rem" } }, "No saved phrases.")), isAdding ? React__default.createElement("div", { style: { display: "flex", flexDirection: "column", gap: "0.5rem", borderTop: "1px solid var(--ars-color-border)", paddingTop: "1rem" } }, React__default.createElement(
+      Input,
+      {
+        placeholder: "Label (Optional)",
+        value: newLabel,
+        onChange: (e) => setNewLabel(e.target.value),
+        autoFocus: true
+      }
+    ), React__default.createElement(
+      Input,
+      {
+        placeholder: "Phrase content...",
+        value: newContent,
+        onChange: (e) => setNewContent(e.target.value)
+      }
+    ), React__default.createElement("div", { style: { display: "flex", gap: "0.5rem", justifyContent: "flex-end" } }, React__default.createElement(Button, { size: "sm", variant: "ghost", onClick: () => setIsAdding(false) }, "Cancel"), React__default.createElement(Button, { size: "sm", variant: "primary", onClick: handleAdd }, "Add"))) : React__default.createElement(
+      Button,
+      {
+        variant: "secondary",
+        size: "sm",
+        style: { width: "100%" },
+        onClick: () => setIsAdding(true),
+        icon: React__default.createElement(Plus, { size: 14 })
+      },
+      "Add New Phrase"
+    ));
   };
   const TemplateSelector = ({
     onInsert,
@@ -9995,114 +9925,88 @@ jsxRuntimeExports.jsx(Button, { size: "sm", variant: "primary", onClick: handleA
       setNewTitle("");
       setIsSaving(false);
     };
-    return jsxRuntimeExports.jsxs("div", { className: "ars-template-selector", style: { width: "300px", padding: "1rem" }, children: [
-jsxRuntimeExports.jsxs("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }, children: [
-jsxRuntimeExports.jsxs("h3", { style: { margin: 0, fontSize: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }, children: [
-jsxRuntimeExports.jsx(PanelsTopLeft, { size: 16 }),
-          " Templates"
-        ] }),
-jsxRuntimeExports.jsxs(
-          "div",
-          {
-            onClick: handleSync,
-            className: `
+    return React__default.createElement("div", { className: "ars-template-selector", style: { width: "300px", padding: "1rem" } }, React__default.createElement("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" } }, React__default.createElement("h3", { style: { margin: 0, fontSize: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" } }, React__default.createElement(PanelsTopLeft, { size: 16 }), " Templates"), React__default.createElement(
+      "div",
+      {
+        onClick: handleSync,
+        className: `
                         flex items-center gap-1.5 px-2 py-1 rounded-full text-[10px] font-semibold cursor-pointer transition-all border
                         ${syncState === "synced" ? "bg-green-50 text-green-700 border-green-200" : "bg-gray-50 text-gray-600 border-gray-200 hover:bg-gray-100"}
                     `,
-            title: "Sync Templates to Cloud",
-            children: [
-              syncState === "syncing" ? jsxRuntimeExports.jsx(RefreshCw, { size: 10, className: "animate-spin text-orange-500" }) : syncState === "synced" ? jsxRuntimeExports.jsx(Check, { size: 10, className: "text-green-600" }) : jsxRuntimeExports.jsx(RefreshCw, { size: 10 }),
-jsxRuntimeExports.jsx("span", { children: syncState === "syncing" ? "Syncing..." : syncState === "synced" ? "Synced" : "Sync" })
-            ]
-          }
-        )
-      ] }),
-jsxRuntimeExports.jsxs("div", { className: "ars-template-list", style: { maxHeight: "200px", overflowY: "auto", display: "flex", flexDirection: "column", gap: "0.5rem", marginBottom: "1rem" }, children: [
-        templates.map((t) => jsxRuntimeExports.jsxs(
-          "div",
-          {
-            className: "ars-template-item",
-            style: {
-              display: "flex",
-              alignItems: "center",
-              padding: "0.625rem",
-              backgroundColor: "var(--ars-color-bg-secondary)",
-              borderRadius: "6px",
-              cursor: "pointer",
-              transition: "background-color 0.2s ease"
-            },
-            onClick: () => {
-              onInsert(t.content);
-              onClose();
-            },
-            onMouseEnter: (e) => e.currentTarget.style.backgroundColor = "var(--ars-color-bg-tertiary)",
-            onMouseLeave: (e) => e.currentTarget.style.backgroundColor = "var(--ars-color-bg-secondary)",
-            children: [
-jsxRuntimeExports.jsx(FileText, { size: 16, style: { marginRight: "0.75rem", color: "var(--ars-color-text-secondary)", flexShrink: 0 } }),
-jsxRuntimeExports.jsx("span", { style: {
-                fontSize: "0.875rem",
-                fontWeight: 500,
-                whiteSpace: "nowrap",
-                overflow: "hidden",
-                textOverflow: "ellipsis"
-              }, children: t.title })
-            ]
-          },
-          t.id
-        )),
-        templates.length === 0 && jsxRuntimeExports.jsx("div", { style: { textAlign: "center", padding: "1rem", color: "var(--ars-color-text-secondary)", fontSize: "0.875rem" }, children: "No templates saved." })
-      ] }),
-jsxRuntimeExports.jsxs("div", { style: { display: "flex", flexDirection: "column", gap: "0.5rem", borderTop: "1px solid var(--ars-color-border)", paddingTop: "1rem" }, children: [
-        isSaving ? jsxRuntimeExports.jsxs("div", { style: { display: "flex", flexDirection: "column", gap: "0.5rem" }, children: [
-jsxRuntimeExports.jsx(
-            "input",
-            {
-              type: "text",
-              placeholder: "Template name...",
-              value: newTitle,
-              onChange: (e) => setNewTitle(e.target.value),
-              autoFocus: true,
-              style: {
-                width: "100%",
-                padding: "0.5rem",
-                borderRadius: "4px",
-                border: "1px solid var(--ars-color-border)",
-                fontSize: "0.875rem",
-                outline: "none"
-              }
-            }
-          ),
-jsxRuntimeExports.jsxs("div", { style: { display: "flex", gap: "0.5rem", justifyContent: "flex-end" }, children: [
-jsxRuntimeExports.jsx(Button, { size: "sm", variant: "ghost", onClick: () => setIsSaving(false), children: "Cancel" }),
-jsxRuntimeExports.jsx(Button, { size: "sm", variant: "primary", onClick: confirmSave, children: "Create" })
-          ] })
-        ] }) : jsxRuntimeExports.jsx(
-          Button,
-          {
-            variant: "secondary",
-            size: "sm",
-            icon: jsxRuntimeExports.jsx(Save, { size: 14 }),
-            onClick: handleSaveAsTemplate,
-            style: { width: "100%", justifyContent: "flex-start" },
-            children: "Save Current as Template"
-          }
-        ),
-jsxRuntimeExports.jsx(
-          Button,
-          {
-            variant: "ghost",
-            size: "sm",
-            icon: jsxRuntimeExports.jsx(Settings, { size: 14 }),
-            onClick: () => {
-              onManage();
-              onClose();
-            },
-            style: { width: "100%", justifyContent: "flex-start" },
-            children: "Manage Templates..."
-          }
-        )
-      ] })
-    ] });
+        title: "Sync Templates to Cloud"
+      },
+      syncState === "syncing" ? React__default.createElement(RefreshCw, { size: 10, className: "animate-spin text-orange-500" }) : syncState === "synced" ? React__default.createElement(Check, { size: 10, className: "text-green-600" }) : React__default.createElement(RefreshCw, { size: 10 }),
+React__default.createElement("span", null, syncState === "syncing" ? "Syncing..." : syncState === "synced" ? "Synced" : "Sync")
+    )), React__default.createElement("div", { className: "ars-template-list", style: { maxHeight: "200px", overflowY: "auto", display: "flex", flexDirection: "column", gap: "0.5rem", marginBottom: "1rem" } }, templates.map((t) => React__default.createElement(
+      "div",
+      {
+        key: t.id,
+        className: "ars-template-item",
+        style: {
+          display: "flex",
+          alignItems: "center",
+          padding: "0.625rem",
+          backgroundColor: "var(--ars-color-bg-secondary)",
+          borderRadius: "6px",
+          cursor: "pointer",
+          transition: "background-color 0.2s ease"
+        },
+        onClick: () => {
+          onInsert(t.content);
+          onClose();
+        },
+        onMouseEnter: (e) => e.currentTarget.style.backgroundColor = "var(--ars-color-bg-tertiary)",
+        onMouseLeave: (e) => e.currentTarget.style.backgroundColor = "var(--ars-color-bg-secondary)"
+      },
+React__default.createElement(FileText, { size: 16, style: { marginRight: "0.75rem", color: "var(--ars-color-text-secondary)", flexShrink: 0 } }),
+React__default.createElement("span", { style: {
+        fontSize: "0.875rem",
+        fontWeight: 500,
+        whiteSpace: "nowrap",
+        overflow: "hidden",
+        textOverflow: "ellipsis"
+      } }, t.title)
+    )), templates.length === 0 && React__default.createElement("div", { style: { textAlign: "center", padding: "1rem", color: "var(--ars-color-text-secondary)", fontSize: "0.875rem" } }, "No templates saved.")), React__default.createElement("div", { style: { display: "flex", flexDirection: "column", gap: "0.5rem", borderTop: "1px solid var(--ars-color-border)", paddingTop: "1rem" } }, isSaving ? React__default.createElement("div", { style: { display: "flex", flexDirection: "column", gap: "0.5rem" } }, React__default.createElement(
+      "input",
+      {
+        type: "text",
+        placeholder: "Template name...",
+        value: newTitle,
+        onChange: (e) => setNewTitle(e.target.value),
+        autoFocus: true,
+        style: {
+          width: "100%",
+          padding: "0.5rem",
+          borderRadius: "4px",
+          border: "1px solid var(--ars-color-border)",
+          fontSize: "0.875rem",
+          outline: "none"
+        }
+      }
+    ), React__default.createElement("div", { style: { display: "flex", gap: "0.5rem", justifyContent: "flex-end" } }, React__default.createElement(Button, { size: "sm", variant: "ghost", onClick: () => setIsSaving(false) }, "Cancel"), React__default.createElement(Button, { size: "sm", variant: "primary", onClick: confirmSave }, "Create"))) : React__default.createElement(
+      Button,
+      {
+        variant: "secondary",
+        size: "sm",
+        icon: React__default.createElement(Save, { size: 14 }),
+        onClick: handleSaveAsTemplate,
+        style: { width: "100%", justifyContent: "flex-start" }
+      },
+      "Save Current as Template"
+    ), React__default.createElement(
+      Button,
+      {
+        variant: "ghost",
+        size: "sm",
+        icon: React__default.createElement(Settings, { size: 14 }),
+        onClick: () => {
+          onManage();
+          onClose();
+        },
+        style: { width: "100%", justifyContent: "flex-start" }
+      },
+      "Manage Templates..."
+    )));
   };
   const Card = ({
     className,
@@ -10110,13 +10014,13 @@ jsxRuntimeExports.jsx(
     padding = "md",
     ...props
   }) => {
-    return jsxRuntimeExports.jsx(
+    return React__default.createElement(
       "div",
       {
         className: cn("ars-card", `ars-card--p-${padding}`, className),
-        ...props,
-        children
-      }
+        ...props
+      },
+      children
     );
   };
   const SettingsDashboard = ({ isOpen, onClose, initialTab = "ai" }) => {
@@ -10197,450 +10101,319 @@ jsxRuntimeExports.jsx(
         setSetting("amazon_ai_enabled", false);
       }
     };
-    return jsxRuntimeExports.jsx(
+    return React__default.createElement(
       Modal,
       {
         isOpen,
         onClose,
         title: "Amazon Review Studio Settings",
-        width: "740px",
-        children: jsxRuntimeExports.jsxs("div", { className: "ars-settings-layout p-2", children: [
-jsxRuntimeExports.jsxs("aside", { className: "ars-settings-sidebar", children: [
-jsxRuntimeExports.jsx(
-              Button,
-              {
-                variant: activeTab === "sync" ? "secondary" : "ghost",
-                className: "ars-tab-btn",
-                onClick: () => setActiveTab("sync"),
-                icon: jsxRuntimeExports.jsx(Cloud, { size: 18 }),
-                children: "Cloud Sync"
-              }
-            ),
-jsxRuntimeExports.jsx(
-              Button,
-              {
-                variant: activeTab === "ai" ? "secondary" : "ghost",
-                className: "ars-tab-btn",
-                onClick: () => setActiveTab("ai"),
-                icon: jsxRuntimeExports.jsx(Cpu, { size: 18 }),
-                children: "AI Configuration"
-              }
-            ),
-jsxRuntimeExports.jsx(
-              Button,
-              {
-                variant: activeTab === "about" ? "secondary" : "ghost",
-                className: "ars-tab-btn",
-                onClick: () => setActiveTab("about"),
-                icon: jsxRuntimeExports.jsx(Info, { size: 18 }),
-                children: "About"
-              }
-            ),
-jsxRuntimeExports.jsx(
-              Button,
-              {
-                variant: activeTab === "debug" ? "secondary" : "ghost",
-                className: "ars-tab-btn",
-                onClick: () => setActiveTab("debug"),
-                icon: jsxRuntimeExports.jsx(Bug, { size: 18 }),
-                children: "Debug"
-              }
-            )
-          ] }),
-jsxRuntimeExports.jsxs("main", { className: "ars-settings-content", children: [
-            activeTab === "ai" && jsxRuntimeExports.jsxs("div", { className: "ars-settings-section", children: [
-jsxRuntimeExports.jsx("h3", { children: "AI Engine Settings" }),
-jsxRuntimeExports.jsx("div", { className: "ars-setting-group border border-indigo-100 bg-indigo-50/30 p-4 rounded-xl mb-6", children: jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between", children: [
-jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
-jsxRuntimeExports.jsx("div", { className: `p-2 rounded-lg ${settings.amazon_ai_enabled ? "bg-indigo-600 text-white" : "bg-gray-200 text-gray-500"}`, children: jsxRuntimeExports.jsx(Cpu, { size: 20 }) }),
-jsxRuntimeExports.jsxs("div", { children: [
-jsxRuntimeExports.jsx("label", { className: "font-semibold text-gray-900 block cursor-pointer select-none", htmlFor: "ai-toggle", children: "AI Features" }),
-jsxRuntimeExports.jsx("p", { className: "text-xs text-gray-500", children: "Enable automated content generation" })
-                  ] })
-                ] }),
-jsxRuntimeExports.jsxs("div", { className: "relative inline-block w-12 h-6 transition duration-200 ease-in-out rounded-full cursor-pointer", children: [
-jsxRuntimeExports.jsx(
-                    "input",
-                    {
-                      id: "ai-toggle",
-                      type: "checkbox",
-                      className: "peer absolute w-full h-full opacity-0 z-10 cursor-pointer",
-                      checked: settings.amazon_ai_enabled,
-                      onChange: (e) => handleAIEnabledChange(e.target.checked)
-                    }
-                  ),
-jsxRuntimeExports.jsx("div", { className: "w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-indigo-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600" })
-                ] })
-              ] }) }),
-jsxRuntimeExports.jsx(
-                "div",
-                {
-                  className: `transition-all duration-500 ease-in-out ${settings.amazon_ai_enabled ? "opacity-100" : "opacity-40 pointer-events-none grayscale"}`,
-                  children: jsxRuntimeExports.jsxs("div", { className: "ars-setting-group border border-gray-100 bg-white p-5 rounded-xl shadow-sm mb-6", children: [
-jsxRuntimeExports.jsx("h4", { className: "text-sm font-semibold text-gray-700 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2", children: "Provider Configuration" }),
-jsxRuntimeExports.jsxs("div", { className: "grid gap-6", children: [
-jsxRuntimeExports.jsxs("div", { className: "ars-setting-item", children: [
-jsxRuntimeExports.jsx("label", { className: "text-sm font-medium text-gray-700 mb-1.5 block", children: "Primary AI Provider" }),
-jsxRuntimeExports.jsxs("div", { className: "relative", children: [
-jsxRuntimeExports.jsxs(
-                            "select",
-                            {
-                              value: settings.amazon_ai_provider,
-                              onChange: (e) => setSetting("amazon_ai_provider", e.target.value),
-                              className: "ars-select w-full pl-10 pr-12 h-10 bg-gray-50 border-gray-200 focus:bg-white transition-colors appearance-none leading-normal",
-                              disabled: !settings.amazon_ai_enabled,
-                              children: [
-jsxRuntimeExports.jsx("option", { value: "gemini", children: "Google Gemini (Recommended)" }),
-jsxRuntimeExports.jsx("option", { value: "local", children: "Local LLM Server" })
-                              ]
-                            }
-                          ),
-jsxRuntimeExports.jsx("div", { className: "absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none", children: settings.amazon_ai_provider === "gemini" ? jsxRuntimeExports.jsx(Cloud, { size: 16 }) : jsxRuntimeExports.jsx(Cpu, { size: 16 }) })
-                        ] })
-                      ] }),
-                      settings.amazon_ai_provider === "gemini" ? jsxRuntimeExports.jsxs("div", { className: "space-y-5 animate-in fade-in slide-in-from-top-2", children: [
-jsxRuntimeExports.jsxs("div", { className: "ars-setting-item", children: [
-jsxRuntimeExports.jsx("label", { className: "text-sm font-medium text-gray-700 mb-1.5 block", children: "Model Selection" }),
-jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
-jsxRuntimeExports.jsx("div", { className: "relative flex-1 min-w-0", children: jsxRuntimeExports.jsxs(
-                              "select",
-                              {
-                                value: settings.amazon_ai_gemini_model,
-                                onChange: (e) => setSetting("amazon_ai_gemini_model", e.target.value),
-                                className: "ars-select w-full pl-3 pr-12 h-10 bg-gray-50 border-gray-200 focus:bg-white leading-normal",
-                                disabled: !settings.amazon_ai_enabled,
-                                children: [
-jsxRuntimeExports.jsx("option", { value: "gemini-2.5-flash", children: "Gemini 2.5 Flash" }),
-jsxRuntimeExports.jsx("option", { value: "gemini-3-flash-preview", children: "Gemini 3 Flash Preview" })
-                                ]
-                              }
-                            ) }),
-                            settings.amazon_ai_gemini_model === "gemini-2.5-flash" && jsxRuntimeExports.jsxs("span", { className: "shrink-0 text-[11px] font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100 shadow-sm flex items-center gap-1", children: [
-jsxRuntimeExports.jsx("div", { className: "w-1.5 h-1.5 rounded-full bg-emerald-500" }),
-                              "Faster & Stable"
-                            ] }),
-                            settings.amazon_ai_gemini_model === "gemini-3-flash-preview" && jsxRuntimeExports.jsxs("span", { className: "shrink-0 text-[11px] font-bold text-indigo-700 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100 shadow-sm flex items-center gap-1", children: [
-jsxRuntimeExports.jsx("div", { className: "w-1.5 h-1.5 rounded-full bg-indigo-500" }),
-                              "Smarter"
-                            ] })
-                          ] })
-                        ] }),
-jsxRuntimeExports.jsxs("div", { className: "ars-setting-item", children: [
-jsxRuntimeExports.jsx(
-                            Input,
-                            {
-                              label: "API Key",
-                              type: "text",
-                              placeholder: "Paste your Gemini API key here...",
-                              value: settings.amazon_ai_gemini_key,
-                              onChange: (e) => setSetting("amazon_ai_gemini_key", e.target.value),
-                              icon: jsxRuntimeExports.jsx(Key, { size: 16, className: "text-gray-400" }),
-                              disabled: !settings.amazon_ai_enabled,
-                              className: "font-mono text-sm",
-                              autoComplete: "off"
-                            }
-                          ),
-jsxRuntimeExports.jsxs("p", { className: "mt-2 text-xs text-gray-500 flex items-center gap-1", children: [
-jsxRuntimeExports.jsx(Info, { size: 12 }),
-                            "Get a free key from ",
-jsxRuntimeExports.jsx("a", { href: "https://aistudio.google.com/", target: "_blank", className: "text-indigo-600 hover:text-indigo-700 hover:underline font-medium", children: "Google AI Studio" }),
-                            "."
-                          ] })
-                        ] })
-                      ] }) : jsxRuntimeExports.jsx("div", { className: "space-y-5 animate-in fade-in slide-in-from-top-2", children: jsxRuntimeExports.jsxs("div", { className: "ars-setting-item", children: [
-jsxRuntimeExports.jsx(
-                          Input,
-                          {
-                            label: "Local Server URL",
-                            placeholder: "http://localhost:1234/v1",
-                            value: settings.amazon_ai_llm_server_url,
-                            onChange: (e) => setSetting("amazon_ai_llm_server_url", e.target.value),
-                            disabled: !settings.amazon_ai_enabled,
-                            icon: jsxRuntimeExports.jsx(RefreshCw, { size: 16, className: "text-gray-400" })
-                          }
-                        ),
-jsxRuntimeExports.jsx("p", { className: "mt-2 text-xs text-gray-500", children: "Compatible with LM Studio, Ollama, or LocalAI API endpoints." })
-                      ] }) })
-                    ] })
-                  ] })
-                }
-              )
-            ] }),
-            activeTab === "sync" && jsxRuntimeExports.jsxs("div", { className: "ars-settings-section", children: [
-jsxRuntimeExports.jsxs("div", { className: "flex justify-between items-center mb-4", children: [
-jsxRuntimeExports.jsxs("div", { children: [
-jsxRuntimeExports.jsx("h3", { className: "text-lg font-bold text-gray-900", children: "Cloud Sync Settings" }),
-                  syncStatus && jsxRuntimeExports.jsx("div", { className: `mt-2 text-xs px-3 py-1.5 rounded-md font-medium inline-block animate-in fade-in slide-in-from-top-1 ${syncStatus.type === "error" ? "bg-red-50 text-red-600 border border-red-100" : syncStatus.type === "success" ? "bg-green-50 text-green-600 border border-green-100" : "bg-blue-50 text-blue-600 border border-blue-100"}`, children: syncStatus.message })
-                ] }),
-jsxRuntimeExports.jsx(Button, { variant: "ghost", className: "text-red-500 hover:bg-red-50", onClick: handleClearCloud, icon: jsxRuntimeExports.jsx(Trash2, { size: 16 }), children: "Clear Cloud" })
-              ] }),
-              !settings.amazon_pastebin_api_user_key && jsxRuntimeExports.jsxs("div", { className: "mb-6 p-3 bg-amber-50 border border-amber-200 rounded-lg flex items-start gap-3", children: [
-jsxRuntimeExports.jsx(Info, { size: 18, className: "text-amber-600 shrink-0 mt-0.5" }),
-jsxRuntimeExports.jsxs("div", { className: "text-sm text-amber-800", children: [
-jsxRuntimeExports.jsx("p", { className: "font-semibold mb-1", children: "Important Privacy Note:" }),
-jsxRuntimeExports.jsxs("p", { children: [
-                    "Due to Pastebin limits on private pastes, all ",
-jsxRuntimeExports.jsx("strong", { children: "reviews" }),
-                    " saved to the cloud will be created as ",
-jsxRuntimeExports.jsx("strong", { children: "Public" }),
-                    ". Templates and Phrases will remain ",
-jsxRuntimeExports.jsx("strong", { children: "Private" }),
-                    "."
-                  ] })
-                ] })
-              ] }),
-jsxRuntimeExports.jsxs("div", { className: "space-y-6", children: [
-jsxRuntimeExports.jsxs("div", { className: "ars-setting-group border border-gray-100 bg-white p-5 rounded-xl shadow-sm", children: [
-jsxRuntimeExports.jsx("h4", { className: "text-sm font-semibold text-gray-700 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2", children: "Auto-Sync Preferences" }),
-jsxRuntimeExports.jsxs("div", { className: "space-y-4", children: [
-jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between", children: [
-jsxRuntimeExports.jsxs("div", { children: [
-jsxRuntimeExports.jsx("label", { className: "font-medium text-gray-900", children: "Auto-Sync Templates" }),
-jsxRuntimeExports.jsx("p", { className: "text-xs text-gray-500", children: "Automatically backup templates when modified" })
-                      ] }),
-jsxRuntimeExports.jsxs("div", { className: "relative inline-block w-10 h-5 transition duration-200 ease-in-out rounded-full cursor-pointer", children: [
-jsxRuntimeExports.jsx(
-                          "input",
-                          {
-                            type: "checkbox",
-                            className: "peer absolute w-full h-full opacity-0 z-10 cursor-pointer",
-                            checked: settings.amazon_auto_sync_templates,
-                            onChange: (e) => setSetting("amazon_auto_sync_templates", e.target.checked)
-                          }
-                        ),
-jsxRuntimeExports.jsx("div", { className: "w-10 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-indigo-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600" })
-                      ] })
-                    ] }),
-jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between", children: [
-jsxRuntimeExports.jsxs("div", { children: [
-jsxRuntimeExports.jsx("label", { className: "font-medium text-gray-900", children: "Auto-Sync Phrases" }),
-jsxRuntimeExports.jsx("p", { className: "text-xs text-gray-500", children: "Automatically backup phrases when modified" })
-                      ] }),
-jsxRuntimeExports.jsxs("div", { className: "relative inline-block w-10 h-5 transition duration-200 ease-in-out rounded-full cursor-pointer", children: [
-jsxRuntimeExports.jsx(
-                          "input",
-                          {
-                            type: "checkbox",
-                            className: "peer absolute w-full h-full opacity-0 z-10 cursor-pointer",
-                            checked: settings.amazon_auto_sync_phrases,
-                            onChange: (e) => setSetting("amazon_auto_sync_phrases", e.target.checked)
-                          }
-                        ),
-jsxRuntimeExports.jsx("div", { className: "w-10 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-indigo-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600" })
-                      ] })
-                    ] })
-                  ] })
-                ] }),
-jsxRuntimeExports.jsxs("div", { className: "ars-setting-group border border-gray-100 bg-gray-50/30 p-4 rounded-xl space-y-4", children: [
-jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 mb-1", children: [
-jsxRuntimeExports.jsx(Key, { size: 16, className: "text-orange-500" }),
-jsxRuntimeExports.jsx("span", { className: "text-sm font-semibold text-gray-700", children: "Pastebin Credentials" })
-                  ] }),
-jsxRuntimeExports.jsx(
-                    Input,
-                    {
-                      label: "API Dev Key",
-                      placeholder: "Enter your Pastebin API Dev Key",
-                      value: settings.amazon_pastebin_api_dev_key,
-                      onChange: (e) => setSetting("amazon_pastebin_api_dev_key", e.target.value)
-                    }
-                  ),
-jsxRuntimeExports.jsxs("div", { className: "grid grid-cols-2 gap-4", children: [
-jsxRuntimeExports.jsx(
-                      Input,
-                      {
-                        label: "Pastebin Username",
-                        placeholder: "Username",
-                        value: settings.amazon_pastebin_api_user_name,
-                        onChange: (e) => setSetting("amazon_pastebin_api_user_name", e.target.value)
-                      }
-                    ),
-jsxRuntimeExports.jsx(
-                      Input,
-                      {
-                        label: "Pastebin Password",
-                        type: "password",
-                        placeholder: "Password",
-                        value: settings.amazon_pastebin_api_user_password,
-                        onChange: (e) => setSetting("amazon_pastebin_api_user_password", e.target.value)
-                      }
-                    )
-                  ] }),
-jsxRuntimeExports.jsxs("div", { className: "flex gap-3 pt-2", children: [
-jsxRuntimeExports.jsx(
-                      Button,
-                      {
-                        onClick: handleGenerateKey,
-                        variant: "secondary",
-                        disabled: isLoading || !settings.amazon_pastebin_api_dev_key || !settings.amazon_pastebin_api_user_name || !settings.amazon_pastebin_api_user_password,
-                        className: "flex-1",
-                        icon: isLoading ? jsxRuntimeExports.jsx(RefreshCw, { size: 16, className: "animate-spin" }) : jsxRuntimeExports.jsx(ShieldCheck, { size: 16 }),
-                        children: "Generate User Key"
-                      }
-                    ),
-jsxRuntimeExports.jsx(
-                      Button,
-                      {
-                        onClick: handleTestConnection,
-                        variant: "outline",
-                        disabled: isLoading || !settings.amazon_pastebin_api_dev_key || !settings.amazon_pastebin_api_user_key,
-                        className: "flex-1",
-                        icon: jsxRuntimeExports.jsx(RefreshCw, { size: 16 }),
-                        children: "Test Connection"
-                      }
-                    )
-                  ] }),
-jsxRuntimeExports.jsxs("p", { className: "ars-help-text", children: [
-                    "Get your key from the ",
-jsxRuntimeExports.jsx("a", { href: "https://pastebin.com/doc_api", target: "_blank", className: "text-blue-600 hover:underline", children: "Pastebin API documentation" }),
-                    "."
-                  ] })
-                ] }),
-jsxRuntimeExports.jsxs("div", { className: "ars-setting-group border border-gray-100 bg-gray-50/30 p-4 rounded-xl space-y-4", children: [
-jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 mb-1", children: [
-jsxRuntimeExports.jsx(ShieldCheck, { size: 16, className: "text-blue-500" }),
-jsxRuntimeExports.jsx("span", { className: "text-sm font-semibold text-gray-700", children: "Key & Recovery Management" })
-                  ] }),
-jsxRuntimeExports.jsxs("div", { className: "relative", children: [
-jsxRuntimeExports.jsx(
-                      Input,
-                      {
-                        label: "API User Key (Auto-generated)",
-                        value: settings.amazon_pastebin_api_user_key,
-                        onChange: (e) => setSetting("amazon_pastebin_api_user_key", e.target.value),
-                        placeholder: "Will be generated automatically",
-                        readOnly: !isUserKeyEditable,
-                        className: !isUserKeyEditable ? "bg-gray-50 text-gray-500 cursor-not-allowed" : "",
-                        icon: jsxRuntimeExports.jsx(ShieldCheck, { size: 16, className: "text-gray-400" })
-                      }
-                    ),
-jsxRuntimeExports.jsx(
-                      "button",
-                      {
-                        type: "button",
-                        onClick: () => setIsUserKeyEditable(!isUserKeyEditable),
-                        className: "absolute right-3 top-[34px] text-gray-400 hover:text-blue-600 transition-colors",
-                        title: "Edit User Key manually",
-                        children: jsxRuntimeExports.jsx(Pen, { size: 16 })
-                      }
-                    ),
-jsxRuntimeExports.jsx("p", { className: "ars-help-text mt-2", children: "Generated from your credentials or recovered from cloud." })
-                  ] }),
-jsxRuntimeExports.jsxs("div", { className: "pt-4 border-t border-gray-100 mt-2", children: [
-jsxRuntimeExports.jsxs("label", { className: "text-xs font-semibold text-gray-700 uppercase tracking-wider flex items-center gap-1.5 mb-2", children: [
-                      "Recovery Paste ID",
-jsxRuntimeExports.jsx(CircleQuestionMark, { size: 14, className: "text-gray-400 cursor-help", title: "Your User Key can be stored in a rescue paste, allowing multi-device sync." })
-                    ] }),
-jsxRuntimeExports.jsxs("div", { className: "flex gap-2", children: [
-jsxRuntimeExports.jsx(
-                        Input,
-                        {
-                          value: settings.amazon_pastebin_recovery_id,
-                          onChange: (e) => setSetting("amazon_pastebin_recovery_id", e.target.value),
-                          placeholder: "e.g. QweRTy12",
-                          className: "font-mono flex-1"
-                        }
-                      ),
-jsxRuntimeExports.jsx(
-                        Button,
-                        {
-                          variant: "secondary",
-                          size: "sm",
-                          onClick: handleFindRecoveryPaste,
-                          disabled: isLoading,
-                          icon: jsxRuntimeExports.jsx(Search, { size: 14 }),
-                          className: "whitespace-nowrap px-3 text-[11px] h-[38px]",
-                          children: "Find ID"
-                        }
-                      ),
-jsxRuntimeExports.jsx(
-                        Button,
-                        {
-                          variant: "secondary",
-                          size: "sm",
-                          onClick: handleFetchKey,
-                          disabled: isLoading || !settings.amazon_pastebin_recovery_id,
-                          icon: jsxRuntimeExports.jsx(CloudDownload, { size: 14 }),
-                          className: "whitespace-nowrap px-3 text-[11px] h-[38px]",
-                          children: "Fetch Key"
-                        }
-                      )
-                    ] }),
-jsxRuntimeExports.jsx("p", { className: "ars-help-text mt-1.5", children: "Recover your key from another device, or search for an existing recovery paste." }),
-jsxRuntimeExports.jsx(
-                      Button,
-                      {
-                        onClick: handleSaveUserKeyToCloud,
-                        variant: "ghost",
-                        size: "sm",
-                        className: "w-full text-blue-600 hover:bg-blue-50 text-[11px] mt-4",
-                        disabled: isLoading || !settings.amazon_pastebin_api_user_key,
-                        children: "Backup User Key to Cloud (Create Recovery Paste)"
-                      }
-                    )
-                  ] })
-                ] })
-              ] })
-            ] }),
-            activeTab === "about" && jsxRuntimeExports.jsxs("div", { className: "ars-settings-section ars-about-section", children: [
-jsxRuntimeExports.jsxs("div", { className: "ars-brand", children: [
-jsxRuntimeExports.jsx(Settings, { size: 48, className: "ars-brand-icon" }),
-jsxRuntimeExports.jsx("h1", { children: "Amazon Review Studio" }),
-jsxRuntimeExports.jsx("span", { className: "ars-version", children: "v2.0.0-react" })
-              ] }),
-jsxRuntimeExports.jsx("p", { children: "A premium userscript for Amazon reviewers." }),
-jsxRuntimeExports.jsx(Card, { padding: "md", children: jsxRuntimeExports.jsx("p", { children: "Designed for power users who want professional formatting and AI-assisted content creation directly within the Amazon review form." }) })
-            ] }),
-            activeTab === "debug" && jsxRuntimeExports.jsxs("div", { className: "ars-settings-section", children: [
-jsxRuntimeExports.jsx("h3", { children: "Troubleshooting" }),
-jsxRuntimeExports.jsxs("div", { className: "ars-setting-group border border-red-100 bg-red-50/30 p-4 rounded-xl space-y-4", children: [
-jsxRuntimeExports.jsx("p", { className: "text-sm text-gray-700", children: "Tools to help diagnose issues with form submission or injection." }),
-jsxRuntimeExports.jsxs("div", { className: "ars-setting-item checkbox-row", children: [
-jsxRuntimeExports.jsxs("label", { className: "flex items-center gap-3 cursor-pointer", children: [
-jsxRuntimeExports.jsx(
-                      "input",
-                      {
-                        type: "checkbox",
-                        checked: settings.amazon_ai_convert_markdown,
-                        onChange: (e) => setSetting("amazon_ai_convert_markdown", e.target.checked)
-                      }
-                    ),
-jsxRuntimeExports.jsx("span", { children: "Convert AI Markdown to Unicode" })
-                  ] }),
-jsxRuntimeExports.jsx("p", { className: "ars-help-text ml-7", children: "Automatically formats AI-generated headers and lists with unicode styles. Disable if you prefer raw text output." })
-                ] }),
-jsxRuntimeExports.jsx("div", { className: "ars-setting-item checkbox-row", children: jsxRuntimeExports.jsxs("label", { className: "flex items-center gap-3 cursor-pointer", children: [
-jsxRuntimeExports.jsx(
-                    "input",
-                    {
-                      type: "checkbox",
-                      checked: settings.debug_mode,
-                      onChange: (e) => setSetting("debug_mode", e.target.checked)
-                    }
-                  ),
-jsxRuntimeExports.jsx("span", { children: "Enable Verbose Logging (Console)" })
-                ] }) }),
-jsxRuntimeExports.jsxs("div", { className: "ars-setting-item checkbox-row", children: [
-jsxRuntimeExports.jsxs("label", { className: "flex items-center gap-3 cursor-pointer", children: [
-jsxRuntimeExports.jsx(
-                      "input",
-                      {
-                        type: "checkbox",
-                        checked: settings.debug_unhide_native,
-                        onChange: (e) => {
-                          setSetting("debug_unhide_native", e.target.checked);
-                        }
-                      }
-                    ),
-jsxRuntimeExports.jsx("span", { children: "Unhide Native Amazon Form (Requires Refresh)" })
-                  ] }),
-jsxRuntimeExports.jsx("p", { className: "ars-help-text ml-7", children: "Reveals the original Amazon review form below the Studio interface. Useful to check if data is syncing correctly." })
-                ] })
-              ] })
-            ] })
-          ] })
-        ] })
-      }
+        width: "740px"
+      },
+React__default.createElement("div", { className: "ars-settings-layout p-2" }, React__default.createElement("aside", { className: "ars-settings-sidebar" }, React__default.createElement(
+        Button,
+        {
+          variant: activeTab === "sync" ? "secondary" : "ghost",
+          className: "ars-tab-btn",
+          onClick: () => setActiveTab("sync"),
+          icon: React__default.createElement(Cloud, { size: 18 })
+        },
+        "Cloud Sync"
+      ), React__default.createElement(
+        Button,
+        {
+          variant: activeTab === "ai" ? "secondary" : "ghost",
+          className: "ars-tab-btn",
+          onClick: () => setActiveTab("ai"),
+          icon: React__default.createElement(Cpu, { size: 18 })
+        },
+        "AI Configuration"
+      ), React__default.createElement(
+        Button,
+        {
+          variant: activeTab === "about" ? "secondary" : "ghost",
+          className: "ars-tab-btn",
+          onClick: () => setActiveTab("about"),
+          icon: React__default.createElement(Info, { size: 18 })
+        },
+        "About"
+      ), React__default.createElement(
+        Button,
+        {
+          variant: activeTab === "debug" ? "secondary" : "ghost",
+          className: "ars-tab-btn",
+          onClick: () => setActiveTab("debug"),
+          icon: React__default.createElement(Bug, { size: 18 })
+        },
+        "Debug"
+      )), React__default.createElement("main", { className: "ars-settings-content" }, activeTab === "ai" && React__default.createElement("div", { className: "ars-settings-section" }, React__default.createElement("h3", null, "AI Engine Settings"), React__default.createElement("div", { className: "ars-setting-group border border-indigo-100 bg-indigo-50/30 p-4 rounded-xl mb-6" }, React__default.createElement("div", { className: "flex items-center justify-between" }, React__default.createElement("div", { className: "flex items-center gap-3" }, React__default.createElement("div", { className: `p-2 rounded-lg ${settings.amazon_ai_enabled ? "bg-indigo-600 text-white" : "bg-gray-200 text-gray-500"}` }, React__default.createElement(Cpu, { size: 20 })), React__default.createElement("div", null, React__default.createElement("label", { className: "font-semibold text-gray-900 block cursor-pointer select-none", htmlFor: "ai-toggle" }, "AI Features"), React__default.createElement("p", { className: "text-xs text-gray-500" }, "Enable automated content generation"))), React__default.createElement("div", { className: "relative inline-block w-12 h-6 transition duration-200 ease-in-out rounded-full cursor-pointer" }, React__default.createElement(
+        "input",
+        {
+          id: "ai-toggle",
+          type: "checkbox",
+          className: "peer absolute w-full h-full opacity-0 z-10 cursor-pointer",
+          checked: settings.amazon_ai_enabled,
+          onChange: (e) => handleAIEnabledChange(e.target.checked)
+        }
+      ), React__default.createElement("div", { className: "w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-indigo-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600" })))), React__default.createElement(
+        "div",
+        {
+          className: `transition-all duration-500 ease-in-out ${settings.amazon_ai_enabled ? "opacity-100" : "opacity-40 pointer-events-none grayscale"}`
+        },
+React__default.createElement("div", { className: "ars-setting-group border border-gray-100 bg-white p-5 rounded-xl shadow-sm mb-6" }, React__default.createElement("h4", { className: "text-sm font-semibold text-gray-700 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2" }, "Provider Configuration"), React__default.createElement("div", { className: "grid gap-6" }, React__default.createElement("div", { className: "ars-setting-item" }, React__default.createElement("label", { className: "text-sm font-medium text-gray-700 mb-1.5 block" }, "Primary AI Provider"), React__default.createElement("div", { className: "relative" }, React__default.createElement(
+          "select",
+          {
+            value: settings.amazon_ai_provider,
+            onChange: (e) => setSetting("amazon_ai_provider", e.target.value),
+            className: "ars-select w-full pl-10 pr-12 h-10 bg-gray-50 border-gray-200 focus:bg-white transition-colors appearance-none leading-normal",
+            disabled: !settings.amazon_ai_enabled
+          },
+React__default.createElement("option", { value: "gemini" }, "Google Gemini (Recommended)"),
+React__default.createElement("option", { value: "local" }, "Local LLM Server")
+        ), React__default.createElement("div", { className: "absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" }, settings.amazon_ai_provider === "gemini" ? React__default.createElement(Cloud, { size: 16 }) : React__default.createElement(Cpu, { size: 16 })))), settings.amazon_ai_provider === "gemini" ? React__default.createElement("div", { className: "space-y-5 animate-in fade-in slide-in-from-top-2" }, React__default.createElement("div", { className: "ars-setting-item" }, React__default.createElement("label", { className: "text-sm font-medium text-gray-700 mb-1.5 block" }, "Model Selection"), React__default.createElement("div", { className: "flex items-center gap-3" }, React__default.createElement("div", { className: "relative flex-1 min-w-0" }, React__default.createElement(
+          "select",
+          {
+            value: settings.amazon_ai_gemini_model,
+            onChange: (e) => setSetting("amazon_ai_gemini_model", e.target.value),
+            className: "ars-select w-full pl-3 pr-12 h-10 bg-gray-50 border-gray-200 focus:bg-white leading-normal",
+            disabled: !settings.amazon_ai_enabled
+          },
+React__default.createElement("option", { value: "gemini-2.5-flash" }, "Gemini 2.5 Flash"),
+React__default.createElement("option", { value: "gemini-3-flash-preview" }, "Gemini 3 Flash Preview")
+        )), settings.amazon_ai_gemini_model === "gemini-2.5-flash" && React__default.createElement("span", { className: "shrink-0 text-[11px] font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100 shadow-sm flex items-center gap-1" }, React__default.createElement("div", { className: "w-1.5 h-1.5 rounded-full bg-emerald-500" }), "Faster & Stable"), settings.amazon_ai_gemini_model === "gemini-3-flash-preview" && React__default.createElement("span", { className: "shrink-0 text-[11px] font-bold text-indigo-700 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100 shadow-sm flex items-center gap-1" }, React__default.createElement("div", { className: "w-1.5 h-1.5 rounded-full bg-indigo-500" }), "Smarter"))), React__default.createElement("div", { className: "ars-setting-item" }, React__default.createElement(
+          Input,
+          {
+            label: "API Key",
+            type: "text",
+            placeholder: "Paste your Gemini API key here...",
+            value: settings.amazon_ai_gemini_key,
+            onChange: (e) => setSetting("amazon_ai_gemini_key", e.target.value),
+            icon: React__default.createElement(Key, { size: 16, className: "text-gray-400" }),
+            disabled: !settings.amazon_ai_enabled,
+            className: "font-mono text-sm",
+            autoComplete: "off"
+          }
+        ), React__default.createElement("p", { className: "mt-2 text-xs text-gray-500 flex items-center gap-1" }, React__default.createElement(Info, { size: 12 }), "Get a free key from ", React__default.createElement("a", { href: "https://aistudio.google.com/", target: "_blank", className: "text-indigo-600 hover:text-indigo-700 hover:underline font-medium" }, "Google AI Studio"), "."))) : React__default.createElement("div", { className: "space-y-5 animate-in fade-in slide-in-from-top-2" }, React__default.createElement("div", { className: "ars-setting-item" }, React__default.createElement(
+          Input,
+          {
+            label: "Local Server URL",
+            placeholder: "http://localhost:1234/v1",
+            value: settings.amazon_ai_llm_server_url,
+            onChange: (e) => setSetting("amazon_ai_llm_server_url", e.target.value),
+            disabled: !settings.amazon_ai_enabled,
+            icon: React__default.createElement(RefreshCw, { size: 16, className: "text-gray-400" })
+          }
+        ), React__default.createElement("p", { className: "mt-2 text-xs text-gray-500" }, "Compatible with LM Studio, Ollama, or LocalAI API endpoints.")))))
+      )), activeTab === "sync" && React__default.createElement("div", { className: "ars-settings-section" }, React__default.createElement("div", { className: "flex justify-between items-center mb-4" }, React__default.createElement("div", null, React__default.createElement("h3", { className: "text-lg font-bold text-gray-900" }, "Cloud Sync Settings"), syncStatus && React__default.createElement("div", { className: `mt-2 text-xs px-3 py-1.5 rounded-md font-medium inline-block animate-in fade-in slide-in-from-top-1 ${syncStatus.type === "error" ? "bg-red-50 text-red-600 border border-red-100" : syncStatus.type === "success" ? "bg-green-50 text-green-600 border border-green-100" : "bg-blue-50 text-blue-600 border border-blue-100"}` }, syncStatus.message)), React__default.createElement(Button, { variant: "ghost", className: "text-red-500 hover:bg-red-50", onClick: handleClearCloud, icon: React__default.createElement(Trash2, { size: 16 }) }, "Clear Cloud")), !settings.amazon_pastebin_api_user_key && React__default.createElement("div", { className: "mb-6 p-3 bg-amber-50 border border-amber-200 rounded-lg flex items-start gap-3" }, React__default.createElement(Info, { size: 18, className: "text-amber-600 shrink-0 mt-0.5" }), React__default.createElement("div", { className: "text-sm text-amber-800" }, React__default.createElement("p", { className: "font-semibold mb-1" }, "Important Privacy Note:"), React__default.createElement("p", null, "Due to Pastebin limits on private pastes, all ", React__default.createElement("strong", null, "reviews"), " saved to the cloud will be created as ", React__default.createElement("strong", null, "Public"), ". Templates and Phrases will remain ", React__default.createElement("strong", null, "Private"), "."))), React__default.createElement("div", { className: "space-y-6" }, React__default.createElement("div", { className: "ars-setting-group border border-gray-100 bg-white p-5 rounded-xl shadow-sm" }, React__default.createElement("h4", { className: "text-sm font-semibold text-gray-700 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2" }, "Auto-Sync Preferences"), React__default.createElement("div", { className: "space-y-4" }, React__default.createElement("div", { className: "flex items-center justify-between" }, React__default.createElement("div", null, React__default.createElement("label", { className: "font-medium text-gray-900" }, "Auto-Sync Templates"), React__default.createElement("p", { className: "text-xs text-gray-500" }, "Automatically backup templates when modified")), React__default.createElement("div", { className: "relative inline-block w-10 h-5 transition duration-200 ease-in-out rounded-full cursor-pointer" }, React__default.createElement(
+        "input",
+        {
+          type: "checkbox",
+          className: "peer absolute w-full h-full opacity-0 z-10 cursor-pointer",
+          checked: settings.amazon_auto_sync_templates,
+          onChange: (e) => setSetting("amazon_auto_sync_templates", e.target.checked)
+        }
+      ), React__default.createElement("div", { className: "w-10 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-indigo-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600" }))), React__default.createElement("div", { className: "flex items-center justify-between" }, React__default.createElement("div", null, React__default.createElement("label", { className: "font-medium text-gray-900" }, "Auto-Sync Phrases"), React__default.createElement("p", { className: "text-xs text-gray-500" }, "Automatically backup phrases when modified")), React__default.createElement("div", { className: "relative inline-block w-10 h-5 transition duration-200 ease-in-out rounded-full cursor-pointer" }, React__default.createElement(
+        "input",
+        {
+          type: "checkbox",
+          className: "peer absolute w-full h-full opacity-0 z-10 cursor-pointer",
+          checked: settings.amazon_auto_sync_phrases,
+          onChange: (e) => setSetting("amazon_auto_sync_phrases", e.target.checked)
+        }
+      ), React__default.createElement("div", { className: "w-10 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-indigo-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600" }))))), React__default.createElement("div", { className: "ars-setting-group border border-gray-100 bg-gray-50/30 p-4 rounded-xl space-y-4" }, React__default.createElement("div", { className: "flex items-center gap-2 mb-1" }, React__default.createElement(Key, { size: 16, className: "text-orange-500" }), React__default.createElement("span", { className: "text-sm font-semibold text-gray-700" }, "Pastebin Credentials")), React__default.createElement(
+        Input,
+        {
+          label: "API Dev Key",
+          placeholder: "Enter your Pastebin API Dev Key",
+          value: settings.amazon_pastebin_api_dev_key,
+          onChange: (e) => setSetting("amazon_pastebin_api_dev_key", e.target.value)
+        }
+      ), React__default.createElement("div", { className: "grid grid-cols-2 gap-4" }, React__default.createElement(
+        Input,
+        {
+          label: "Pastebin Username",
+          placeholder: "Username",
+          value: settings.amazon_pastebin_api_user_name,
+          onChange: (e) => setSetting("amazon_pastebin_api_user_name", e.target.value)
+        }
+      ), React__default.createElement(
+        Input,
+        {
+          label: "Pastebin Password",
+          type: "password",
+          placeholder: "Password",
+          value: settings.amazon_pastebin_api_user_password,
+          onChange: (e) => setSetting("amazon_pastebin_api_user_password", e.target.value)
+        }
+      )), React__default.createElement("div", { className: "flex gap-3 pt-2" }, React__default.createElement(
+        Button,
+        {
+          onClick: handleGenerateKey,
+          variant: "secondary",
+          disabled: isLoading || !settings.amazon_pastebin_api_dev_key || !settings.amazon_pastebin_api_user_name || !settings.amazon_pastebin_api_user_password,
+          className: "flex-1",
+          icon: isLoading ? React__default.createElement(RefreshCw, { size: 16, className: "animate-spin" }) : React__default.createElement(ShieldCheck, { size: 16 })
+        },
+        "Generate User Key"
+      ), React__default.createElement(
+        Button,
+        {
+          onClick: handleTestConnection,
+          variant: "outline",
+          disabled: isLoading || !settings.amazon_pastebin_api_dev_key || !settings.amazon_pastebin_api_user_key,
+          className: "flex-1",
+          icon: React__default.createElement(RefreshCw, { size: 16 })
+        },
+        "Test Connection"
+      )), React__default.createElement("p", { className: "ars-help-text" }, "Get your key from the ", React__default.createElement("a", { href: "https://pastebin.com/doc_api", target: "_blank", className: "text-blue-600 hover:underline" }, "Pastebin API documentation"), ".")), React__default.createElement("div", { className: "ars-setting-group border border-gray-100 bg-gray-50/30 p-4 rounded-xl space-y-4" }, React__default.createElement("div", { className: "flex items-center gap-2 mb-1" }, React__default.createElement(ShieldCheck, { size: 16, className: "text-blue-500" }), React__default.createElement("span", { className: "text-sm font-semibold text-gray-700" }, "Key & Recovery Management")), React__default.createElement("div", { className: "relative" }, React__default.createElement(
+        Input,
+        {
+          label: "API User Key (Auto-generated)",
+          value: settings.amazon_pastebin_api_user_key,
+          onChange: (e) => setSetting("amazon_pastebin_api_user_key", e.target.value),
+          placeholder: "Will be generated automatically",
+          readOnly: !isUserKeyEditable,
+          className: !isUserKeyEditable ? "bg-gray-50 text-gray-500 cursor-not-allowed" : "",
+          icon: React__default.createElement(ShieldCheck, { size: 16, className: "text-gray-400" })
+        }
+      ), React__default.createElement(
+        "button",
+        {
+          type: "button",
+          onClick: () => setIsUserKeyEditable(!isUserKeyEditable),
+          className: "absolute right-3 top-[34px] text-gray-400 hover:text-blue-600 transition-colors",
+          title: "Edit User Key manually"
+        },
+React__default.createElement(Pen, { size: 16 })
+      ), React__default.createElement("p", { className: "ars-help-text mt-2" }, "Generated from your credentials or recovered from cloud.")), React__default.createElement("div", { className: "pt-4 border-t border-gray-100 mt-2" }, React__default.createElement("label", { className: "text-xs font-semibold text-gray-700 uppercase tracking-wider flex items-center gap-1.5 mb-2" }, "Recovery Paste ID", React__default.createElement(CircleQuestionMark, { size: 14, className: "text-gray-400 cursor-help", title: "Your User Key can be stored in a rescue paste, allowing multi-device sync." })), React__default.createElement("div", { className: "flex gap-2" }, React__default.createElement(
+        Input,
+        {
+          value: settings.amazon_pastebin_recovery_id,
+          onChange: (e) => setSetting("amazon_pastebin_recovery_id", e.target.value),
+          placeholder: "e.g. QweRTy12",
+          className: "font-mono flex-1"
+        }
+      ), React__default.createElement(
+        Button,
+        {
+          variant: "secondary",
+          size: "sm",
+          onClick: handleFindRecoveryPaste,
+          disabled: isLoading,
+          icon: React__default.createElement(Search, { size: 14 }),
+          className: "whitespace-nowrap px-3 text-[11px] h-[38px]"
+        },
+        "Find ID"
+      ), React__default.createElement(
+        Button,
+        {
+          variant: "secondary",
+          size: "sm",
+          onClick: handleFetchKey,
+          disabled: isLoading || !settings.amazon_pastebin_recovery_id,
+          icon: React__default.createElement(CloudDownload, { size: 14 }),
+          className: "whitespace-nowrap px-3 text-[11px] h-[38px]"
+        },
+        "Fetch Key"
+      )), React__default.createElement("p", { className: "ars-help-text mt-1.5" }, "Recover your key from another device, or search for an existing recovery paste."), React__default.createElement(
+        Button,
+        {
+          onClick: handleSaveUserKeyToCloud,
+          variant: "ghost",
+          size: "sm",
+          className: "w-full text-blue-600 hover:bg-blue-50 text-[11px] mt-4",
+          disabled: isLoading || !settings.amazon_pastebin_api_user_key
+        },
+        "Backup User Key to Cloud (Create Recovery Paste)"
+      ))))), activeTab === "about" && React__default.createElement("div", { className: "ars-settings-section ars-about-section" }, React__default.createElement("div", { className: "ars-brand" }, React__default.createElement(Settings, { size: 48, className: "ars-brand-icon" }), React__default.createElement("h1", null, "Amazon Review Studio"), React__default.createElement("span", { className: "ars-version" }, "v2.0.0-react")), React__default.createElement("p", null, "A premium userscript for Amazon reviewers."), React__default.createElement(Card, { padding: "md" }, React__default.createElement("p", null, "Designed for power users who want professional formatting and AI-assisted content creation directly within the Amazon review form."))), activeTab === "debug" && React__default.createElement("div", { className: "ars-settings-section" }, React__default.createElement("h3", null, "Troubleshooting"), React__default.createElement("div", { className: "ars-setting-group border border-red-100 bg-red-50/30 p-4 rounded-xl space-y-4" }, React__default.createElement("p", { className: "text-sm text-gray-700" }, "Tools to help diagnose issues with form submission or injection."), React__default.createElement("div", { className: "ars-setting-item checkbox-row" }, React__default.createElement("label", { className: "flex items-center gap-3 cursor-pointer" }, React__default.createElement(
+        "input",
+        {
+          type: "checkbox",
+          checked: settings.amazon_ai_convert_markdown,
+          onChange: (e) => setSetting("amazon_ai_convert_markdown", e.target.checked)
+        }
+      ), React__default.createElement("span", null, "Convert AI Markdown to Unicode")), React__default.createElement("p", { className: "ars-help-text ml-7" }, "Automatically formats AI-generated headers and lists with unicode styles. Disable if you prefer raw text output.")), React__default.createElement("div", { className: "ars-setting-item checkbox-row" }, React__default.createElement("label", { className: "flex items-center gap-3 cursor-pointer" }, React__default.createElement(
+        "input",
+        {
+          type: "checkbox",
+          checked: settings.debug_mode,
+          onChange: (e) => setSetting("debug_mode", e.target.checked)
+        }
+      ), React__default.createElement("span", null, "Enable Verbose Logging (Console)"))), React__default.createElement("div", { className: "ars-setting-item checkbox-row" }, React__default.createElement("label", { className: "flex items-center gap-3 cursor-pointer" }, React__default.createElement(
+        "input",
+        {
+          type: "checkbox",
+          checked: settings.debug_unhide_native,
+          onChange: (e) => {
+            setSetting("debug_unhide_native", e.target.checked);
+          }
+        }
+      ), React__default.createElement("span", null, "Unhide Native Amazon Form (Requires Refresh)")), React__default.createElement("p", { className: "ars-help-text ml-7" }, "Reveals the original Amazon review form below the Studio interface. Useful to check if data is syncing correctly."), settings.debug_unhide_native && React__default.createElement("div", { className: "ml-7 mt-3 p-3 bg-gray-50 rounded-lg border border-gray-200" }, React__default.createElement("label", { className: "flex items-center gap-3 cursor-pointer" }, React__default.createElement(
+        "input",
+        {
+          type: "checkbox",
+          checked: settings.debug_native_side_by_side,
+          onChange: (e) => setSetting("debug_native_side_by_side", e.target.checked)
+        }
+      ), React__default.createElement("span", { className: "text-sm font-medium" }, "Display Side-by-Side (Requires Refresh)")), React__default.createElement("p", { className: "ars-help-text ml-7 text-xs mt-1" }, "Shows the native form alongside Review Studio instead of below it. Makes native form opaque for demo/showcase purposes.")))), React__default.createElement("h3", { className: "mt-8 flex items-center gap-2 text-sm font-semibold text-gray-700 uppercase tracking-wider" }, React__default.createElement(CirclePlay, { size: 18, className: "text-indigo-600" }), "Demo & Presentation"), React__default.createElement("div", { className: "ars-setting-group border border-indigo-100 bg-indigo-50/30 p-4 rounded-xl space-y-6 mt-4" }, React__default.createElement("div", { className: "ars-setting-item checkbox-row" }, React__default.createElement("label", { className: "flex items-center justify-between cursor-pointer w-full" }, React__default.createElement("div", { className: "flex items-center gap-3" }, React__default.createElement(
+        "input",
+        {
+          type: "checkbox",
+          checked: settings.demo_enabled,
+          onChange: (e) => setSetting("demo_enabled", e.target.checked)
+        }
+      ), React__default.createElement("div", { className: "flex flex-col" }, React__default.createElement("span", { className: "font-semibold text-gray-900 text-sm" }, "Enable Demo Mode"), React__default.createElement("span", { className: "text-xs text-gray-500" }, "Overrides PFP/Name and triggers simulated typing on load"))), React__default.createElement("div", { className: `px-2 py-0.5 rounded text-[10px] font-bold uppercase transition-colors ${settings.demo_enabled ? "bg-indigo-600 text-white" : "bg-gray-200 text-gray-500"}` }, settings.demo_enabled ? "Active" : "Disabled"))), React__default.createElement("div", { className: `space-y-4 transition-all duration-300 ${settings.demo_enabled ? "opacity-100" : "opacity-40 pointer-events-none grayscale"}` }, React__default.createElement("div", { className: "grid grid-cols-2 gap-4" }, React__default.createElement(
+        Input,
+        {
+          label: "Custom Display Name",
+          placeholder: "e.g. John Doe",
+          value: settings.demo_name,
+          onChange: (e) => setSetting("demo_name", e.target.value)
+        }
+      ), React__default.createElement(
+        Input,
+        {
+          label: "Custom PFP URL",
+          placeholder: "https://example.com/image.jpg",
+          value: settings.demo_pfp_url,
+          onChange: (e) => setSetting("demo_pfp_url", e.target.value)
+        }
+      )), React__default.createElement(
+        Input,
+        {
+          label: "Simulated Review Title",
+          placeholder: "Enter the title to be typed...",
+          value: settings.demo_review_title,
+          onChange: (e) => setSetting("demo_review_title", e.target.value)
+        }
+      ), React__default.createElement("div", { className: "ars-setting-item" }, React__default.createElement("label", { className: "text-sm font-medium text-gray-700 mb-1.5 block" }, "Simulated Review Body"), React__default.createElement(
+        "textarea",
+        {
+          className: "ars-textarea w-full p-3 text-sm border-gray-200 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 min-h-[100px] leading-relaxed resize-none bg-white/50",
+          placeholder: "Enter the review content to be typed...",
+          value: settings.demo_review_body,
+          onChange: (e) => setSetting("demo_review_body", e.target.value)
+        }
+      )), React__default.createElement("div", { className: "grid grid-cols-2 gap-4" }, React__default.createElement("div", { className: "ars-setting-item" }, React__default.createElement("label", { className: "text-sm font-medium text-gray-700 mb-1.5 block" }, "Typing Start Delay (seconds)"), React__default.createElement(
+        "input",
+        {
+          type: "number",
+          min: "0",
+          step: "0.5",
+          className: "ars-input w-full h-10 px-3 bg-white/50 border border-gray-200 rounded-lg",
+          value: settings.demo_typing_delay,
+          onChange: (e) => setSetting("demo_typing_delay", parseFloat(e.target.value))
+        }
+      )), React__default.createElement("div", { className: "ars-setting-item" }, React__default.createElement("label", { className: "text-sm font-medium text-gray-700 mb-1.5 block" }, "Typing Speed"), React__default.createElement(
+        "select",
+        {
+          className: "ars-select w-full h-10 px-3 bg-white/50 border border-gray-200 rounded-lg",
+          value: settings.demo_typing_speed,
+          onChange: (e) => setSetting("demo_typing_speed", e.target.value)
+        },
+React__default.createElement("option", { value: "slow" }, "Slow"),
+React__default.createElement("option", { value: "normal" }, "Normal"),
+React__default.createElement("option", { value: "fast" }, "Fast")
+      ))))))))
     );
   };
   const EditorToolbar = ({
@@ -10808,263 +10581,160 @@ User Key: ${settings.amazon_pastebin_api_user_key ? "✓" : "✗"}`);
       }
       setShowCloudPopover(false);
     };
-    const SerifIcon = () => jsxRuntimeExports.jsx("svg", { xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", children: jsxRuntimeExports.jsx("text", { x: "12", y: "19", textAnchor: "middle", fontSize: "25", fontFamily: "serif", fontWeight: "bold", stroke: "none", fill: "currentColor", children: "S" }) });
-    const CursiveIcon = () => jsxRuntimeExports.jsx("svg", { xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "0.5", strokeLinecap: "round", strokeLinejoin: "round", children: jsxRuntimeExports.jsx("text", { x: "12", y: "19", textAnchor: "middle", fontSize: "20", fontFamily: "cursive", fontWeight: "bold", stroke: "none", fill: "currentColor", children: "C" }) });
-    const MonospaceIcon = () => jsxRuntimeExports.jsx("svg", { xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", children: jsxRuntimeExports.jsx("text", { x: "12", y: "19", textAnchor: "middle", fontSize: "22", fontFamily: "monospace", fontWeight: "bold", stroke: "none", fill: "currentColor", children: "M" }) });
-    const WideIcon = () => jsxRuntimeExports.jsx("svg", { xmlns: "http://www.w3.org/2000/svg", width: "22", height: "18", viewBox: "0 0 32 24", fill: "none", stroke: "currentColor", strokeWidth: "2.3", strokeLinecap: "round", strokeLinejoin: "round", children: jsxRuntimeExports.jsx("path", { d: "M4 5l6 14 6-10 6 10 6-14" }) });
-    const SuperscriptIcon = () => jsxRuntimeExports.jsxs("svg", { xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", children: [
-jsxRuntimeExports.jsx("path", { d: "M4 19l7-7" }),
-jsxRuntimeExports.jsx("path", { d: "M11 19l-7-7" }),
-jsxRuntimeExports.jsx("path", { d: "M19 5c0-1-.8-2-2-2s-2 1-2 2c0 2.2 4 1.8 4 4 0 1-1 2-2 2s-2-1-2-2" })
-    ] });
+    const SerifIcon = () => React.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, React.createElement("text", { x: "12", y: "19", textAnchor: "middle", fontSize: "25", fontFamily: "serif", fontWeight: "bold", stroke: "none", fill: "currentColor" }, "S"));
+    const CursiveIcon = () => React.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "0.5", strokeLinecap: "round", strokeLinejoin: "round" }, React.createElement("text", { x: "12", y: "19", textAnchor: "middle", fontSize: "20", fontFamily: "cursive", fontWeight: "bold", stroke: "none", fill: "currentColor" }, "C"));
+    const MonospaceIcon = () => React.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, React.createElement("text", { x: "12", y: "19", textAnchor: "middle", fontSize: "22", fontFamily: "monospace", fontWeight: "bold", stroke: "none", fill: "currentColor" }, "M"));
+    const WideIcon = () => React.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "22", height: "18", viewBox: "0 0 32 24", fill: "none", stroke: "currentColor", strokeWidth: "2.3", strokeLinecap: "round", strokeLinejoin: "round" }, React.createElement("path", { d: "M4 5l6 14 6-10 6 10 6-14" }));
+    const SuperscriptIcon = () => React.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" }, React.createElement("path", { d: "M4 19l7-7" }), React.createElement("path", { d: "M11 19l-7-7" }), React.createElement("path", { d: "M19 5c0-1-.8-2-2-2s-2 1-2 2c0 2.2 4 1.8 4 4 0 1-1 2-2 2s-2-1-2-2" }));
     const tools = [
-      { id: "bold", icon: jsxRuntimeExports.jsx(Bold, { size: 16 }), label: "Bold" },
-      { id: "italic", icon: jsxRuntimeExports.jsx(Italic, { size: 16 }), label: "Italic" },
-      { id: "serif", icon: jsxRuntimeExports.jsx(SerifIcon, {}), label: "Serif" },
-      { id: "cursive", icon: jsxRuntimeExports.jsx(CursiveIcon, {}), label: "Cursive" },
-      { id: "monospace", icon: jsxRuntimeExports.jsx(MonospaceIcon, {}), label: "Monospace" },
-      { id: "underline", icon: jsxRuntimeExports.jsx(Underline, { size: 16 }), label: "Underline" },
-      { id: "strikethrough", icon: jsxRuntimeExports.jsx(Strikethrough, { size: 16 }), label: "Strikethrough" },
-      { id: "wide", icon: jsxRuntimeExports.jsx(WideIcon, {}), label: "Wide" },
-      { id: "superscript", icon: jsxRuntimeExports.jsx(SuperscriptIcon, {}), label: "Superscript" }
+      { id: "bold", icon: React.createElement(Bold, { size: 16 }), label: "Bold" },
+      { id: "italic", icon: React.createElement(Italic, { size: 16 }), label: "Italic" },
+      { id: "serif", icon: React.createElement(SerifIcon, null), label: "Serif" },
+      { id: "cursive", icon: React.createElement(CursiveIcon, null), label: "Cursive" },
+      { id: "monospace", icon: React.createElement(MonospaceIcon, null), label: "Monospace" },
+      { id: "underline", icon: React.createElement(Underline, { size: 16 }), label: "Underline" },
+      { id: "strikethrough", icon: React.createElement(Strikethrough, { size: 16 }), label: "Strikethrough" },
+      { id: "wide", icon: React.createElement(WideIcon, null), label: "Wide" },
+      { id: "superscript", icon: React.createElement(SuperscriptIcon, null), label: "Superscript" }
     ];
-    return jsxRuntimeExports.jsxs("div", { className: "ars-editor-toolbar", children: [
-jsxRuntimeExports.jsxs("div", { className: "ars-toolbar-group", children: [
-        tools.map((tool) => jsxRuntimeExports.jsx(
-          Button,
-          {
-            variant: activeStyles.has(tool.id) ? "primary" : "ghost",
-            size: "sm",
-            onClick: () => onStyleToggle(tool.id),
-            title: tool.label,
-            className: "ars-toolbar-btn",
-            children: tool.icon
-          },
-          tool.id
-        )),
-        onListToggle && jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-jsxRuntimeExports.jsx("div", { className: "ars-toolbar-divider" }),
-jsxRuntimeExports.jsxs("div", { className: "ars-bullet-btn-wrapper", style: { position: "relative" }, children: [
-jsxRuntimeExports.jsxs(
-              Button,
-              {
-                ref: bulletBtnRef,
-                variant: "ghost",
-                size: "sm",
-                onClick: () => onListToggle("bullet"),
-                onContextMenu: handleBulletRightClick,
-                title: `Bullet List (Right-click to change style: ${settings.amazon_bullet_style})`,
-                className: "ars-toolbar-btn ars-bullet-btn",
-                children: [
-jsxRuntimeExports.jsx(List, { size: 16 }),
-jsxRuntimeExports.jsx("span", { className: "ars-bullet-indicator", children: settings.amazon_bullet_style })
-                ]
-              }
-            ),
-            showBulletSelector && jsxRuntimeExports.jsx(
-              "div",
-              {
-                ref: bulletSelectorRef,
-                className: "ars-bullet-selector",
-                children: bulletOptions.map((bullet) => jsxRuntimeExports.jsx(
-                  "div",
-                  {
-                    className: `ars-bullet-option ${settings.amazon_bullet_style === bullet ? "active" : ""}`,
-                    onClick: (e) => {
-                      e.stopPropagation();
-                      selectBullet(bullet);
-                    },
-                    children: bullet
-                  },
-                  bullet
-                ))
-              }
-            )
-          ] }),
-jsxRuntimeExports.jsx(
-            Button,
-            {
-              variant: "ghost",
-              size: "sm",
-              onClick: () => onListToggle("number"),
-              title: "Numbered List",
-              className: "ars-toolbar-btn",
-              children: jsxRuntimeExports.jsx(ListOrdered, { size: 16 })
-            }
-          )
-        ] }),
-        showUtilities && jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-jsxRuntimeExports.jsx("div", { className: "ars-toolbar-divider" }),
-jsxRuntimeExports.jsx(
-            Button,
-            {
-              variant: "ghost",
-              size: "sm",
-              onClick: onClearStyles,
-              title: "Clear All Styling",
-              className: "ars-toolbar-btn hover:bg-red-50",
-              children: jsxRuntimeExports.jsx(Eraser, { size: 16 })
-            }
-          )
-        ] })
-      ] }),
-      showUtilities && jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-jsxRuntimeExports.jsxs("div", { className: "ars-toolbar-group", children: [
-jsxRuntimeExports.jsxs("div", { style: { position: "relative" }, children: [
-jsxRuntimeExports.jsx(
-              Button,
-              {
-                ref: templateBtnRef,
-                variant: showTemplatePopover ? "primary" : "ghost",
-                size: "sm",
-                onClick: () => setShowTemplatePopover(!showTemplatePopover),
-                title: "Templates",
-                className: "ars-toolbar-btn",
-                children: jsxRuntimeExports.jsx(PanelsTopLeft, { size: 16 })
-              }
-            ),
-            showTemplatePopover && jsxRuntimeExports.jsx("div", { ref: templatePopoverRef, className: "ars-phrase-popover", children: jsxRuntimeExports.jsx(
-              TemplateSelector,
-              {
-                onInsert,
-                onManage: () => setShowTemplateManager(true),
-                onClose: () => setShowTemplatePopover(false),
-                currentBody: currentValue
-              }
-            ) })
-          ] }),
-jsxRuntimeExports.jsxs("div", { style: { position: "relative" }, children: [
-jsxRuntimeExports.jsx(
-              Button,
-              {
-                ref: phraseBtnRef,
-                variant: showPhrases ? "primary" : "ghost",
-                size: "sm",
-                onClick: () => setShowPhrases(!showPhrases),
-                title: "Insert Phrase",
-                className: "ars-toolbar-btn",
-                children: jsxRuntimeExports.jsx(MessageSquare, { size: 16 })
-              }
-            ),
-            showPhrases && jsxRuntimeExports.jsx("div", { ref: phrasePopoverRef, className: "ars-phrase-popover", children: jsxRuntimeExports.jsx(
-              PhraseManager,
-              {
-                onInsert,
-                onClose: () => setShowPhrases(false)
-              }
-            ) })
-          ] }),
-jsxRuntimeExports.jsxs("div", { style: { position: "relative" }, children: [
-jsxRuntimeExports.jsx(
-              Button,
-              {
-                ref: cloudBtnRef,
-                variant: showCloudPopover ? "primary" : "ghost",
-                size: "sm",
-                onClick: () => setShowCloudPopover(!showCloudPopover),
-                title: "Cloud Sync",
-                className: "ars-toolbar-btn",
-                children: jsxRuntimeExports.jsx(Cloud, { size: 16 })
-              }
-            ),
-            showCloudPopover && jsxRuntimeExports.jsxs("div", { ref: cloudPopoverRef, className: "ars-phrase-popover", style: { width: "220px" }, children: [
-jsxRuntimeExports.jsxs("div", { className: "ars-popover-header", style: { padding: "12px 16px", borderBottom: "1px solid var(--ars-color-border)", marginBottom: "4px" }, children: [
-jsxRuntimeExports.jsxs("h3", { style: { margin: 0, fontSize: "1rem", display: "flex", alignItems: "center", gap: "0.5rem", fontWeight: 600 }, children: [
-jsxRuntimeExports.jsx(Cloud, { size: 16 }),
-                  " Cloud Sync"
-                ] }),
-                quota && jsxRuntimeExports.jsxs("div", { style: {
-                  fontSize: "0.7rem",
-                  fontWeight: 600,
-                  color: quota.count >= 20 ? "#dc2626" : quota.count >= 15 ? "#d97706" : "#6b7280",
-                  marginTop: "4px",
-                  marginLeft: "24px"
-                }, children: [
-                  "Daily Limit: ",
-                  quota.count,
-                  "/20"
-                ] })
-              ] }),
-jsxRuntimeExports.jsxs("div", { className: "ars-popover-content", children: [
-                !settings.amazon_pastebin_api_user_key ? jsxRuntimeExports.jsxs("div", { className: "p-3 text-sm text-gray-500 text-center", children: [
-jsxRuntimeExports.jsx("p", { className: "mb-2", children: "Setup API to sync data" }),
-jsxRuntimeExports.jsx(Button, { variant: "primary", size: "sm", onClick: () => {
-                    setSettingsTab("sync");
-                    setShowSettings(true);
-                    setShowCloudPopover(false);
-                  }, children: "Open Settings" })
-                ] }) : jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-jsxRuntimeExports.jsxs("button", { onClick: () => handleCloudAction("save"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors", children: [
-jsxRuntimeExports.jsx(Save, { size: 14, className: "text-blue-500" }),
-                    " Save Review to Cloud"
-                  ] }),
-jsxRuntimeExports.jsxs("button", { onClick: () => handleCloudAction("fetch"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors", children: [
-jsxRuntimeExports.jsx(Download, { size: 14, className: "text-green-500" }),
-                    " Fetch Review from Cloud"
-                  ] }),
-jsxRuntimeExports.jsx("div", { className: "my-1 border-t border-gray-100" }),
-jsxRuntimeExports.jsxs("button", { onClick: () => handleCloudAction("create-manual"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors", children: [
-jsxRuntimeExports.jsx(Clipboard, { size: 14, className: "text-gray-500" }),
-                    " Create Manual Paste"
-                  ] }),
-jsxRuntimeExports.jsxs("button", { onClick: () => handleCloudAction("import-manual"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors", children: [
-jsxRuntimeExports.jsx(Link2, { size: 14, className: "text-gray-500" }),
-                    " Import from Paste URL"
-                  ] }),
-jsxRuntimeExports.jsx("div", { className: "my-1 border-t border-gray-100" }),
-jsxRuntimeExports.jsxs("button", { onClick: () => handleCloudAction("sync-templates"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors", children: [
-jsxRuntimeExports.jsx(RefreshCw, { size: 14, className: "text-orange-500" }),
-                    " Sync Templates/Phrases"
-                  ] }),
-jsxRuntimeExports.jsxs("button", { onClick: () => handleCloudAction("import-templates"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors", children: [
-jsxRuntimeExports.jsx(PanelsTopLeft, { size: 14, className: "text-purple-500" }),
-                    " Import Templates/Phrases"
-                  ] }),
-jsxRuntimeExports.jsxs("button", { onClick: () => handleCloudAction("my-pastebin"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors", children: [
-jsxRuntimeExports.jsx(ExternalLink, { size: 14, className: "text-gray-500" }),
-                    " My Pastebin"
-                  ] }),
-jsxRuntimeExports.jsx("div", { className: "my-1 border-t border-gray-100" }),
-jsxRuntimeExports.jsxs("button", { onClick: () => {
-                    setSettingsTab("sync");
-                    setShowSettings(true);
-                    setShowCloudPopover(false);
-                  }, className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors", children: [
-jsxRuntimeExports.jsx(Settings, { size: 14, className: "text-gray-500" }),
-                    " API Settings"
-                  ] }),
-jsxRuntimeExports.jsxs("button", { onClick: () => handleCloudAction("status"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors", children: [
-jsxRuntimeExports.jsx(ChartNoAxesColumn, { size: 14, className: "text-gray-500" }),
-                    " Sync Status"
-                  ] }),
-jsxRuntimeExports.jsxs("button", { onClick: () => handleCloudAction("clear"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors text-red-500 hover:bg-red-50", children: [
-jsxRuntimeExports.jsx(Trash2, { size: 14 }),
-                    " Clear Cloud Data"
-                  ] })
-                ] }),
-                isCloudLoading && jsxRuntimeExports.jsx("div", { className: "text-xs text-center text-blue-500 py-1", children: "Processing..." })
-              ] })
-            ] })
-          ] })
-        ] }),
-jsxRuntimeExports.jsx(
-          TemplateManager,
-          {
-            isOpen: showTemplateManager,
-            onClose: () => setShowTemplateManager(false),
-            onInsert
+    return React.createElement("div", { className: "ars-editor-toolbar" }, React.createElement("div", { className: "ars-toolbar-group" }, tools.map((tool) => React.createElement(
+      Button,
+      {
+        key: tool.id,
+        variant: activeStyles.has(tool.id) ? "primary" : "ghost",
+        size: "sm",
+        onClick: () => onStyleToggle(tool.id),
+        title: tool.label,
+        className: "ars-toolbar-btn"
+      },
+      tool.icon
+    )), onListToggle && React.createElement(React.Fragment, null, React.createElement("div", { className: "ars-toolbar-divider" }), React.createElement("div", { className: "ars-bullet-btn-wrapper", style: { position: "relative" } }, React.createElement(
+      Button,
+      {
+        ref: bulletBtnRef,
+        variant: "ghost",
+        size: "sm",
+        onClick: () => onListToggle("bullet"),
+        onContextMenu: handleBulletRightClick,
+        title: `Bullet List (Right-click to change style: ${settings.amazon_bullet_style})`,
+        className: "ars-toolbar-btn ars-bullet-btn"
+      },
+React.createElement(List, { size: 16 }),
+React.createElement("span", { className: "ars-bullet-indicator" }, settings.amazon_bullet_style)
+    ), showBulletSelector && React.createElement(
+      "div",
+      {
+        ref: bulletSelectorRef,
+        className: "ars-bullet-selector"
+      },
+      bulletOptions.map((bullet) => React.createElement(
+        "div",
+        {
+          key: bullet,
+          className: `ars-bullet-option ${settings.amazon_bullet_style === bullet ? "active" : ""}`,
+          onClick: (e) => {
+            e.stopPropagation();
+            selectBullet(bullet);
           }
-        ),
-        showSettings && jsxRuntimeExports.jsx(
-          SettingsDashboard,
-          {
-            isOpen: showSettings,
-            onClose: () => setShowSettings(false),
-            initialTab: settingsTab
-          }
-        )
-      ] })
-    ] });
+        },
+        bullet
+      ))
+    )), React.createElement(
+      Button,
+      {
+        variant: "ghost",
+        size: "sm",
+        onClick: () => onListToggle("number"),
+        title: "Numbered List",
+        className: "ars-toolbar-btn"
+      },
+React.createElement(ListOrdered, { size: 16 })
+    )), showUtilities && React.createElement(React.Fragment, null, React.createElement("div", { className: "ars-toolbar-divider" }), React.createElement(
+      Button,
+      {
+        variant: "ghost",
+        size: "sm",
+        onClick: onClearStyles,
+        title: "Clear All Styling",
+        className: "ars-toolbar-btn hover:bg-red-50"
+      },
+React.createElement(Eraser, { size: 16 })
+    ))), showUtilities && React.createElement(React.Fragment, null, React.createElement("div", { className: "ars-toolbar-group" }, React.createElement("div", { style: { position: "relative" } }, React.createElement(
+      Button,
+      {
+        ref: templateBtnRef,
+        variant: showTemplatePopover ? "primary" : "ghost",
+        size: "sm",
+        onClick: () => setShowTemplatePopover(!showTemplatePopover),
+        title: "Templates",
+        className: "ars-toolbar-btn"
+      },
+React.createElement(PanelsTopLeft, { size: 16 })
+    ), showTemplatePopover && React.createElement("div", { ref: templatePopoverRef, className: "ars-phrase-popover" }, React.createElement(
+      TemplateSelector,
+      {
+        onInsert,
+        onManage: () => setShowTemplateManager(true),
+        onClose: () => setShowTemplatePopover(false),
+        currentBody: currentValue
+      }
+    ))), React.createElement("div", { style: { position: "relative" } }, React.createElement(
+      Button,
+      {
+        ref: phraseBtnRef,
+        variant: showPhrases ? "primary" : "ghost",
+        size: "sm",
+        onClick: () => setShowPhrases(!showPhrases),
+        title: "Insert Phrase",
+        className: "ars-toolbar-btn"
+      },
+React.createElement(MessageSquare, { size: 16 })
+    ), showPhrases && React.createElement("div", { ref: phrasePopoverRef, className: "ars-phrase-popover" }, React.createElement(
+      PhraseManager,
+      {
+        onInsert,
+        onClose: () => setShowPhrases(false)
+      }
+    ))), React.createElement("div", { style: { position: "relative" } }, React.createElement(
+      Button,
+      {
+        ref: cloudBtnRef,
+        variant: showCloudPopover ? "primary" : "ghost",
+        size: "sm",
+        onClick: () => setShowCloudPopover(!showCloudPopover),
+        title: "Cloud Sync",
+        className: "ars-toolbar-btn"
+      },
+React.createElement(Cloud, { size: 16 })
+    ), showCloudPopover && React.createElement("div", { ref: cloudPopoverRef, className: "ars-phrase-popover", style: { width: "220px" } }, React.createElement("div", { className: "ars-popover-header", style: { padding: "12px 16px", borderBottom: "1px solid var(--ars-color-border)", marginBottom: "4px" } }, React.createElement("h3", { style: { margin: 0, fontSize: "1rem", display: "flex", alignItems: "center", gap: "0.5rem", fontWeight: 600 } }, React.createElement(Cloud, { size: 16 }), " Cloud Sync"), quota && React.createElement("div", { style: {
+      fontSize: "0.7rem",
+      fontWeight: 600,
+      color: quota.count >= 20 ? "#dc2626" : quota.count >= 15 ? "#d97706" : "#6b7280",
+      marginTop: "4px",
+      marginLeft: "24px"
+    } }, "Daily Limit: ", quota.count, "/20")), React.createElement("div", { className: "ars-popover-content" }, !settings.amazon_pastebin_api_user_key ? React.createElement("div", { className: "p-3 text-sm text-gray-500 text-center" }, React.createElement("p", { className: "mb-2" }, "Setup API to sync data"), React.createElement(Button, { variant: "primary", size: "sm", onClick: () => {
+      setSettingsTab("sync");
+      setShowSettings(true);
+      setShowCloudPopover(false);
+    } }, "Open Settings")) : React.createElement(React.Fragment, null, React.createElement("button", { onClick: () => handleCloudAction("save"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors" }, React.createElement(Save, { size: 14, className: "text-blue-500" }), " Save Review to Cloud"), React.createElement("button", { onClick: () => handleCloudAction("fetch"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors" }, React.createElement(Download, { size: 14, className: "text-green-500" }), " Fetch Review from Cloud"), React.createElement("div", { className: "my-1 border-t border-gray-100" }), React.createElement("button", { onClick: () => handleCloudAction("create-manual"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors" }, React.createElement(Clipboard, { size: 14, className: "text-gray-500" }), " Create Manual Paste"), React.createElement("button", { onClick: () => handleCloudAction("import-manual"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors" }, React.createElement(Link2, { size: 14, className: "text-gray-500" }), " Import from Paste URL"), React.createElement("div", { className: "my-1 border-t border-gray-100" }), React.createElement("button", { onClick: () => handleCloudAction("sync-templates"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors" }, React.createElement(RefreshCw, { size: 14, className: "text-orange-500" }), " Sync Templates/Phrases"), React.createElement("button", { onClick: () => handleCloudAction("import-templates"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors" }, React.createElement(PanelsTopLeft, { size: 14, className: "text-purple-500" }), " Import Templates/Phrases"), React.createElement("button", { onClick: () => handleCloudAction("my-pastebin"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors" }, React.createElement(ExternalLink, { size: 14, className: "text-gray-500" }), " My Pastebin"), React.createElement("div", { className: "my-1 border-t border-gray-100" }), React.createElement("button", { onClick: () => {
+      setSettingsTab("sync");
+      setShowSettings(true);
+      setShowCloudPopover(false);
+    }, className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors" }, React.createElement(Settings, { size: 14, className: "text-gray-500" }), " API Settings"), React.createElement("button", { onClick: () => handleCloudAction("status"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors" }, React.createElement(ChartNoAxesColumn, { size: 14, className: "text-gray-500" }), " Sync Status"), React.createElement("button", { onClick: () => handleCloudAction("clear"), className: "ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors text-red-500 hover:bg-red-50" }, React.createElement(Trash2, { size: 14 }), " Clear Cloud Data")), isCloudLoading && React.createElement("div", { className: "text-xs text-center text-blue-500 py-1" }, "Processing..."))))), React.createElement(
+      TemplateManager,
+      {
+        isOpen: showTemplateManager,
+        onClose: () => setShowTemplateManager(false),
+        onInsert
+      }
+    ), showSettings && React.createElement(
+      SettingsDashboard,
+      {
+        isOpen: showSettings,
+        onClose: () => setShowSettings(false),
+        initialTab: settingsTab
+      }
+    )));
   };
   const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   const makeAlphabetMap = (target, source = ALPHABET) => {
@@ -11084,7 +10754,7 @@ jsxRuntimeExports.jsx(
   const UNICODE_MAPS = {
     bold: makeAlphabetMap("𝗔𝗕𝗖𝗗𝗘𝗙𝗚𝗛𝗜𝗝𝗞𝗟𝗠𝗡𝗢𝗣𝗤𝗥𝗦𝗧𝗨𝗩𝗪𝗫𝗬𝗭𝗮𝗯𝗰𝗱𝗲𝗳𝗴𝗵𝗶𝗷𝗸𝗹𝗺𝗻𝗼𝗽𝗾𝗿𝘀𝘁𝘂𝘃𝘄𝘅𝘆𝘇𝟬𝟭𝟮𝟯𝟰𝟱𝟲𝟳𝟴𝟵"),
     boldserif: makeAlphabetMap("𝐀𝐁𝐂𝐃𝐄𝐅𝐆𝐇𝐈𝐉𝐊𝐋𝐌𝐍𝐎𝐏𝐐𝐑𝐒𝐓𝐔𝐕𝐖𝐗𝐘𝐙𝐚𝐛𝐜𝐝𝐞𝐟𝐠𝐡𝐢𝐣𝐤𝐥𝐦𝐧𝐨𝐩𝐪𝐫𝐬𝐭𝐮𝐯𝐰𝐱𝐲𝐳𝟎𝟏𝟐𝟑𝟒𝟓𝟔𝟕𝟖𝟗"),
-    italic: makeAlphabetMap("𝘐𝘉𝘊𝘋𝘌𝘍𝘎𝘏𝘐𝘑𝘒𝘓𝘔𝘕𝘖𝘗𝘘𝘙𝘚𝘛𝘜𝘝𝘞𝘟𝘠𝘡𝘢𝘣𝘤𝘥𝘦𝘧𝘨𝘩𝘪𝘫𝘬𝘭𝘮𝘯𝘰𝘱𝘲𝘳𝘴𝘵𝘶𝘷𝘸𝘹𝘺𝘻"),
+    italic: makeAlphabetMap("𝘈𝘉𝘊𝘋𝘌𝘍𝘎𝘏𝘐𝘑𝘒𝘓𝘔𝘕𝘖𝘗𝘘𝘙𝘚𝘛𝘜𝘝𝘞𝘟𝘠𝘡𝘢𝘣𝘤𝘥𝘦𝘧𝘨𝘩𝘪𝘫𝘬𝘭𝘮𝘯𝘰𝘱𝘲𝘳𝘴𝘵𝘶𝘷𝘸𝘹𝘺𝘻"),
     bolditalic: makeAlphabetMap("𝘼𝘽𝘾𝘿𝙀𝙁𝙂𝙃𝙄𝙅𝙆𝙇𝙈𝙉𝙊𝙋𝙌𝙍𝙎𝙏𝙐𝙑𝙒𝙓𝙔𝙕𝙖𝙗𝙘𝙙𝙚𝙛𝙜𝙝𝙞𝙟𝙠𝙡𝙢𝙣𝙤𝙥𝙦𝙧𝙨𝙩𝙪𝙫𝙬𝙭𝙮𝙯"),
     serif: makeAlphabetMap("𝐴𝐵𝐶𝐷𝐸𝐹𝐺𝐻𝐼𝐽𝐾𝐿𝑀𝑁𝑂𝑃𝑄𝑅𝑆𝑇𝑈𝑉𝑊𝑋𝑌𝑍𝑎𝑏𝑐𝑑𝑒𝑓𝑔ℎ𝑖𝑗𝑘𝑙𝑚𝑛𝑜𝑝𝑞𝑟𝑠𝑡𝑢𝑣𝑤𝑥𝑦𝑧"),
     serifitalic: makeAlphabetMap("𝐴𝐵𝐶𝐷𝐸𝐹𝐺𝐻𝐼𝐽𝐾𝐿𝑀𝑁𝑂𝑃𝑄𝑅𝑆𝑇𝑈𝑉𝑊𝑋𝑌𝑍𝑎𝑏𝑐𝑑𝑒𝑓𝑔ℎ𝑖𝑗𝑘𝑙𝑚𝑛𝑜𝑝𝑞𝑟𝑠𝑡𝑢𝑣𝑤𝑥𝑦𝑧"),
@@ -11514,52 +11184,39 @@ ${nextNum}) `;
         textarea.focus();
       }
     }, [onChange]);
-    return jsxRuntimeExports.jsxs("div", { className: cn("ars-rich-editor", className), children: [
-jsxRuntimeExports.jsx(
-        EditorToolbar,
-        {
-          onStyleToggle: handleStyleToggle,
-          activeStyles,
-          onInsert: handleInsert,
-          onReplace: onChange,
-          onClearStyles: handleClearStyles,
-          showUtilities,
-          currentValue: value,
-          onListToggle: handleListToggle
-        }
-      ),
-jsxRuntimeExports.jsx(
-        "textarea",
-        {
-          ref: textareaRef,
-          className: "ars-editor-textarea",
-          value,
-          onChange: (e) => onChange(e.target.value),
-          onSelect: updateActiveStyles,
-          onClick: updateActiveStyles,
-          onKeyDown: handleKeyDown,
-          onKeyUp: updateActiveStyles,
-          placeholder
-        }
-      ),
-jsxRuntimeExports.jsxs("div", { className: "ars-editor-footer", children: [
-jsxRuntimeExports.jsx("div", { className: "ars-editor-options", children: jsxRuntimeExports.jsxs("label", { className: "ars-checkbox-label", title: "Automatically resize textbox to fit content", children: [
-jsxRuntimeExports.jsx(
-            "input",
-            {
-              type: "checkbox",
-              checked: isAutoResize,
-              onChange: handleAutoResizeToggle
-            }
-          ),
-jsxRuntimeExports.jsx("span", { children: "Auto-resize" })
-        ] }) }),
-jsxRuntimeExports.jsxs("span", { className: "ars-char-count", children: [
-          value.length,
-          " characters"
-        ] })
-      ] })
-    ] });
+    return React__default.createElement("div", { className: cn("ars-rich-editor", className) }, React__default.createElement(
+      EditorToolbar,
+      {
+        onStyleToggle: handleStyleToggle,
+        activeStyles,
+        onInsert: handleInsert,
+        onReplace: onChange,
+        onClearStyles: handleClearStyles,
+        showUtilities,
+        currentValue: value,
+        onListToggle: handleListToggle
+      }
+    ), React__default.createElement(
+      "textarea",
+      {
+        ref: textareaRef,
+        className: "ars-editor-textarea",
+        value,
+        onChange: (e) => onChange(e.target.value),
+        onSelect: updateActiveStyles,
+        onClick: updateActiveStyles,
+        onKeyDown: handleKeyDown,
+        onKeyUp: updateActiveStyles,
+        placeholder
+      }
+    ), React__default.createElement("div", { className: "ars-editor-footer" }, React__default.createElement("div", { className: "ars-editor-options" }, React__default.createElement("label", { className: "ars-checkbox-label", title: "Automatically resize textbox to fit content" }, React__default.createElement(
+      "input",
+      {
+        type: "checkbox",
+        checked: isAutoResize,
+        onChange: handleAutoResizeToggle
+      }
+    ), React__default.createElement("span", null, "Auto-resize"))), React__default.createElement("span", { className: "ars-char-count" }, value.length, " characters")));
   };
   class AIService {
     get settings() {
@@ -11605,7 +11262,8 @@ ${toneInstructions}
 
 REQUIREMENTS:
 - The title must be faithful to the specific content and opinion expressed in the review.
-- CRITICAL: Absolutely NO marketing language (avoid phrases like "game changer", "must have", "look no further", or clickbaity rhetorical questions).
+- Absolutely NO marketing language. Avoid phrases like "game changer", "must have", "look no further", "It's not X, it's Y", or rhetorical questions. 
+- You must never use em dashes (—).
 - Capture the main sentiment honestly, using natural and conversational language.
 - Avoid being too clinical or matter-of-fact
 - STYLE: The title should be ${amazon_review_title_style === "short" ? "brief (3-6 words)" : "descriptive (6-12 words)"}.
@@ -11973,8 +11631,10 @@ async testConnection() {
     }
   }
   const AIModal = ({ isOpen, onClose, onInsert, productTitle = "", asin, starRating, existingReviewText = "" }) => {
+    const MIN_CHARS = 500;
     const { settings, setSetting } = useSettings();
     const [userThoughts, setUserThoughts] = React__default.useState("");
+    const [additionalInstructions, setAdditionalInstructions] = React__default.useState("");
     const [useExistingReview, setUseExistingReview] = React__default.useState(false);
     const [reviewLength, setReviewLength] = React__default.useState("normal");
     const [isGenerating, setIsGenerating] = React__default.useState(false);
@@ -12044,7 +11704,11 @@ Formatting Instructions:
       }
       let p = `Write a helpful product review for: ${productTitle || "this product"}.
         
-IMPORTANT: Output ONLY the review content. Do not include any introductory or concluding remarks like "Here is a review" or "I hope this helps". Start directly with the review title or body.
+IMPORTANT: Output ONLY the review content. Do not include any introductory or concluding remarks like "Here is a review" or "I hope this helps". Start directly with the review title or body. 
+
+RULES: Absolutely NO marketing language, no hype, no exaggerated claims, keep language plain and grounded. Avoid phrases like "game changer", "must have", "look no further", "It's not X, it's Y", or rhetorical questions. You must never use em dashes (—). 
+
+TONE: Write in a candid way, like you're jotting your own thoughts as they come up while using the product. Structure can be loose or out of order. Don’t give an overview of the product or list features; only mention specifics that naturally surfaced during one's use of the product.
 
 ${lengthInstruction}
 ${markdownInstruction}`;
@@ -12072,6 +11736,12 @@ The user has rated this product ${starRating} out of 5 stars.`;
 
 User's Initial Thoughts / Specific Points to Cover:
 ${currentThoughts}`;
+      }
+      if (additionalInstructions.trim()) {
+        p += `
+
+Additional User Instructions (Tone, Focus, etc.):
+${additionalInstructions}`;
       }
       return p;
     }, [productTitle, productContext, starRating, userThoughts, existingReviewText, useExistingReview, reviewLength]);
@@ -12109,173 +11779,137 @@ ${currentThoughts}`;
       onInsert(generatedText);
       onClose();
     };
-    const footer = jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-jsxRuntimeExports.jsx(Button, { variant: "ghost", onClick: onClose, children: "Cancel" }),
-jsxRuntimeExports.jsxs(
-        Button,
-        {
-          variant: "primary",
-          onClick: handleInsert,
-          disabled: !generatedText || isGenerating,
-          children: [
-jsxRuntimeExports.jsx(Copy, { size: 16, style: { marginRight: 8 } }),
-            "Insert into Review"
-          ]
-        }
-      )
-    ] });
-    return jsxRuntimeExports.jsx(
+    const footer = React__default.createElement(React__default.Fragment, null, React__default.createElement(Button, { variant: "ghost", onClick: onClose }, "Cancel"), React__default.createElement(
+      Button,
+      {
+        variant: "primary",
+        onClick: handleInsert,
+        disabled: !generatedText || isGenerating
+      },
+React__default.createElement(Copy, { size: 16, style: { marginRight: 8 } }),
+      "Insert into Review"
+    ));
+    return React__default.createElement(
       Modal,
       {
         isOpen,
         onClose,
         title: "AI Review Assistant",
         width: "700px",
-        footer,
-        children: jsxRuntimeExports.jsxs("div", { className: "ars-ai-modal-body", children: [
-jsxRuntimeExports.jsxs("div", { className: "ars-ai-settings-compact", children: [
-jsxRuntimeExports.jsxs(Card, { padding: "sm", className: "ars-ai-provider-card", children: [
-jsxRuntimeExports.jsx("span", { className: "ars-label", children: "Provider:" }),
-jsxRuntimeExports.jsxs(
-                "select",
-                {
-                  value: settings.amazon_ai_provider,
-                  onChange: (e) => setSetting("amazon_ai_provider", e.target.value),
-                  className: "ars-select",
-                  children: [
-jsxRuntimeExports.jsx("option", { value: "gemini", children: "Google Gemini" }),
-jsxRuntimeExports.jsx("option", { value: "local", children: "Local LLM (LM Studio/Ollama)" })
-                  ]
-                }
-              )
-            ] }),
-jsxRuntimeExports.jsxs(Card, { padding: "sm", className: "ars-ai-length-card", children: [
-jsxRuntimeExports.jsx("span", { className: "ars-label", children: "Length:" }),
-jsxRuntimeExports.jsx("div", { className: "ars-ai-length-selector", children: ["short", "normal", "long", "detailed"].map((len) => jsxRuntimeExports.jsx(
-                "button",
-                {
-                  className: `ars-ai-length-btn ${reviewLength === len ? "active" : ""}`,
-                  onClick: () => setReviewLength(len),
-                  title: `${len.charAt(0).toUpperCase() + len.slice(1)} Review`,
-                  children: len.charAt(0).toUpperCase() + len.slice(1)
-                },
-                len
-              )) })
-            ] }),
-jsxRuntimeExports.jsx(Card, { padding: "sm", className: "ars-ai-vision-card", children: jsxRuntimeExports.jsxs("label", { className: "flex items-center gap-2 cursor-pointer", children: [
-jsxRuntimeExports.jsx(
-                "input",
-                {
-                  type: "checkbox",
-                  checked: includeImages,
-                  onChange: (e) => setIncludeImages(e.target.checked),
-                  className: "ars-checkbox"
-                }
-              ),
-jsxRuntimeExports.jsxs("span", { className: "ars-label mb-0 flex items-center gap-1", children: [
-jsxRuntimeExports.jsx(Image$1, { size: 14 }),
-                "Include Images"
-              ] })
-            ] }) })
-          ] }),
-jsxRuntimeExports.jsxs("div", { className: "ars-ai-prompt-section", children: [
-jsxRuntimeExports.jsxs("div", { className: "flex justify-between items-end mb-2", children: [
-jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-1", children: [
-jsxRuntimeExports.jsxs("label", { className: "ars-label mb-0 flex items-center gap-1", children: [
-                  "Your Initial Thoughts ",
-jsxRuntimeExports.jsx("span", { style: { color: "#dc2626" }, children: "*" })
-                ] }),
-                existingReviewText.length >= 300 && jsxRuntimeExports.jsxs("label", { className: "flex items-center gap-2 text-[11px] cursor-pointer select-none text-gray-500 hover:text-gray-700 transition-colors", children: [
-jsxRuntimeExports.jsx(
-                    "input",
-                    {
-                      type: "checkbox",
-                      checked: useExistingReview,
-                      onChange: (e) => setUseExistingReview(e.target.checked),
-                      className: "ars-checkbox"
-                    }
-                  ),
-jsxRuntimeExports.jsx("span", { style: { color: useExistingReview ? "var(--ars-color-primary)" : "inherit", fontWeight: useExistingReview ? 600 : 400 }, children: "Use existing review text as prompt" })
-                ] })
-              ] }),
-jsxRuntimeExports.jsx(
-                Button,
-                {
-                  variant: "ghost",
-                  size: "sm",
-                  onClick: () => setShowPreview(!showPreview),
-                  className: "text-[10px] h-7 px-2 border border-gray-200",
-                  icon: showPreview ? jsxRuntimeExports.jsx(EyeOff, { size: 11 }) : jsxRuntimeExports.jsx(Eye, { size: 11 }),
-                  children: showPreview ? "Hide Full Prompt" : "Preview Full Prompt"
-                }
-              )
-            ] }),
-jsxRuntimeExports.jsxs("div", { style: { position: "relative" }, children: [
-jsxRuntimeExports.jsx(
-                "textarea",
-                {
-                  className: "ars-ai-prompt-input",
-                  placeholder: "Enter your opinion, pros/cons, or specific points you want the AI to cover (min. 300 characters)...",
-                  value: useExistingReview ? existingReviewText : userThoughts,
-                  onChange: (e) => !useExistingReview && setUserThoughts(e.target.value),
-                  style: {
-                    minHeight: "140px",
-                    opacity: useExistingReview ? 0.7 : 1,
-                    cursor: useExistingReview ? "not-allowed" : "text",
-                    backgroundColor: useExistingReview ? "#fbfcfd" : "white",
-                    borderColor: !useExistingReview && userThoughts.length > 0 && userThoughts.length < 300 ? "#fca5a5" : "var(--ars-color-border)"
-                  },
-                  disabled: useExistingReview
-                }
-              ),
-              !useExistingReview && jsxRuntimeExports.jsxs("div", { className: `absolute bottom-2 right-3 text-[10px] font-bold px-1.5 py-0.5 rounded ${userThoughts.length >= 300 ? "text-green-600 bg-green-50" : "text-gray-400 bg-gray-50"}`, children: [
-                userThoughts.length,
-                " / 300"
-              ] }),
-              useExistingReview && jsxRuntimeExports.jsxs("div", { className: "absolute bottom-2 right-3 text-[10px] font-bold px-1.5 py-0.5 rounded text-blue-600 bg-blue-50", children: [
-                "Existing Text Used (",
-                existingReviewText.length,
-                " chars)"
-              ] })
-            ] }),
-            showPreview && jsxRuntimeExports.jsx("div", { className: "ars-ai-prompt-preview mt-2 p-3 bg-gray-50 border rounded text-xs font-mono text-gray-600 overflow-y-auto max-h-40 whitespace-pre-wrap", children: finalPrompt }),
-jsxRuntimeExports.jsx(
-              Button,
-              {
-                className: "ars-generate-btn mt-3",
-                onClick: handleGenerate,
-                isLoading: isGenerating,
-                disabled: isGenerating || (useExistingReview ? existingReviewText.length < 300 : userThoughts.length < 300),
-                icon: jsxRuntimeExports.jsx(Sparkles, { size: 18 }),
-                children: "Generate Review"
-              }
-            ),
-            visionStatus && jsxRuntimeExports.jsxs("div", { className: "ars-ai-vision-status mt-2 text-xs text-blue-600 flex items-center gap-1", children: [
-              isGenerating && includeImages && visionStatus.includes("Extracting") ? jsxRuntimeExports.jsx(LoaderCircle, { size: 12, className: "animate-spin" }) : jsxRuntimeExports.jsx(Image$1, { size: 12 }),
-              visionStatus
-            ] })
-          ] }),
-          error && jsxRuntimeExports.jsx("div", { className: "ars-ai-error", children: error }),
-jsxRuntimeExports.jsxs("div", { className: "ars-ai-result-section", children: [
-jsxRuntimeExports.jsx("label", { className: "ars-label", children: "Generated Review:" }),
-jsxRuntimeExports.jsx("div", { className: "ars-ai-result-container", children: generatedText ? jsxRuntimeExports.jsx("p", { className: "ars-ai-result-text", children: generatedText }) : jsxRuntimeExports.jsx("div", { className: "ars-ai-placeholder", children: "Your generated review will appear here..." }) })
-          ] })
-        ] })
-      }
+        footer
+      },
+React__default.createElement("div", { className: "ars-ai-modal-body" }, React__default.createElement("div", { className: "ars-ai-settings-compact" }, React__default.createElement(Card, { padding: "sm", className: "ars-ai-provider-card" }, React__default.createElement("span", { className: "ars-label" }, "Provider:"), React__default.createElement(
+        "select",
+        {
+          value: settings.amazon_ai_provider,
+          onChange: (e) => setSetting("amazon_ai_provider", e.target.value),
+          className: "ars-select"
+        },
+React__default.createElement("option", { value: "gemini" }, "Google Gemini"),
+React__default.createElement("option", { value: "local" }, "Local LLM (LM Studio/Ollama)")
+      )), React__default.createElement(Card, { padding: "sm", className: "ars-ai-length-card" }, React__default.createElement("span", { className: "ars-label" }, "Length:"), React__default.createElement("div", { className: "ars-ai-length-selector" }, ["short", "normal", "long", "detailed"].map((len) => React__default.createElement(
+        "button",
+        {
+          key: len,
+          className: `ars-ai-length-btn ${reviewLength === len ? "active" : ""}`,
+          onClick: () => setReviewLength(len),
+          title: `${len.charAt(0).toUpperCase() + len.slice(1)} Review`
+        },
+        len.charAt(0).toUpperCase() + len.slice(1)
+      )))), React__default.createElement(Card, { padding: "sm", className: "ars-ai-vision-card" }, React__default.createElement("label", { className: "flex items-center gap-2 cursor-pointer" }, React__default.createElement(
+        "input",
+        {
+          type: "checkbox",
+          checked: includeImages,
+          onChange: (e) => setIncludeImages(e.target.checked),
+          className: "ars-checkbox"
+        }
+      ), React__default.createElement("span", { className: "ars-label mb-0 flex items-center gap-1" }, React__default.createElement(Image$1, { size: 14 }), "Include Images")))), React__default.createElement("div", { className: "ars-ai-prompt-section" }, React__default.createElement("div", { className: "flex justify-between items-end mb-2" }, React__default.createElement("div", { className: "flex flex-col gap-1" }, React__default.createElement("label", { className: "ars-label mb-0 flex items-center gap-1" }, "Your Initial Thoughts ", React__default.createElement("span", { style: { color: "#dc2626" } }, "*")), existingReviewText.length >= MIN_CHARS && React__default.createElement("label", { className: "flex items-center gap-2 text-[11px] cursor-pointer select-none text-gray-500 hover:text-gray-700 transition-colors" }, React__default.createElement(
+        "input",
+        {
+          type: "checkbox",
+          checked: useExistingReview,
+          onChange: (e) => setUseExistingReview(e.target.checked),
+          className: "ars-checkbox"
+        }
+      ), React__default.createElement("span", { style: { color: useExistingReview ? "var(--ars-color-primary)" : "inherit", fontWeight: useExistingReview ? 600 : 400 } }, "Use existing review text as prompt"))), React__default.createElement(
+        Button,
+        {
+          variant: "ghost",
+          size: "sm",
+          onClick: () => setShowPreview(!showPreview),
+          className: "text-[10px] h-7 px-2 border border-gray-200",
+          icon: showPreview ? React__default.createElement(EyeOff, { size: 11 }) : React__default.createElement(Eye, { size: 11 })
+        },
+        showPreview ? "Hide Full Prompt" : "Preview Full Prompt"
+      )), React__default.createElement("div", { style: { position: "relative" } }, React__default.createElement(
+        "textarea",
+        {
+          className: "ars-ai-prompt-input",
+          placeholder: `Enter your opinion, pros/cons, or specific points you want the AI to cover${` (min. ${MIN_CHARS} characters)`}...`,
+          value: useExistingReview ? existingReviewText : userThoughts,
+          onChange: (e) => !useExistingReview && setUserThoughts(e.target.value),
+          style: {
+            minHeight: "140px",
+            opacity: useExistingReview ? 0.7 : 1,
+            cursor: useExistingReview ? "not-allowed" : "text",
+            backgroundColor: useExistingReview ? "#fbfcfd" : "white",
+            borderColor: !useExistingReview && userThoughts.length > 0 && userThoughts.length < MIN_CHARS ? "#fca5a5" : "var(--ars-color-border)"
+          },
+          disabled: useExistingReview
+        }
+      ), !useExistingReview && React__default.createElement("div", { className: `absolute bottom-2 right-3 text-[10px] font-bold px-1.5 py-0.5 rounded ${userThoughts.length >= MIN_CHARS ? "text-green-600 bg-green-50" : "text-gray-400 bg-gray-50"}` }, userThoughts.length, " / ", MIN_CHARS), useExistingReview && React__default.createElement("div", { className: "absolute bottom-2 right-3 text-[10px] font-bold px-1.5 py-0.5 rounded text-blue-600 bg-blue-50" }, "Existing Text Used (", existingReviewText.length, " chars)")), React__default.createElement("div", { className: "mt-3" }, React__default.createElement("label", { className: "ars-label mb-1 text-xs text-gray-500 font-medium" }, "Additional Instructions ", React__default.createElement("span", { className: "text-[10px] text-gray-400 font-normal ml-1" }, "(Optional)")), React__default.createElement(
+        "input",
+        {
+          type: "text",
+          className: "ars-ai-prompt-input !text-xs !py-2 !px-3 !h-auto",
+          placeholder: "e.g. Keep it humorous, focus on durability, avoid mentioning price...",
+          value: additionalInstructions,
+          onChange: (e) => setAdditionalInstructions(e.target.value),
+          style: { minHeight: "38px" }
+        }
+      )), showPreview && React__default.createElement("div", { className: "ars-ai-prompt-preview mt-2 p-3 bg-gray-50 border rounded text-xs font-mono text-gray-600 overflow-y-auto max-h-40 whitespace-pre-wrap" }, finalPrompt), React__default.createElement(
+        Button,
+        {
+          className: "ars-generate-btn mt-3",
+          onClick: handleGenerate,
+          isLoading: isGenerating,
+          disabled: isGenerating || (useExistingReview ? existingReviewText.length < MIN_CHARS : userThoughts.length < MIN_CHARS),
+          icon: React__default.createElement(Sparkles, { size: 18 })
+        },
+        "Generate Review"
+      ), visionStatus && React__default.createElement("div", { className: "ars-ai-vision-status mt-2 text-xs text-blue-600 flex items-center gap-1" }, isGenerating && includeImages && visionStatus.includes("Extracting") ? React__default.createElement(LoaderCircle, { size: 12, className: "animate-spin" }) : React__default.createElement(Image$1, { size: 12 }), visionStatus)), error && React__default.createElement("div", { className: "ars-ai-error" }, error), React__default.createElement("div", { className: "ars-ai-result-section" }, React__default.createElement("label", { className: "ars-label" }, "Generated Review:"), React__default.createElement("div", { className: "ars-ai-result-container" }, generatedText ? React__default.createElement("p", { className: "ars-ai-result-text" }, generatedText) : React__default.createElement("div", { className: "ars-ai-placeholder" }, "Your generated review will appear here..."))))
     );
   };
+  const StarsIcon$1 = ({ size = 18, className = "" }) => React__default.createElement(
+    "svg",
+    {
+      xmlns: "http://www.w3.org/2000/svg",
+      width: size,
+      height: size,
+      viewBox: "0 0 24 24",
+      fill: "currentColor",
+      className
+    },
+React__default.createElement("path", { d: "M11 21c-4.97 0-9-4.03-9-9s4.03-9 9-9c.83 0 1.62.11 2.37.32-2.18 1.39-3.62 3.8-3.62 6.5s1.44 5.11 3.62 6.5c-.75.21-1.54.32-2.37.32z" }),
+React__default.createElement("circle", { cx: "18", cy: "5", r: "1.2" }),
+React__default.createElement("circle", { cx: "21", cy: "9", r: "0.8" }),
+React__default.createElement("circle", { cx: "15", cy: "4", r: "0.6" }),
+React__default.createElement("circle", { cx: "22", cy: "3", r: "0.5" }),
+React__default.createElement("circle", { cx: "17", cy: "11", r: "0.7" }),
+React__default.createElement("circle", { cx: "20", cy: "16", r: "0.6" }),
+React__default.createElement("path", { d: "M19 14l.3 1.1 1.1.3-1.1.3-.3 1.1-.3-1.1-1.1-.3 1.1-.3z" }),
+React__default.createElement("path", { d: "M12 7l.2.8.8.2-.8.2-.2.8-.2-.8-.8-.2.8-.2z" })
+  );
   const SaveIndicator = ({ status }) => {
     if (status === "idle") return null;
     const config = {
-      saving: { icon: jsxRuntimeExports.jsx(LoaderCircle, { size: 12, className: "animate-spin" }), text: "Saving draft...", color: "text-gray-500" },
-      saved: { icon: jsxRuntimeExports.jsx(Check, { size: 12 }), text: "Draft saved", color: "text-green-600" },
-      error: { icon: jsxRuntimeExports.jsx(CircleAlert, { size: 12 }), text: "Save failed", color: "text-red-500" }
+      saving: { icon: React__default.createElement(LoaderCircle, { size: 12, className: "animate-spin" }), text: "Saving draft...", color: "text-gray-500" },
+      saved: { icon: React__default.createElement(Check, { size: 12 }), text: "Draft saved", color: "text-green-600" },
+      error: { icon: React__default.createElement(CircleAlert, { size: 12 }), text: "Save failed", color: "text-red-500" }
     }[status];
     if (!config) return null;
-    return jsxRuntimeExports.jsxs("div", { className: `ars-save-indicator flex items-center gap-1.5 text-xs font-medium transition-opacity duration-300 ${config.color}`, children: [
-      config.icon,
-jsxRuntimeExports.jsx("span", { children: config.text })
-    ] });
+    return React__default.createElement("div", { className: `ars-save-indicator flex items-center gap-1.5 text-xs font-medium transition-opacity duration-300 ${config.color}` }, config.icon, React__default.createElement("span", null, config.text));
   };
   const ReviewFormShell = () => {
     const amazon = useAmazonForm();
@@ -12283,6 +11917,25 @@ jsxRuntimeExports.jsx("span", { children: config.text })
     const [isAIModalOpen, setIsAIModalOpen] = React__default.useState(false);
     const [isSettingsOpen, setIsSettingsOpen] = React__default.useState(false);
     const [showPasteFeedback, setShowPasteFeedback] = React__default.useState(false);
+    const [isGeneratingTitle, setIsGeneratingTitle] = React__default.useState(false);
+    const pressTimer = React__default.useRef(null);
+    const isLongPress = React__default.useRef(false);
+    const handleLightsPressStart = () => {
+      isLongPress.current = false;
+      pressTimer.current = setTimeout(() => {
+        isLongPress.current = true;
+        setSetting("dark_mode", !settings.dark_mode);
+      }, 600);
+    };
+    const handleLightsPressEnd = (e) => {
+      if (pressTimer.current) {
+        clearTimeout(pressTimer.current);
+        pressTimer.current = null;
+      }
+      if (!isLongPress.current) {
+        setSetting("amazon_ui_lights_off", !settings.amazon_ui_lights_off);
+      }
+    };
     React__default.useEffect(() => {
       const styleId = "ars-lights-off-global";
       if (settings.amazon_ui_lights_off) {
@@ -12352,6 +12005,42 @@ jsxRuntimeExports.jsx("span", { children: config.text })
       return () => document.removeEventListener("paste", handler, true);
     }, []);
     React__default.useEffect(() => {
+      if (!settings.demo_enabled || !amazon.isReady) return;
+      let isCancelled = false;
+      const bodyText = settings.demo_review_body || "";
+      const titleText = settings.demo_review_title || "";
+      const initialDelay = settings.demo_typing_delay * 1e3;
+      const charDelay = settings.demo_typing_speed === "slow" ? 80 : settings.demo_typing_speed === "fast" ? 20 : 45;
+      const typeSimulation = async () => {
+        await new Promise((resolve) => setTimeout(resolve, initialDelay));
+        if (isCancelled) return;
+        if (bodyText) {
+          for (let i = 0; i <= bodyText.length; i++) {
+            if (isCancelled) break;
+            amazon.setReviewText(bodyText.substring(0, i));
+            await new Promise((resolve) => setTimeout(resolve, charDelay));
+            if (i === 1) {
+              await new Promise((resolve) => setTimeout(resolve, 1e3));
+            }
+          }
+        }
+        if (isCancelled) return;
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        if (isCancelled) return;
+        if (titleText) {
+          for (let i = 0; i <= titleText.length; i++) {
+            if (isCancelled) break;
+            amazon.setReviewTitle(titleText.substring(0, i));
+            await new Promise((resolve) => setTimeout(resolve, charDelay));
+          }
+        }
+      };
+      typeSimulation();
+      return () => {
+        isCancelled = true;
+      };
+    }, [settings.demo_enabled, amazon.isReady]);
+    React__default.useEffect(() => {
       const handleBeforeUnload = (e) => {
         if (amazon.state.reviewText.trim().length > 0) {
           e.preventDefault();
@@ -12365,7 +12054,6 @@ jsxRuntimeExports.jsx("span", { children: config.text })
       const prev = amazon.state.reviewText;
       amazon.setReviewText(prev + (prev ? "\n\n" : "") + text);
     };
-    const [isGeneratingTitle, setIsGeneratingTitle] = React__default.useState(false);
     const handleGenerateTitle = async () => {
       const reviewText = amazon.state.reviewText.trim();
       if (!reviewText) {
@@ -12391,199 +12079,165 @@ jsxRuntimeExports.jsx("span", { children: config.text })
       }
     };
     if (!amazon.isReady) {
-      return jsxRuntimeExports.jsx("div", { className: "ars-review-shell ars-review-shell--loading", children: jsxRuntimeExports.jsx("p", { children: "Loading review form..." }) }, "loading");
+      return React__default.createElement("div", { className: "ars-review-shell ars-review-shell--loading", key: "loading" }, React__default.createElement("p", null, "Loading review form..."));
     }
-    return jsxRuntimeExports.jsxs("div", { className: "ars-review-shell", children: [
-jsxRuntimeExports.jsx(
-        ProfileSection,
-        {
-          avatarSrc: amazon.profile.avatarSrc,
-          name: amazon.profile.name
-        }
-      ),
-jsxRuntimeExports.jsxs("form", { className: "ars-review-form-container", autoComplete: "off", onSubmit: (e) => e.preventDefault(), children: [
-jsxRuntimeExports.jsx("input", { type: "text", style: { display: "none" }, tabIndex: -1, "aria-hidden": "true", value: "", readOnly: true, autoComplete: "false" }),
-jsxRuntimeExports.jsx(
-          ProductHeader,
-          {
-            imageSrc: amazon.product.imageSrc,
-            title: amazon.product.title,
-            name: amazon.product.name,
-            productUrl: amazon.product.productUrl || void 0
-          }
-        ),
-jsxRuntimeExports.jsxs("div", { className: "ars-review-form-fields", children: [
-jsxRuntimeExports.jsx("div", { className: "ars-form-field", children: jsxRuntimeExports.jsx(
-            StarRating,
-            {
-              value: amazon.state.starRating,
-              onChange: amazon.setStarRating
-            }
-          ) }),
-jsxRuntimeExports.jsxs("div", { className: "ars-form-field", children: [
-jsxRuntimeExports.jsxs("div", { className: "ars-form-field-label-row", children: [
-jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
-jsxRuntimeExports.jsx("label", { className: "ars-form-label", children: "Write a review" }),
-jsxRuntimeExports.jsx(SaveIndicator, { status: amazon.syncStatus })
-              ] }),
-              settings.amazon_ai_enabled && jsxRuntimeExports.jsxs(
-                Button,
-                {
-                  variant: "outline",
-                  size: "sm",
-                  onClick: () => setIsAIModalOpen(true),
-                  className: "ars-ai-trigger",
-                  children: [
-jsxRuntimeExports.jsx(Sparkles, { size: 14 }),
-                    "AI Assistant"
-                  ]
-                }
-              )
-            ] }),
-jsxRuntimeExports.jsx(
-              RichEditor,
-              {
-                value: amazon.state.reviewText,
-                onChange: amazon.setReviewText,
-                placeholder: "What should other customers know?",
-                autoResize: settings.amazon_editor_auto_resize,
-                onAutoResizeChange: (enabled) => setSetting("amazon_editor_auto_resize", enabled)
-              }
-            )
-          ] }),
-jsxRuntimeExports.jsxs("div", { className: "ars-form-field", children: [
-jsxRuntimeExports.jsx("label", { className: "ars-form-label", children: "Share a video or photo" }),
-jsxRuntimeExports.jsx(
-              MediaUpload,
-              {
-                onTrigger: amazon.triggerMediaUpload,
-                onPasteFromClipboard: amazon.pasteImageFromClipboard,
-                onPasteSuccess: handlePasteSuccess,
-                onFilesDropped: amazon.setMediaFiles,
-                thumbnails: amazon.state.mediaThumbnails,
-                onRemove: amazon.removeMedia,
-                showPasteFeedback,
-                placeholder: "Drag-and-drop or Crtl+V your images here!"
-              }
-            )
-          ] }),
-jsxRuntimeExports.jsx("div", { className: "ars-form-field", children: jsxRuntimeExports.jsx(
-            Input,
-            {
-              label: "Title your review (required)",
-              placeholder: "What's most important to know?",
-              value: amazon.state.reviewTitle,
-              onChange: (e) => amazon.setReviewTitle(e.target.value),
-              name: "ars-review-title",
-              autoComplete: "off-title",
-              spellCheck: false,
-              autoCorrect: "off",
-              autoCapitalize: "off",
-              suffix: settings.amazon_ai_enabled && jsxRuntimeExports.jsx(
-                Button,
-                {
-                  type: "button",
-                  variant: "outline",
-                  size: "sm",
-                  onClick: (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    handleGenerateTitle();
-                  },
-                  style: { pointerEvents: "auto", background: "white" },
-                  isLoading: isGeneratingTitle,
-                  className: "ars-ai-trigger",
-                  title: "Generate title from review body",
-                  children: !isGeneratingTitle && jsxRuntimeExports.jsx(Sparkles, { size: 14 })
-                }
-              )
-            }
-          ) })
-        ] })
-      ] }),
-jsxRuntimeExports.jsxs("div", { className: "ars-review-submit", children: [
-jsxRuntimeExports.jsx("div", { className: "flex items-center gap-4", children: amazon.lastSaved && jsxRuntimeExports.jsxs("div", { className: "text-xs text-gray-500 font-medium", children: [
-          "Draft saved ",
-          amazon.lastSaved.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
-        ] }) }),
-jsxRuntimeExports.jsxs("div", { className: "ars-submit-group", children: [
-jsxRuntimeExports.jsx(SaveIndicator, { status: amazon.syncStatus }),
-jsxRuntimeExports.jsx(
-            Button,
-            {
-              variant: "outline",
-              size: "md",
-              onClick: () => {
-                const hasContent = amazon.state.reviewText.trim().length > 0;
-                if (hasContent) {
-                  if (window.confirm("You have unsaved changes in your review. Are you sure you want to go back?")) {
-                    window.location.href = "https://www.amazon.ca/review/review-your-purchases/listing";
-                  }
-                } else {
-                  window.location.href = "https://www.amazon.ca/review/review-your-purchases/listing";
-                }
-              },
-              className: "ars-back-button",
-              icon: jsxRuntimeExports.jsx("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", "stroke-width": "2", "stroke-linecap": "round", "stroke-linejoin": "round", children: jsxRuntimeExports.jsx("path", { d: "M19 12H5M12 19l-7-7 7-7" }) }),
-              children: "Back"
-            }
-          ),
-jsxRuntimeExports.jsx(
-            Button,
-            {
-              variant: "primary",
-              size: "lg",
-              onClick: amazon.submit,
-              icon: jsxRuntimeExports.jsx(Send, { size: 20 }),
-              type: "button",
-              children: "Submit"
-            }
-          )
-        ] })
-      ] }),
-jsxRuntimeExports.jsx(
-        AIModal,
-        {
-          isOpen: isAIModalOpen,
-          onClose: () => setIsAIModalOpen(false),
-          onInsert: handleInsertAI,
-          productTitle: amazon.product.name,
-          asin: amazon.product.asin,
-          starRating: amazon.state.starRating,
-          existingReviewText: amazon.state.reviewText
-        }
-      ),
-jsxRuntimeExports.jsx(
-        SettingsDashboard,
-        {
-          isOpen: isSettingsOpen,
-          onClose: () => setIsSettingsOpen(false)
-        }
-      ),
-jsxRuntimeExports.jsxs("div", { className: "ars-header-actions", children: [
-jsxRuntimeExports.jsx(
-          "button",
+    return React__default.createElement("div", { className: "ars-review-shell", key: "ready" }, React__default.createElement(
+      ProfileSection,
+      {
+        avatarSrc: amazon.profile.avatarSrc,
+        name: amazon.profile.name
+      }
+    ), React__default.createElement("form", { className: "ars-review-form-container", autoComplete: "off", onSubmit: (e) => e.preventDefault() }, React__default.createElement("input", { type: "text", style: { display: "none" }, tabIndex: -1, "aria-hidden": "true", value: "", readOnly: true, autoComplete: "false" }), React__default.createElement(
+      ProductHeader,
+      {
+        imageSrc: amazon.product.imageSrc,
+        title: amazon.product.title,
+        name: amazon.product.name,
+        productUrl: amazon.product.productUrl || void 0
+      }
+    ), React__default.createElement("div", { className: "ars-review-form-fields" }, React__default.createElement("div", { className: "ars-form-field" }, React__default.createElement(
+      StarRating,
+      {
+        value: amazon.state.starRating,
+        onChange: amazon.setStarRating
+      }
+    )), React__default.createElement("div", { className: "ars-form-field" }, React__default.createElement("div", { className: "ars-form-field-label-row" }, React__default.createElement("div", { className: "flex items-center gap-3" }, React__default.createElement("label", { className: "ars-form-label" }, "Write a review"), React__default.createElement(SaveIndicator, { status: amazon.syncStatus })), settings.amazon_ai_enabled && React__default.createElement(
+      Button,
+      {
+        variant: "outline",
+        size: "sm",
+        onClick: () => setIsAIModalOpen(true),
+        className: "ars-ai-trigger"
+      },
+React__default.createElement(Sparkles, { size: 14 }),
+      "AI Assistant"
+    )), React__default.createElement(
+      RichEditor,
+      {
+        value: amazon.state.reviewText,
+        onChange: amazon.setReviewText,
+        placeholder: "What should other customers know?",
+        autoResize: settings.amazon_editor_auto_resize,
+        onAutoResizeChange: (enabled) => setSetting("amazon_editor_auto_resize", enabled)
+      }
+    )), React__default.createElement("div", { className: "ars-form-field" }, React__default.createElement("label", { className: "ars-form-label" }, "Share a video or photo"), React__default.createElement(
+      MediaUpload,
+      {
+        onTrigger: amazon.triggerMediaUpload,
+        onPasteFromClipboard: amazon.pasteImageFromClipboard,
+        onPasteSuccess: handlePasteSuccess,
+        onFilesDropped: amazon.setMediaFiles,
+        thumbnails: amazon.state.mediaThumbnails,
+        onRemove: amazon.removeMedia,
+        showPasteFeedback,
+        placeholder: "Drag-and-drop or Crtl+V your images here!"
+      }
+    )), React__default.createElement("div", { className: "ars-form-field" }, React__default.createElement(
+      Input,
+      {
+        label: "Title your review (required)",
+        placeholder: "What's most important to know?",
+        value: amazon.state.reviewTitle,
+        onChange: (e) => amazon.setReviewTitle(e.target.value),
+        name: "ars-review-title",
+        autoComplete: "off-title",
+        spellCheck: false,
+        autoCorrect: "off",
+        autoCapitalize: "off",
+        suffix: settings.amazon_ai_enabled && React__default.createElement(
+          Button,
           {
             type: "button",
-            className: `ars-action-button ${settings.amazon_ui_lights_off ? "active" : ""}`,
-            onClick: () => setSetting("amazon_ui_lights_off", !settings.amazon_ui_lights_off),
-            "aria-label": "Lights Off",
-            title: "Lights Off",
-            children: jsxRuntimeExports.jsx(Moon, { size: 18 })
-          }
-        ),
-jsxRuntimeExports.jsx(
-          "button",
-          {
-            type: "button",
-            className: "ars-action-button",
-            onClick: () => setIsSettingsOpen(true),
-            "aria-label": "Settings",
-            children: jsxRuntimeExports.jsx(Settings, { size: 18 })
-          }
+            variant: "outline",
+            size: "sm",
+            onClick: (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              handleGenerateTitle();
+            },
+            style: { pointerEvents: "auto", background: "white" },
+            isLoading: isGeneratingTitle,
+            className: "ars-ai-trigger",
+            title: "Generate title from review body"
+          },
+          !isGeneratingTitle && React__default.createElement(Sparkles, { size: 14 })
         )
-      ] })
-    ] }, "ready");
+      }
+    )))), React__default.createElement("div", { className: "ars-review-submit" }, React__default.createElement("div", { className: "flex items-center gap-4" }, amazon.lastSaved && React__default.createElement("div", { className: "text-xs text-gray-500 font-medium" }, "Draft saved ", amazon.lastSaved.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }))), React__default.createElement("div", { className: "ars-submit-group" }, React__default.createElement(SaveIndicator, { status: amazon.syncStatus }), React__default.createElement(
+      Button,
+      {
+        variant: "outline",
+        size: "md",
+        onClick: () => {
+          const hasContent = amazon.state.reviewText.trim().length > 0;
+          if (hasContent) {
+            if (window.confirm("You have unsaved changes in your review. Are you sure you want to go back?")) {
+              window.location.href = "https://www.amazon.ca/review/review-your-purchases/listing";
+            }
+          } else {
+            window.location.href = "https://www.amazon.ca/review/review-your-purchases/listing";
+          }
+        },
+        className: "ars-back-button",
+        icon: React__default.createElement("svg", { width: "16", height: "16", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", "stroke-width": "2", "stroke-linecap": "round", "stroke-linejoin": "round" }, React__default.createElement("path", { d: "M19 12H5M12 19l-7-7 7-7" }))
+      },
+      "Back"
+    ), React__default.createElement(
+      Button,
+      {
+        variant: "primary",
+        size: "lg",
+        onClick: amazon.submit,
+        icon: React__default.createElement(Send, { size: 20 }),
+        type: "button"
+      },
+      "Submit"
+    ))), React__default.createElement(
+      AIModal,
+      {
+        isOpen: isAIModalOpen,
+        onClose: () => setIsAIModalOpen(false),
+        onInsert: handleInsertAI,
+        productTitle: amazon.product.name,
+        asin: amazon.product.asin,
+        starRating: amazon.state.starRating,
+        existingReviewText: amazon.state.reviewText
+      }
+    ), React__default.createElement(
+      SettingsDashboard,
+      {
+        isOpen: isSettingsOpen,
+        onClose: () => setIsSettingsOpen(false)
+      }
+    ), React__default.createElement("div", { className: "ars-header-actions" }, React__default.createElement(
+      "button",
+      {
+        type: "button",
+        className: `ars-action-button ${settings.amazon_ui_lights_off ? "active" : ""} ${settings.dark_mode ? "!text-yellow-400" : ""}`,
+        onMouseDown: handleLightsPressStart,
+        onMouseUp: handleLightsPressEnd,
+        onMouseLeave: () => {
+          if (pressTimer.current) {
+            clearTimeout(pressTimer.current);
+            pressTimer.current = null;
+          }
+        },
+        onTouchStart: handleLightsPressStart,
+        onTouchEnd: handleLightsPressEnd,
+        "aria-label": settings.dark_mode ? "Dark Mode On (Long Press to Toggle)" : "Lights Off",
+        title: "Lights Off (Long Press for Dark Mode)"
+      },
+      settings.dark_mode ? React__default.createElement(StarsIcon$1, { size: 18 }) : React__default.createElement(Moon, { size: 18 })
+    ), React__default.createElement(
+      "button",
+      {
+        type: "button",
+        className: "ars-action-button",
+        onClick: () => setIsSettingsOpen(true),
+        "aria-label": "Settings"
+      },
+React__default.createElement(Settings, { size: 18 })
+    )));
   };
   const stringifyUnordered = (items) => {
     const sorted = [...items].sort((a, b) => {
@@ -12703,53 +12357,47 @@ jsxRuntimeExports.jsx(
       updateDimensions();
       return () => observer2.disconnect();
     }, [scale2]);
-    return jsxRuntimeExports.jsx(
+    return React__default.createElement(
       "div",
       {
         ref: containerRef,
-        className: `ars-scaling-wrapper ${isResizing ? "is-resizing" : ""}`,
+        className: `ars-scaling-wrapper ${isResizing ? "is-resizing" : ""} ${settings.dark_mode ? "ars-dark-mode" : ""}`,
         style: {
           height: compHeight || "auto",
           width: "100%",
           position: "relative"
+        }
+      },
+React__default.createElement(
+        "div",
+        {
+          className: "ars-scaling-content",
+          style: {
+            transform: `scale(${scale2})`,
+            transformOrigin: "top center",
+            width: "100%",
+            position: "relative"
+          }
         },
-        children: jsxRuntimeExports.jsx(
+React__default.createElement("div", { style: {
+          position: "relative",
+          width: "fit-content",
+          margin: "0 auto",
+          maxWidth: "100%"
+        } }, React__default.createElement("div", { ref: contentRef }, children), React__default.createElement(
           "div",
           {
-            className: "ars-scaling-content",
-            style: {
-              transform: `scale(${scale2})`,
-              transformOrigin: "top center",
-              width: "100%",
-              position: "relative"
-            },
-            children: jsxRuntimeExports.jsxs("div", { style: {
-              position: "relative",
-              width: "fit-content",
-              margin: "0 auto",
-              maxWidth: "100%"
-            }, children: [
-jsxRuntimeExports.jsx("div", { ref: contentRef, children }),
-jsxRuntimeExports.jsx(
-                "div",
-                {
-                  className: "ars-resize-handle",
-                  onMouseDown: startResize,
-                  onDoubleClick: () => setSetting("amazon_ui_scale", 1),
-                  title: "Drag to scale down, double-click to reset"
-                }
-              )
-            ] })
+            className: "ars-resize-handle",
+            onMouseDown: startResize,
+            onDoubleClick: () => setSetting("amazon_ui_scale", 1),
+            title: "Drag to scale down, double-click to reset"
           }
-        )
-      }
+        ))
+      )
     );
   };
   function App() {
-    return jsxRuntimeExports.jsxs(SettingsProvider, { children: [
-jsxRuntimeExports.jsx(AutoSyncWatcher, {}),
-jsxRuntimeExports.jsx(ScalingWrapper, { children: jsxRuntimeExports.jsx(ReviewFormShell, {}) })
-    ] });
+    return React.createElement(SettingsProvider, null, React.createElement(AutoSyncWatcher, null), React.createElement(ScalingWrapper, null, React.createElement(ReviewFormShell, null)));
   }
   const useReviewCandidates = () => {
     const [candidates, setCandidates] = React__default.useState([]);
@@ -12930,163 +12578,130 @@ jsxRuntimeExports.jsx(ScalingWrapper, { children: jsxRuntimeExports.jsx(ReviewFo
         return href.includes(candidate.asin);
       });
       if (nativeCard) {
-        const nativeStars = nativeCard.querySelectorAll('button[data-hook="ryp-star"]');
-        if (nativeStars && nativeStars.length >= newRating && newRating > 0) {
-          const targetStar = nativeStars[newRating - 1];
-          targetStar.click();
+        if (newRating > 0) {
+          const nativeStars = nativeCard.querySelectorAll('button[data-hook="ryp-star"]');
+          if (nativeStars && nativeStars.length >= newRating) {
+            const targetStar = nativeStars[newRating - 1];
+            targetStar.click();
+          }
+        } else {
+          const clearBtn = nativeCard.querySelector('.in-context-ryp__form-field--starRating--clear, [class*="starRating--clear"], [aria-label="Clear"]');
+          if (clearBtn) {
+            console.log("[ARS] Clicking native clear button in card");
+            clearBtn.click();
+            clearBtn.querySelector("span")?.click();
+            const mouseEventProps = { bubbles: true, cancelable: true, view: window };
+            clearBtn.dispatchEvent(new MouseEvent("mousedown", mouseEventProps));
+            clearBtn.dispatchEvent(new MouseEvent("mouseup", mouseEventProps));
+          }
         }
       }
     };
     const handleReset = (e) => {
       e.preventDefault();
       e.stopPropagation();
-      setRating(0);
+      handleRatingChange(0);
     };
     if (layoutMode === "list") {
-      return jsxRuntimeExports.jsxs("div", { className: `rounded-xl border overflow-hidden flex flex-row items-center gap-4 px-4 py-1.5 group transition-all duration-300 bg-white border-gray-100 hover:shadow-md h-14`, children: [
-jsxRuntimeExports.jsx(
-          "a",
-          {
-            href: productUrl,
-            target: "_blank",
-            rel: "noreferrer",
-            className: "w-10 h-10 shrink-0 flex items-center justify-center",
-            title: "View Product Page",
-            children: jsxRuntimeExports.jsx(
-              "img",
-              {
-                src: candidate.imageUrl,
-                alt: candidate.title,
-                className: "w-full h-full object-contain mix-blend-multiply"
-              }
-            )
-          }
-        ),
-jsxRuntimeExports.jsxs("div", { className: "flex-1 min-w-0", children: [
-jsxRuntimeExports.jsx("h3", { className: `text-[11px] font-bold truncate leading-tight text-gray-900`, children: candidate.title }),
-jsxRuntimeExports.jsxs("div", { className: `flex items-center gap-3 mt-0.5 text-[8px] font-bold uppercase tracking-wider text-gray-400`, children: [
-            candidate.purchaseDate && jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-1", children: [
-jsxRuntimeExports.jsx(Calendar, { size: 8 }),
-jsxRuntimeExports.jsx("span", { children: candidate.purchaseDate.toLocaleDateString() })
-            ] }),
-            candidate.category && jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-1", children: [
-jsxRuntimeExports.jsx(Tag, { size: 8 }),
-jsxRuntimeExports.jsx("span", { children: candidate.category })
-            ] })
-          ] })
-        ] }),
-jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
-jsxRuntimeExports.jsx("div", { className: "scale-[0.55] origin-right", children: jsxRuntimeExports.jsx(
-            StarRating,
-            {
-              value: rating,
-              onChange: handleRatingChange,
-              hideClear: true
-            }
-          ) }),
-          rating > 0 && jsxRuntimeExports.jsx(
-            "button",
-            {
-              onClick: handleReset,
-              className: `p-1 rounded-lg transition-colors text-gray-400 hover:text-gray-600`,
-              children: jsxRuntimeExports.jsx(RotateCcw, { size: 10 })
-            }
-          )
-        ] }),
-jsxRuntimeExports.jsx("div", { className: "w-28 shrink-0 flex justify-end", children: jsxRuntimeExports.jsxs(
-          "a",
-          {
-            href: candidate.reviewUrl,
-            target: "_blank",
-            rel: "noreferrer",
-            className: `flex items-center justify-center gap-1 w-full py-1.5 rounded-lg text-[9px] font-black transition-all duration-300 uppercase tracking-widest ${rating > 0 ? "bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-md shadow-amber-200/50 active:scale-95" : "bg-gray-100 text-gray-300 cursor-not-allowed opacity-50"}`,
-            onClick: (e) => rating === 0 && e.preventDefault(),
-            children: [
-              "Review",
-jsxRuntimeExports.jsx(ChevronRight, { size: 10, className: "ml-0.5" })
-            ]
-          }
-        ) })
-      ] });
-    }
-    return jsxRuntimeExports.jsxs("div", { className: `rounded-xl border overflow-hidden flex flex-row relative group shadow-sm hover:shadow-md transition-all duration-300 h-30 bg-white border-gray-100`, children: [
-jsxRuntimeExports.jsx(
+      return React__default.createElement("div", { className: `rounded-xl border overflow-hidden flex flex-row items-center gap-4 px-4 py-1.5 group transition-all duration-300 bg-white border-gray-100 hover:shadow-md h-14` }, React__default.createElement(
         "a",
         {
           href: productUrl,
           target: "_blank",
           rel: "noreferrer",
-          className: "w-28 shrink-0 p-2 flex items-center justify-center",
-          title: "View Product Page",
-          children: jsxRuntimeExports.jsxs("div", { className: "w-full h-full relative", children: [
-jsxRuntimeExports.jsx(
-              "img",
-              {
-                src: candidate.imageUrl,
-                alt: candidate.title,
-                className: "w-full h-full object-contain mix-blend-multiply"
-              }
-            ),
-            candidate.isVideoRequired && jsxRuntimeExports.jsx("div", { className: "absolute top-0 left-0", children: jsxRuntimeExports.jsx("span", { className: "bg-blue-600 text-white text-[7px] font-black px-1.5 py-0.5 rounded shadow-sm", children: "VIDEO" }) })
-          ] })
+          className: "w-10 h-10 shrink-0 flex items-center justify-center",
+          title: "View Product Page"
+        },
+React__default.createElement(
+          "img",
+          {
+            src: candidate.imageUrl,
+            alt: candidate.title,
+            className: "w-full h-full object-contain mix-blend-multiply"
+          }
+        )
+      ), React__default.createElement("div", { className: "flex-1 min-w-0" }, React__default.createElement("h3", { className: `text-[11px] font-bold truncate leading-tight text-gray-900` }, candidate.title), React__default.createElement("div", { className: `flex items-center gap-3 mt-0.5 text-[8px] font-bold uppercase tracking-wider text-gray-400` }, candidate.purchaseDate && React__default.createElement("div", { className: "flex items-center gap-1" }, React__default.createElement(Calendar, { size: 8 }), React__default.createElement("span", null, candidate.purchaseDate.toLocaleDateString())), candidate.category && React__default.createElement("div", { className: "flex items-center gap-1" }, React__default.createElement(Tag, { size: 8 }), React__default.createElement("span", null, candidate.category)))), React__default.createElement("div", { className: "flex items-center gap-2" }, React__default.createElement("div", { className: "scale-[0.55] origin-right" }, React__default.createElement(
+        StarRating,
+        {
+          value: rating,
+          onChange: handleRatingChange,
+          hideClear: true
         }
+      )), rating > 0 && React__default.createElement(
+        "button",
+        {
+          onClick: handleReset,
+          className: `p-1 rounded-lg transition-colors text-gray-400 hover:text-gray-600`
+        },
+React__default.createElement(RotateCcw, { size: 10 })
+      )), React__default.createElement("div", { className: "w-28 shrink-0 flex justify-end" }, React__default.createElement(
+        "a",
+        {
+          href: candidate.reviewUrl,
+          target: "_blank",
+          rel: "noreferrer",
+          className: `flex items-center justify-center gap-1 w-full py-1.5 rounded-lg text-[9px] font-black transition-all duration-300 uppercase tracking-widest ${rating > 0 ? "bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-md shadow-amber-200/50 active:scale-95" : "bg-gray-100 text-gray-300 cursor-not-allowed opacity-50"}`,
+          onClick: (e) => rating === 0 && e.preventDefault()
+        },
+        "Review",
+React__default.createElement(ChevronRight, { size: 10, className: "ml-0.5" })
+      )));
+    }
+    return React__default.createElement("div", { className: `rounded-xl border overflow-hidden flex flex-row relative group shadow-sm hover:shadow-md transition-all duration-300 h-30 bg-white border-gray-100` }, React__default.createElement(
+      "a",
+      {
+        href: productUrl,
+        target: "_blank",
+        rel: "noreferrer",
+        className: "w-28 shrink-0 p-2 flex items-center justify-center",
+        title: "View Product Page"
+      },
+React__default.createElement("div", { className: "w-full h-full relative" }, React__default.createElement(
+        "img",
+        {
+          src: candidate.imageUrl,
+          alt: candidate.title,
+          className: "w-full h-full object-contain mix-blend-multiply"
+        }
+      ), candidate.isVideoRequired && React__default.createElement("div", { className: "absolute top-0 left-0" }, React__default.createElement("span", { className: "bg-blue-600 text-white text-[7px] font-black px-1.5 py-0.5 rounded shadow-sm" }, "VIDEO")))
+    ), React__default.createElement("div", { className: "flex-1 p-2.5 pl-1 flex flex-col items-start min-w-0" }, React__default.createElement("div", { className: "w-full" }, React__default.createElement("h3", { className: `text-[11px] font-bold line-clamp-3 leading-tight mb-0.5 tracking-tight text-left text-gray-900` }, candidate.title), React__default.createElement("div", { className: `flex items-center gap-2 text-[8px] font-bold uppercase tracking-wider text-left text-gray-400` }, candidate.purchaseDate ? React__default.createElement("div", { className: "flex items-center gap-1" }, React__default.createElement(Calendar, { size: 8 }), React__default.createElement("span", null, candidate.purchaseDate.toLocaleDateString())) : candidate.category ? React__default.createElement("div", { className: "flex items-center gap-1" }, React__default.createElement(Tag, { size: 8 }), React__default.createElement("span", { className: "truncate max-w-[80px]" }, candidate.category)) : null)), React__default.createElement("div", { className: "mt-0.5 flex items-center justify-center w-full" }, React__default.createElement("div", { className: "inline-flex items-center" }, React__default.createElement(
+      StarRating,
+      {
+        value: rating,
+        onChange: handleRatingChange,
+        className: "scale-[0.7] origin-center",
+        hideClear: true
+      }
+    ))), React__default.createElement("div", { className: "mt-auto w-full px-1 mb-0.5" }, React__default.createElement(AnimatePresence, null, rating > 0 && React__default.createElement(
+      motion.div,
+      {
+        className: "flex items-center gap-1.5",
+        initial: { opacity: 0, y: 5 },
+        animate: { opacity: 1, y: 0 },
+        exit: { opacity: 0, y: 5 },
+        transition: { type: "spring", damping: 15, stiffness: 200 }
+      },
+React__default.createElement(
+        motion.a,
+        {
+          href: candidate.reviewUrl,
+          target: "_blank",
+          rel: "noreferrer",
+          className: `flex-1 flex items-center justify-center gap-1 py-1 rounded-lg text-[9px] font-black transition-all duration-300 uppercase tracking-widest shadow-sm bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white shadow-amber-200/50`
+        },
+        "Review",
+React__default.createElement(ChevronRight, { size: 10 })
       ),
-jsxRuntimeExports.jsxs("div", { className: "flex-1 p-2.5 pl-1 flex flex-col items-start min-w-0", children: [
-jsxRuntimeExports.jsxs("div", { className: "w-full", children: [
-jsxRuntimeExports.jsx("h3", { className: `text-[11px] font-bold line-clamp-3 leading-tight mb-0.5 tracking-tight text-left text-gray-900`, children: candidate.title }),
-jsxRuntimeExports.jsx("div", { className: `flex items-center gap-2 text-[8px] font-bold uppercase tracking-wider text-left text-gray-400`, children: candidate.purchaseDate ? jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-1", children: [
-jsxRuntimeExports.jsx(Calendar, { size: 8 }),
-jsxRuntimeExports.jsx("span", { children: candidate.purchaseDate.toLocaleDateString() })
-          ] }) : candidate.category ? jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-1", children: [
-jsxRuntimeExports.jsx(Tag, { size: 8 }),
-jsxRuntimeExports.jsx("span", { className: "truncate max-w-[80px]", children: candidate.category })
-          ] }) : null })
-        ] }),
-jsxRuntimeExports.jsx("div", { className: "mt-0.5 flex items-center justify-center w-full", children: jsxRuntimeExports.jsx("div", { className: "inline-flex items-center", children: jsxRuntimeExports.jsx(
-          StarRating,
-          {
-            value: rating,
-            onChange: handleRatingChange,
-            className: "scale-[0.7] origin-center",
-            hideClear: true
-          }
-        ) }) }),
-jsxRuntimeExports.jsx("div", { className: "mt-auto w-full px-1 mb-0.5", children: jsxRuntimeExports.jsx(AnimatePresence, { children: rating > 0 && jsxRuntimeExports.jsxs(
-          motion.div,
-          {
-            className: "flex items-center gap-1.5",
-            initial: { opacity: 0, y: 5 },
-            animate: { opacity: 1, y: 0 },
-            exit: { opacity: 0, y: 5 },
-            transition: { type: "spring", damping: 15, stiffness: 200 },
-            children: [
-jsxRuntimeExports.jsxs(
-                motion.a,
-                {
-                  href: candidate.reviewUrl,
-                  target: "_blank",
-                  rel: "noreferrer",
-                  className: `flex-1 flex items-center justify-center gap-1 py-1 rounded-lg text-[9px] font-black transition-all duration-300 uppercase tracking-widest shadow-sm bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white shadow-amber-200/50`,
-                  children: [
-                    "Review",
-jsxRuntimeExports.jsx(ChevronRight, { size: 10 })
-                  ]
-                }
-              ),
-jsxRuntimeExports.jsx(
-                "button",
-                {
-                  onClick: handleReset,
-                  className: `p-1.5 rounded-lg transition-colors flex items-center justify-center bg-gray-100 hover:bg-gray-200 text-gray-500 hover:text-gray-700`,
-                  title: "Reset Rating",
-                  children: jsxRuntimeExports.jsx(RotateCcw, { size: 14 })
-                }
-              )
-            ]
-          }
-        ) }) })
-      ] })
-    ] });
+React__default.createElement(
+        "button",
+        {
+          onClick: handleReset,
+          className: `p-1.5 rounded-lg transition-colors flex items-center justify-center bg-gray-100 hover:bg-gray-200 text-gray-500 hover:text-gray-700`,
+          title: "Reset Rating"
+        },
+React__default.createElement(RotateCcw, { size: 14 })
+      )
+    )))));
   };
   const SortFilterTabs = ({
     searchQuery,
@@ -13102,39 +12717,48 @@ jsxRuntimeExports.jsx(
       { id: "category", label: "Category" },
       { id: "alpha", label: "A-Z" }
     ];
-    return jsxRuntimeExports.jsx("div", { className: "max-w-[1200px] mx-auto px-6", children: jsxRuntimeExports.jsxs("div", { className: "flex flex-col items-center gap-6 py-2", children: [
-jsxRuntimeExports.jsx("div", { className: "flex items-center justify-center w-full", children: jsxRuntimeExports.jsx("div", { className: `flex items-center gap-1 p-1 rounded-2xl bg-gray-100`, children: tabs.map((tab) => jsxRuntimeExports.jsx(
-        "button",
-        {
-          onClick: () => onSortChange(tab.id),
-          className: `
+    return React__default.createElement("div", { className: "max-w-[1200px] mx-auto px-6" }, React__default.createElement("div", { className: "flex flex-col items-center gap-6 py-2" }, React__default.createElement("div", { className: "flex items-center justify-center w-full" }, React__default.createElement("div", { className: `flex items-center gap-1 p-1 rounded-2xl bg-gray-100` }, tabs.map((tab) => React__default.createElement(
+      "button",
+      {
+        key: tab.id,
+        onClick: () => onSortChange(tab.id),
+        className: `
                                     whitespace-nowrap px-5 py-2 rounded-xl text-sm font-bold transition-all duration-200
                                     ${sortMode === tab.id ? "bg-white text-amber-600 shadow-sm" : "text-gray-500 hover:text-gray-700"}
-                                `,
-          children: tab.label
-        },
-        tab.id
-      )) }) }),
-jsxRuntimeExports.jsx("div", { className: "flex flex-col sm:flex-row items-center gap-4 w-full justify-center", children: jsxRuntimeExports.jsxs("div", { className: "relative w-full max-w-md", children: [
-jsxRuntimeExports.jsx(
-          "input",
-          {
-            type: "text",
-            placeholder: "Search your purchases...",
-            className: `w-full pl-10 pr-4 py-2 border rounded-2xl text-sm focus:ring-2 focus:ring-amber-500/20 placeholder-gray-400 transition-all font-medium text-center bg-gray-50 border-gray-100 text-gray-900`,
-            value: searchQuery,
-            onChange: (e) => onSearchChange(e.target.value)
-          }
-        ),
-jsxRuntimeExports.jsx("div", { className: "absolute left-4 top-1/2 -translate-y-1/2 text-gray-400", children: jsxRuntimeExports.jsx(Search, { size: 16 }) }),
-        isLoading && jsxRuntimeExports.jsx("div", { className: "absolute right-4 top-1/2 -translate-y-1/2 text-amber-500", children: jsxRuntimeExports.jsx(LoaderCircle, { size: 16, className: "animate-spin" }) })
-      ] }) }),
-jsxRuntimeExports.jsxs("div", { className: `text-[10px] uppercase tracking-widest font-bold text-gray-400`, children: [
-        totalItems,
-        " Available Products"
-      ] })
-    ] }) });
+                                `
+      },
+      tab.label
+    )))), React__default.createElement("div", { className: "flex flex-col sm:flex-row items-center gap-4 w-full justify-center" }, React__default.createElement("div", { className: "relative w-full max-w-md" }, React__default.createElement(
+      "input",
+      {
+        type: "text",
+        placeholder: "Search your purchases...",
+        className: `w-full pl-10 pr-4 py-2 border rounded-2xl text-sm focus:ring-2 focus:ring-amber-500/20 placeholder-gray-400 transition-all font-medium text-center bg-gray-50 border-gray-100 text-gray-900`,
+        value: searchQuery,
+        onChange: (e) => onSearchChange(e.target.value)
+      }
+    ), React__default.createElement("div", { className: "absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" }, React__default.createElement(Search, { size: 16 })), isLoading && React__default.createElement("div", { className: "absolute right-4 top-1/2 -translate-y-1/2 text-amber-500" }, React__default.createElement(LoaderCircle, { size: 16, className: "animate-spin" })))), React__default.createElement("div", { className: `text-[10px] uppercase tracking-widest font-bold text-gray-400` }, totalItems, " Available Products")));
   };
+  const StarsIcon = ({ size = 20, className = "" }) => React__default.createElement(
+    "svg",
+    {
+      xmlns: "http://www.w3.org/2000/svg",
+      width: size,
+      height: size,
+      viewBox: "0 0 24 24",
+      fill: "currentColor",
+      className
+    },
+React__default.createElement("path", { d: "M11 21c-4.97 0-9-4.03-9-9s4.03-9 9-9c.83 0 1.62.11 2.37.32-2.18 1.39-3.62 3.8-3.62 6.5s1.44 5.11 3.62 6.5c-.75.21-1.54.32-2.37.32z" }),
+React__default.createElement("circle", { cx: "18", cy: "5", r: "1.2" }),
+React__default.createElement("circle", { cx: "21", cy: "9", r: "0.8" }),
+React__default.createElement("circle", { cx: "15", cy: "4", r: "0.6" }),
+React__default.createElement("circle", { cx: "22", cy: "3", r: "0.5" }),
+React__default.createElement("circle", { cx: "17", cy: "11", r: "0.7" }),
+React__default.createElement("circle", { cx: "20", cy: "16", r: "0.6" }),
+React__default.createElement("path", { d: "M19 14l.3 1.1 1.1.3-1.1.3-.3 1.1-.3-1.1-1.1-.3 1.1-.3z" }),
+React__default.createElement("path", { d: "M12 7l.2.8.8.2-.8.2-.2.8-.2-.8-.8-.2.8-.2z" })
+  );
   const ReviewPurchasesContent = () => {
     const {
       candidates,
@@ -13149,6 +12773,24 @@ jsxRuntimeExports.jsxs("div", { className: `text-[10px] uppercase tracking-wides
     const { settings, setSetting } = useSettings();
     const [isSettingsOpen, setIsSettingsOpen] = React__default.useState(false);
     const [layoutMode, setLayoutMode] = React__default.useState("grid");
+    const pressTimer = React__default.useRef(null);
+    const isLongPress = React__default.useRef(false);
+    const handleLightsPressStart = () => {
+      isLongPress.current = false;
+      pressTimer.current = setTimeout(() => {
+        isLongPress.current = true;
+        setSetting("dark_mode", !settings.dark_mode);
+      }, 600);
+    };
+    const handleLightsPressEnd = () => {
+      if (pressTimer.current) {
+        clearTimeout(pressTimer.current);
+        pressTimer.current = null;
+      }
+      if (!isLongPress.current) {
+        setSetting("amazon_ui_lights_off", !settings.amazon_ui_lights_off);
+      }
+    };
     React__default.useEffect(() => {
       const styleId = "ars-lights-off-global";
       if (settings.amazon_ui_lights_off) {
@@ -13194,215 +12836,166 @@ jsxRuntimeExports.jsxs("div", { className: `text-[10px] uppercase tracking-wides
         if (el) el.remove();
       };
     }, [settings.amazon_ui_lights_off]);
-    return jsxRuntimeExports.jsxs("div", { className: "max-w-[1200px] mx-auto transition-all duration-500", children: [
-jsxRuntimeExports.jsxs("div", { className: `rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] overflow-hidden pb-12 bg-white border-gray-100 border`, children: [
-jsxRuntimeExports.jsxs("div", { className: "relative", children: [
-jsxRuntimeExports.jsx(
-            ProfileSection,
-            {
-              avatarSrc: profile.avatarSrc,
-              name: profile.name || "Amazon Shopper"
-            }
-          ),
-jsxRuntimeExports.jsxs("div", { className: "absolute top-1/2 -translate-y-1/2 right-8 flex items-center gap-2", children: [
-jsxRuntimeExports.jsx(
-              "button",
-              {
-                type: "button",
-                className: `p-2.5 rounded-xl transition-all ${settings.amazon_ui_lights_off ? "bg-amber-500/10 text-amber-500 font-bold" : "text-gray-400 hover:bg-gray-100 hover:text-gray-600"}`,
-                onClick: () => setSetting("amazon_ui_lights_off", !settings.amazon_ui_lights_off),
-                title: "Lights Off",
-                children: jsxRuntimeExports.jsx(Moon, { size: 20 })
-              }
-            ),
-jsxRuntimeExports.jsx(
-              "button",
-              {
-                type: "button",
-                className: "p-2.5 text-gray-400 hover:bg-gray-100 hover:text-gray-600 rounded-xl transition-all",
-                onClick: () => setIsSettingsOpen(true),
-                title: "Settings",
-                children: jsxRuntimeExports.jsx(Settings, { size: 20 })
-              }
-            )
-          ] })
-        ] }),
-jsxRuntimeExports.jsx(AnimatePresence, { children: thankYouHtml && jsxRuntimeExports.jsx(
-          motion.div,
-          {
-            className: "px-10 pt-10",
-            initial: { opacity: 0, y: -20 },
-            animate: { opacity: 1, y: 0 },
-            exit: { opacity: 0, scale: 0.95 },
-            transition: { duration: 0.6, ease: "easeOut" },
-            children: jsxRuntimeExports.jsxs("div", { className: `rounded-3xl p-8 flex items-start gap-6 border shadow-lg bg-gradient-to-br from-green-50 to-emerald-50/50 border-green-200/50`, children: [
-jsxRuntimeExports.jsx(
-                motion.div,
-                {
-                  className: `w-16 h-16 rounded-2xl flex items-center justify-center shrink-0 bg-green-100`,
-                  initial: { scale: 0, rotate: -180 },
-                  animate: { scale: 1, rotate: 0 },
-                  transition: { duration: 0.5, delay: 0.2, type: "spring", stiffness: 200 },
-                  children: jsxRuntimeExports.jsx(CircleCheck, { className: "text-green-600", size: 32, strokeWidth: 2 })
-                }
-              ),
-jsxRuntimeExports.jsxs("div", { className: "flex-1", children: [
-jsxRuntimeExports.jsx(
-                  motion.h3,
-                  {
-                    className: `text-2xl mb-2 text-green-800`,
-                    initial: { opacity: 0, x: -20 },
-                    animate: { opacity: 1, x: 0 },
-                    transition: { duration: 0.5, delay: 0.3 },
-                    children: jsxRuntimeExports.jsx("span", { className: "font-black tracking-tight", children: "Review Submitted" })
-                  }
-                ),
-jsxRuntimeExports.jsxs(
-                  motion.p,
-                  {
-                    className: `text-lg mb-3 text-green-700`,
-                    initial: { opacity: 0, x: -20 },
-                    animate: { opacity: 1, x: 0 },
-                    transition: { duration: 0.5, delay: 0.4 },
-                    children: [
-jsxRuntimeExports.jsx("span", { className: "font-light", children: "Awesome! " }),
-jsxRuntimeExports.jsx("span", { className: "font-bold", children: "Thank you for helping other shoppers!" })
-                    ]
-                  }
-                ),
-jsxRuntimeExports.jsxs(
-                  motion.p,
-                  {
-                    className: `text-sm text-green-600/70`,
-                    initial: { opacity: 0 },
-                    animate: { opacity: 1 },
-                    transition: { duration: 0.5, delay: 0.5 },
-                    children: [
-jsxRuntimeExports.jsx("span", { className: "font-light italic", children: "Your feedback helps " }),
-jsxRuntimeExports.jsx("span", { className: "font-bold", children: "millions of shoppers" })
-                    ]
-                  }
-                )
-              ] })
-            ] })
+    return React__default.createElement("div", { className: "max-w-[1200px] mx-auto transition-all duration-500" }, React__default.createElement("div", { className: `rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] overflow-hidden pb-12 bg-white border-gray-100 border` }, React__default.createElement("div", { className: "relative" }, React__default.createElement(
+      ProfileSection,
+      {
+        avatarSrc: profile.avatarSrc,
+        name: profile.name || "Amazon Shopper"
+      }
+    ), React__default.createElement("div", { className: "absolute top-1/2 -translate-y-1/2 right-8 flex items-center gap-2" }, React__default.createElement(
+      "button",
+      {
+        type: "button",
+        className: `p-2.5 rounded-xl transition-all ${settings.amazon_ui_lights_off ? "bg-amber-500/10 text-amber-500 font-bold" : "text-gray-400 hover:bg-gray-100 hover:text-gray-600"} ${settings.dark_mode ? "!text-yellow-400" : ""}`,
+        onMouseDown: handleLightsPressStart,
+        onMouseUp: handleLightsPressEnd,
+        onMouseLeave: () => {
+          if (pressTimer.current) {
+            clearTimeout(pressTimer.current);
+            pressTimer.current = null;
           }
-        ) }),
-jsxRuntimeExports.jsx("div", { className: "pt-10 pb-6 px-4", children: jsxRuntimeExports.jsx(
-          SortFilterTabs,
-          {
-            searchQuery,
-            onSearchChange: setSearchQuery,
-            sortMode,
-            onSortChange: setSortMode,
-            totalItems: candidates.length,
-            isLoading
-          }
-        ) }),
-jsxRuntimeExports.jsxs("main", { className: "px-10 py-6 min-h-[400px]", children: [
-          !isLoading && candidates.length > 0 && jsxRuntimeExports.jsx("div", { className: "flex justify-end mb-6", children: jsxRuntimeExports.jsxs("div", { className: `p-1 rounded-xl flex items-center gap-1 border shadow-sm bg-gray-50 border-gray-100`, children: [
-jsxRuntimeExports.jsx(
-              "button",
-              {
-                onClick: () => setLayoutMode("grid"),
-                className: `p-1.5 rounded-lg transition-all ${layoutMode === "grid" ? "bg-amber-600 text-white shadow-sm shadow-amber-900/20" : "text-gray-400 hover:text-gray-600"}`,
-                title: "Grid View",
-                children: jsxRuntimeExports.jsx(LayoutGrid, { size: 16 })
-              }
-            ),
-jsxRuntimeExports.jsx(
-              "button",
-              {
-                onClick: () => setLayoutMode("list"),
-                className: `p-1.5 rounded-lg transition-all ${layoutMode === "list" ? "bg-amber-600 text-white shadow-sm shadow-amber-900/20" : "text-gray-400 hover:text-gray-600"}`,
-                title: "List View",
-                children: jsxRuntimeExports.jsx(List, { size: 16 })
-              }
-            )
-          ] }) }),
-          isLoading && candidates.length === 0 ? jsxRuntimeExports.jsxs("div", { className: "flex flex-col items-center justify-center py-24 text-center", children: [
-jsxRuntimeExports.jsx(
-              motion.div,
-              {
-                className: `w-24 h-24 rounded-2xl flex items-center justify-center mb-8 bg-gray-50`,
-                animate: { rotate: 360 },
-                transition: { duration: 4, repeat: Infinity, ease: "linear" },
-                children: jsxRuntimeExports.jsx(LoaderCircle, { className: "text-amber-600", size: 32 })
-              }
-            ),
-jsxRuntimeExports.jsx("h3", { className: `text-xl font-black tracking-tight text-gray-900`, children: "Syncing Studio" }),
-jsxRuntimeExports.jsx("p", { className: `font-bold uppercase tracking-widest text-[9px] mt-2 text-gray-400`, children: "Finding your recent purchases..." })
-          ] }) : candidates.length === 0 ? jsxRuntimeExports.jsxs("div", { className: "flex flex-col items-center justify-center py-24 text-center", children: [
-jsxRuntimeExports.jsx("div", { className: `w-24 h-24 rounded-2xl flex items-center justify-center mb-8 bg-gray-50`, children: jsxRuntimeExports.jsx("svg", { className: `w-12 h-12 text-gray-200`, fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: jsxRuntimeExports.jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: "M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" }) }) }),
-jsxRuntimeExports.jsx("h3", { className: `text-xl font-black tracking-tight text-gray-900`, children: "No Items to Review" }),
-jsxRuntimeExports.jsx("p", { className: `font-bold uppercase tracking-widest text-[9px] mt-2 text-gray-400`, children: searchQuery ? "Try refining your search query" : "Your review queue is currently empty" })
-          ] }) : jsxRuntimeExports.jsx(AnimatePresence, { mode: "wait", children: jsxRuntimeExports.jsx(
-            motion.div,
-            {
-              initial: { opacity: 0 },
-              animate: { opacity: 1 },
-              exit: { opacity: 0 },
-              transition: { duration: 0.2 },
-              className: layoutMode === "grid" ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4" : "flex flex-col gap-3",
-              children: sortMode === "category" ? (() => {
-                const groups = {};
-                candidates.forEach((c) => {
-                  const cat = c.category || "Uncategorized";
-                  if (!groups[cat]) groups[cat] = [];
-                  groups[cat].push(c);
-                });
-                return Object.entries(groups).map(([category, items]) => jsxRuntimeExports.jsxs(React__default.Fragment, { children: [
-jsxRuntimeExports.jsxs("div", { className: `col-span-full pt-6 pb-2 border-b mb-2 flex items-center gap-3 border-gray-100`, children: [
-jsxRuntimeExports.jsx("h3", { className: `text-sm font-black uppercase tracking-[0.2em] text-amber-600`, children: category }),
-jsxRuntimeExports.jsx("div", { className: `h-px flex-1 bg-gray-100/50` }),
-jsxRuntimeExports.jsxs("span", { className: `text-[10px] font-bold text-gray-400`, children: [
-                      items.length,
-                      " ",
-                      items.length === 1 ? "Item" : "Items"
-                    ] })
-                  ] }),
-                  items.map((candidate) => jsxRuntimeExports.jsx(
-                    ReviewCandidateCard,
-                    {
-                      candidate,
-                      layoutMode
-                    },
-                    candidate.asin
-                  ))
-                ] }, category));
-              })() : candidates.map((candidate) => jsxRuntimeExports.jsx(
-                ReviewCandidateCard,
-                {
-                  candidate,
-                  layoutMode
-                },
-                candidate.asin
-              ))
-            },
-            `${layoutMode}-${sortMode}`
-          ) })
-        ] }),
-jsxRuntimeExports.jsxs("div", { className: "px-12 pt-8 flex items-center justify-center gap-3", children: [
-jsxRuntimeExports.jsx("div", { className: `h-px flex-1 bg-gray-100` }),
-jsxRuntimeExports.jsx("span", { className: `text-[9px] font-black uppercase tracking-[0.2em] text-gray-300`, children: "Powered by Review Studio" }),
-jsxRuntimeExports.jsx("div", { className: `h-px flex-1 bg-gray-100` })
-        ] })
-      ] }),
-jsxRuntimeExports.jsx(
-        SettingsDashboard,
+        },
+        onTouchStart: handleLightsPressStart,
+        onTouchEnd: handleLightsPressEnd,
+        title: settings.dark_mode ? "Dark Mode On (Long Press to Toggle)" : "Lights Off (Long Press for Dark Mode)"
+      },
+      settings.dark_mode ? React__default.createElement(StarsIcon, { size: 20 }) : React__default.createElement(Moon, { size: 20 })
+    ), React__default.createElement(
+      "button",
+      {
+        type: "button",
+        className: "p-2.5 text-gray-400 hover:bg-gray-100 hover:text-gray-600 rounded-xl transition-all",
+        onClick: () => setIsSettingsOpen(true),
+        title: "Settings"
+      },
+React__default.createElement(Settings, { size: 20 })
+    ))), React__default.createElement(AnimatePresence, null, thankYouHtml && React__default.createElement(
+      motion.div,
+      {
+        className: "px-10 pt-10",
+        initial: { opacity: 0, y: -20 },
+        animate: { opacity: 1, y: 0 },
+        exit: { opacity: 0, scale: 0.95 },
+        transition: { duration: 0.6, ease: "easeOut" }
+      },
+React__default.createElement("div", { className: `rounded-3xl p-8 flex items-start gap-6 border shadow-lg bg-gradient-to-br from-green-50 to-emerald-50/50 border-green-200/50` }, React__default.createElement(
+        motion.div,
         {
-          isOpen: isSettingsOpen,
-          onClose: () => setIsSettingsOpen(false)
+          className: `w-16 h-16 rounded-2xl flex items-center justify-center shrink-0 bg-green-100`,
+          initial: { scale: 0, rotate: -180 },
+          animate: { scale: 1, rotate: 0 },
+          transition: { duration: 0.5, delay: 0.2, type: "spring", stiffness: 200 }
+        },
+React__default.createElement(CircleCheck, { className: "text-green-600", size: 32, strokeWidth: 2 })
+      ), React__default.createElement("div", { className: "flex-1" }, React__default.createElement(
+        motion.h3,
+        {
+          className: `text-2xl mb-2 text-green-800`,
+          initial: { opacity: 0, x: -20 },
+          animate: { opacity: 1, x: 0 },
+          transition: { duration: 0.5, delay: 0.3 }
+        },
+React__default.createElement("span", { className: "font-black tracking-tight" }, "Review Submitted")
+      ), React__default.createElement(
+        motion.p,
+        {
+          className: `text-lg mb-3 text-green-700`,
+          initial: { opacity: 0, x: -20 },
+          animate: { opacity: 1, x: 0 },
+          transition: { duration: 0.5, delay: 0.4 }
+        },
+React__default.createElement("span", { className: "font-light" }, "Awesome! "),
+React__default.createElement("span", { className: "font-bold" }, "Thank you for helping other shoppers!")
+      ), React__default.createElement(
+        motion.p,
+        {
+          className: `text-sm text-green-600/70`,
+          initial: { opacity: 0 },
+          animate: { opacity: 1 },
+          transition: { duration: 0.5, delay: 0.5 }
+        },
+React__default.createElement("span", { className: "font-light italic" }, "Your feedback helps "),
+React__default.createElement("span", { className: "font-bold" }, "millions of shoppers")
+      )))
+    )), React__default.createElement("div", { className: "pt-10 pb-6 px-4" }, React__default.createElement(
+      SortFilterTabs,
+      {
+        searchQuery,
+        onSearchChange: setSearchQuery,
+        sortMode,
+        onSortChange: setSortMode,
+        totalItems: candidates.length,
+        isLoading
+      }
+    )), React__default.createElement("main", { className: "px-10 py-6 min-h-[400px]" }, !isLoading && candidates.length > 0 && React__default.createElement("div", { className: "flex justify-end mb-6" }, React__default.createElement("div", { className: `p-1 rounded-xl flex items-center gap-1 border shadow-sm bg-gray-50 border-gray-100` }, React__default.createElement(
+      "button",
+      {
+        onClick: () => setLayoutMode("grid"),
+        className: `p-1.5 rounded-lg transition-all ${layoutMode === "grid" ? "bg-amber-600 text-white shadow-sm shadow-amber-900/20" : "text-gray-400 hover:text-gray-600"}`,
+        title: "Grid View"
+      },
+React__default.createElement(LayoutGrid, { size: 16 })
+    ), React__default.createElement(
+      "button",
+      {
+        onClick: () => setLayoutMode("list"),
+        className: `p-1.5 rounded-lg transition-all ${layoutMode === "list" ? "bg-amber-600 text-white shadow-sm shadow-amber-900/20" : "text-gray-400 hover:text-gray-600"}`,
+        title: "List View"
+      },
+React__default.createElement(List, { size: 16 })
+    ))), isLoading && candidates.length === 0 ? React__default.createElement("div", { className: "flex flex-col items-center justify-center py-24 text-center" }, React__default.createElement(
+      motion.div,
+      {
+        className: `w-24 h-24 rounded-2xl flex items-center justify-center mb-8 bg-gray-50`,
+        animate: { rotate: 360 },
+        transition: { duration: 4, repeat: Infinity, ease: "linear" }
+      },
+React__default.createElement(LoaderCircle, { className: "text-amber-600", size: 32 })
+    ), React__default.createElement("h3", { className: `text-xl font-black tracking-tight text-gray-900` }, "Syncing Studio"), React__default.createElement("p", { className: `font-bold uppercase tracking-widest text-[9px] mt-2 text-gray-400` }, "Finding your recent purchases...")) : candidates.length === 0 ? React__default.createElement("div", { className: "flex flex-col items-center justify-center py-24 text-center" }, React__default.createElement("div", { className: `w-24 h-24 rounded-2xl flex items-center justify-center mb-8 bg-gray-50` }, React__default.createElement("svg", { className: `w-12 h-12 text-gray-200`, fill: "none", viewBox: "0 0 24 24", stroke: "currentColor" }, React__default.createElement("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 1.5, d: "M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" }))), React__default.createElement("h3", { className: `text-xl font-black tracking-tight text-gray-900` }, "No Items to Review"), React__default.createElement("p", { className: `font-bold uppercase tracking-widest text-[9px] mt-2 text-gray-400` }, searchQuery ? "Try refining your search query" : "Your review queue is currently empty")) : React__default.createElement(AnimatePresence, { mode: "wait" }, React__default.createElement(
+      motion.div,
+      {
+        key: `${layoutMode}-${sortMode}`,
+        initial: { opacity: 0 },
+        animate: { opacity: 1 },
+        exit: { opacity: 0 },
+        transition: { duration: 0.2 },
+        className: layoutMode === "grid" ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4" : "flex flex-col gap-3"
+      },
+      sortMode === "category" ? (() => {
+        const groups = {};
+        candidates.forEach((c) => {
+          const cat = c.category || "Uncategorized";
+          if (!groups[cat]) groups[cat] = [];
+          groups[cat].push(c);
+        });
+        return Object.entries(groups).map(([category, items]) => React__default.createElement(React__default.Fragment, { key: category }, React__default.createElement("div", { className: `col-span-full pt-6 pb-2 border-b mb-2 flex items-center gap-3 border-gray-100` }, React__default.createElement("h3", { className: `text-sm font-black uppercase tracking-[0.2em] text-amber-600` }, category), React__default.createElement("div", { className: `h-px flex-1 bg-gray-100/50` }), React__default.createElement("span", { className: `text-[10px] font-bold text-gray-400` }, items.length, " ", items.length === 1 ? "Item" : "Items")), items.map((candidate) => React__default.createElement(
+          ReviewCandidateCard,
+          {
+            key: candidate.asin,
+            candidate,
+            layoutMode
+          }
+        ))));
+      })() : candidates.map((candidate) => React__default.createElement(
+        ReviewCandidateCard,
+        {
+          key: candidate.asin,
+          candidate,
+          layoutMode
         }
-      )
-    ] });
+      ))
+    ))), React__default.createElement("div", { className: "px-12 pt-8 flex items-center justify-center gap-3" }, React__default.createElement("div", { className: `h-px flex-1 bg-gray-100` }), React__default.createElement("span", { className: `text-[9px] font-black uppercase tracking-[0.2em] text-gray-300` }, "Powered by Review Studio"), React__default.createElement("div", { className: `h-px flex-1 bg-gray-100` }))), React__default.createElement(
+      SettingsDashboard,
+      {
+        isOpen: isSettingsOpen,
+        onClose: () => setIsSettingsOpen(false)
+      }
+    ));
   };
   const ReviewPurchasesPage = () => {
-    return jsxRuntimeExports.jsxs(SettingsProvider, { children: [
-jsxRuntimeExports.jsx(AutoSyncWatcher, {}),
-jsxRuntimeExports.jsx(ScalingWrapper, { children: jsxRuntimeExports.jsx(ReviewPurchasesContent, {}) })
-    ] });
+    return React__default.createElement(SettingsProvider, null, React__default.createElement(AutoSyncWatcher, null), React__default.createElement(ScalingWrapper, null, React__default.createElement(ReviewPurchasesContent, null)));
   };
-  const style = `.ars-profile-section{background:linear-gradient(135deg,#232f3e,#131921)}.ars-profile-container{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem}.ars-profile-info{display:flex;align-items:center;gap:1rem}.ars-profile-avatar-wrapper{flex-shrink:0}.ars-profile-avatar{display:block;width:44px;height:44px;border-radius:50%;overflow:hidden;background-color:#ffffff1a;transition:transform .2s ease,box-shadow .2s ease;border:2px solid transparent}.ars-profile-avatar:hover{transform:scale(1.08);border-color:#ffffff4d;box-shadow:0 0 15px #ffffff1a}.ars-profile-avatar img{width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.ars-profile-avatar-placeholder{display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-size:1.25rem;font-weight:600;color:#f90;background-color:#fff}.ars-profile-name{font-size:1rem;font-weight:500;color:#fff}.ars-profile-edit-link{font-size:.875rem;color:#54b4e8;text-decoration:none;transition:color .2s ease}.ars-profile-edit-link:hover{color:#7ec8f0;text-decoration:underline}.ars-product-header{display:flex;align-items:flex-start;gap:1rem;margin-top:1.5rem}.ars-product-image-link{flex-shrink:0;display:block}.ars-product-image-link:hover .ars-product-image{opacity:.9}.ars-product-image{flex-shrink:0;width:64px;height:64px;-o-object-fit:contain;object-fit:contain;border-radius:8px;box-shadow:0 2px 8px #00000014;transition:opacity .2s ease}.ars-product-info{display:flex;flex-direction:column;gap:.25rem;min-width:0}.ars-product-title{font-size:1.125rem;font-weight:700;color:#0f1111;letter-spacing:-.01em}.ars-product-name{font-size:.875rem;color:#565959;line-height:1.4}.ars-star-rating{display:flex;align-items:center;gap:1rem}.ars-star-rating-stars{display:flex;gap:4px}.ars-star-button{display:flex;align-items:center;justify-content:center;padding:4px;border:none;background:transparent;color:#d5d9d9;cursor:pointer;transition:color .2s ease,transform .2s cubic-bezier(.175,.885,.32,1.275)}.ars-star-button:hover{color:#e68a00;transform:scale(1.15)}.ars-star-button:active{transform:scale(.9)}.ars-star-button:focus-visible{outline:2px solid #FF9900;outline-offset:2px}.ars-star-button--filled{color:#f90}.ars-star-rating-stars:hover .ars-star-button--filled{color:#e68a00}.ars-star-clear{font-size:.875rem;color:#54b4e8;background:none;border:none;cursor:pointer;padding:4px 0;transition:color .2s ease}.ars-star-clear:hover{color:#2d9fd8;text-decoration:underline}.ars-media-upload{display:flex;align-items:center;justify-content:center;min-height:120px;padding:1.5rem;border:2px dashed #d5d9d9;border-radius:12px;background-color:#f9fafb;cursor:pointer;transition:all .2s ease;width:100%}.ars-media-upload--compact{width:80px;height:80px;min-height:80px;padding:0;border-radius:8px;border-width:1.5px}.ars-media-upload:hover{border-color:#f90;background-color:#ff99000a}.ars-media-upload--dragging{border-color:#f90;background-color:#ff99001a;box-shadow:inset 0 0 0 4px #ff99000d}.ars-media-upload:focus-visible{outline:2px solid #FF9900;outline-offset:2px}.ars-media-upload-content{display:flex;flex-direction:column;align-items:center;gap:.5rem}.ars-media-upload-icon{color:#565959}.ars-media-upload--dragging .ars-media-upload-icon,.ars-media-upload:hover .ars-media-upload-icon{color:#f90}.ars-media-upload-placeholder{font-size:.875rem;color:#565959}.ars-media-upload-wrapper{display:flex;flex-direction:column;gap:.75rem}.ars-media-upload--uploading{pointer-events:none}.ars-media-upload-feedback{font-size:.875rem;color:#067d62;font-weight:500}.ars-media-upload-actions{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap}.ars-media-upload-action-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem .875rem;font-size:.875rem;border-radius:8px;cursor:pointer;transition:all .2s ease;text-decoration:none;width:-moz-fit-content;width:fit-content}.ars-media-upload-paste-btn,.ars-media-upload-google-btn,.ars-media-upload-icloud-btn{color:#565959;background:#fff;border:1px solid #d5d9d9}.ars-media-upload-paste-btn:hover,.ars-media-upload-google-btn:hover,.ars-media-upload-icloud-btn:hover{border-color:#f90;color:#f90;background:#fff}.ars-media-thumbnails{display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:.5rem}.ars-media-thumbnail{position:relative;width:80px;height:80px;border-radius:8px;overflow:hidden;border:1px solid #d5d9d9;background-color:#f3f4f6;flex-shrink:0}.ars-media-thumbnail-image{width:100%;height:100%;background-size:cover;background-position:center;background-repeat:no-repeat}.ars-media-thumbnail-remove{position:absolute;top:4px;right:4px;width:20px;height:20px;border-radius:50%;background-color:#0009;color:#fff;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transition:opacity .2s ease,background-color .2s ease;padding:0}.ars-media-thumbnail:hover .ars-media-thumbnail-remove{opacity:1}.ars-media-thumbnail-remove:hover{background-color:#c00}.ars-media-upload-dragging-content{display:flex;flex-direction:column;align-items:center;gap:.75rem;pointer-events:none}@keyframes bounce{0%,to{transform:translateY(-10%);animation-timing-function:cubic-bezier(.8,0,1,1)}50%{transform:translateY(0);animation-timing-function:cubic-bezier(0,0,.2,1)}}.ars-review-shell{position:relative;display:flex;flex-direction:column;max-width:800px;margin-left:auto;margin-right:auto;background-color:#fff;color:#0f1111;border-radius:12px;overflow:hidden;box-shadow:0 4px 24px #00000014;animation:ars-fade-zoom .5s cubic-bezier(.2,.8,.2,1) forwards}.ars-review-shell--loading{padding:2rem;text-align:center;color:#565959}.ars-review-form-container{padding:1.5rem 2rem 0}.ars-review-form-fields{display:flex;flex-direction:column;gap:1.5rem;margin-top:1.5rem}.ars-form-field{display:flex;flex-direction:column;gap:.5rem}.ars-form-field-label-row{display:flex;align-items:center;justify-content:space-between}.ars-form-label{font-size:.875rem;font-weight:600;color:#0f1111}.ars-ai-trigger{color:#f90!important;border-color:#f90!important}.ars-ai-trigger:hover{background-color:#ff990014!important}.ars-review-submit{display:flex;align-items:center;justify-content:space-between;margin-top:1.5rem;padding:1.25rem 2rem;border-top:1px solid #e5e7eb;background-color:#f9fafb}.ars-header-actions{position:absolute;top:1rem;right:1rem;display:flex;align-items:center;gap:.5rem;z-index:20}.ars-action-button{display:flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;border:none;background:transparent;color:#fff;cursor:pointer;border-radius:8px;transition:all .2s ease;opacity:.8}.ars-action-button:hover{background-color:#ffffff1a;color:#fff;opacity:1}.ars-action-button.active{color:#f90;opacity:1}.ars-submit-group{display:flex;align-items:center;gap:1rem}.ars-back-button{background-color:#fff!important;border-color:#d5d9d9!important;color:#0f1111!important;box-shadow:0 2px 5px #d5d9d980}.ars-back-button:hover{background-color:#f7fafa!important;border-color:#adb1b1!important;transform:translateY(-1px)}.ars-back-button:active{transform:translateY(0)}.ars-button{display:inline-flex;align-items:center;justify-content:center;border-radius:var(--ars-radius-md);font-weight:500;transition:all var(--ars-anim-fast);outline:none;border:1px solid transparent;-webkit-user-select:none;-moz-user-select:none;user-select:none;white-space:nowrap}.ars-button:disabled{opacity:.6;cursor:not-allowed;pointer-events:none}.ars-button:focus-visible{box-shadow:0 0 0 2px var(--ars-color-bg-main),0 0 0 4px var(--ars-color-primary)}.ars-button--primary{background-color:var(--ars-color-primary);color:var(--ars-color-text-inverse);box-shadow:0 1px 2px #0000001a}.ars-button--primary:hover{background-color:var(--ars-color-primary-hover);transform:translateY(-1px)}.ars-button--primary:active{transform:translateY(0)}.ars-button--secondary{background-color:var(--ars-color-secondary);color:var(--ars-color-text-inverse)}.ars-button--secondary:hover{background-color:var(--ars-color-secondary-hover)}.ars-button--outline{background-color:transparent;border-color:var(--ars-color-border);color:var(--ars-color-text-main)}.ars-button--outline:hover{background-color:var(--ars-color-bg-secondary);border-color:var(--ars-color-border-focus)}.ars-button--ghost{background-color:transparent;color:var(--ars-color-text-secondary)}.ars-button--ghost:hover{background-color:var(--ars-color-bg-secondary);color:var(--ars-color-text-main)}.ars-button--danger{background-color:var(--ars-color-error);color:var(--ars-color-text-inverse)}.ars-button--danger:hover{background-color:#a8082e}.ars-button--sm{height:28px;padding:0 var(--ars-spacing-sm);font-size:var(--ars-font-size-sm)}.ars-button--md{height:36px;padding:0 var(--ars-spacing-md);font-size:var(--ars-font-size-sm)}.ars-button--lg{height:44px;padding:0 var(--ars-spacing-lg);font-size:var(--ars-font-size-md)}.ars-button--icon{width:36px;height:36px;padding:0;border-radius:50%}.ars-button--icon.ars-button--sm{width:28px;height:28px}.ars-button--icon.ars-button--lg{width:44px;height:44px}.ars-button__loader{animation:ars-spin 1s linear infinite;margin-right:var(--ars-spacing-xs)}.ars-button--icon .ars-button__loader{margin-right:0}.ars-button__icon{margin-right:var(--ars-spacing-xs);display:flex;align-items:center}.ars-button--icon .ars-button__icon{margin-right:0}@keyframes ars-spin{0%{transform:rotate(0)}to{transform:rotate(360deg)}}.ars-input-group{display:flex;flex-direction:column;gap:var(--ars-spacing-xs);width:100%}.ars-input-wrapper{position:relative;display:flex;align-items:center}.ars-input-label{font-size:var(--ars-font-size-sm);font-weight:500;color:var(--ars-color-text-main)}.ars-input{width:100%;height:36px;padding:0 var(--ars-spacing-sm);font-family:inherit;font-size:var(--ars-font-size-md);color:var(--ars-color-text-main);background-color:var(--ars-color-bg-main);border:1px solid var(--ars-color-border);border-radius:var(--ars-radius-md);transition:all var(--ars-anim-fast);outline:none}.ars-input:focus{border-color:var(--ars-color-primary);box-shadow:0 0 0 1px var(--ars-color-primary)}.ars-input:disabled{background-color:var(--ars-color-bg-secondary);cursor:not-allowed;opacity:.7}.ars-input--has-icon{padding-left:32px}.ars-input-icon{position:absolute;left:8px;color:var(--ars-color-text-secondary);display:flex;pointer-events:none}.ars-input--error{border-color:var(--ars-color-error)}.ars-input--error:focus{box-shadow:0 0 0 1px var(--ars-color-error)}.ars-input--has-suffix{padding-right:48px}.ars-input-suffix{position:absolute;right:4px;display:flex;align-items:center;justify-content:center;z-index:10}.ars-input-error{font-size:var(--ars-font-size-xs);color:var(--ars-color-error)}.ars-card{background-color:var(--ars-color-bg-main);border:1px solid var(--ars-color-border);border-radius:var(--ars-radius-md);box-shadow:var(--ars-shadow-sm);overflow:hidden}.ars-card--p-none{padding:0}.ars-card--p-sm{padding:var(--ars-spacing-sm)}.ars-card--p-md{padding:var(--ars-spacing-md)}.ars-card--p-lg{padding:var(--ars-spacing-lg)}.ars-modal-overlay-container{position:fixed;inset:0;z-index:100000;display:flex;align-items:center;justify-content:center;pointer-events:none}.ars-modal-backdrop{position:fixed;inset:0;background-color:#0009;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);pointer-events:auto}.ars-modal-wrapper{position:relative;z-index:100001;pointer-events:none;display:flex;align-items:center;justify-content:center;width:100%;max-height:100vh;padding:20px}.ars-modal{background-color:var(--ars-color-bg-main);border-radius:16px;box-shadow:0 25px 50px -12px #00000040;pointer-events:auto;display:flex;flex-direction:column;max-height:calc(100vh - 80px);outline:none;border:1px solid var(--ars-color-border);overflow:hidden}.ars-modal-header{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid var(--ars-color-border)}.ars-modal-title{margin:0;font-size:1.25rem;font-weight:800;color:var(--ars-color-text-main);letter-spacing:-.025em}.ars-modal-content{padding:0;overflow-y:auto;flex:1}.ars-modal-footer{padding:16px 24px;border-top:1px solid var(--ars-color-border);display:flex;justify-content:flex-end;gap:12px;background-color:var(--ars-color-bg-secondary)}.ars-modal-close{color:var(--ars-color-text-secondary);opacity:.6;transition:all .2s ease}.ars-modal-close:hover{opacity:1;background-color:var(--ars-color-bg-tertiary)}.ars-rich-editor{display:flex;flex-direction:column;width:100%}.ars-editor-textarea{width:100%;min-height:250px;padding:var(--ars-spacing-md);font-family:inherit;font-size:var(--ars-font-size-md);color:var(--ars-color-text-main);background-color:var(--ars-color-bg-main);border:1px solid var(--ars-color-border);resize:vertical;outline:none;line-height:1.6;transition:height .3s cubic-bezier(.4,0,.2,1),min-height .3s cubic-bezier(.4,0,.2,1);will-change:height,min-height}.ars-editor-footer{display:flex;justify-content:space-between;align-items:center;padding:var(--ars-spacing-xs) var(--ars-spacing-sm);background-color:var(--ars-color-bg-secondary);border:1px solid var(--ars-color-border);border-top:none;border-bottom-left-radius:var(--ars-radius-md);border-bottom-right-radius:var(--ars-radius-md)}.ars-editor-options{display:flex;align-items:center}.ars-checkbox-label{display:flex;align-items:center;gap:.5rem;font-size:var(--ars-font-size-xs);color:var(--ars-color-text-secondary);cursor:pointer;-webkit-user-select:none;-moz-user-select:none;user-select:none}.ars-checkbox-label input[type=checkbox]{cursor:pointer}.ars-checkbox-label:hover{color:var(--ars-color-text-main)}.ars-char-count{font-size:var(--ars-font-size-xs);color:var(--ars-color-text-secondary)}.ars-tm-editor{flex:1;min-height:0}.ars-tm-editor .ars-editor-textarea{flex:1;min-height:200px;resize:none}.ars-editor-toolbar{display:flex;justify-content:space-between;align-items:center;padding:var(--ars-spacing-xs);background-color:var(--ars-color-bg-secondary);border:1px solid var(--ars-color-border);border-bottom:none;border-top-left-radius:var(--ars-radius-md);border-top-right-radius:var(--ars-radius-md)}.ars-toolbar-group{display:flex;align-items:center;gap:var(--ars-spacing-xs)}.ars-toolbar-divider{width:1px;height:20px;background-color:var(--ars-color-border);margin:0 var(--ars-spacing-xs)}.ars-toolbar-btn{height:28px!important;width:28px!important;padding:0!important;display:flex;align-items:center;justify-content:center}.ars-toolbar-btn[data-variant=primary]{background-color:var(--ars-color-primary)!important;color:#fff!important}.ars-toolbar-paste{width:auto!important;min-width:28px;padding:0 8px!important}.ars-toolbar-paste-label{margin-left:4px}.ars-phrase-popover{position:absolute;top:100%;right:0;z-index:1000;margin-top:4px;background-color:#fff;border-radius:8px;box-shadow:0 4px 12px #00000026;border:1px solid var(--ars-color-border)}.ars-bullet-selector{position:absolute!important;top:100%!important;left:0!important;margin-top:5px!important;background:#fff!important;border:1px solid #ddd!important;border-radius:8px!important;box-shadow:0 8px 24px #0003!important;display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:6px!important;padding:10px!important;z-index:99999!important;width:auto!important;min-width:140px!important;pointer-events:auto!important}.ars-bullet-selector-overlay{display:none!important}.ars-bullet-option{width:30px!important;height:30px!important;display:flex!important;align-items:center!important;justify-content:center!important;cursor:pointer!important;border-radius:4px!important;font-size:16px!important;color:#333!important;transition:all .2s ease!important;background:transparent!important}.ars-bullet-option:hover{background-color:#f0f0f0!important}.ars-bullet-option.active{background-color:var(--ars-color-primary)!important;color:#fff!important}.ars-bullet-btn{position:relative!important}.ars-bullet-indicator{position:absolute!important;bottom:-1px!important;right:-1px!important;font-size:11px!important;color:inherit!important;opacity:.8!important;width:12px!important;height:12px!important;display:flex!important;align-items:center!important;justify-content:center!important;pointer-events:none!important;z-index:1!important;font-weight:700!important}.ars-ai-modal-body{display:flex;flex-direction:column;gap:var(--ars-spacing-md)}.ars-ai-settings-compact{display:flex;gap:var(--ars-spacing-sm);background:#f8fafc;padding:var(--ars-spacing-xs);border-radius:var(--ars-radius-lg);border:1px solid #e2e8f0}.ars-ai-provider-card,.ars-ai-length-card,.ars-ai-vision-card{background:#fff!important;border:1px solid #e2e8f0!important;transition:transform var(--ars-anim-fast),box-shadow var(--ars-anim-fast)}.ars-ai-provider-card:hover,.ars-ai-length-card:hover,.ars-ai-vision-card:hover{box-shadow:0 4px 6px -1px #0000000d}.ars-ai-provider-card{display:flex;align-items:center;gap:var(--ars-spacing-sm);flex:1}.ars-ai-length-card{display:flex;align-items:center;gap:var(--ars-spacing-sm);flex:2}.ars-ai-vision-card{flex:1;display:flex;align-items:center}.ars-ai-length-selector{display:flex;gap:4px;flex:1}.ars-ai-length-btn{flex:1;padding:6px 8px;font-size:var(--ars-font-size-xs);border:1px solid var(--ars-color-border);background-color:var(--ars-color-bg-main);color:var(--ars-color-text-secondary);border-radius:var(--ars-radius-sm);cursor:pointer;transition:all var(--ars-anim-fast)}.ars-ai-length-btn:hover{background-color:var(--ars-color-bg-secondary)}.ars-ai-length-btn.active{background-color:var(--ars-color-primary);color:#fff;border-color:var(--ars-color-primary);font-weight:600}.ars-label{font-size:var(--ars-font-size-sm);font-weight:600;color:var(--ars-color-text-main)}.ars-select{flex:1;height:32px;border-radius:var(--ars-radius-sm);border:1px solid var(--ars-color-border);padding:0 var(--ars-spacing-xs);outline:none;font-family:inherit}.ars-ai-prompt-section{display:flex;flex-direction:column;gap:var(--ars-spacing-sm)}.ars-ai-prompt-input{width:100%;min-height:80px;padding:var(--ars-spacing-md);border:1px solid var(--ars-color-border);border-radius:var(--ars-radius-lg);font-family:inherit;font-size:var(--ars-font-size-md);line-height:1.6;resize:vertical;outline:none;transition:all var(--ars-anim-fast)}.ars-ai-prompt-input:focus{border-color:var(--ars-color-primary)}.ars-ai-result-section{display:flex;flex-direction:column;gap:var(--ars-spacing-xs)}.ars-ai-result-container{min-height:150px;padding:var(--ars-spacing-md);background-color:var(--ars-color-bg-secondary);border:1px dotted var(--ars-color-border);border-radius:var(--ars-radius-md);position:relative}.ars-ai-result-text{margin:0;line-height:1.6;white-space:pre-wrap}.ars-ai-placeholder{color:var(--ars-color-text-secondary);display:flex;align-items:center;justify-content:center;height:100%;font-style:italic}.ars-ai-error{padding:var(--ars-spacing-sm);background-color:#ba09331a;color:var(--ars-color-error);border-radius:var(--ars-radius-sm);font-size:var(--ars-font-size-sm)}.ars-settings-layout{display:flex;min-height:380px;gap:var(--ars-spacing-md)}.ars-settings-sidebar{width:180px;display:flex;flex-direction:column;gap:var(--ars-spacing-xs);border-right:1px solid var(--ars-color-border);padding-right:var(--ars-spacing-md)}.ars-tab-btn{justify-content:flex-start!important;width:100%}.ars-settings-content{flex:1;overflow-y:auto}.ars-settings-section{display:flex;flex-direction:column;gap:var(--ars-spacing-md)}.ars-settings-section h3{margin:0;font-size:var(--ars-font-size-lg);color:var(--ars-color-text-main)}.ars-setting-item{display:flex;flex-direction:column;gap:var(--ars-spacing-xs)}.ars-setting-subgroup{padding-left:var(--ars-spacing-md);border-left:2px solid var(--ars-color-bg-tertiary);display:flex;flex-direction:column;gap:var(--ars-spacing-md)}.ars-help-text{font-size:var(--ars-font-size-xs);color:var(--ars-color-text-secondary);margin-top:-8px}.ars-description{font-size:var(--ars-font-size-sm);color:var(--ars-color-text-secondary);margin-top:-12px}.ars-about-section{align-items:center;text-align:center}.ars-brand{display:flex;flex-direction:column;align-items:center;margin-bottom:var(--ars-spacing-lg)}.ars-brand h1{font-size:var(--ars-font-size-xl);margin:var(--ars-spacing-sm) 0 0 0}.ars-brand-icon{color:var(--ars-color-primary)}.ars-version{font-size:var(--ars-font-size-xs);color:var(--ars-color-text-secondary)}.ars-scaling-wrapper{transition:height .2s ease-out,width .2s ease-out}.ars-scaling-wrapper.is-resizing{transition:none;cursor:nwse-resize}.ars-scaling-content{transition:transform .2s ease-out;pointer-events:auto}.is-resizing .ars-scaling-content{transition:none}.ars-resize-handle{position:absolute;bottom:5px;right:5px;width:12px;height:12px;cursor:nwse-resize;z-index:1000;opacity:.6;transition:opacity .2s ease;background:linear-gradient(-45deg,transparent 20%,#ccc 20%,#ccc 30%,transparent 30%,transparent 45%,#ccc 45%,#ccc 55%,transparent 55%)}.ars-resize-handle:hover,.is-resizing .ars-resize-handle{opacity:1}.ars-resize-handle svg{display:none}.ars-studio-container{display:flex;flex-direction:column;background-color:var(--ars-color-bg-main);border:1px solid var(--ars-color-border);border-radius:var(--ars-radius-lg);box-shadow:var(--ars-shadow-lg);overflow:hidden;max-width:900px;margin:0 auto}.ars-studio-header{display:flex;align-items:center;justify-content:space-between;padding:var(--ars-spacing-md) var(--ars-spacing-lg);background-color:var(--ars-color-secondary);color:#fff}.ars-title-group{display:flex;align-items:center;gap:var(--ars-spacing-sm)}.ars-title-group h1{font-size:var(--ars-font-size-lg);margin:0;font-weight:700;letter-spacing:-.5px}.ars-logo{color:var(--ars-color-primary)}.ars-studio-main{padding:var(--ars-spacing-lg);display:flex;flex-direction:column;gap:var(--ars-spacing-xl)}.ars-form-section{display:flex;flex-direction:column;gap:var(--ars-spacing-md)}.ars-editor-label-row{display:flex;align-items:center;justify-content:space-between}.ars-editor-label-row label{font-size:var(--ars-font-size-sm);font-weight:600;color:var(--ars-color-text-main)}.ars-ai-trigger{color:var(--ars-color-primary)!important;border-color:var(--ars-color-primary)!important}.ars-ai-trigger:hover{background-color:#ff99000d!important}.ars-actions-section{display:flex;flex-direction:column;align-items:center;gap:var(--ars-spacing-sm);padding-top:var(--ars-spacing-lg);border-top:1px solid var(--ars-color-bg-tertiary)}.ars-apply-btn{width:100%;max-width:400px;height:48px!important;font-size:var(--ars-font-size-md)!important}.ars-hint{font-size:var(--ars-font-size-xs);color:var(--ars-color-text-secondary);margin:0}*,:before,:after{--tw-border-spacing-x: 0;--tw-border-spacing-y: 0;--tw-translate-x: 0;--tw-translate-y: 0;--tw-rotate: 0;--tw-skew-x: 0;--tw-skew-y: 0;--tw-scale-x: 1;--tw-scale-y: 1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness: proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width: 0px;--tw-ring-offset-color: #fff;--tw-ring-color: rgb(59 130 246 / .5);--tw-ring-offset-shadow: 0 0 #0000;--tw-ring-shadow: 0 0 #0000;--tw-shadow: 0 0 #0000;--tw-shadow-colored: 0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x: 0;--tw-border-spacing-y: 0;--tw-translate-x: 0;--tw-translate-y: 0;--tw-rotate: 0;--tw-skew-x: 0;--tw-skew-y: 0;--tw-scale-x: 1;--tw-scale-y: 1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness: proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width: 0px;--tw-ring-offset-color: #fff;--tw-ring-color: rgb(59 130 246 / .5);--tw-ring-offset-shadow: 0 0 #0000;--tw-ring-shadow: 0 0 #0000;--tw-shadow: 0 0 #0000;--tw-shadow-colored: 0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }*,:before,:after{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}:before,:after{--tw-content: ""}html,:host{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:Inter,system-ui,Avenir,Helvetica,Arial,sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,samp,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dl,dd,h1,h2,h3,h4,h5,h6,hr,figure,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}ol,ul,menu{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}button,[role=button]{cursor:pointer}:disabled{cursor:default}img,svg,video,canvas,audio,iframe,embed,object{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.\\!container{width:100%!important}.container{width:100%}@media(min-width:640px){.\\!container{max-width:640px!important}.container{max-width:640px}}@media(min-width:768px){.\\!container{max-width:768px!important}.container{max-width:768px}}@media(min-width:1024px){.\\!container{max-width:1024px!important}.container{max-width:1024px}}@media(min-width:1280px){.\\!container{max-width:1280px!important}.container{max-width:1280px}}@media(min-width:1536px){.\\!container{max-width:1536px!important}.container{max-width:1536px}}.pointer-events-none{pointer-events:none}.visible{visibility:visible}.collapse{visibility:collapse}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.bottom-2{bottom:.5rem}.left-0{left:0}.left-3{left:.75rem}.left-4{left:1rem}.right-2{right:.5rem}.right-3{right:.75rem}.right-4{right:1rem}.right-8{right:2rem}.top-0{top:0}.top-1\\/2{top:50%}.top-\\[34px\\]{top:34px}.z-10{z-index:10}.z-20{z-index:20}.col-span-full{grid-column:1 / -1}.mx-auto{margin-left:auto;margin-right:auto}.my-1{margin-top:.25rem;margin-bottom:.25rem}.mb-0{margin-bottom:0}.mb-0\\.5{margin-bottom:.125rem}.mb-1{margin-bottom:.25rem}.mb-1\\.5{margin-bottom:.375rem}.mb-2{margin-bottom:.5rem}.mb-3{margin-bottom:.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.ml-0\\.5{margin-left:.125rem}.ml-7{margin-left:1.75rem}.mt-0\\.5{margin-top:.125rem}.mt-1\\.5{margin-top:.375rem}.mt-2{margin-top:.5rem}.mt-3{margin-top:.75rem}.mt-4{margin-top:1rem}.mt-auto{margin-top:auto}.line-clamp-3{overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3}.block{display:block}.inline-block{display:inline-block}.inline{display:inline}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.contents{display:contents}.hidden{display:none}.h-1\\.5{height:.375rem}.h-10{height:2.5rem}.h-12{height:3rem}.h-14{height:3.5rem}.h-16{height:4rem}.h-24{height:6rem}.h-4{height:1rem}.h-5{height:1.25rem}.h-6{height:1.5rem}.h-7{height:1.75rem}.h-\\[38px\\]{height:38px}.h-full{height:100%}.h-px{height:1px}.max-h-40{max-height:10rem}.min-h-\\[400px\\]{min-height:400px}.w-1\\.5{width:.375rem}.w-10{width:2.5rem}.w-11{width:2.75rem}.w-12{width:3rem}.w-16{width:4rem}.w-24{width:6rem}.w-28{width:7rem}.w-4{width:1rem}.w-full{width:100%}.min-w-0{min-width:0px}.max-w-7xl{max-width:80rem}.max-w-\\[1200px\\]{max-width:1200px}.max-w-\\[80px\\]{max-width:80px}.max-w-md{max-width:28rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.origin-center{transform-origin:center}.origin-right{transform-origin:right}.-translate-y-1\\/2{--tw-translate-y: -50%;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.scale-\\[0\\.55\\]{--tw-scale-x: .55;--tw-scale-y: .55;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.scale-\\[0\\.7\\]{--tw-scale-x: .7;--tw-scale-y: .7;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes bounce{0%,to{transform:translateY(-25%);animation-timing-function:cubic-bezier(.8,0,1,1)}50%{transform:none;animation-timing-function:cubic-bezier(0,0,.2,1)}}.animate-bounce{animation:bounce 1s infinite}@keyframes spin{to{transform:rotate(360deg)}}.animate-spin{animation:spin 1s linear infinite}.cursor-help{cursor:help}.cursor-not-allowed{cursor:not-allowed}.cursor-pointer{cursor:pointer}.select-none{-webkit-user-select:none;-moz-user-select:none;user-select:none}.resize{resize:both}.appearance-none{-webkit-appearance:none;-moz-appearance:none;appearance:none}.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.flex-row{flex-direction:row}.flex-col{flex-direction:column}.items-start{align-items:flex-start}.items-end{align-items:flex-end}.items-center{align-items:center}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:.25rem}.gap-1\\.5{gap:.375rem}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.space-y-4>:not([hidden])~:not([hidden]){--tw-space-y-reverse: 0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.space-y-5>:not([hidden])~:not([hidden]){--tw-space-y-reverse: 0;margin-top:calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.25rem * var(--tw-space-y-reverse))}.space-y-6>:not([hidden])~:not([hidden]){--tw-space-y-reverse: 0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-y-auto{overflow-y:auto}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.whitespace-nowrap{white-space:nowrap}.whitespace-pre-wrap{white-space:pre-wrap}.rounded{border-radius:.25rem}.rounded-2xl{border-radius:1rem}.rounded-3xl{border-radius:1.5rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:.5rem}.rounded-md{border-radius:.375rem}.rounded-xl{border-radius:.75rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-amber-200{--tw-border-opacity: 1;border-color:rgb(253 230 138 / var(--tw-border-opacity, 1))}.border-blue-100{--tw-border-opacity: 1;border-color:rgb(219 234 254 / var(--tw-border-opacity, 1))}.border-emerald-100{--tw-border-opacity: 1;border-color:rgb(209 250 229 / var(--tw-border-opacity, 1))}.border-gray-100{--tw-border-opacity: 1;border-color:rgb(243 244 246 / var(--tw-border-opacity, 1))}.border-gray-200{--tw-border-opacity: 1;border-color:rgb(229 231 235 / var(--tw-border-opacity, 1))}.border-gray-300{--tw-border-opacity: 1;border-color:rgb(209 213 219 / var(--tw-border-opacity, 1))}.border-green-100{--tw-border-opacity: 1;border-color:rgb(220 252 231 / var(--tw-border-opacity, 1))}.border-green-200{--tw-border-opacity: 1;border-color:rgb(187 247 208 / var(--tw-border-opacity, 1))}.border-green-200\\/50{border-color:#bbf7d080}.border-indigo-100{--tw-border-opacity: 1;border-color:rgb(224 231 255 / var(--tw-border-opacity, 1))}.border-red-100{--tw-border-opacity: 1;border-color:rgb(254 226 226 / var(--tw-border-opacity, 1))}.bg-amber-100{--tw-bg-opacity: 1;background-color:rgb(254 243 199 / var(--tw-bg-opacity, 1))}.bg-amber-50{--tw-bg-opacity: 1;background-color:rgb(255 251 235 / var(--tw-bg-opacity, 1))}.bg-amber-500\\/10{background-color:#f59e0b1a}.bg-amber-600{--tw-bg-opacity: 1;background-color:rgb(217 119 6 / var(--tw-bg-opacity, 1))}.bg-blue-50{--tw-bg-opacity: 1;background-color:rgb(239 246 255 / var(--tw-bg-opacity, 1))}.bg-blue-600{--tw-bg-opacity: 1;background-color:rgb(37 99 235 / var(--tw-bg-opacity, 1))}.bg-emerald-50{--tw-bg-opacity: 1;background-color:rgb(236 253 245 / var(--tw-bg-opacity, 1))}.bg-emerald-500{--tw-bg-opacity: 1;background-color:rgb(16 185 129 / var(--tw-bg-opacity, 1))}.bg-gray-100{--tw-bg-opacity: 1;background-color:rgb(243 244 246 / var(--tw-bg-opacity, 1))}.bg-gray-100\\/50{background-color:#f3f4f680}.bg-gray-200{--tw-bg-opacity: 1;background-color:rgb(229 231 235 / var(--tw-bg-opacity, 1))}.bg-gray-50{--tw-bg-opacity: 1;background-color:rgb(249 250 251 / var(--tw-bg-opacity, 1))}.bg-gray-50\\/30{background-color:#f9fafb4d}.bg-green-100{--tw-bg-opacity: 1;background-color:rgb(220 252 231 / var(--tw-bg-opacity, 1))}.bg-green-50{--tw-bg-opacity: 1;background-color:rgb(240 253 244 / var(--tw-bg-opacity, 1))}.bg-indigo-50{--tw-bg-opacity: 1;background-color:rgb(238 242 255 / var(--tw-bg-opacity, 1))}.bg-indigo-50\\/30{background-color:#eef2ff4d}.bg-indigo-500{--tw-bg-opacity: 1;background-color:rgb(99 102 241 / var(--tw-bg-opacity, 1))}.bg-indigo-600{--tw-bg-opacity: 1;background-color:rgb(79 70 229 / var(--tw-bg-opacity, 1))}.bg-red-50{--tw-bg-opacity: 1;background-color:rgb(254 242 242 / var(--tw-bg-opacity, 1))}.bg-red-50\\/30{background-color:#fef2f24d}.bg-white{--tw-bg-opacity: 1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-gradient-to-br{background-image:linear-gradient(to bottom right,var(--tw-gradient-stops))}.bg-gradient-to-r{background-image:linear-gradient(to right,var(--tw-gradient-stops))}.from-amber-500{--tw-gradient-from: #f59e0b var(--tw-gradient-from-position);--tw-gradient-to: rgb(245 158 11 / 0) var(--tw-gradient-to-position);--tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to)}.from-green-50{--tw-gradient-from: #f0fdf4 var(--tw-gradient-from-position);--tw-gradient-to: rgb(240 253 244 / 0) var(--tw-gradient-to-position);--tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to)}.to-amber-600{--tw-gradient-to: #d97706 var(--tw-gradient-to-position)}.to-emerald-50\\/50{--tw-gradient-to: rgb(236 253 245 / .5) var(--tw-gradient-to-position)}.object-contain{-o-object-fit:contain;object-fit:contain}.p-1{padding:.25rem}.p-1\\.5{padding:.375rem}.p-2{padding:.5rem}.p-2\\.5{padding:.625rem}.p-3{padding:.75rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-8{padding:2rem}.px-1{padding-left:.25rem;padding-right:.25rem}.px-1\\.5{padding-left:.375rem;padding-right:.375rem}.px-10{padding-left:2.5rem;padding-right:2.5rem}.px-12{padding-left:3rem;padding-right:3rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-2\\.5{padding-left:.625rem;padding-right:.625rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-0\\.5{padding-top:.125rem;padding-bottom:.125rem}.py-1{padding-top:.25rem;padding-bottom:.25rem}.py-1\\.5{padding-top:.375rem;padding-bottom:.375rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-24{padding-top:6rem;padding-bottom:6rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-6{padding-top:1.5rem;padding-bottom:1.5rem}.pb-12{padding-bottom:3rem}.pb-2{padding-bottom:.5rem}.pb-6{padding-bottom:1.5rem}.pl-1{padding-left:.25rem}.pl-10{padding-left:2.5rem}.pl-3{padding-left:.75rem}.pr-10{padding-right:2.5rem}.pr-12{padding-right:3rem}.pr-4{padding-right:1rem}.pr-8{padding-right:2rem}.pt-10{padding-top:2.5rem}.pt-2{padding-top:.5rem}.pt-4{padding-top:1rem}.pt-6{padding-top:1.5rem}.pt-8{padding-top:2rem}.text-left{text-align:left}.text-center{text-align:center}.font-mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace}.text-2xl{font-size:1.5rem;line-height:2rem}.text-\\[10px\\]{font-size:10px}.text-\\[11px\\]{font-size:11px}.text-\\[7px\\]{font-size:7px}.text-\\[8px\\]{font-size:8px}.text-\\[9px\\]{font-size:9px}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:.75rem;line-height:1rem}.font-black{font-weight:900}.font-bold{font-weight:700}.font-light{font-weight:300}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.italic{font-style:italic}.leading-normal{line-height:1.5}.leading-tight{line-height:1.25}.tracking-\\[0\\.2em\\]{letter-spacing:.2em}.tracking-tight{letter-spacing:-.025em}.tracking-wider{letter-spacing:.05em}.tracking-widest{letter-spacing:.1em}.text-amber-500{--tw-text-opacity: 1;color:rgb(245 158 11 / var(--tw-text-opacity, 1))}.text-amber-600{--tw-text-opacity: 1;color:rgb(217 119 6 / var(--tw-text-opacity, 1))}.text-amber-800{--tw-text-opacity: 1;color:rgb(146 64 14 / var(--tw-text-opacity, 1))}.text-blue-500{--tw-text-opacity: 1;color:rgb(59 130 246 / var(--tw-text-opacity, 1))}.text-blue-600{--tw-text-opacity: 1;color:rgb(37 99 235 / var(--tw-text-opacity, 1))}.text-emerald-700{--tw-text-opacity: 1;color:rgb(4 120 87 / var(--tw-text-opacity, 1))}.text-gray-200{--tw-text-opacity: 1;color:rgb(229 231 235 / var(--tw-text-opacity, 1))}.text-gray-300{--tw-text-opacity: 1;color:rgb(209 213 219 / var(--tw-text-opacity, 1))}.text-gray-400{--tw-text-opacity: 1;color:rgb(156 163 175 / var(--tw-text-opacity, 1))}.text-gray-500{--tw-text-opacity: 1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}.text-gray-600{--tw-text-opacity: 1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity: 1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-gray-900{--tw-text-opacity: 1;color:rgb(17 24 39 / var(--tw-text-opacity, 1))}.text-green-500{--tw-text-opacity: 1;color:rgb(34 197 94 / var(--tw-text-opacity, 1))}.text-green-600{--tw-text-opacity: 1;color:rgb(22 163 74 / var(--tw-text-opacity, 1))}.text-green-600\\/70{color:#16a34ab3}.text-green-700{--tw-text-opacity: 1;color:rgb(21 128 61 / var(--tw-text-opacity, 1))}.text-green-800{--tw-text-opacity: 1;color:rgb(22 101 52 / var(--tw-text-opacity, 1))}.text-indigo-600{--tw-text-opacity: 1;color:rgb(79 70 229 / var(--tw-text-opacity, 1))}.text-indigo-700{--tw-text-opacity: 1;color:rgb(67 56 202 / var(--tw-text-opacity, 1))}.text-orange-500{--tw-text-opacity: 1;color:rgb(249 115 22 / var(--tw-text-opacity, 1))}.text-purple-500{--tw-text-opacity: 1;color:rgb(168 85 247 / var(--tw-text-opacity, 1))}.text-red-500{--tw-text-opacity: 1;color:rgb(239 68 68 / var(--tw-text-opacity, 1))}.text-red-600{--tw-text-opacity: 1;color:rgb(220 38 38 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity: 1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.underline{text-decoration-line:underline}.placeholder-gray-400::-moz-placeholder{--tw-placeholder-opacity: 1;color:rgb(156 163 175 / var(--tw-placeholder-opacity, 1))}.placeholder-gray-400::placeholder{--tw-placeholder-opacity: 1;color:rgb(156 163 175 / var(--tw-placeholder-opacity, 1))}.opacity-0{opacity:0}.opacity-100{opacity:1}.opacity-40{opacity:.4}.opacity-50{opacity:.5}.mix-blend-multiply{mix-blend-mode:multiply}.shadow{--tw-shadow: 0 1px 3px 0 rgb(0 0 0 / .1), 0 1px 2px -1px rgb(0 0 0 / .1);--tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow)}.shadow-\\[0_20px_50px_rgba\\(0\\,0\\,0\\,0\\.1\\)\\]{--tw-shadow: 0 20px 50px rgba(0,0,0,.1);--tw-shadow-colored: 0 20px 50px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow)}.shadow-lg{--tw-shadow: 0 10px 15px -3px rgb(0 0 0 / .1), 0 4px 6px -4px rgb(0 0 0 / .1);--tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow)}.shadow-md{--tw-shadow: 0 4px 6px -1px rgb(0 0 0 / .1), 0 2px 4px -2px rgb(0 0 0 / .1);--tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow)}.shadow-sm{--tw-shadow: 0 1px 2px 0 rgb(0 0 0 / .05);--tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow)}.shadow-amber-200\\/50{--tw-shadow-color: rgb(253 230 138 / .5);--tw-shadow: var(--tw-shadow-colored)}.shadow-amber-900\\/20{--tw-shadow-color: rgb(120 53 15 / .2);--tw-shadow: var(--tw-shadow-colored)}.outline{outline-style:solid}.blur{--tw-blur: blur(8px);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.grayscale{--tw-grayscale: grayscale(100%);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-colors{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-opacity{transition-property:opacity;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.duration-200{transition-duration:.2s}.duration-300{transition-duration:.3s}.duration-500{transition-duration:.5s}.ease-in-out{transition-timing-function:cubic-bezier(.4,0,.2,1)}:host{display:block;animation:ars-fade-zoom .6s cubic-bezier(.2,.8,.2,1) forwards;font-family:Inter,system-ui,Avenir,Helvetica,Arial,sans-serif;line-height:1.5;font-weight:400;color-scheme:light;color:var(--ars-color-text-main);background-color:transparent;font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;--ars-color-primary: #FF9900;--ars-color-primary-hover: #e68a00;--ars-color-secondary: #232f3e;--ars-color-secondary-hover: #131921;--ars-color-text-main: #0f1111;--ars-color-text-secondary: #565959;--ars-color-text-inverse: #ffffff;--ars-color-bg-main: #ffffff;--ars-color-bg-secondary: #f0f2f2;--ars-color-bg-tertiary: #e7e9ec;--ars-color-border: #d5d9d9;--ars-color-border-focus: #e77600;--ars-color-success: #067d62;--ars-color-error: #ba0933;--ars-color-warning: #ffa41c;--ars-radius-sm: 4px;--ars-radius-md: 8px;--ars-radius-lg: 12px;--ars-radius-xl: 20px;--ars-shadow-sm: 0 1px 3px rgba(0, 0, 0, .12);--ars-shadow-md: 0 4px 6px rgba(0, 0, 0, .1);--ars-shadow-lg: 0 10px 15px rgba(0, 0, 0, .1);--ars-spacing-xs: 4px;--ars-spacing-sm: 8px;--ars-spacing-md: 16px;--ars-spacing-lg: 24px;--ars-spacing-xl: 32px;--ars-font-size-xs: 11px;--ars-font-size-sm: 13px;--ars-font-size-md: 15px;--ars-font-size-lg: 18px;--ars-font-size-xl: 24px;--ars-anim-fast: .15s ease;--ars-anim-normal: .25s ease}:host{padding:60px 24px!important}*{box-sizing:border-box}button{cursor:pointer;font-family:inherit}::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#ccc;border-radius:4px}::-webkit-scrollbar-thumb:hover{background:#bbb}@keyframes ars-fade-zoom{0%{opacity:0;transform:scale(.98) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}.ars-review-shell-listing{animation:ars-fade-zoom .6s cubic-bezier(.2,.8,.2,1) forwards}.ryp__desktop{display:none!important}.after\\:absolute:after{content:var(--tw-content);position:absolute}.after\\:left-\\[2px\\]:after{content:var(--tw-content);left:2px}.after\\:top-\\[2px\\]:after{content:var(--tw-content);top:2px}.after\\:h-4:after{content:var(--tw-content);height:1rem}.after\\:h-5:after{content:var(--tw-content);height:1.25rem}.after\\:w-4:after{content:var(--tw-content);width:1rem}.after\\:w-5:after{content:var(--tw-content);width:1.25rem}.after\\:rounded-full:after{content:var(--tw-content);border-radius:9999px}.after\\:border:after{content:var(--tw-content);border-width:1px}.after\\:border-gray-300:after{content:var(--tw-content);--tw-border-opacity: 1;border-color:rgb(209 213 219 / var(--tw-border-opacity, 1))}.after\\:bg-white:after{content:var(--tw-content);--tw-bg-opacity: 1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.after\\:transition-all:after{content:var(--tw-content);transition-property:all;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.after\\:content-\\[\\'\\'\\]:after{--tw-content: "";content:var(--tw-content)}.hover\\:bg-blue-50:hover{--tw-bg-opacity: 1;background-color:rgb(239 246 255 / var(--tw-bg-opacity, 1))}.hover\\:bg-gray-100:hover{--tw-bg-opacity: 1;background-color:rgb(243 244 246 / var(--tw-bg-opacity, 1))}.hover\\:bg-gray-200:hover{--tw-bg-opacity: 1;background-color:rgb(229 231 235 / var(--tw-bg-opacity, 1))}.hover\\:bg-red-50:hover{--tw-bg-opacity: 1;background-color:rgb(254 242 242 / var(--tw-bg-opacity, 1))}.hover\\:from-amber-600:hover{--tw-gradient-from: #d97706 var(--tw-gradient-from-position);--tw-gradient-to: rgb(217 119 6 / 0) var(--tw-gradient-to-position);--tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to)}.hover\\:to-amber-700:hover{--tw-gradient-to: #b45309 var(--tw-gradient-to-position)}.hover\\:text-blue-600:hover{--tw-text-opacity: 1;color:rgb(37 99 235 / var(--tw-text-opacity, 1))}.hover\\:text-gray-600:hover{--tw-text-opacity: 1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.hover\\:text-gray-700:hover{--tw-text-opacity: 1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.hover\\:text-indigo-700:hover{--tw-text-opacity: 1;color:rgb(67 56 202 / var(--tw-text-opacity, 1))}.hover\\:underline:hover{text-decoration-line:underline}.hover\\:shadow-md:hover{--tw-shadow: 0 4px 6px -1px rgb(0 0 0 / .1), 0 2px 4px -2px rgb(0 0 0 / .1);--tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow)}.focus\\:border-amber-500:focus{--tw-border-opacity: 1;border-color:rgb(245 158 11 / var(--tw-border-opacity, 1))}.focus\\:bg-white:focus{--tw-bg-opacity: 1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.focus\\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.focus\\:ring-2:focus{--tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow, 0 0 #0000)}.focus\\:ring-amber-500:focus{--tw-ring-opacity: 1;--tw-ring-color: rgb(245 158 11 / var(--tw-ring-opacity, 1))}.focus\\:ring-amber-500\\/20:focus{--tw-ring-color: rgb(245 158 11 / .2)}.active\\:scale-95:active{--tw-scale-x: .95;--tw-scale-y: .95;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.peer:checked~.peer-checked\\:bg-indigo-600{--tw-bg-opacity: 1;background-color:rgb(79 70 229 / var(--tw-bg-opacity, 1))}.peer:checked~.peer-checked\\:after\\:translate-x-full:after{content:var(--tw-content);--tw-translate-x: 100%;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.peer:checked~.peer-checked\\:after\\:border-white:after{content:var(--tw-content);--tw-border-opacity: 1;border-color:rgb(255 255 255 / var(--tw-border-opacity, 1))}.peer:focus~.peer-focus\\:outline-none{outline:2px solid transparent;outline-offset:2px}.peer:focus~.peer-focus\\:ring-2{--tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow, 0 0 #0000)}.peer:focus~.peer-focus\\:ring-4{--tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(4px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow, 0 0 #0000)}.peer:focus~.peer-focus\\:ring-indigo-300{--tw-ring-opacity: 1;--tw-ring-color: rgb(165 180 252 / var(--tw-ring-opacity, 1))}@media(min-width:640px){.sm\\:w-auto{width:auto}.sm\\:max-w-xs{max-width:20rem}.sm\\:flex-row{flex-direction:row}.sm\\:px-6{padding-left:1.5rem;padding-right:1.5rem}}@media(min-width:768px){.md\\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(min-width:1024px){.lg\\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.lg\\:px-8{padding-left:2rem;padding-right:2rem}}@media(min-width:1280px){.xl\\:grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}}@media(prefers-color-scheme:dark){.dark\\:border-zinc-600{--tw-border-opacity: 1;border-color:rgb(82 82 91 / var(--tw-border-opacity, 1))}.dark\\:border-zinc-700{--tw-border-opacity: 1;border-color:rgb(63 63 70 / var(--tw-border-opacity, 1))}.dark\\:bg-amber-900{--tw-bg-opacity: 1;background-color:rgb(120 53 15 / var(--tw-bg-opacity, 1))}.dark\\:bg-zinc-700{--tw-bg-opacity: 1;background-color:rgb(63 63 70 / var(--tw-bg-opacity, 1))}.dark\\:bg-zinc-800{--tw-bg-opacity: 1;background-color:rgb(39 39 42 / var(--tw-bg-opacity, 1))}.dark\\:text-amber-300{--tw-text-opacity: 1;color:rgb(252 211 77 / var(--tw-text-opacity, 1))}.dark\\:text-white{--tw-text-opacity: 1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.dark\\:hover\\:text-gray-200:hover{--tw-text-opacity: 1;color:rgb(229 231 235 / var(--tw-text-opacity, 1))}}`;
+  const style = `.ars-profile-section{background:linear-gradient(135deg,#232f3e,#131921)}.ars-profile-container{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem}.ars-profile-info{display:flex;align-items:center;gap:1rem}.ars-profile-avatar-wrapper{flex-shrink:0}.ars-profile-avatar{display:block;width:44px;height:44px;border-radius:50%;overflow:hidden;background-color:#ffffff1a;transition:transform .2s ease,box-shadow .2s ease;border:2px solid transparent}.ars-profile-avatar:hover{transform:scale(1.08);border-color:#ffffff4d;box-shadow:0 0 15px #ffffff1a}.ars-profile-avatar img{width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.ars-profile-avatar-placeholder{display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-size:1.25rem;font-weight:600;color:#f90;background-color:#fff}.ars-profile-name{font-size:1rem;font-weight:500;color:#fff}.ars-profile-edit-link{font-size:.875rem;color:#54b4e8;text-decoration:none;transition:color .2s ease}.ars-profile-edit-link:hover{color:#7ec8f0;text-decoration:underline}.ars-product-header{display:flex;align-items:flex-start;gap:1rem;margin-top:1.5rem}.ars-product-image-link{flex-shrink:0;display:block}.ars-product-image-link:hover .ars-product-image{opacity:.9}.ars-product-image{flex-shrink:0;width:64px;height:64px;-o-object-fit:contain;object-fit:contain;border-radius:8px;box-shadow:0 2px 8px #00000014;transition:opacity .2s ease}.ars-product-info{display:flex;flex-direction:column;gap:.25rem;min-width:0}.ars-product-title{font-size:1.125rem;font-weight:700;color:#0f1111;letter-spacing:-.01em}.ars-product-name{font-size:.875rem;color:#565959;line-height:1.4}.ars-star-rating{display:flex;align-items:center;gap:1rem}.ars-star-rating-stars{display:flex;gap:4px}.ars-star-button{display:flex;align-items:center;justify-content:center;padding:4px;border:none;background:transparent;color:#d5d9d9;cursor:pointer;transition:color .2s ease,transform .2s cubic-bezier(.175,.885,.32,1.275)}.ars-star-button:hover{color:#e68a00;transform:scale(1.15)}.ars-star-button:active{transform:scale(.9)}.ars-star-button:focus-visible{outline:2px solid #FF9900;outline-offset:2px}.ars-star-button--filled{color:#f90}.ars-star-rating-stars:hover .ars-star-button--filled{color:#e68a00}.ars-star-clear{font-size:.875rem;color:#54b4e8;background:none;border:none;cursor:pointer;padding:4px 0;transition:color .2s ease}.ars-star-clear:hover{color:#2d9fd8;text-decoration:underline}.ars-media-upload{display:flex;align-items:center;justify-content:center;min-height:120px;padding:1.5rem;border:2px dashed #d5d9d9;border-radius:12px;background-color:#f9fafb;cursor:pointer;transition:all .2s ease;width:100%}.ars-media-upload--compact{width:80px;height:80px;min-height:80px;padding:0;border-radius:8px;border-width:1.5px}.ars-media-upload:hover{border-color:#f90;background-color:#ff99000a}.ars-media-upload--dragging{border-color:#f90;background-color:#ff99001a;box-shadow:inset 0 0 0 4px #ff99000d}.ars-media-upload:focus-visible{outline:2px solid #FF9900;outline-offset:2px}.ars-media-upload-content{display:flex;flex-direction:column;align-items:center;gap:.5rem}.ars-media-upload-icon{color:#565959}.ars-media-upload--dragging .ars-media-upload-icon,.ars-media-upload:hover .ars-media-upload-icon{color:#f90}.ars-media-upload-placeholder{font-size:.875rem;color:#565959}.ars-media-upload-wrapper{display:flex;flex-direction:column;gap:.75rem}.ars-media-upload--uploading{pointer-events:none}.ars-media-upload-feedback{font-size:.875rem;color:#067d62;font-weight:500}.ars-media-upload-actions{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap}.ars-media-upload-action-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.5rem .875rem;font-size:.875rem;border-radius:8px;cursor:pointer;transition:all .2s ease;text-decoration:none;width:-moz-fit-content;width:fit-content}.ars-media-upload-paste-btn,.ars-media-upload-google-btn,.ars-media-upload-icloud-btn{color:#565959;background:#fff;border:1px solid #d5d9d9}.ars-media-upload-paste-btn:hover,.ars-media-upload-google-btn:hover,.ars-media-upload-icloud-btn:hover{border-color:#f90;color:#f90;background:#fff}.ars-media-thumbnails{display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:.5rem}.ars-media-thumbnail{position:relative;width:80px;height:80px;border-radius:8px;overflow:hidden;border:1px solid #d5d9d9;background-color:#f3f4f6;flex-shrink:0}.ars-media-thumbnail-image{width:100%;height:100%;background-size:cover;background-position:center;background-repeat:no-repeat}.ars-media-thumbnail-remove{position:absolute;top:4px;right:4px;width:20px;height:20px;border-radius:50%;background-color:#0009;color:#fff;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transition:opacity .2s ease,background-color .2s ease;padding:0}.ars-media-thumbnail:hover .ars-media-thumbnail-remove{opacity:1}.ars-media-thumbnail-remove:hover{background-color:#c00}.ars-media-upload-dragging-content{display:flex;flex-direction:column;align-items:center;gap:.75rem;pointer-events:none}@keyframes bounce{0%,to{transform:translateY(-10%);animation-timing-function:cubic-bezier(.8,0,1,1)}50%{transform:translateY(0);animation-timing-function:cubic-bezier(0,0,.2,1)}}.ars-review-shell{position:relative;display:flex;flex-direction:column;max-width:800px;margin-left:auto;margin-right:auto;background-color:#fff;color:#0f1111;border-radius:12px;overflow:hidden;box-shadow:0 4px 24px #00000014;animation:ars-fade-zoom .5s cubic-bezier(.2,.8,.2,1) forwards}.ars-review-shell--loading{padding:2rem;text-align:center;color:#565959}.ars-review-form-container{padding:1.5rem 2rem 0}.ars-review-form-fields{display:flex;flex-direction:column;gap:1.5rem;margin-top:1.5rem}.ars-form-field{display:flex;flex-direction:column;gap:.5rem}.ars-form-field-label-row{display:flex;align-items:center;justify-content:space-between}.ars-form-label{font-size:.875rem;font-weight:600;color:#0f1111}.ars-ai-trigger{color:#f90!important;border-color:#f90!important}.ars-ai-trigger:hover{background-color:#ff990014!important}.ars-review-submit{display:flex;align-items:center;justify-content:space-between;margin-top:1.5rem;padding:1.25rem 2rem;border-top:1px solid #e5e7eb;background-color:#f9fafb}.ars-header-actions{position:absolute;top:1rem;right:1rem;display:flex;align-items:center;gap:.5rem;z-index:20}.ars-action-button{display:flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;border:none;background:transparent;color:#fff;cursor:pointer;border-radius:8px;transition:all .2s ease;opacity:.8}.ars-action-button:hover{background-color:#ffffff1a;color:#fff;opacity:1}.ars-action-button.active{color:#f90;opacity:1}.ars-submit-group{display:flex;align-items:center;gap:1rem}.ars-back-button{background-color:#fff!important;border-color:#d5d9d9!important;color:#0f1111!important;box-shadow:0 2px 5px #d5d9d980}.ars-back-button:hover{background-color:#f7fafa!important;border-color:#adb1b1!important;transform:translateY(-1px)}.ars-back-button:active{transform:translateY(0)}.ars-button{display:inline-flex;align-items:center;justify-content:center;border-radius:var(--ars-radius-md);font-weight:500;transition:all var(--ars-anim-fast);outline:none;border:1px solid transparent;-webkit-user-select:none;-moz-user-select:none;user-select:none;white-space:nowrap}.ars-button:disabled{opacity:.6;cursor:not-allowed;pointer-events:none}.ars-button:focus-visible{box-shadow:0 0 0 2px var(--ars-color-bg-main),0 0 0 4px var(--ars-color-primary)}.ars-button--primary{background-color:var(--ars-color-primary);color:var(--ars-color-text-inverse);box-shadow:0 1px 2px #0000001a}.ars-button--primary:hover{background-color:var(--ars-color-primary-hover);transform:translateY(-1px)}.ars-button--primary:active{transform:translateY(0)}.ars-button--secondary{background-color:var(--ars-color-secondary);color:var(--ars-color-text-inverse)}.ars-button--secondary:hover{background-color:var(--ars-color-secondary-hover)}.ars-button--outline{background-color:transparent;border-color:var(--ars-color-border);color:var(--ars-color-text-main)}.ars-button--outline:hover{background-color:var(--ars-color-bg-secondary);border-color:var(--ars-color-border-focus)}.ars-button--ghost{background-color:transparent;color:var(--ars-color-text-secondary)}.ars-button--ghost:hover{background-color:var(--ars-color-bg-secondary);color:var(--ars-color-text-main)}.ars-button--danger{background-color:var(--ars-color-error);color:var(--ars-color-text-inverse)}.ars-button--danger:hover{background-color:#a8082e}.ars-button--sm{height:28px;padding:0 var(--ars-spacing-sm);font-size:var(--ars-font-size-sm)}.ars-button--md{height:36px;padding:0 var(--ars-spacing-md);font-size:var(--ars-font-size-sm)}.ars-button--lg{height:44px;padding:0 var(--ars-spacing-lg);font-size:var(--ars-font-size-md)}.ars-button--icon{width:36px;height:36px;padding:0;border-radius:50%}.ars-button--icon.ars-button--sm{width:28px;height:28px}.ars-button--icon.ars-button--lg{width:44px;height:44px}.ars-button__loader{animation:ars-spin 1s linear infinite;margin-right:var(--ars-spacing-xs)}.ars-button--icon .ars-button__loader{margin-right:0}.ars-button__icon{margin-right:var(--ars-spacing-xs);display:flex;align-items:center}.ars-button--icon .ars-button__icon{margin-right:0}@keyframes ars-spin{0%{transform:rotate(0)}to{transform:rotate(360deg)}}.ars-input-group{display:flex;flex-direction:column;gap:var(--ars-spacing-xs);width:100%}.ars-input-wrapper{position:relative;display:flex;align-items:center}.ars-input-label{font-size:var(--ars-font-size-sm);font-weight:500;color:var(--ars-color-text-main)}.ars-input{width:100%;height:36px;padding:0 var(--ars-spacing-sm);font-family:inherit;font-size:var(--ars-font-size-md);color:var(--ars-color-text-main);background-color:var(--ars-color-bg-main);border:1px solid var(--ars-color-border);border-radius:var(--ars-radius-md);transition:all var(--ars-anim-fast);outline:none}.ars-input:focus{border-color:var(--ars-color-primary);box-shadow:0 0 0 1px var(--ars-color-primary)}.ars-input:disabled{background-color:var(--ars-color-bg-secondary);cursor:not-allowed;opacity:.7}.ars-input--has-icon{padding-left:32px}.ars-input-icon{position:absolute;left:8px;color:var(--ars-color-text-secondary);display:flex;pointer-events:none}.ars-input--error{border-color:var(--ars-color-error)}.ars-input--error:focus{box-shadow:0 0 0 1px var(--ars-color-error)}.ars-input--has-suffix{padding-right:48px}.ars-input-suffix{position:absolute;right:4px;display:flex;align-items:center;justify-content:center;z-index:10}.ars-input-error{font-size:var(--ars-font-size-xs);color:var(--ars-color-error)}.ars-card{background-color:var(--ars-color-bg-main);border:1px solid var(--ars-color-border);border-radius:var(--ars-radius-md);box-shadow:var(--ars-shadow-sm);overflow:hidden}.ars-card--p-none{padding:0}.ars-card--p-sm{padding:var(--ars-spacing-sm)}.ars-card--p-md{padding:var(--ars-spacing-md)}.ars-card--p-lg{padding:var(--ars-spacing-lg)}.ars-modal-overlay-container{position:fixed;inset:0;z-index:100000;display:flex;align-items:center;justify-content:center;pointer-events:none}.ars-modal-backdrop{position:fixed;inset:0;background-color:#0009;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);pointer-events:auto}.ars-modal-wrapper{position:relative;z-index:100001;pointer-events:none;display:flex;align-items:center;justify-content:center;width:100%;max-height:100vh;padding:20px}.ars-modal{background-color:var(--ars-color-bg-main);border-radius:16px;box-shadow:0 25px 50px -12px #00000040;pointer-events:auto;display:flex;flex-direction:column;max-height:calc(100vh - 80px);outline:none;border:1px solid var(--ars-color-border);overflow:hidden}.ars-modal-header{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid var(--ars-color-border)}.ars-modal-title{margin:0;font-size:1.25rem;font-weight:800;color:var(--ars-color-text-main);letter-spacing:-.025em}.ars-modal-content{padding:0;overflow-y:auto;flex:1}.ars-modal-footer{padding:16px 24px;border-top:1px solid var(--ars-color-border);display:flex;justify-content:flex-end;gap:12px;background-color:var(--ars-color-bg-secondary)}.ars-modal-close{color:var(--ars-color-text-secondary);opacity:.6;transition:all .2s ease}.ars-modal-close:hover{opacity:1;background-color:var(--ars-color-bg-tertiary)}.ars-rich-editor{display:flex;flex-direction:column;width:100%}.ars-editor-textarea{width:100%;min-height:250px;padding:var(--ars-spacing-md);font-family:inherit;font-size:var(--ars-font-size-md);color:var(--ars-color-text-main);background-color:var(--ars-color-bg-main);border:1px solid var(--ars-color-border);resize:vertical;outline:none;line-height:1.6;transition:height .3s cubic-bezier(.4,0,.2,1),min-height .3s cubic-bezier(.4,0,.2,1);will-change:height,min-height}.ars-editor-footer{display:flex;justify-content:space-between;align-items:center;padding:var(--ars-spacing-xs) var(--ars-spacing-sm);background-color:var(--ars-color-bg-secondary);border:1px solid var(--ars-color-border);border-top:none;border-bottom-left-radius:var(--ars-radius-md);border-bottom-right-radius:var(--ars-radius-md)}.ars-editor-options{display:flex;align-items:center}.ars-checkbox-label{display:flex;align-items:center;gap:.5rem;font-size:var(--ars-font-size-xs);color:var(--ars-color-text-secondary);cursor:pointer;-webkit-user-select:none;-moz-user-select:none;user-select:none}.ars-checkbox-label input[type=checkbox]{cursor:pointer}.ars-checkbox-label:hover{color:var(--ars-color-text-main)}.ars-char-count{font-size:var(--ars-font-size-xs);color:var(--ars-color-text-secondary)}.ars-tm-editor{flex:1;min-height:0}.ars-tm-editor .ars-editor-textarea{flex:1;min-height:200px;resize:none}.ars-editor-toolbar{display:flex;justify-content:space-between;align-items:center;padding:var(--ars-spacing-xs);background-color:var(--ars-color-bg-secondary);border:1px solid var(--ars-color-border);border-bottom:none;border-top-left-radius:var(--ars-radius-md);border-top-right-radius:var(--ars-radius-md)}.ars-toolbar-group{display:flex;align-items:center;gap:var(--ars-spacing-xs)}.ars-toolbar-divider{width:1px;height:20px;background-color:var(--ars-color-border);margin:0 var(--ars-spacing-xs)}.ars-toolbar-btn{height:28px!important;width:28px!important;padding:0!important;display:flex;align-items:center;justify-content:center}.ars-toolbar-btn[data-variant=primary]{background-color:var(--ars-color-primary)!important;color:#fff!important}.ars-toolbar-paste{width:auto!important;min-width:28px;padding:0 8px!important}.ars-toolbar-paste-label{margin-left:4px}.ars-phrase-popover{position:absolute;top:100%;right:0;z-index:1000;margin-top:4px;background-color:#fff;border-radius:8px;box-shadow:0 4px 12px #00000026;border:1px solid var(--ars-color-border)}.ars-bullet-selector{position:absolute!important;top:100%!important;left:0!important;margin-top:5px!important;background:#fff!important;border:1px solid #ddd!important;border-radius:8px!important;box-shadow:0 8px 24px #0003!important;display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:6px!important;padding:10px!important;z-index:99999!important;width:auto!important;min-width:140px!important;pointer-events:auto!important}.ars-bullet-selector-overlay{display:none!important}.ars-bullet-option{width:30px!important;height:30px!important;display:flex!important;align-items:center!important;justify-content:center!important;cursor:pointer!important;border-radius:4px!important;font-size:16px!important;color:#333!important;transition:all .2s ease!important;background:transparent!important}.ars-bullet-option:hover{background-color:#f0f0f0!important}.ars-bullet-option.active{background-color:var(--ars-color-primary)!important;color:#fff!important}.ars-bullet-btn{position:relative!important}.ars-bullet-indicator{position:absolute!important;bottom:-1px!important;right:-1px!important;font-size:11px!important;color:inherit!important;opacity:.8!important;width:12px!important;height:12px!important;display:flex!important;align-items:center!important;justify-content:center!important;pointer-events:none!important;z-index:1!important;font-weight:700!important}.ars-ai-modal-body{display:flex;flex-direction:column;gap:var(--ars-spacing-md)}.ars-ai-settings-compact{display:flex;gap:var(--ars-spacing-sm);background:#f8fafc;padding:var(--ars-spacing-xs);border-radius:var(--ars-radius-lg);border:1px solid #e2e8f0}.ars-ai-provider-card,.ars-ai-length-card,.ars-ai-vision-card{background:#fff!important;border:1px solid #e2e8f0!important;transition:transform var(--ars-anim-fast),box-shadow var(--ars-anim-fast)}.ars-ai-provider-card:hover,.ars-ai-length-card:hover,.ars-ai-vision-card:hover{box-shadow:0 4px 6px -1px #0000000d}.ars-ai-provider-card{display:flex;align-items:center;gap:var(--ars-spacing-sm);flex:1}.ars-ai-length-card{display:flex;align-items:center;gap:var(--ars-spacing-sm);flex:2}.ars-ai-vision-card{flex:1;display:flex;align-items:center}.ars-ai-length-selector{display:flex;gap:4px;flex:1}.ars-ai-length-btn{flex:1;padding:6px 8px;font-size:var(--ars-font-size-xs);border:1px solid var(--ars-color-border);background-color:var(--ars-color-bg-main);color:var(--ars-color-text-secondary);border-radius:var(--ars-radius-sm);cursor:pointer;transition:all var(--ars-anim-fast)}.ars-ai-length-btn:hover{background-color:var(--ars-color-bg-secondary)}.ars-ai-length-btn.active{background-color:var(--ars-color-primary);color:#fff;border-color:var(--ars-color-primary);font-weight:600}.ars-label{font-size:var(--ars-font-size-sm);font-weight:600;color:var(--ars-color-text-main)}.ars-select{flex:1;height:32px;border-radius:var(--ars-radius-sm);border:1px solid var(--ars-color-border);padding:0 var(--ars-spacing-xs);outline:none;font-family:inherit}.ars-ai-prompt-section{display:flex;flex-direction:column;gap:var(--ars-spacing-sm)}.ars-ai-prompt-input{width:100%;min-height:80px;padding:var(--ars-spacing-md);border:1px solid var(--ars-color-border);border-radius:var(--ars-radius-lg);font-family:inherit;font-size:var(--ars-font-size-md);line-height:1.6;resize:vertical;outline:none;transition:all var(--ars-anim-fast)}.ars-ai-prompt-input:focus{border-color:var(--ars-color-primary)}.ars-ai-result-section{display:flex;flex-direction:column;gap:var(--ars-spacing-xs)}.ars-ai-result-container{min-height:150px;padding:var(--ars-spacing-md);background-color:var(--ars-color-bg-secondary);border:1px dotted var(--ars-color-border);border-radius:var(--ars-radius-md);position:relative}.ars-ai-result-text{margin:0;line-height:1.6;white-space:pre-wrap}.ars-ai-placeholder{color:var(--ars-color-text-secondary);display:flex;align-items:center;justify-content:center;height:100%;font-style:italic}.ars-ai-error{padding:var(--ars-spacing-sm);background-color:#ba09331a;color:var(--ars-color-error);border-radius:var(--ars-radius-sm);font-size:var(--ars-font-size-sm)}.ars-settings-layout{display:flex;min-height:380px;gap:var(--ars-spacing-md)}.ars-settings-sidebar{width:180px;display:flex;flex-direction:column;gap:var(--ars-spacing-xs);border-right:1px solid var(--ars-color-border);padding-right:var(--ars-spacing-md)}.ars-tab-btn{justify-content:flex-start!important;width:100%}.ars-settings-content{flex:1;overflow-y:auto}.ars-settings-section{display:flex;flex-direction:column;gap:var(--ars-spacing-md)}.ars-settings-section h3{margin:0;font-size:var(--ars-font-size-lg);color:var(--ars-color-text-main)}.ars-setting-item{display:flex;flex-direction:column;gap:var(--ars-spacing-xs)}.ars-setting-subgroup{padding-left:var(--ars-spacing-md);border-left:2px solid var(--ars-color-bg-tertiary);display:flex;flex-direction:column;gap:var(--ars-spacing-md)}.ars-help-text{font-size:var(--ars-font-size-xs);color:var(--ars-color-text-secondary);margin-top:-8px}.ars-description{font-size:var(--ars-font-size-sm);color:var(--ars-color-text-secondary);margin-top:-12px}.ars-about-section{align-items:center;text-align:center}.ars-brand{display:flex;flex-direction:column;align-items:center;margin-bottom:var(--ars-spacing-lg)}.ars-brand h1{font-size:var(--ars-font-size-xl);margin:var(--ars-spacing-sm) 0 0 0}.ars-brand-icon{color:var(--ars-color-primary)}.ars-version{font-size:var(--ars-font-size-xs);color:var(--ars-color-text-secondary)}.ars-scaling-wrapper{transition:height .2s ease-out,width .2s ease-out}.ars-scaling-wrapper.is-resizing{transition:none;cursor:nwse-resize}.ars-scaling-content{transition:transform .2s ease-out;pointer-events:auto}.is-resizing .ars-scaling-content{transition:none}.ars-resize-handle{position:absolute;bottom:5px;right:5px;width:12px;height:12px;cursor:nwse-resize;z-index:1000;opacity:.6;transition:opacity .2s ease;background:linear-gradient(-45deg,transparent 20%,#ccc 20%,#ccc 30%,transparent 30%,transparent 45%,#ccc 45%,#ccc 55%,transparent 55%)}.ars-resize-handle:hover,.is-resizing .ars-resize-handle{opacity:1}.ars-resize-handle svg{display:none}.ars-studio-container{display:flex;flex-direction:column;background-color:var(--ars-color-bg-main);border:1px solid var(--ars-color-border);border-radius:var(--ars-radius-lg);box-shadow:var(--ars-shadow-lg);overflow:hidden;max-width:900px;margin:0 auto}.ars-studio-header{display:flex;align-items:center;justify-content:space-between;padding:var(--ars-spacing-md) var(--ars-spacing-lg);background-color:var(--ars-color-secondary);color:#fff}.ars-title-group{display:flex;align-items:center;gap:var(--ars-spacing-sm)}.ars-title-group h1{font-size:var(--ars-font-size-lg);margin:0;font-weight:700;letter-spacing:-.5px}.ars-logo{color:var(--ars-color-primary)}.ars-studio-main{padding:var(--ars-spacing-lg);display:flex;flex-direction:column;gap:var(--ars-spacing-xl)}.ars-form-section{display:flex;flex-direction:column;gap:var(--ars-spacing-md)}.ars-editor-label-row{display:flex;align-items:center;justify-content:space-between}.ars-editor-label-row label{font-size:var(--ars-font-size-sm);font-weight:600;color:var(--ars-color-text-main)}.ars-ai-trigger{color:var(--ars-color-primary)!important;border-color:var(--ars-color-primary)!important}.ars-ai-trigger:hover{background-color:#ff99000d!important}.ars-actions-section{display:flex;flex-direction:column;align-items:center;gap:var(--ars-spacing-sm);padding-top:var(--ars-spacing-lg);border-top:1px solid var(--ars-color-bg-tertiary)}.ars-apply-btn{width:100%;max-width:400px;height:48px!important;font-size:var(--ars-font-size-md)!important}.ars-hint{font-size:var(--ars-font-size-xs);color:var(--ars-color-text-secondary);margin:0}*,:before,:after{--tw-border-spacing-x: 0;--tw-border-spacing-y: 0;--tw-translate-x: 0;--tw-translate-y: 0;--tw-rotate: 0;--tw-skew-x: 0;--tw-skew-y: 0;--tw-scale-x: 1;--tw-scale-y: 1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness: proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width: 0px;--tw-ring-offset-color: #fff;--tw-ring-color: rgb(59 130 246 / .5);--tw-ring-offset-shadow: 0 0 #0000;--tw-ring-shadow: 0 0 #0000;--tw-shadow: 0 0 #0000;--tw-shadow-colored: 0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x: 0;--tw-border-spacing-y: 0;--tw-translate-x: 0;--tw-translate-y: 0;--tw-rotate: 0;--tw-skew-x: 0;--tw-skew-y: 0;--tw-scale-x: 1;--tw-scale-y: 1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness: proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width: 0px;--tw-ring-offset-color: #fff;--tw-ring-color: rgb(59 130 246 / .5);--tw-ring-offset-shadow: 0 0 #0000;--tw-ring-shadow: 0 0 #0000;--tw-shadow: 0 0 #0000;--tw-shadow-colored: 0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }*,:before,:after{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}:before,:after{--tw-content: ""}html,:host{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:Inter,system-ui,Avenir,Helvetica,Arial,sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,samp,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dl,dd,h1,h2,h3,h4,h5,h6,hr,figure,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}ol,ul,menu{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}button,[role=button]{cursor:pointer}:disabled{cursor:default}img,svg,video,canvas,audio,iframe,embed,object{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.\\!container{width:100%!important}.container{width:100%}@media(min-width:640px){.\\!container{max-width:640px!important}.container{max-width:640px}}@media(min-width:768px){.\\!container{max-width:768px!important}.container{max-width:768px}}@media(min-width:1024px){.\\!container{max-width:1024px!important}.container{max-width:1024px}}@media(min-width:1280px){.\\!container{max-width:1280px!important}.container{max-width:1280px}}@media(min-width:1536px){.\\!container{max-width:1536px!important}.container{max-width:1536px}}.pointer-events-none{pointer-events:none}.visible{visibility:visible}.collapse{visibility:collapse}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.bottom-2{bottom:.5rem}.left-0{left:0}.left-3{left:.75rem}.left-4{left:1rem}.right-2{right:.5rem}.right-3{right:.75rem}.right-4{right:1rem}.right-8{right:2rem}.top-0{top:0}.top-1\\/2{top:50%}.top-\\[34px\\]{top:34px}.z-10{z-index:10}.z-20{z-index:20}.col-span-full{grid-column:1 / -1}.mx-auto{margin-left:auto;margin-right:auto}.my-1{margin-top:.25rem;margin-bottom:.25rem}.mb-0{margin-bottom:0}.mb-0\\.5{margin-bottom:.125rem}.mb-1{margin-bottom:.25rem}.mb-1\\.5{margin-bottom:.375rem}.mb-2{margin-bottom:.5rem}.mb-3{margin-bottom:.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.ml-0\\.5{margin-left:.125rem}.ml-1{margin-left:.25rem}.ml-7{margin-left:1.75rem}.mt-0\\.5{margin-top:.125rem}.mt-1{margin-top:.25rem}.mt-1\\.5{margin-top:.375rem}.mt-2{margin-top:.5rem}.mt-3{margin-top:.75rem}.mt-4{margin-top:1rem}.mt-8{margin-top:2rem}.mt-auto{margin-top:auto}.line-clamp-3{overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3}.block{display:block}.inline-block{display:inline-block}.inline{display:inline}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.contents{display:contents}.hidden{display:none}.\\!h-auto{height:auto!important}.h-1\\.5{height:.375rem}.h-10{height:2.5rem}.h-12{height:3rem}.h-14{height:3.5rem}.h-16{height:4rem}.h-24{height:6rem}.h-4{height:1rem}.h-5{height:1.25rem}.h-6{height:1.5rem}.h-7{height:1.75rem}.h-\\[38px\\]{height:38px}.h-full{height:100%}.h-px{height:1px}.max-h-40{max-height:10rem}.min-h-\\[100px\\]{min-height:100px}.min-h-\\[400px\\]{min-height:400px}.w-1\\.5{width:.375rem}.w-10{width:2.5rem}.w-11{width:2.75rem}.w-12{width:3rem}.w-16{width:4rem}.w-24{width:6rem}.w-28{width:7rem}.w-4{width:1rem}.w-full{width:100%}.min-w-0{min-width:0px}.max-w-7xl{max-width:80rem}.max-w-\\[1200px\\]{max-width:1200px}.max-w-\\[80px\\]{max-width:80px}.max-w-md{max-width:28rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.origin-center{transform-origin:center}.origin-right{transform-origin:right}.-translate-y-1\\/2{--tw-translate-y: -50%;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.scale-\\[0\\.55\\]{--tw-scale-x: .55;--tw-scale-y: .55;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.scale-\\[0\\.7\\]{--tw-scale-x: .7;--tw-scale-y: .7;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes bounce{0%,to{transform:translateY(-25%);animation-timing-function:cubic-bezier(.8,0,1,1)}50%{transform:none;animation-timing-function:cubic-bezier(0,0,.2,1)}}.animate-bounce{animation:bounce 1s infinite}@keyframes spin{to{transform:rotate(360deg)}}.animate-spin{animation:spin 1s linear infinite}.cursor-help{cursor:help}.cursor-not-allowed{cursor:not-allowed}.cursor-pointer{cursor:pointer}.select-none{-webkit-user-select:none;-moz-user-select:none;user-select:none}.resize-none{resize:none}.resize{resize:both}.appearance-none{-webkit-appearance:none;-moz-appearance:none;appearance:none}.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.flex-row{flex-direction:row}.flex-col{flex-direction:column}.items-start{align-items:flex-start}.items-end{align-items:flex-end}.items-center{align-items:center}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:.25rem}.gap-1\\.5{gap:.375rem}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.space-y-4>:not([hidden])~:not([hidden]){--tw-space-y-reverse: 0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.space-y-5>:not([hidden])~:not([hidden]){--tw-space-y-reverse: 0;margin-top:calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.25rem * var(--tw-space-y-reverse))}.space-y-6>:not([hidden])~:not([hidden]){--tw-space-y-reverse: 0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-y-auto{overflow-y:auto}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.whitespace-nowrap{white-space:nowrap}.whitespace-pre-wrap{white-space:pre-wrap}.rounded{border-radius:.25rem}.rounded-2xl{border-radius:1rem}.rounded-3xl{border-radius:1.5rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:.5rem}.rounded-md{border-radius:.375rem}.rounded-xl{border-radius:.75rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-amber-200{--tw-border-opacity: 1;border-color:rgb(253 230 138 / var(--tw-border-opacity, 1))}.border-blue-100{--tw-border-opacity: 1;border-color:rgb(219 234 254 / var(--tw-border-opacity, 1))}.border-emerald-100{--tw-border-opacity: 1;border-color:rgb(209 250 229 / var(--tw-border-opacity, 1))}.border-gray-100{--tw-border-opacity: 1;border-color:rgb(243 244 246 / var(--tw-border-opacity, 1))}.border-gray-200{--tw-border-opacity: 1;border-color:rgb(229 231 235 / var(--tw-border-opacity, 1))}.border-gray-300{--tw-border-opacity: 1;border-color:rgb(209 213 219 / var(--tw-border-opacity, 1))}.border-green-100{--tw-border-opacity: 1;border-color:rgb(220 252 231 / var(--tw-border-opacity, 1))}.border-green-200{--tw-border-opacity: 1;border-color:rgb(187 247 208 / var(--tw-border-opacity, 1))}.border-green-200\\/50{border-color:#bbf7d080}.border-indigo-100{--tw-border-opacity: 1;border-color:rgb(224 231 255 / var(--tw-border-opacity, 1))}.border-red-100{--tw-border-opacity: 1;border-color:rgb(254 226 226 / var(--tw-border-opacity, 1))}.bg-amber-100{--tw-bg-opacity: 1;background-color:rgb(254 243 199 / var(--tw-bg-opacity, 1))}.bg-amber-50{--tw-bg-opacity: 1;background-color:rgb(255 251 235 / var(--tw-bg-opacity, 1))}.bg-amber-500\\/10{background-color:#f59e0b1a}.bg-amber-600{--tw-bg-opacity: 1;background-color:rgb(217 119 6 / var(--tw-bg-opacity, 1))}.bg-blue-50{--tw-bg-opacity: 1;background-color:rgb(239 246 255 / var(--tw-bg-opacity, 1))}.bg-blue-600{--tw-bg-opacity: 1;background-color:rgb(37 99 235 / var(--tw-bg-opacity, 1))}.bg-emerald-50{--tw-bg-opacity: 1;background-color:rgb(236 253 245 / var(--tw-bg-opacity, 1))}.bg-emerald-500{--tw-bg-opacity: 1;background-color:rgb(16 185 129 / var(--tw-bg-opacity, 1))}.bg-gray-100{--tw-bg-opacity: 1;background-color:rgb(243 244 246 / var(--tw-bg-opacity, 1))}.bg-gray-100\\/50{background-color:#f3f4f680}.bg-gray-200{--tw-bg-opacity: 1;background-color:rgb(229 231 235 / var(--tw-bg-opacity, 1))}.bg-gray-50{--tw-bg-opacity: 1;background-color:rgb(249 250 251 / var(--tw-bg-opacity, 1))}.bg-gray-50\\/30{background-color:#f9fafb4d}.bg-green-100{--tw-bg-opacity: 1;background-color:rgb(220 252 231 / var(--tw-bg-opacity, 1))}.bg-green-50{--tw-bg-opacity: 1;background-color:rgb(240 253 244 / var(--tw-bg-opacity, 1))}.bg-indigo-50{--tw-bg-opacity: 1;background-color:rgb(238 242 255 / var(--tw-bg-opacity, 1))}.bg-indigo-50\\/30{background-color:#eef2ff4d}.bg-indigo-500{--tw-bg-opacity: 1;background-color:rgb(99 102 241 / var(--tw-bg-opacity, 1))}.bg-indigo-600{--tw-bg-opacity: 1;background-color:rgb(79 70 229 / var(--tw-bg-opacity, 1))}.bg-red-50{--tw-bg-opacity: 1;background-color:rgb(254 242 242 / var(--tw-bg-opacity, 1))}.bg-red-50\\/30{background-color:#fef2f24d}.bg-white{--tw-bg-opacity: 1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\\/50{background-color:#ffffff80}.bg-gradient-to-br{background-image:linear-gradient(to bottom right,var(--tw-gradient-stops))}.bg-gradient-to-r{background-image:linear-gradient(to right,var(--tw-gradient-stops))}.from-amber-500{--tw-gradient-from: #f59e0b var(--tw-gradient-from-position);--tw-gradient-to: rgb(245 158 11 / 0) var(--tw-gradient-to-position);--tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to)}.from-green-50{--tw-gradient-from: #f0fdf4 var(--tw-gradient-from-position);--tw-gradient-to: rgb(240 253 244 / 0) var(--tw-gradient-to-position);--tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to)}.to-amber-600{--tw-gradient-to: #d97706 var(--tw-gradient-to-position)}.to-emerald-50\\/50{--tw-gradient-to: rgb(236 253 245 / .5) var(--tw-gradient-to-position)}.object-contain{-o-object-fit:contain;object-fit:contain}.p-1{padding:.25rem}.p-1\\.5{padding:.375rem}.p-2{padding:.5rem}.p-2\\.5{padding:.625rem}.p-3{padding:.75rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-8{padding:2rem}.\\!px-3{padding-left:.75rem!important;padding-right:.75rem!important}.\\!py-2{padding-top:.5rem!important;padding-bottom:.5rem!important}.px-1{padding-left:.25rem;padding-right:.25rem}.px-1\\.5{padding-left:.375rem;padding-right:.375rem}.px-10{padding-left:2.5rem;padding-right:2.5rem}.px-12{padding-left:3rem;padding-right:3rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-2\\.5{padding-left:.625rem;padding-right:.625rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-0\\.5{padding-top:.125rem;padding-bottom:.125rem}.py-1{padding-top:.25rem;padding-bottom:.25rem}.py-1\\.5{padding-top:.375rem;padding-bottom:.375rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-24{padding-top:6rem;padding-bottom:6rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-6{padding-top:1.5rem;padding-bottom:1.5rem}.pb-12{padding-bottom:3rem}.pb-2{padding-bottom:.5rem}.pb-6{padding-bottom:1.5rem}.pl-1{padding-left:.25rem}.pl-10{padding-left:2.5rem}.pl-3{padding-left:.75rem}.pr-10{padding-right:2.5rem}.pr-12{padding-right:3rem}.pr-4{padding-right:1rem}.pr-8{padding-right:2rem}.pt-10{padding-top:2.5rem}.pt-2{padding-top:.5rem}.pt-4{padding-top:1rem}.pt-6{padding-top:1.5rem}.pt-8{padding-top:2rem}.text-left{text-align:left}.text-center{text-align:center}.font-mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace}.\\!text-xs{font-size:.75rem!important;line-height:1rem!important}.text-2xl{font-size:1.5rem;line-height:2rem}.text-\\[10px\\]{font-size:10px}.text-\\[11px\\]{font-size:11px}.text-\\[7px\\]{font-size:7px}.text-\\[8px\\]{font-size:8px}.text-\\[9px\\]{font-size:9px}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:.75rem;line-height:1rem}.font-black{font-weight:900}.font-bold{font-weight:700}.font-light{font-weight:300}.font-medium{font-weight:500}.font-normal{font-weight:400}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.italic{font-style:italic}.leading-normal{line-height:1.5}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-\\[0\\.2em\\]{letter-spacing:.2em}.tracking-tight{letter-spacing:-.025em}.tracking-wider{letter-spacing:.05em}.tracking-widest{letter-spacing:.1em}.\\!text-yellow-400{--tw-text-opacity: 1 !important;color:rgb(250 204 21 / var(--tw-text-opacity, 1))!important}.text-amber-500{--tw-text-opacity: 1;color:rgb(245 158 11 / var(--tw-text-opacity, 1))}.text-amber-600{--tw-text-opacity: 1;color:rgb(217 119 6 / var(--tw-text-opacity, 1))}.text-amber-800{--tw-text-opacity: 1;color:rgb(146 64 14 / var(--tw-text-opacity, 1))}.text-blue-500{--tw-text-opacity: 1;color:rgb(59 130 246 / var(--tw-text-opacity, 1))}.text-blue-600{--tw-text-opacity: 1;color:rgb(37 99 235 / var(--tw-text-opacity, 1))}.text-emerald-700{--tw-text-opacity: 1;color:rgb(4 120 87 / var(--tw-text-opacity, 1))}.text-gray-200{--tw-text-opacity: 1;color:rgb(229 231 235 / var(--tw-text-opacity, 1))}.text-gray-300{--tw-text-opacity: 1;color:rgb(209 213 219 / var(--tw-text-opacity, 1))}.text-gray-400{--tw-text-opacity: 1;color:rgb(156 163 175 / var(--tw-text-opacity, 1))}.text-gray-500{--tw-text-opacity: 1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}.text-gray-600{--tw-text-opacity: 1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity: 1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-gray-900{--tw-text-opacity: 1;color:rgb(17 24 39 / var(--tw-text-opacity, 1))}.text-green-500{--tw-text-opacity: 1;color:rgb(34 197 94 / var(--tw-text-opacity, 1))}.text-green-600{--tw-text-opacity: 1;color:rgb(22 163 74 / var(--tw-text-opacity, 1))}.text-green-600\\/70{color:#16a34ab3}.text-green-700{--tw-text-opacity: 1;color:rgb(21 128 61 / var(--tw-text-opacity, 1))}.text-green-800{--tw-text-opacity: 1;color:rgb(22 101 52 / var(--tw-text-opacity, 1))}.text-indigo-600{--tw-text-opacity: 1;color:rgb(79 70 229 / var(--tw-text-opacity, 1))}.text-indigo-700{--tw-text-opacity: 1;color:rgb(67 56 202 / var(--tw-text-opacity, 1))}.text-orange-500{--tw-text-opacity: 1;color:rgb(249 115 22 / var(--tw-text-opacity, 1))}.text-purple-500{--tw-text-opacity: 1;color:rgb(168 85 247 / var(--tw-text-opacity, 1))}.text-red-500{--tw-text-opacity: 1;color:rgb(239 68 68 / var(--tw-text-opacity, 1))}.text-red-600{--tw-text-opacity: 1;color:rgb(220 38 38 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity: 1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.underline{text-decoration-line:underline}.placeholder-gray-400::-moz-placeholder{--tw-placeholder-opacity: 1;color:rgb(156 163 175 / var(--tw-placeholder-opacity, 1))}.placeholder-gray-400::placeholder{--tw-placeholder-opacity: 1;color:rgb(156 163 175 / var(--tw-placeholder-opacity, 1))}.opacity-0{opacity:0}.opacity-100{opacity:1}.opacity-40{opacity:.4}.opacity-50{opacity:.5}.mix-blend-multiply{mix-blend-mode:multiply}.shadow{--tw-shadow: 0 1px 3px 0 rgb(0 0 0 / .1), 0 1px 2px -1px rgb(0 0 0 / .1);--tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow)}.shadow-\\[0_20px_50px_rgba\\(0\\,0\\,0\\,0\\.1\\)\\]{--tw-shadow: 0 20px 50px rgba(0,0,0,.1);--tw-shadow-colored: 0 20px 50px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow)}.shadow-lg{--tw-shadow: 0 10px 15px -3px rgb(0 0 0 / .1), 0 4px 6px -4px rgb(0 0 0 / .1);--tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow)}.shadow-md{--tw-shadow: 0 4px 6px -1px rgb(0 0 0 / .1), 0 2px 4px -2px rgb(0 0 0 / .1);--tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow)}.shadow-sm{--tw-shadow: 0 1px 2px 0 rgb(0 0 0 / .05);--tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow)}.shadow-amber-200\\/50{--tw-shadow-color: rgb(253 230 138 / .5);--tw-shadow: var(--tw-shadow-colored)}.shadow-amber-900\\/20{--tw-shadow-color: rgb(120 53 15 / .2);--tw-shadow: var(--tw-shadow-colored)}.outline{outline-style:solid}.blur{--tw-blur: blur(8px);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.grayscale{--tw-grayscale: grayscale(100%);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-colors{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-opacity{transition-property:opacity;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.duration-200{transition-duration:.2s}.duration-300{transition-duration:.3s}.duration-500{transition-duration:.5s}.ease-in-out{transition-timing-function:cubic-bezier(.4,0,.2,1)}:host{display:block;animation:ars-fade-zoom .6s cubic-bezier(.2,.8,.2,1) forwards;font-family:Inter,system-ui,Avenir,Helvetica,Arial,sans-serif;line-height:1.5;font-weight:400;color-scheme:light;color:var(--ars-color-text-main);background-color:transparent;font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;--ars-color-primary: #FF9900;--ars-color-primary-hover: #e68a00;--ars-color-secondary: #232f3e;--ars-color-secondary-hover: #131921;--ars-color-text-main: #0f1111;--ars-color-text-secondary: #565959;--ars-color-text-inverse: #ffffff;--ars-color-bg-main: #ffffff;--ars-color-bg-secondary: #f0f2f2;--ars-color-bg-tertiary: #e7e9ec;--ars-color-border: #d5d9d9;--ars-color-border-focus: #e77600;--ars-color-success: #067d62;--ars-color-error: #ba0933;--ars-color-warning: #ffa41c;--ars-radius-sm: 4px;--ars-radius-md: 8px;--ars-radius-lg: 12px;--ars-radius-xl: 20px;--ars-shadow-sm: 0 1px 3px rgba(0, 0, 0, .12);--ars-shadow-md: 0 4px 6px rgba(0, 0, 0, .1);--ars-shadow-lg: 0 10px 15px rgba(0, 0, 0, .1);--ars-spacing-xs: 4px;--ars-spacing-sm: 8px;--ars-spacing-md: 16px;--ars-spacing-lg: 24px;--ars-spacing-xl: 32px;--ars-font-size-xs: 11px;--ars-font-size-sm: 13px;--ars-font-size-md: 15px;--ars-font-size-lg: 18px;--ars-font-size-xl: 24px;--ars-anim-fast: .15s ease;--ars-anim-normal: .25s ease}.ars-dark-mode{color-scheme:dark;--ars-color-text-main: #e5e7eb;--ars-color-text-secondary: #9ca3af;--ars-color-text-inverse: #111827;--ars-color-bg-main: #1f2937;--ars-color-bg-secondary: #111827;--ars-color-bg-tertiary: #374151;--ars-color-border: #4b5563;--ars-color-border-focus: #f59e0b;--ars-shadow-sm: 0 1px 3px rgba(0, 0, 0, .5);--ars-shadow-md: 0 4px 6px rgba(0, 0, 0, .4);--ars-shadow-lg: 0 10px 15px rgba(0, 0, 0, .4)}:host{padding:60px 24px!important}*{box-sizing:border-box}button{cursor:pointer;font-family:inherit}::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#ccc;border-radius:4px}::-webkit-scrollbar-thumb:hover{background:#bbb}@keyframes ars-fade-zoom{0%{opacity:0;transform:scale(.98) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}.ars-review-shell-listing{animation:ars-fade-zoom .6s cubic-bezier(.2,.8,.2,1) forwards}.ryp__desktop{display:none!important}.ars-dark-mode .bg-white{background-color:var(--ars-color-bg-main)!important}.ars-dark-mode .bg-gray-50,.ars-dark-mode .bg-gray-50\\/30{background-color:var(--ars-color-bg-secondary)!important}.ars-dark-mode .bg-gray-100{background-color:var(--ars-color-bg-tertiary)!important}.ars-dark-mode .bg-white\\/80{background-color:#1f2937cc!important}.ars-dark-mode .bg-white\\/50{background-color:#1f293780!important}.ars-dark-mode .text-gray-900,.ars-dark-mode .text-gray-800{color:var(--ars-color-text-main)!important}.ars-dark-mode .text-gray-700,.ars-dark-mode .text-gray-600{color:var(--ars-color-text-secondary)!important}.ars-dark-mode .text-gray-500{color:#9ca3af!important}.ars-dark-mode .text-gray-400{color:#6b7280!important}.ars-dark-mode .border-gray-100,.ars-dark-mode .border-gray-200,.ars-dark-mode .border-gray-300{border-color:var(--ars-color-border)!important}.ars-dark-mode .hover\\:bg-gray-50:hover{background-color:var(--ars-color-bg-tertiary)!important}.ars-dark-mode .hover\\:bg-gray-100:hover{background-color:#4b5563!important}.ars-dark-mode input,.ars-dark-mode textarea,.ars-dark-mode select{background-color:var(--ars-color-bg-secondary)!important;color:var(--ars-color-text-main)!important;border-color:var(--ars-color-border)!important}.ars-dark-mode .bg-black\\/20{background-color:#0009!important}.ars-dark-mode .text-amber-500{color:#fbbf24!important}.ars-dark-mode .bg-amber-50{background-color:#f59e0b26!important}.ars-dark-mode img.mix-blend-multiply{mix-blend-mode:normal!important}.ars-dark-mode .ars-review-shell{background-color:var(--ars-color-bg-main)!important;color:var(--ars-color-text-main)!important}.ars-dark-mode .ars-review-submit{background-color:var(--ars-color-bg-secondary)!important;border-top-color:var(--ars-color-border)!important}.ars-dark-mode .ars-back-button{background-color:var(--ars-color-bg-tertiary)!important;border-color:var(--ars-color-border)!important;color:var(--ars-color-text-main)!important}.ars-dark-mode .ars-back-button:hover{background-color:var(--ars-color-bg-secondary)!important}.ars-dark-mode .ars-form-label{color:var(--ars-color-text-main)!important}.ars-dark-mode .ars-ai-provider-card,.ars-dark-mode .ars-ai-length-card,.ars-dark-mode .ars-ai-vision-card{background:var(--ars-color-bg-main)!important;border-color:var(--ars-color-border)!important}.ars-dark-mode .ars-ai-result-container{background-color:var(--ars-color-bg-secondary)!important;border-color:var(--ars-color-border)!important}.ars-dark-mode .ars-ai-prompt-input{background-color:var(--ars-color-bg-secondary)!important;color:var(--ars-color-text-main)!important;border-color:var(--ars-color-border)!important}.ars-dark-mode .ars-product-title{color:var(--ars-color-text-main)!important}.ars-dark-mode .ars-product-name{color:var(--ars-color-text-secondary)!important}.ars-dark-mode .ars-media-upload{background-color:var(--ars-color-bg-secondary)!important;border-color:var(--ars-color-border)!important}.ars-dark-mode .ars-media-upload-placeholder,.ars-dark-mode .ars-media-upload-icon{color:var(--ars-color-text-secondary)!important}.ars-dark-mode .ars-media-upload-paste-btn,.ars-dark-mode .ars-media-upload-google-btn,.ars-dark-mode .ars-media-upload-icloud-btn{background-color:var(--ars-color-bg-main)!important;color:var(--ars-color-text-main)!important;border-color:var(--ars-color-border)!important}.ars-dark-mode .ars-media-upload-paste-btn:hover,.ars-dark-mode .ars-media-upload-google-btn:hover,.ars-dark-mode .ars-media-upload-icloud-btn:hover{background-color:var(--ars-color-bg-tertiary)!important;border-color:var(--ars-color-primary)!important;color:var(--ars-color-primary)!important}.ars-dark-mode .ars-ai-trigger{color:var(--ars-color-primary)!important;border-color:var(--ars-color-primary)!important;background-color:transparent!important}.ars-dark-mode .ars-ai-trigger:hover{background-color:#ff99001a!important}.ars-dark-mode .ars-ai-trigger:disabled{opacity:.5!important}.ars-dark-mode .ars-phrase-popover,.ars-dark-mode .ars-bullet-selector{background-color:var(--ars-color-bg-main)!important;background:var(--ars-color-bg-main)!important;border-color:var(--ars-color-border)!important;color:var(--ars-color-text-main)!important;box-shadow:0 8px 32px #0006!important}.ars-dark-mode .ars-popover-header{border-bottom-color:var(--ars-color-border)!important}.ars-dark-mode .ars-popover-item,.ars-dark-mode .ars-template-item,.ars-dark-mode .ars-phrase-item{color:var(--ars-color-text-main)!important}.ars-dark-mode .ars-popover-item:hover,.ars-dark-mode .ars-template-item:hover,.ars-dark-mode .ars-phrase-item:hover{background-color:var(--ars-color-bg-tertiary)!important}.ars-dark-mode .ars-bullet-option{color:var(--ars-color-text-main)!important;background:transparent!important}.ars-dark-mode .ars-bullet-option:hover{background-color:var(--ars-color-bg-tertiary)!important}.ars-dark-mode .ars-bullet-option.active{background-color:var(--ars-color-primary)!important;color:#fff!important}.ars-dark-mode .bg-gray-50{background-color:var(--ars-color-bg-tertiary)!important;color:var(--ars-color-text-secondary)!important}.ars-dark-mode .border-gray-200{border-color:var(--ars-color-border)!important}.ars-dark-mode .text-gray-600{color:var(--ars-color-text-secondary)!important}.ars-dark-mode ::-webkit-scrollbar-thumb{background:#4b5563}.ars-dark-mode ::-webkit-scrollbar-thumb:hover{background:#6b7280}.after\\:absolute:after{content:var(--tw-content);position:absolute}.after\\:left-\\[2px\\]:after{content:var(--tw-content);left:2px}.after\\:top-\\[2px\\]:after{content:var(--tw-content);top:2px}.after\\:h-4:after{content:var(--tw-content);height:1rem}.after\\:h-5:after{content:var(--tw-content);height:1.25rem}.after\\:w-4:after{content:var(--tw-content);width:1rem}.after\\:w-5:after{content:var(--tw-content);width:1.25rem}.after\\:rounded-full:after{content:var(--tw-content);border-radius:9999px}.after\\:border:after{content:var(--tw-content);border-width:1px}.after\\:border-gray-300:after{content:var(--tw-content);--tw-border-opacity: 1;border-color:rgb(209 213 219 / var(--tw-border-opacity, 1))}.after\\:bg-white:after{content:var(--tw-content);--tw-bg-opacity: 1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.after\\:transition-all:after{content:var(--tw-content);transition-property:all;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.after\\:content-\\[\\'\\'\\]:after{--tw-content: "";content:var(--tw-content)}.hover\\:bg-blue-50:hover{--tw-bg-opacity: 1;background-color:rgb(239 246 255 / var(--tw-bg-opacity, 1))}.hover\\:bg-gray-100:hover{--tw-bg-opacity: 1;background-color:rgb(243 244 246 / var(--tw-bg-opacity, 1))}.hover\\:bg-gray-200:hover{--tw-bg-opacity: 1;background-color:rgb(229 231 235 / var(--tw-bg-opacity, 1))}.hover\\:bg-red-50:hover{--tw-bg-opacity: 1;background-color:rgb(254 242 242 / var(--tw-bg-opacity, 1))}.hover\\:from-amber-600:hover{--tw-gradient-from: #d97706 var(--tw-gradient-from-position);--tw-gradient-to: rgb(217 119 6 / 0) var(--tw-gradient-to-position);--tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to)}.hover\\:to-amber-700:hover{--tw-gradient-to: #b45309 var(--tw-gradient-to-position)}.hover\\:text-blue-600:hover{--tw-text-opacity: 1;color:rgb(37 99 235 / var(--tw-text-opacity, 1))}.hover\\:text-gray-600:hover{--tw-text-opacity: 1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.hover\\:text-gray-700:hover{--tw-text-opacity: 1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.hover\\:text-indigo-700:hover{--tw-text-opacity: 1;color:rgb(67 56 202 / var(--tw-text-opacity, 1))}.hover\\:underline:hover{text-decoration-line:underline}.hover\\:shadow-md:hover{--tw-shadow: 0 4px 6px -1px rgb(0 0 0 / .1), 0 2px 4px -2px rgb(0 0 0 / .1);--tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow)}.focus\\:border-amber-500:focus{--tw-border-opacity: 1;border-color:rgb(245 158 11 / var(--tw-border-opacity, 1))}.focus\\:border-indigo-500:focus{--tw-border-opacity: 1;border-color:rgb(99 102 241 / var(--tw-border-opacity, 1))}.focus\\:bg-white:focus{--tw-bg-opacity: 1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.focus\\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.focus\\:ring-2:focus{--tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow, 0 0 #0000)}.focus\\:ring-amber-500:focus{--tw-ring-opacity: 1;--tw-ring-color: rgb(245 158 11 / var(--tw-ring-opacity, 1))}.focus\\:ring-amber-500\\/20:focus{--tw-ring-color: rgb(245 158 11 / .2)}.focus\\:ring-indigo-500:focus{--tw-ring-opacity: 1;--tw-ring-color: rgb(99 102 241 / var(--tw-ring-opacity, 1))}.active\\:scale-95:active{--tw-scale-x: .95;--tw-scale-y: .95;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.peer:checked~.peer-checked\\:bg-indigo-600{--tw-bg-opacity: 1;background-color:rgb(79 70 229 / var(--tw-bg-opacity, 1))}.peer:checked~.peer-checked\\:after\\:translate-x-full:after{content:var(--tw-content);--tw-translate-x: 100%;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.peer:checked~.peer-checked\\:after\\:border-white:after{content:var(--tw-content);--tw-border-opacity: 1;border-color:rgb(255 255 255 / var(--tw-border-opacity, 1))}.peer:focus~.peer-focus\\:outline-none{outline:2px solid transparent;outline-offset:2px}.peer:focus~.peer-focus\\:ring-2{--tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow, 0 0 #0000)}.peer:focus~.peer-focus\\:ring-4{--tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(4px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow, 0 0 #0000)}.peer:focus~.peer-focus\\:ring-indigo-300{--tw-ring-opacity: 1;--tw-ring-color: rgb(165 180 252 / var(--tw-ring-opacity, 1))}.dark\\:border-zinc-600:is(.dark *){--tw-border-opacity: 1;border-color:rgb(82 82 91 / var(--tw-border-opacity, 1))}.dark\\:border-zinc-700:is(.dark *){--tw-border-opacity: 1;border-color:rgb(63 63 70 / var(--tw-border-opacity, 1))}.dark\\:bg-amber-900:is(.dark *){--tw-bg-opacity: 1;background-color:rgb(120 53 15 / var(--tw-bg-opacity, 1))}.dark\\:bg-zinc-700:is(.dark *){--tw-bg-opacity: 1;background-color:rgb(63 63 70 / var(--tw-bg-opacity, 1))}.dark\\:bg-zinc-800:is(.dark *){--tw-bg-opacity: 1;background-color:rgb(39 39 42 / var(--tw-bg-opacity, 1))}.dark\\:text-amber-300:is(.dark *){--tw-text-opacity: 1;color:rgb(252 211 77 / var(--tw-text-opacity, 1))}.dark\\:text-white:is(.dark *){--tw-text-opacity: 1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.dark\\:hover\\:text-gray-200:hover:is(.dark *){--tw-text-opacity: 1;color:rgb(229 231 235 / var(--tw-text-opacity, 1))}@media(min-width:640px){.sm\\:w-auto{width:auto}.sm\\:max-w-xs{max-width:20rem}.sm\\:flex-row{flex-direction:row}.sm\\:px-6{padding-left:1.5rem;padding-right:1.5rem}}@media(min-width:768px){.md\\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(min-width:1024px){.lg\\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.lg\\:px-8{padding-left:2rem;padding-right:2rem}}@media(min-width:1280px){.xl\\:grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}}`;
   const MOUNT_ID = "amazon-review-studio-root";
   const HIDE_CSS = `
     #react-app.ryp__desktop, 
@@ -13432,6 +13025,26 @@ jsxRuntimeExports.jsx(ScalingWrapper, { children: jsxRuntimeExports.jsx(ReviewPu
     '[data-testid="in-context-ryp-form"]',
     ".ryp__review-candidates-list-container__container"
 ];
+  function detectPageType() {
+    const path = window.location.pathname;
+    const searchParams = new URLSearchParams(window.location.search);
+    const hasAsin = searchParams.has("asin");
+    const isThankYouPage = path.toLowerCase().includes("thankyou");
+    const isListingPage = path.includes("/listing");
+    const isReviewPurchasesWithoutEdit = path.includes("/review-your-purchases") && !hasAsin && !path.includes("/edit");
+    const hasDOMIndicators = !!document.querySelector(".in-context-ryp__thankyou-container-desktop") || !!document.querySelector(".ryp__review-candidates-list-container__container");
+    const shouldShowListing = isThankYouPage || isListingPage || isReviewPurchasesWithoutEdit || hasDOMIndicators;
+    console.log("[Amazon Review Studio] Page Detection:", {
+      path,
+      hasAsin,
+      isThankYouPage,
+      isListingPage,
+      isReviewPurchasesWithoutEdit,
+      hasDOMIndicators,
+      shouldShowListing
+    });
+    return shouldShowListing ? "listing" : "review";
+  }
   function findAmazonReviewContainer() {
     for (const sel of CONTAINER_SELECTORS) {
       const el = document.querySelector(sel);
@@ -13444,10 +13057,18 @@ jsxRuntimeExports.jsx(ScalingWrapper, { children: jsxRuntimeExports.jsx(ReviewPu
   }
   function hideAmazonReviewUI(container) {
     const debugUnhide = settingsService.get("debug_unhide_native");
+    const sideBySide = settingsService.get("debug_native_side_by_side");
     if (debugUnhide) {
       container.style.display = "block";
-      container.style.opacity = "0.5";
-      container.style.marginTop = "600px";
+      if (sideBySide) {
+        container.style.opacity = "1";
+        container.style.marginTop = "0";
+        container.style.flex = "1";
+        container.style.minWidth = "0";
+      } else {
+        container.style.opacity = "0.5";
+        container.style.marginTop = "600px";
+      }
     } else {
       container.style.display = "none";
     }
@@ -13462,19 +13083,37 @@ jsxRuntimeExports.jsx(ScalingWrapper, { children: jsxRuntimeExports.jsx(ReviewPu
     hideAmazonReviewUI(container);
     const host = document.createElement("div");
     host.id = MOUNT_ID;
+    const debugUnhide = settingsService.get("debug_unhide_native");
+    const sideBySide = settingsService.get("debug_native_side_by_side");
     Object.assign(host.style, {
       position: "relative",
       width: "100%",
       maxWidth: "100%",
       minHeight: "600px",
-paddingTop: "40px",
-      paddingLeft: "24px",
+paddingTop: debugUnhide && sideBySide ? "0" : "40px",
+paddingLeft: "24px",
       paddingRight: "24px",
       boxSizing: "border-box"
     });
     const parent = container.parentNode;
     if (parent) {
-      parent.insertBefore(host, container.nextSibling);
+      if (debugUnhide && sideBySide) {
+        const wrapper = document.createElement("div");
+        wrapper.style.display = "flex";
+        wrapper.style.gap = "20px";
+        wrapper.style.alignItems = "flex-start";
+        wrapper.style.width = "100%";
+        wrapper.style.maxWidth = "100%";
+        parent.insertBefore(wrapper, container);
+        wrapper.appendChild(container);
+        wrapper.appendChild(host);
+        Object.assign(host.style, {
+          flex: "1",
+          minWidth: "0"
+        });
+      } else {
+        parent.insertBefore(host, container.nextSibling);
+      }
     } else {
       document.body.appendChild(host);
     }
@@ -13485,14 +13124,28 @@ paddingTop: "40px",
     const rootContainer = document.createElement("div");
     rootContainer.className = "ars-root-container";
     shadow.appendChild(rootContainer);
-    const path = window.location.pathname;
-    const searchParams = new URLSearchParams(window.location.search);
-    const hasAsin = searchParams.has("asin");
-    const isReviewPurchasesListing = path.toLowerCase().includes("thankyou") || path.includes("/listing") || path.includes("/review-your-purchases") && !hasAsin && !path.includes("/edit") || !!document.querySelector(".in-context-ryp__thankyou-container-desktop") || !!document.querySelector(".ryp__review-candidates-list-container__container");
-    console.log("[Amazon Review Studio] Rendering React tree...");
-    ReactDOM.createRoot(rootContainer).render(
-      isReviewPurchasesListing ? jsxRuntimeExports.jsx(ReviewPurchasesPage, {}) : jsxRuntimeExports.jsx(App, {})
+    const pageType = detectPageType();
+    console.log("[Amazon Review Studio] Rendering React tree...", `Component: ${pageType === "listing" ? "ReviewPurchasesPage" : "App"}`);
+    const root = ReactDOM.createRoot(rootContainer);
+    root.render(
+      pageType === "listing" ? React__default.createElement(ReviewPurchasesPage, null) : React__default.createElement(App, null)
     );
+    window.__arsCurrentPageType = pageType;
+    window.__arsReactRoot = { root, rootContainer };
+  }
+  function remountIfNeeded() {
+    const currentPageType = window.__arsCurrentPageType;
+    const newPageType = detectPageType();
+    if (currentPageType && currentPageType !== newPageType) {
+      console.log("[Amazon Review Studio] Page type changed, remounting...", { from: currentPageType, to: newPageType });
+      const rootInfo = window.__arsReactRoot;
+      if (rootInfo?.root) {
+        rootInfo.root.render(
+          newPageType === "listing" ? React__default.createElement(ReviewPurchasesPage, null) : React__default.createElement(App, null)
+        );
+        window.__arsCurrentPageType = newPageType;
+      }
+    }
   }
   function watchAndMount() {
     if (document.getElementById(MOUNT_ID)) return;
@@ -13507,7 +13160,22 @@ paddingTop: "40px",
   }
   const observer = new MutationObserver(() => {
     watchAndMount();
+    remountIfNeeded();
   });
   observer.observe(document.documentElement, { childList: true, subtree: true });
+  let lastUrl = window.location.href;
+  const urlObserver = new MutationObserver(() => {
+    const currentUrl = window.location.href;
+    if (currentUrl !== lastUrl) {
+      console.log("[Amazon Review Studio] URL changed:", { from: lastUrl, to: currentUrl });
+      lastUrl = currentUrl;
+      remountIfNeeded();
+    }
+  });
+  urlObserver.observe(document, { subtree: true, childList: true });
+  window.addEventListener("popstate", () => {
+    console.log("[Amazon Review Studio] Popstate detected");
+    remountIfNeeded();
+  });
 
 })(React, ReactDOM, Swal);

@@ -8,13 +8,13 @@ export default defineConfig({
         minify: false, // Ensure readability for Greasy Fork reviewers
     },
     plugins: [
-        react(),
+        react({ jsxRuntime: 'classic' }),
         monkey({
             entry: 'src/main.tsx',
             userscript: {
                 name: 'Amazon Review Toolkit 2.0',
                 namespace: 'https://github.com/Prismaria/Amazon-Review-Studio',
-                version: '2.0.4',
+                version: '2.0.5',
                 description: 'Complete review writing tookit for Amazon.',
                 author: 'Prismaris',
                 match: [

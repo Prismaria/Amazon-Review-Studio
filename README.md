@@ -18,7 +18,7 @@ Amazon Review Studio is a professional-grade editorial suite that transforms the
 *   **Clipboard Image Paste (`Ctrl+V`)**: You shouldn't have to save a screenshot to your Downloads folder just to upload it for 5 seconds. Now you can just paste images directly from your clipboard like a modern human.
 *   **Drag-and-Drop Media**: If you *do* have files, just toss them onto the editor. No more "Browse File" dialogs from 2005.
 *   **The Review Dashboard**: Instead of digging through endless order history, get a single, clean grid of everything you've bought recently that's waiting to be reviewed. 
-*   **Full UI Scaling**: Whether you're on a 4K monitor or a laptop, adjust the toolkit from 50% to 150% so it looks exactly how you want it.
+*   **Full UI Scaling**: Whether you're on a 4K monitor or a laptop, adjust the toolkit from 50% to 100% so it looks exactly how you want it.
 
 ### 📚 Templates & Phrases
 

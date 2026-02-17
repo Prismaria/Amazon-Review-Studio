@@ -47,6 +47,18 @@ export interface AppSettings {
     amazon_bullet_style: string;
     debug_mode: boolean;
     debug_unhide_native: boolean;
+    debug_native_side_by_side: boolean;
+    dark_mode: boolean;
+    show_demo_settings: boolean;
+
+    // Demo Mode
+    demo_enabled: boolean;
+    demo_pfp_url: string;
+    demo_name: string;
+    demo_review_body: string;
+    demo_review_title: string;
+    demo_typing_delay: number;
+    demo_typing_speed: 'slow' | 'normal' | 'fast';
 }
 
 export interface ReviewTemplate {
@@ -96,5 +108,16 @@ export const DEFAULT_SETTINGS: AppSettings = {
     amazon_ui_scale: 1.0,
     amazon_bullet_style: '•',
     debug_mode: false,
-    debug_unhide_native: false
+    debug_unhide_native: false,
+    debug_native_side_by_side: false,
+    dark_mode: false,
+    show_demo_settings: false,
+    demo_enabled: false,
+    demo_pfp_url: '',
+    demo_name: '',
+    demo_review_body: '',
+    demo_review_title: '',
+    demo_typing_delay: 2,
+    demo_typing_speed: 'normal'
 };
+

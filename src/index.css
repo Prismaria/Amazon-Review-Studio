@@ -83,6 +83,24 @@
     --ars-anim-normal: 0.25s ease;
 }
 
+.ars-dark-mode {
+    color-scheme: dark;
+    --ars-color-text-main: #e5e7eb;
+    --ars-color-text-secondary: #9ca3af;
+    --ars-color-text-inverse: #111827;
+
+    --ars-color-bg-main: #1f2937;
+    --ars-color-bg-secondary: #111827;
+    --ars-color-bg-tertiary: #374151;
+
+    --ars-color-border: #4b5563;
+    --ars-color-border-focus: #f59e0b;
+
+    --ars-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
+    --ars-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+    --ars-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.4);
+}
+
 /* Redesign Tweaks */
 :host {
     padding: 60px 24px !important;
@@ -136,3 +154,254 @@ button {
 .ryp__desktop {
     display: none !important;
 }
+
+/* Dark Mode Overrides for Tailwind Utilities */
+.ars-dark-mode .bg-white {
+    background-color: var(--ars-color-bg-main) !important;
+}
+
+.ars-dark-mode .bg-gray-50,
+.ars-dark-mode .bg-gray-50\/30 {
+    background-color: var(--ars-color-bg-secondary) !important;
+}
+
+.ars-dark-mode .bg-gray-100 {
+    background-color: var(--ars-color-bg-tertiary) !important;
+}
+
+.ars-dark-mode .bg-white\/80 {
+    background-color: rgba(31, 41, 55, 0.8) !important;
+}
+
+.ars-dark-mode .bg-white\/50 {
+    background-color: rgba(31, 41, 55, 0.5) !important;
+}
+
+.ars-dark-mode .text-gray-900 {
+    color: var(--ars-color-text-main) !important;
+}
+
+.ars-dark-mode .text-gray-800 {
+    color: var(--ars-color-text-main) !important;
+}
+
+.ars-dark-mode .text-gray-700 {
+    color: var(--ars-color-text-secondary) !important;
+}
+
+.ars-dark-mode .text-gray-600 {
+    color: var(--ars-color-text-secondary) !important;
+}
+
+.ars-dark-mode .text-gray-500 {
+    color: #9ca3af !important;
+}
+
+.ars-dark-mode .text-gray-400 {
+    color: #6b7280 !important;
+}
+
+.ars-dark-mode .border-gray-100,
+.ars-dark-mode .border-gray-200,
+.ars-dark-mode .border-gray-300 {
+    border-color: var(--ars-color-border) !important;
+}
+
+.ars-dark-mode .hover\:bg-gray-50:hover {
+    background-color: var(--ars-color-bg-tertiary) !important;
+}
+
+.ars-dark-mode .hover\:bg-gray-100:hover {
+    background-color: #4b5563 !important;
+}
+
+.ars-dark-mode input,
+.ars-dark-mode textarea,
+.ars-dark-mode select {
+    background-color: var(--ars-color-bg-secondary) !important;
+    color: var(--ars-color-text-main) !important;
+    border-color: var(--ars-color-border) !important;
+}
+
+/* Make sure modal overlays are dark */
+.ars-dark-mode .bg-black\/20 {
+    background-color: rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Improve amber colors in dark mode */
+.ars-dark-mode .text-amber-500 {
+    color: #fbbf24 !important;
+}
+
+.ars-dark-mode .bg-amber-50 {
+    background-color: rgba(245, 158, 11, 0.15) !important;
+}
+
+/* Review Candidate Card Images - Fix Visibility */
+.ars-dark-mode img.mix-blend-multiply {
+    mix-blend-mode: normal !important;
+}
+
+/* Review Form Shell */
+.ars-dark-mode .ars-review-shell {
+    background-color: var(--ars-color-bg-main) !important;
+    color: var(--ars-color-text-main) !important;
+}
+
+.ars-dark-mode .ars-review-submit {
+    background-color: var(--ars-color-bg-secondary) !important;
+    border-top-color: var(--ars-color-border) !important;
+}
+
+.ars-dark-mode .ars-back-button {
+    background-color: var(--ars-color-bg-tertiary) !important;
+    border-color: var(--ars-color-border) !important;
+    color: var(--ars-color-text-main) !important;
+}
+
+.ars-dark-mode .ars-back-button:hover {
+    background-color: var(--ars-color-bg-secondary) !important;
+}
+
+.ars-dark-mode .ars-form-label {
+    color: var(--ars-color-text-main) !important;
+}
+
+/* AI Modal */
+.ars-dark-mode .ars-ai-provider-card,
+.ars-dark-mode .ars-ai-length-card,
+.ars-dark-mode .ars-ai-vision-card {
+    background: var(--ars-color-bg-main) !important;
+    border-color: var(--ars-color-border) !important;
+}
+
+.ars-dark-mode .ars-ai-result-container {
+    background-color: var(--ars-color-bg-secondary) !important;
+    border-color: var(--ars-color-border) !important;
+}
+
+.ars-dark-mode .ars-ai-prompt-input {
+    background-color: var(--ars-color-bg-secondary) !important;
+    color: var(--ars-color-text-main) !important;
+    border-color: var(--ars-color-border) !important;
+}
+
+/* Product Header */
+.ars-dark-mode .ars-product-title {
+    color: var(--ars-color-text-main) !important;
+}
+
+.ars-dark-mode .ars-product-name {
+    color: var(--ars-color-text-secondary) !important;
+}
+
+/* Media Upload */
+.ars-dark-mode .ars-media-upload {
+    background-color: var(--ars-color-bg-secondary) !important;
+    border-color: var(--ars-color-border) !important;
+}
+
+.ars-dark-mode .ars-media-upload-placeholder {
+    color: var(--ars-color-text-secondary) !important;
+}
+
+.ars-dark-mode .ars-media-upload-icon {
+    color: var(--ars-color-text-secondary) !important;
+}
+
+.ars-dark-mode .ars-media-upload-paste-btn,
+.ars-dark-mode .ars-media-upload-google-btn,
+.ars-dark-mode .ars-media-upload-icloud-btn {
+    background-color: var(--ars-color-bg-main) !important;
+    color: var(--ars-color-text-main) !important;
+    border-color: var(--ars-color-border) !important;
+}
+
+.ars-dark-mode .ars-media-upload-paste-btn:hover,
+.ars-dark-mode .ars-media-upload-google-btn:hover,
+.ars-dark-mode .ars-media-upload-icloud-btn:hover {
+    background-color: var(--ars-color-bg-tertiary) !important;
+    border-color: var(--ars-color-primary) !important;
+    color: var(--ars-color-primary) !important;
+}
+
+/* AI Title Generation Button */
+.ars-dark-mode .ars-ai-trigger {
+    color: var(--ars-color-primary) !important;
+    border-color: var(--ars-color-primary) !important;
+    background-color: transparent !important;
+}
+
+.ars-dark-mode .ars-ai-trigger:hover {
+    background-color: rgba(255, 153, 0, 0.1) !important;
+}
+
+.ars-dark-mode .ars-ai-trigger:disabled {
+    opacity: 0.5 !important;
+}
+
+/* Editor Toolbar Popovers (Phrases, Templates, Cloud Sync) */
+.ars-dark-mode .ars-phrase-popover,
+.ars-dark-mode .ars-bullet-selector {
+    background-color: var(--ars-color-bg-main) !important;
+    background: var(--ars-color-bg-main) !important;
+    /* Force for .ars-bullet-selector */
+    border-color: var(--ars-color-border) !important;
+    color: var(--ars-color-text-main) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+}
+
+.ars-dark-mode .ars-popover-header {
+    border-bottom-color: var(--ars-color-border) !important;
+}
+
+.ars-dark-mode .ars-popover-item,
+.ars-dark-mode .ars-template-item,
+.ars-dark-mode .ars-phrase-item {
+    color: var(--ars-color-text-main) !important;
+}
+
+.ars-dark-mode .ars-popover-item:hover,
+.ars-dark-mode .ars-template-item:hover,
+.ars-dark-mode .ars-phrase-item:hover {
+    background-color: var(--ars-color-bg-tertiary) !important;
+}
+
+.ars-dark-mode .ars-bullet-option {
+    color: var(--ars-color-text-main) !important;
+    background: transparent !important;
+}
+
+.ars-dark-mode .ars-bullet-option:hover {
+    background-color: var(--ars-color-bg-tertiary) !important;
+}
+
+.ars-dark-mode .ars-bullet-option.active {
+    background-color: var(--ars-color-primary) !important;
+    color: white !important;
+}
+
+/* Fix for Tailwind sync pill in popovers */
+.ars-dark-mode .bg-gray-50 {
+    background-color: var(--ars-color-bg-tertiary) !important;
+    color: var(--ars-color-text-secondary) !important;
+}
+
+.ars-dark-mode .border-gray-200 {
+    border-color: var(--ars-color-border) !important;
+}
+
+.ars-dark-mode .text-gray-600 {
+    color: var(--ars-color-text-secondary) !important;
+}
+
+/* Scrollbar adjustment for dark mode */
+.ars-dark-mode ::-webkit-scrollbar-thumb {
+    background: #4b5563;
+}
+
+.ars-dark-mode ::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+}
+
+/* Invert icons/images if needed, or specific hand-tuning */
