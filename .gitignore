@@ -1,5 +1,5 @@
 # Build outputs
-dist
+dist/*
 dist-ssr
 *.local
 
