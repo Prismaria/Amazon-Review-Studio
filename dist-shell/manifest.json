@@ -1,0 +1,90 @@
+{
+    "manifest_version": 3,
+    "name": "Amazon Review Studio",
+    "version": "2.0.7",
+    "description": "Professional review writing toolkit and dashboard for Amazon.",
+    "icons": {
+        "16": "icons/ars_icon_3_1.png",
+        "48": "icons/ars_icon_3_1.png",
+        "128": "icons/ars_icon_6_1.png"
+    },
+    "permissions": [
+        "storage",
+        "alarms"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "host_permissions": [
+        "*://*.amazon.com/*",
+        "*://*.amazon.ca/*",
+        "*://*.amazon.co.uk/*",
+        "*://*.amazon.de/*",
+        "*://*.amazon.fr/*",
+        "*://*.amazon.it/*",
+        "*://*.amazon.es/*",
+        "*://*.amazon.co.jp/*",
+        "*://*.amazon.in/*",
+        "*://*.amazon.com.au/*",
+        "*://pastebin.com/*"
+    ],
+    "action": {
+        "default_popup": "popup/index.html",
+        "default_title": "Review Studio Dashboard"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "*://*.amazon.com/*",
+                "*://*.amazon.ca/*",
+                "*://*.amazon.co.uk/*",
+                "*://*.amazon.de/*",
+                "*://*.amazon.fr/*",
+                "*://*.amazon.it/*",
+                "*://*.amazon.es/*",
+                "*://*.amazon.co.jp/*",
+                "*://*.amazon.in/*",
+                "*://*.amazon.com.au/*"
+            ],
+            "css": [
+                "anti-flicker.css"
+            ],
+            "js": [
+                "loader.js",
+                "bridge.js"
+            ],
+            "run_at": "document_start"
+        },
+        {
+            "matches": [
+                "*://*.amazon.com/*",
+                "*://*.amazon.ca/*",
+                "*://*.amazon.co.uk/*",
+                "*://*.amazon.de/*",
+                "*://*.amazon.fr/*",
+                "*://*.amazon.it/*",
+                "*://*.amazon.es/*",
+                "*://*.amazon.co.jp/*",
+                "*://*.amazon.in/*",
+                "*://*.amazon.com.au/*"
+            ],
+            "js": [
+                "vendor/react.min.js",
+                "vendor/react-dom.min.js",
+                "vendor/sweetalert2.min.js",
+                "amazon-review-studio.user.js"
+            ],
+            "run_at": "document_idle"
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "vendor/*"
+            ],
+            "matches": [
+                "*://*.amazon.com/*"
+            ]
+        }
+    ]
+}

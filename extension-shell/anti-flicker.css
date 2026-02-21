@@ -1,0 +1,11 @@
+/* Amazon Review Studio - Anti-Flicker Style */
+#react-app.ryp__desktop,
+.in-context-ryp__container,
+[data-testid="in-context-ryp-form"],
+#in-context-ryp-form {
+    display: none !important;
+}
+
+#amazon-review-studio-root {
+    display: block !important;
+}

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Studio Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@800&display=swap" rel="stylesheet">
+    <style>
+        /* Theme Variables */
+        :root {
+            /* Black Theme (Default) */
+            --bg-main: #09090b;
+            --bg-secondary: #09090b;
+            --bg-tertiary: #18181b;
+            --bg-card: var(--bg-tertiary);
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border-color: rgba(255, 255, 255, 0.05);
+            --border-hover: rgba(255, 255, 255, 0.1);
+            --accent-primary: #FF9900;
+            --accent-hover: #ffaa33;
+            --accent-blue: #3b82f6;
+            --accent-amber: #f59e0b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --scrollbar-track: rgba(255, 255, 255, 0.02);
+            --scrollbar-thumb: rgba(255, 255, 255, 0.1);
+            --scrollbar-thumb-hover: rgba(255, 255, 255, 0.15);
+        }
+
+        [data-theme="light"] {
+            --bg-main: #ffffff;
+            --bg-secondary: #f0f2f2;
+            --bg-tertiary: #e7e9ec;
+            --bg-card: rgba(231, 233, 236, 0.5);
+            --text-primary: #0f1111;
+            --text-secondary: #565959;
+            --text-muted: #879596;
+            --border-color: rgba(213, 217, 217, 0.5);
+            --border-hover: #adb1b8;
+            --accent-primary: #FF9900;
+            --accent-hover: #e68a00;
+            --accent-blue: #2563eb;
+            --accent-amber: #f59e0b;
+            --success: #067d62;
+            --warning: #ffa41c;
+            --error: #ba0933;
+            --scrollbar-track: rgba(0, 0, 0, 0.03);
+            --scrollbar-thumb: rgba(0, 0, 0, 0.15);
+            --scrollbar-thumb-hover: rgba(0, 0, 0, 0.25);
+        }
+
+        [data-theme="dark"] {
+            /* Match ARS dark mode colors exactly */
+            --bg-main: #1f2937;
+            --bg-secondary: #111827;
+            --bg-tertiary: #374151;
+            --bg-card: rgba(55, 65, 81, 0.5);
+            --text-primary: #e5e7eb;
+            --text-secondary: #9ca3af;
+            --text-muted: #6b7280;
+            --border-color: rgba(75, 85, 99, 0.5);
+            --border-hover: #6b7280;
+            --accent-primary: #FF9900;
+            --accent-hover: #e68a00;
+            --accent-blue: #3b82f6;
+            --accent-amber: #f59e0b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --scrollbar-track: rgba(0, 0, 0, 0.2);
+            --scrollbar-thumb: #4b5563;
+            --scrollbar-thumb-hover: #6b7280;
+            /* Header gradient - matches ars-profile-section */
+            --header-gradient: linear-gradient(135deg, #232f3e 0%, #131921 100%);
+        }
+
+        html,
+        body {
+            width: 480px;
+            min-height: 650px;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Custom scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--scrollbar-track);
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--scrollbar-thumb);
+            border-radius: 3px;
+            -webkit-transition: background 0.2s ease;
+            transition: background 0.2s ease;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--scrollbar-thumb-hover);
+        }
+
+        /* Firefox scrollbar */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+        }
+    </style>
+  <script type="module" crossorigin src="/assets/popup-OC58uDtH.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/popup-CdIqsN1F.css">
+</head>
+
+<body class="w-[480px] min-h-[650px]" style="background-color: var(--bg-main); color: var(--text-primary);">
+    <div id="root"></div>
+</body>
+
+</html>

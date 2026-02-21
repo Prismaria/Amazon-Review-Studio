@@ -130,7 +130,7 @@ export const EditorToolbar: React.FC<EditorToolbarProps> = ({
             const isDark = settings.dark_mode || settings.amazon_ui_lights_off;
             const result = await Swal.fire({
                 title: 'Enable Privacy Mode?',
-                html: 'Privacy Mode encrypts your drafted reviews into a <b>Base64 format</b>.<br><br><span style="color: #d33; font-size: 14px"><b>Warning:</b> Pastebin flags pastes containing encrypted text. There is a small chance your account may be banned. Proceed at your own risk.</span>',
+                html: 'Privacy Mode encrypts your drafted reviews into a <b>Base64 format</b>.<br><br><span style="color: #d33; font-size: 14px"><b>Warning:</b> Pastebin occasionally flags pastes containing encrypted text. While they usually get approved, some do not, thereby increasing the odds of your Pastebin account being banned. Proceed at your own risk.</span>',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
