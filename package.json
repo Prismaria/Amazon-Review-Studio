@@ -5,7 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "node ./node_modules/typescript/bin/tsc && vite build",
+    "build:userscript": "node ./node_modules/typescript/bin/tsc && vite build",
+    "build:shell-popup": "vite build --config vite.config.popup.ts",
+    "build:shell": "npm run build:userscript && npm run build:shell-popup && powershell -Command \"Copy-Item extension-shell/manifest.json, extension-shell/bridge.js, extension-shell/loader.js dist-shell/; Copy-Item extension-shell/vendor dist-shell/ -Recurse; Copy-Item extension-shell/icons dist-shell/ -Recurse -ErrorAction SilentlyContinue; Copy-Item dist/amazon-review-studio.user.js dist-shell/\"",
     "preview": "vite preview"
   },
   "devDependencies": {

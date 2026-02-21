@@ -61,16 +61,6 @@ function detectPageType(): 'listing' | 'review' {
 
     const shouldShowListing = isThankYouPage || isListingPage || isReviewPurchasesWithoutEdit || hasDOMIndicators;
 
-    console.log('[Amazon Review Studio] Page Detection:', {
-        path,
-        hasAsin,
-        isThankYouPage,
-        isListingPage,
-        isReviewPurchasesWithoutEdit,
-        hasDOMIndicators,
-        shouldShowListing
-    });
-
     return shouldShowListing ? 'listing' : 'review';
 }
 

@@ -470,21 +470,50 @@ export function usePastebin() {
         finally { setIsLoading(false); }
     }, [listPastes, getPasteContent, templates, phrases, saveLocalTemplates, saveLocalPhrases]);
 
+    const REVIEW_OBFUSCATION_HEADER = `=== AMAZON REVIEW STUDIO PASTE ===
+This Pastebin contains an encrypted, base64-encoded review draft.
+It has been obfuscated for general privacy reasons and to
+prevent search engines from indexing unreleased review content.
+
+To view the contents of this review, you must import it using
+the Amazon Review Studio browser extension.
+================================
+
+`;
+
+    const PLAINTEXT_HEADER = `=== AMAZON REVIEW STUDIO PASTE ===
+This is a review draft created via the Amazon Review Studio extension.
+Please do not comment on this paste directly, thank you.
+================================
+
+`;
+
     const saveReviewToCloud = useCallback(async (reviewData: { reviewTitle: string, reviewBody: string, asin: string, productTitle: string }) => {
         setIsLoading(true);
         try {
+            const ObjectContentJson = JSON.stringify({ ...reviewData, savedAt: new Date().toISOString() });
+
+            let finalContent = '';
+            if (settings.amazon_pastebin_privacy_mode) {
+                // Encode content to safe Base64 (handling UTF-8)
+                const base64Content = btoa(unescape(encodeURIComponent(ObjectContentJson)));
+                finalContent = REVIEW_OBFUSCATION_HEADER + base64Content;
+            } else {
+                finalContent = PLAINTEXT_HEADER + ObjectContentJson;
+            }
+
             const pastes = await listPastes();
             const titleSuffix = ` - REVIEW - ${reviewData.asin}`;
             const existing = pastes.find(p => p.title.endsWith(titleSuffix));
             const pasteTitle = `${reviewData.productTitle.slice(0, 50)}${titleSuffix}`;
-            const content = JSON.stringify({ ...reviewData, savedAt: new Date().toISOString() });
+
             if (existing) await deletePaste(existing.key);
-            // Reviews are saved as Public (0) to avoid private paste limits
-            await createPaste(pasteTitle, content, 'json', '0');
+            // Reviews are saved as Public (0) to avoid private paste limits and formatted as text
+            await createPaste(pasteTitle, finalContent, 'text', '0');
             return { success: true, message: 'Review saved' };
         } catch (e: any) { return { success: false, message: e.message }; }
         finally { setIsLoading(false); }
-    }, [listPastes, deletePaste, createPaste]);
+    }, [listPastes, deletePaste, createPaste, settings.amazon_pastebin_privacy_mode]);
 
     const fetchReviewFromCloud = useCallback(async (asin: string) => {
         setIsLoading(true);
@@ -492,7 +521,34 @@ export function usePastebin() {
             const pastes = await listPastes();
             const existing = pastes.find(p => p.title.endsWith(` - REVIEW - ${asin}`));
             if (!existing) return { success: false, message: 'No review found' };
-            return { success: true, message: 'Review fetched', data: JSON.parse(await getPasteContent(existing.key)) };
+
+            const rawContent = await getPasteContent(existing.key);
+            let parsedData;
+
+            // Check if it's the new obfuscated format
+            if (rawContent.includes('=== AMAZON REVIEW STUDIO PASTE ===')) {
+                const parts = rawContent.split('================================');
+                if (parts.length > 1) {
+                    const base64Payload = parts[1].trim();
+                    try {
+                        const decodedJson = decodeURIComponent(escape(atob(base64Payload)));
+                        parsedData = JSON.parse(decodedJson);
+                    } catch (decodeErr) {
+                        return { success: false, message: 'Failed to decode review content' };
+                    }
+                } else {
+                    return { success: false, message: 'Invalid obfuscated paste format' };
+                }
+            } else {
+                // Fallback to legacy plain JSON parsing
+                try {
+                    parsedData = JSON.parse(rawContent);
+                } catch (parseErr) {
+                    return { success: false, message: 'Failed to parse legacy review data' };
+                }
+            }
+
+            return { success: true, message: 'Review fetched', data: parsedData };
         } catch (e: any) { return { success: false, message: e.message }; }
         finally { setIsLoading(false); }
     }, [listPastes, getPasteContent]);

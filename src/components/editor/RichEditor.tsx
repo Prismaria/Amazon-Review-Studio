@@ -12,6 +12,8 @@ export interface RichEditorProps {
     showUtilities?: boolean;
     autoResize?: boolean;
     onAutoResizeChange?: (enabled: boolean) => void;
+    productName?: string;
+    asin?: string;
 }
 
 const ALL_BULLETS = /[•●➜►▸■✦◈★✓✗]/;
@@ -23,7 +25,9 @@ export const RichEditor: React.FC<RichEditorProps> = ({
     className,
     showUtilities = true,
     autoResize = false,
-    onAutoResizeChange
+    onAutoResizeChange,
+    productName,
+    asin,
 }) => {
     const { settings } = useSettings();
     const [activeStyles, setActiveStyles] = useState<Set<UnicodeStyle>>(new Set());
@@ -234,7 +238,7 @@ export const RichEditor: React.FC<RichEditorProps> = ({
                     const bulletMatch = trimmed.match(new RegExp(`^${ALL_BULLETS.source}\\s`));
                     return bulletMatch ? line : `${bulletStyle} ${trimmed}`;
                 } else {
-                    return /^\d+\)\s/.test(trimmed) ? line : `${i + 1}) ${trimmed}`;
+                    return /^\d+\)\\s/.test(trimmed) ? line : `${i + 1}) ${trimmed}`;
                 }
             });
             const newText = newLines.join('\n');
@@ -301,7 +305,7 @@ export const RichEditor: React.FC<RichEditorProps> = ({
             }
 
             // Check for numbered list
-            const numMatch = currentLine.match(/^(\d+)\)\s/);
+            const numMatch = currentLine.match(/^(\d+)\)\\s/);
             if (numMatch) {
                 // If line is just the number, end the list
                 if (currentLine.trim() === numMatch[0].trim()) {
@@ -340,7 +344,7 @@ export const RichEditor: React.FC<RichEditorProps> = ({
 
         const newLines = lines.map(line => {
             const trimmed = line.trimStart();
-            const match = trimmed.match(/^(\d+)\)\s(.*)/);
+            const match = trimmed.match(/^(\d+)\)\\s(.*)/);
 
             if (match) {
                 // Found a list item
@@ -441,6 +445,8 @@ export const RichEditor: React.FC<RichEditorProps> = ({
                 showUtilities={showUtilities}
                 currentValue={value}
                 onListToggle={handleListToggle}
+                productName={productName}
+                asin={asin}
             />
             <textarea
                 ref={textareaRef}

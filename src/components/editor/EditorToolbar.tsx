@@ -8,6 +8,7 @@ import { TemplateSelector } from '../content/TemplateSelector';
 import { useSettings } from '../../hooks/useSettings';
 import { usePastebin } from '../../hooks/usePastebin';
 import { SettingsDashboard } from '../settings/SettingsDashboard';
+import Swal from 'sweetalert2';
 
 export interface EditorToolbarProps {
     onStyleToggle: (style: UnicodeStyle) => void;
@@ -18,6 +19,8 @@ export interface EditorToolbarProps {
     showUtilities?: boolean;
     currentValue?: string;
     onListToggle?: (type: 'bullet' | 'number') => void;
+    productName?: string;
+    asin?: string;
 }
 
 export const EditorToolbar: React.FC<EditorToolbarProps> = ({
@@ -28,7 +31,9 @@ export const EditorToolbar: React.FC<EditorToolbarProps> = ({
     onClearStyles,
     showUtilities = true,
     currentValue = '',
-    onListToggle
+    onListToggle,
+    productName,
+    asin: propAsin,
 }) => {
     const [showTemplatePopover, setShowTemplatePopover] = useState(false);
     const [showTemplateManager, setShowTemplateManager] = useState(false);
@@ -118,20 +123,77 @@ export const EditorToolbar: React.FC<EditorToolbarProps> = ({
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, [showPhrases, showTemplatePopover, showCloudPopover, showBulletSelector]);
 
+    const handlePrivacyToggle = async () => {
+        if (settings.amazon_pastebin_privacy_mode) {
+            setSetting('amazon_pastebin_privacy_mode', false);
+        } else {
+            const isDark = settings.dark_mode || settings.amazon_ui_lights_off;
+            const result = await Swal.fire({
+                title: 'Enable Privacy Mode?',
+                html: 'Privacy Mode encrypts your drafted reviews into a <b>Base64 format</b>.<br><br><span style="color: #d33; font-size: 14px"><b>Warning:</b> Pastebin flags pastes containing encrypted text. There is a small chance your account may be banned. Proceed at your own risk.</span>',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Accept Risk & Enable',
+                cancelButtonText: 'Cancel',
+                background: isDark ? '#1f2937' : '#fff',
+                color: isDark ? '#f3f4f6' : '#545454'
+            });
+
+            if (result.isConfirmed) {
+                setSetting('amazon_pastebin_privacy_mode', true);
+            }
+        }
+    };
+
     const getProductInfo = () => {
-        // Try to get ASIN from URL
+        // Use props if available (passed from parent component)
+        if (productName && productName.trim() !== '') {
+            console.log('[ARS Debug] Using productName from props:', productName.substring(0, 50));
+            const urlParams = new URLSearchParams(window.location.search);
+            let asin = propAsin || urlParams.get('asin');
+            if (!asin && window.location.href.includes('/dp/')) {
+                const match = window.location.href.match(/\/dp\/([A-Z0-9]{10})/);
+                if (match) asin = match[1];
+            }
+            return { asin: asin || 'UNKNOWN', title: productName.trim() };
+        }
+
+        // Fallback: Try to get from URL and DOM scraping
         const urlParams = new URLSearchParams(window.location.search);
-        let asin = urlParams.get('asin');
+        let asin = propAsin || urlParams.get('asin');
         if (!asin && window.location.href.includes('/dp/')) {
             const match = window.location.href.match(/\/dp\/([A-Z0-9]{10})/);
             if (match) asin = match[1];
         }
 
-        // Try to get Title
-        const titleEl = document.getElementById('productTitle') ||
-            document.querySelector('.product-title-word-break') ||
-            document.querySelector('h1');
-        const title = titleEl?.textContent?.trim() || 'Unknown Product';
+        // DEBUG: Log all selector attempts
+        console.log('[ARS Debug] getProductInfo called - scraping DOM');
+
+        // .ars-product-name is inside our shadow root
+        const shadowRoot = document.getElementById('amazon-review-studio-root')?.shadowRoot;
+        const arsEl = shadowRoot ? shadowRoot.querySelector('.ars-product-name') : null;
+
+        const inContextEl = document.querySelector('.in-context-ryp__product-name');
+        const productTitleEl = document.getElementById('productTitle');
+        const wordBreakEl = document.querySelector('.product-title-word-break');
+        const h1El = document.querySelector('h1');
+
+        console.log('[ARS Debug] .ars-product-name found:', !!arsEl, arsEl?.textContent?.substring(0, 50));
+        console.log('[ARS Debug] .in-context-ryp__product-name found:', !!inContextEl, inContextEl?.textContent?.substring(0, 50));
+        console.log('[ARS Debug] #productTitle found:', !!productTitleEl, productTitleEl?.textContent?.substring(0, 50));
+        console.log('[ARS Debug] .product-title-word-break found:', !!wordBreakEl, wordBreakEl?.textContent?.substring(0, 50));
+        console.log('[ARS Debug] h1 found:', !!h1El, h1El?.textContent?.substring(0, 50));
+
+        // Try to get Title - check ARS product name first (most reliable), then fall back to Amazon selectors
+        const titleEl = arsEl || inContextEl || productTitleEl || wordBreakEl || h1El;
+        let title = titleEl?.textContent?.trim() || 'Unknown Product';
+
+        // DEBUG: Log what was found
+        console.log('[ARS Debug] Selected element:', titleEl?.tagName, titleEl?.className);
+        console.log('[ARS Debug] Final title:', title);
+        console.log('[ARS Debug] ASIN:', asin);
 
         return { asin: asin || 'UNKNOWN', title };
     };
@@ -146,7 +208,8 @@ export const EditorToolbar: React.FC<EditorToolbarProps> = ({
                         alert('Please enter some review text first.');
                         return;
                     }
-                    const reviewTitleInput = document.getElementById('reviewTitle') as HTMLInputElement;
+                    const shadowRoot = document.getElementById('amazon-review-studio-root')?.shadowRoot;
+                    const reviewTitleInput = (shadowRoot?.getElementById('reviewTitle') || document.getElementById('reviewTitle')) as HTMLInputElement;
                     const saveRes = await saveReviewToCloud({
                         reviewBody: currentValue,
                         reviewTitle: reviewTitleInput?.value || '',
@@ -160,9 +223,15 @@ export const EditorToolbar: React.FC<EditorToolbarProps> = ({
                     if (currentValue && !confirm('This will replace your current text. Continue?')) return;
                     const fetchRes = await fetchReviewFromCloud(asin);
                     if (fetchRes.success && fetchRes.data) {
-                        const titleInput = document.getElementById('reviewTitle') as HTMLInputElement;
+                        const shadowRoot = document.getElementById('amazon-review-studio-root')?.shadowRoot;
+                        const titleInput = (shadowRoot?.getElementById('reviewTitle') || document.getElementById('reviewTitle')) as HTMLInputElement;
                         if (titleInput && fetchRes.data.reviewTitle) {
-                            titleInput.value = fetchRes.data.reviewTitle;
+                            const nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value')?.set;
+                            if (nativeInputValueSetter) {
+                                nativeInputValueSetter.call(titleInput, fetchRes.data.reviewTitle);
+                            } else {
+                                titleInput.value = fetchRes.data.reviewTitle;
+                            }
                             titleInput.dispatchEvent(new Event('input', { bubbles: true }));
                         }
                         onReplace(fetchRes.data.reviewBody);
@@ -471,6 +540,17 @@ export const EditorToolbar: React.FC<EditorToolbarProps> = ({
                                                 <button onClick={() => handleCloudAction('status')} className="ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors">
                                                     <BarChart2 size={14} className="text-gray-500" /> Sync Status
                                                 </button>
+
+                                                <div className="ars-popover-item w-full flex items-center justify-between p-2 hover:bg-gray-100 rounded text-sm transition-colors cursor-pointer" onClick={handlePrivacyToggle}>
+                                                    <div className="flex items-center gap-2">
+                                                        <Settings size={14} className="text-blue-500" />
+                                                        <span title="Encrypts review before saving">Privacy Mode {settings.amazon_pastebin_privacy_mode ? '(ON)' : '(OFF)'}</span>
+                                                    </div>
+                                                    <div className={`w-8 h-4 rounded-full p-0.5 transition-colors ${settings.amazon_pastebin_privacy_mode ? 'bg-blue-500' : 'bg-gray-300'}`}>
+                                                        <div className={`bg-white w-3 h-3 rounded-full shadow-sm transform transition-transform ${settings.amazon_pastebin_privacy_mode ? 'translate-x-4' : 'translate-x-0'}`} />
+                                                    </div>
+                                                </div>
+
                                                 <button onClick={() => handleCloudAction('clear')} className="ars-popover-item w-full text-left flex items-center gap-2 p-2 hover:bg-gray-100 rounded text-sm transition-colors text-red-500 hover:bg-red-50">
                                                     <Trash2 size={14} /> Clear Cloud Data
                                                 </button>

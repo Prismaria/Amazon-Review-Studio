@@ -180,6 +180,18 @@ export const useReviewCandidates = () => {
         enrichInParallel();
     }, [candidates.length]);
 
+    // Sync candidates to chrome.storage.local for extension popup access
+    useEffect(() => {
+        if (candidates.length > 0 && typeof chrome !== 'undefined' && chrome.storage) {
+            // Convert Date objects to ISO strings for storage
+            const serializableCandidates = candidates.map(c => ({
+                ...c,
+                purchaseDate: c.purchaseDate ? c.purchaseDate.toISOString() : undefined
+            }));
+            chrome.storage.local.set({ reviewCandidates: serializableCandidates });
+        }
+    }, [candidates]);
+
     const dismissCandidate = useCallback((asin: string) => {
         const newDismissed = [...dismissedAsins, asin];
         setDismissedAsins(newDismissed);

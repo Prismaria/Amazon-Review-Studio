@@ -126,6 +126,9 @@ export const ReviewFormShell: React.FC = () => {
                         from { opacity: 0; }
                         to { opacity: 1; }
                     }
+                    .swal2-container {
+                        z-index: 1000002 !important;
+                    }
                 `;
                 document.head.appendChild(styleEl);
             }
@@ -343,9 +346,9 @@ export const ReviewFormShell: React.FC = () => {
                         />
                     </div>
 
-                    {/* Review title */}
                     <div className="ars-form-field">
                         <Input
+                            id="reviewTitle"
                             label="Title your review (required)"
                             placeholder="What's most important to know?"
                             value={amazon.state.reviewTitle}

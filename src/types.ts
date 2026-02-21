@@ -39,6 +39,7 @@ export interface AppSettings {
     amazon_pastebin_api_user_password: string;
     amazon_pastebin_api_user_key: string;
     amazon_pastebin_recovery_id: string;
+    amazon_pastebin_privacy_mode: boolean;
     amazon_auto_sync_templates: boolean;
     amazon_auto_sync_phrases: boolean;
     amazon_ui_lights_off: boolean;
@@ -101,6 +102,7 @@ export const DEFAULT_SETTINGS: AppSettings = {
     amazon_pastebin_api_user_password: '',
     amazon_pastebin_api_user_key: '',
     amazon_pastebin_recovery_id: '',
+    amazon_pastebin_privacy_mode: false,
     amazon_auto_sync_templates: true,
     amazon_auto_sync_phrases: false,
     amazon_ui_lights_off: false,
