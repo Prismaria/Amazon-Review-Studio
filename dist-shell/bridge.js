@@ -87,32 +87,43 @@
         if (isExternalUrl(url)) {
             // Route through the background service worker; it has host_permissions
             // for external URLs (e.g. pastebin.com) and is NOT subject to CORS.
-            chrome.runtime.sendMessage(
-                { type: 'EXTERNAL_FETCH', method, url, data, headers: headers || {} },
-                (response) => {
-                    if (chrome.runtime.lastError) {
-                        if (onerror) onerror(new Error(chrome.runtime.lastError.message));
-                        return;
+
+            const prepareAndSend = async (dataPayload) => {
+                chrome.runtime.sendMessage(
+                    { type: 'EXTERNAL_FETCH', method, url, data: dataPayload, headers: headers || {} },
+                    (response) => {
+                        if (chrome.runtime.lastError) {
+                            if (onerror) onerror(new Error(chrome.runtime.lastError.message));
+                            return;
+                        }
+                        if (!response) {
+                            if (onerror) onerror(new Error('No response from background'));
+                            return;
+                        }
+                        if (response.error) {
+                            if (onerror) onerror(new Error(response.error));
+                            return;
+                        }
+                        if (onload) {
+                            onload({
+                                status: response.status,
+                                statusText: response.statusText,
+                                responseText: response.responseText,
+                                headers: {},
+                                finalUrl: url,
+                            });
+                        }
                     }
-                    if (!response) {
-                        if (onerror) onerror(new Error('No response from background'));
-                        return;
-                    }
-                    if (response.error) {
-                        if (onerror) onerror(new Error(response.error));
-                        return;
-                    }
-                    if (onload) {
-                        onload({
-                            status: response.status,
-                            statusText: response.statusText,
-                            responseText: response.responseText,
-                            headers: {},
-                            finalUrl: url,
-                        });
-                    }
-                }
-            );
+                );
+            };
+
+            if (data instanceof Blob) {
+                const reader = new FileReader();
+                reader.onloadend = () => prepareAndSend(reader.result);
+                reader.readAsDataURL(data);
+            } else {
+                prepareAndSend(data);
+            }
         } else {
             // Same-origin (Amazon) requests can use fetch directly.
             fetch(url, { method, headers: headers || {}, body: data })
@@ -132,6 +143,53 @@
         }
 
         return { abort: () => { } }; // Dummy abort
+    };
+
+    /**
+     * Fetches an image URL and returns a DataURL.
+     * Used for capturing Amazon thumbnails and Catbox images safely across origins.
+     */
+    window.GM_fetchImage = function (url) {
+        return new Promise((resolve, reject) => {
+            chrome.runtime.sendMessage({ type: 'FETCH_IMAGE', url }, (response) => {
+                if (chrome.runtime.lastError) return reject(chrome.runtime.lastError);
+                if (response.error) return reject(new Error(response.error));
+                resolve(response.dataUrl);
+            });
+        });
+    };
+
+    /**
+     * Uploads a file to an external API (like Catbox) using the background script.
+     * Bypasses CORS and allows FormData with binary data.
+     */
+    window.GM_upload = function (url, fields, files) {
+        return new Promise((resolve, reject) => {
+            // Convert any Blobs/Files in files array to Base64 first for messaging
+            const filePromises = files.map(async (f) => {
+                if (f.blob instanceof Blob) {
+                    return new Promise((res) => {
+                        const reader = new FileReader();
+                        reader.onloadend = () => res({ ...f, base64: reader.result });
+                        reader.readAsDataURL(f.blob);
+                    });
+                }
+                return f;
+            });
+
+            Promise.all(filePromises).then((processedFiles) => {
+                chrome.runtime.sendMessage({
+                    type: 'EXTERNAL_UPLOAD',
+                    url,
+                    fields,
+                    files: processedFiles
+                }, (response) => {
+                    if (chrome.runtime.lastError) return reject(chrome.runtime.lastError);
+                    if (response.error) return reject(new Error(response.error));
+                    resolve(response.responseText);
+                });
+            });
+        });
     };
 
     console.log('[Review Studio] Extension Bridge Loaded');

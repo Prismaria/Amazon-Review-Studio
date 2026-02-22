@@ -328,6 +328,7 @@ export const ReviewFormShell: React.FC = () => {
                             placeholder="What should other customers know?"
                             autoResize={settings.amazon_editor_auto_resize}
                             onAutoResizeChange={(enabled) => setSetting('amazon_editor_auto_resize', enabled)}
+                            amazon={amazon}
                         />
                     </div>
 

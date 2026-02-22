@@ -21,6 +21,7 @@ export interface EditorToolbarProps {
     onListToggle?: (type: 'bullet' | 'number') => void;
     productName?: string;
     asin?: string;
+    amazon?: any; // useAmazonForm result
 }
 
 export const EditorToolbar: React.FC<EditorToolbarProps> = ({
@@ -34,6 +35,7 @@ export const EditorToolbar: React.FC<EditorToolbarProps> = ({
     onListToggle,
     productName,
     asin: propAsin,
+    amazon,
 }) => {
     const [showTemplatePopover, setShowTemplatePopover] = useState(false);
     const [showTemplateManager, setShowTemplateManager] = useState(false);
@@ -208,14 +210,29 @@ export const EditorToolbar: React.FC<EditorToolbarProps> = ({
                         alert('Please enter some review text first.');
                         return;
                     }
+
+                    // Gather images if available
+                    let images: File[] = [];
+                    if (amazon?.getMediaBlobs && settings.amazon_sync_images) {
+                        try {
+                            // Show a non-blocking "syncing" status if possible, or just log
+                            console.log('[ARS] Gathering images for cloud sync...');
+                            images = await amazon.getMediaBlobs();
+                        } catch (imgErr) {
+                            console.error('[ARS] Failed to gather images:', imgErr);
+                        }
+                    }
+
                     const shadowRoot = document.getElementById('amazon-review-studio-root')?.shadowRoot;
                     const reviewTitleInput = (shadowRoot?.getElementById('reviewTitle') || document.getElementById('reviewTitle')) as HTMLInputElement;
+
                     const saveRes = await saveReviewToCloud({
                         reviewBody: currentValue,
                         reviewTitle: reviewTitleInput?.value || '',
                         asin,
                         productTitle: title
-                    });
+                    }, images);
+
                     alert(saveRes.message);
                     break;
 
@@ -225,6 +242,8 @@ export const EditorToolbar: React.FC<EditorToolbarProps> = ({
                     if (fetchRes.success && fetchRes.data) {
                         const shadowRoot = document.getElementById('amazon-review-studio-root')?.shadowRoot;
                         const titleInput = (shadowRoot?.getElementById('reviewTitle') || document.getElementById('reviewTitle')) as HTMLInputElement;
+
+                        // 1. Restore Title
                         if (titleInput && fetchRes.data.reviewTitle) {
                             const nativeInputValueSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value')?.set;
                             if (nativeInputValueSetter) {
@@ -234,6 +253,14 @@ export const EditorToolbar: React.FC<EditorToolbarProps> = ({
                             }
                             titleInput.dispatchEvent(new Event('input', { bubbles: true }));
                         }
+
+                        // 2. Restore Images
+                        if (amazon?.setMediaFiles && fetchRes.data.images && fetchRes.data.images.length > 0) {
+                            console.log('[ARS] Restoring images to form...');
+                            amazon.setMediaFiles(fetchRes.data.images);
+                        }
+
+                        // 3. Restore Body
                         onReplace(fetchRes.data.reviewBody);
                     } else {
                         alert(fetchRes.message);

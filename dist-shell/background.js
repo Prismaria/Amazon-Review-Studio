@@ -7,8 +7,31 @@ const ALARM_NAME = 'vine-stats-refresh';
 const SCRAPE_INTERVAL_MINS = 30; // 30 minutes
 
 chrome.runtime.onInstalled.addListener(() => {
-    console.log('[ARS Background] Installed. Setting up alarms...');
+    console.log('[ARS Background] Installed. Setting up alarms and CORS rules...');
     chrome.alarms.create(ALARM_NAME, { periodInMinutes: SCRAPE_INTERVAL_MINS });
+
+    // Help bypass CORS for Catbox by stripping Origin/Referer headers
+    if (chrome.declarativeNetRequest) {
+        chrome.declarativeNetRequest.updateDynamicRules({
+            removeRuleIds: [1],
+            addRules: [{
+                id: 1,
+                priority: 1,
+                action: {
+                    type: 'modifyHeaders',
+                    requestHeaders: [
+                        { header: 'origin', operation: 'remove' },
+                        { header: 'referer', operation: 'remove' }
+                    ]
+                },
+                condition: {
+                    urlFilter: '|https://catbox.moe/*',
+                    resourceTypes: ['xmlhttprequest', 'other']
+                }
+            }]
+        });
+    }
+
     refreshVineStats();
 });
 
@@ -48,15 +71,17 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     // background service worker can, provided host_permissions are declared.
     if (request.type === 'EXTERNAL_FETCH') {
         const { method = 'GET', url, data, headers = {} } = request;
-        const options = {
-            method,
-            headers,
-        };
-        if (data) {
-            options.body = data;
-        }
-        fetch(url, options)
-            .then(async (response) => {
+
+        const performFetch = async (bodyData) => {
+            const options = {
+                method,
+                headers,
+            };
+            if (bodyData) {
+                options.body = bodyData;
+            }
+            try {
+                const response = await fetch(url, options);
                 const text = await response.text();
                 sendResponse({
                     status: response.status,
@@ -64,11 +89,63 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                     responseText: text,
                     ok: response.ok,
                 });
+            } catch (err) {
+                sendResponse({ error: err.message || String(err) });
+            }
+        };
+
+        if (data && typeof data === 'string' && data.startsWith('data:')) {
+            fetch(data).then(res => res.blob()).then(blob => performFetch(blob));
+        } else {
+            performFetch(data);
+        }
+        return true;
+    }
+
+    if (request.type === 'EXTERNAL_UPLOAD') {
+        const { url, fields = {}, files = [] } = request;
+
+        const formData = new FormData();
+        Object.entries(fields).forEach(([key, val]) => formData.append(key, val));
+
+        const filePromises = files.map(async (f) => {
+            const res = await fetch(f.base64);
+            const blob = await res.blob();
+            formData.append(f.field, blob, f.name);
+        });
+
+        Promise.all(filePromises).then(() => {
+            fetch(url, { method: 'POST', body: formData })
+                .then(async (response) => {
+                    const text = await response.text();
+                    sendResponse({
+                        status: response.status,
+                        statusText: response.statusText,
+                        responseText: text,
+                        ok: response.ok,
+                    });
+                })
+                .catch((err) => {
+                    sendResponse({ error: err.message || String(err) });
+                });
+        });
+        return true;
+    }
+
+    if (request.type === 'FETCH_IMAGE') {
+        fetch(request.url)
+            .then(async (response) => {
+                const blob = await response.blob();
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    sendResponse({ dataUrl: reader.result });
+                };
+                reader.readAsDataURL(blob);
             })
             .catch((err) => {
                 sendResponse({ error: err.message || String(err) });
             });
-        return true; // Keep the message channel open for the async response
+        return true;
     }
 });
 

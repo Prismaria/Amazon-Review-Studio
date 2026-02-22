@@ -22,16 +22,25 @@ const HIDE_CSS = `
 
 /** Inject hiding style as soon as possible */
 function injectHidingStyle() {
-    if (document.getElementById('ars-anti-flicker')) return;
-
-    // Respect debug setting to unhide native UI
     const debugUnhide = settingsService.get('debug_unhide_native');
-    if (debugUnhide) return;
+    const existing = document.getElementById('ars-anti-flicker');
 
-    const styleEl = document.createElement('style');
-    styleEl.id = 'ars-anti-flicker';
-    styleEl.textContent = HIDE_CSS;
-    (document.head || document.documentElement).appendChild(styleEl);
+    // If unhide is enabled, ensure we DON'T have the hiding style
+    if (debugUnhide) {
+        if (existing) {
+            console.log('[Amazon Review Studio] Debug Unhide active, removing anti-flicker style.');
+            existing.remove();
+        }
+        return;
+    }
+
+    // If unhide is disabled and style doesn't exist, add it
+    if (!existing) {
+        const styleEl = document.createElement('style');
+        styleEl.id = 'ars-anti-flicker';
+        styleEl.textContent = HIDE_CSS;
+        (document.head || document.documentElement).appendChild(styleEl);
+    }
 }
 
 // Run immediately
@@ -79,22 +88,46 @@ function hideAmazonReviewUI(container: Element) {
     const debugUnhide = settingsService.get('debug_unhide_native');
     const sideBySide = settingsService.get('debug_native_side_by_side');
 
-    if (debugUnhide) {
-        (container as HTMLElement).style.display = 'block';
+    // Select all potential Amazon form elements to ensure children are also shown/hidden
+    const allContainers = document.querySelectorAll(CONTAINER_SELECTORS.join(', '));
 
-        if (sideBySide) {
-            // Side-by-side mode: opaque, no margin, will be positioned with flexbox
-            (container as HTMLElement).style.opacity = '1';
-            (container as HTMLElement).style.marginTop = '0';
-            (container as HTMLElement).style.flex = '1';
-            (container as HTMLElement).style.minWidth = '0';
+    allContainers.forEach((el) => {
+        const htmlEl = el as HTMLElement;
+        if (debugUnhide) {
+            // Force visibility on ALL found Amazon form elements
+            htmlEl.style.setProperty('display', 'block', 'important');
+
+            if (sideBySide) {
+                htmlEl.style.setProperty('opacity', '1', 'important');
+                htmlEl.style.setProperty('margin-top', '0', 'important');
+                // Only apply flex to the main container being moved/wrapped
+                if (htmlEl === container) {
+                    htmlEl.style.setProperty('flex', '1', 'important');
+                    htmlEl.style.setProperty('min-width', '0', 'important');
+                    htmlEl.style.setProperty('max-width', 'none', 'important');
+                }
+            } else {
+                // Default dimmed look
+                htmlEl.style.setProperty('opacity', '0.5', 'important');
+                // Only push the top-level container down
+                if (htmlEl === container) {
+                    htmlEl.style.setProperty('margin-top', '600px', 'important');
+                }
+            }
         } else {
-            // Default: dimmed and pushed below
-            (container as HTMLElement).style.opacity = '0.5';
-            (container as HTMLElement).style.marginTop = '600px';
+            htmlEl.style.setProperty('display', 'none', 'important');
         }
-    } else {
-        (container as HTMLElement).style.display = 'none';
+    });
+
+    // Special case for a common deeply nested Amazon form ID that might not be in the top list
+    const rypForm = document.getElementById('in-context-ryp-form');
+    if (rypForm) {
+        if (debugUnhide) {
+            rypForm.style.setProperty('display', 'block', 'important');
+            rypForm.style.setProperty('opacity', '1', 'important');
+        } else {
+            rypForm.style.setProperty('display', 'none', 'important');
+        }
     }
 }
 
@@ -137,27 +170,31 @@ function mount() {
         if (debugUnhide && sideBySide) {
             // Create a wrapper for side-by-side layout
             const wrapper = document.createElement('div');
-            wrapper.style.display = 'flex';
-            wrapper.style.gap = '20px';
-            wrapper.style.alignItems = 'flex-start';
-            wrapper.style.width = '100%';
-            wrapper.style.maxWidth = '100%';
+            wrapper.id = 'ars-side-by-side-wrapper';
+            Object.assign(wrapper.style, {
+                display: 'flex',
+                gap: '24px',
+                alignItems: 'flex-start',
+                width: '100%',
+                maxWidth: '100%',
+            });
 
             // Insert wrapper before the container
             parent.insertBefore(wrapper, container);
 
-            // Move both container and host into wrapper (native form on left, Review Studio on right)
-            wrapper.appendChild(container);
+            // Move both host and container into wrapper (Review Studio on left, native form on right)
             wrapper.appendChild(host);
+            wrapper.appendChild(container);
 
             // Adjust host styling for side-by-side
             Object.assign(host.style, {
                 flex: '1',
                 minWidth: '0',
+                width: 'auto',
             });
         } else {
-            // Default: insert host after container
-            parent.insertBefore(host, container.nextSibling);
+            // Default: insert host BEFORE the container so it appears on top
+            parent.insertBefore(host, container);
         }
     } else {
         document.body.appendChild(host);
@@ -209,7 +246,15 @@ function remountIfNeeded() {
 }
 
 function watchAndMount() {
-    if (document.getElementById(MOUNT_ID)) return;
+    injectHidingStyle(); // Ensure hiding style respects current settings
+
+    if (document.getElementById(MOUNT_ID)) {
+        // If already mounted, still ensure the container is hidden/visible correctly
+        const container = findAmazonReviewContainer();
+        if (container) hideAmazonReviewUI(container);
+        return;
+    }
+
     if (findAmazonReviewContainer()) {
         mount();
     }

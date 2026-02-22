@@ -14,6 +14,7 @@ export interface RichEditorProps {
     onAutoResizeChange?: (enabled: boolean) => void;
     productName?: string;
     asin?: string;
+    amazon?: any;
 }
 
 const ALL_BULLETS = /[•●➜►▸■✦◈★✓✗]/;
@@ -28,6 +29,7 @@ export const RichEditor: React.FC<RichEditorProps> = ({
     onAutoResizeChange,
     productName,
     asin,
+    amazon,
 }) => {
     const { settings } = useSettings();
     const [activeStyles, setActiveStyles] = useState<Set<UnicodeStyle>>(new Set());
@@ -447,6 +449,7 @@ export const RichEditor: React.FC<RichEditorProps> = ({
                 onListToggle={handleListToggle}
                 productName={productName}
                 asin={asin}
+                amazon={amazon}
             />
             <textarea
                 ref={textareaRef}

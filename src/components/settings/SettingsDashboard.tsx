@@ -551,6 +551,21 @@ export const SettingsDashboard: React.FC<SettingsDashboardProps> = ({ isOpen, on
                                     <label className="flex items-center gap-3 cursor-pointer">
                                         <input
                                             type="checkbox"
+                                            checked={settings.debug_catbox_only}
+                                            onChange={(e) => setSetting('debug_catbox_only', e.target.checked)}
+                                        />
+                                        <span className="text-red-600 font-semibold">Catbox Debug Mode (Disable Pastebin Sync)</span>
+                                    </label>
+                                    <p className="ars-help-text ml-7">
+                                        When saving to cloud, this will only attempt to upload images to Catbox and skip Pastebin.
+                                        Shows a popup with the upload result.
+                                    </p>
+                                </div>
+
+                                <div className="ars-setting-item checkbox-row">
+                                    <label className="flex items-center gap-3 cursor-pointer">
+                                        <input
+                                            type="checkbox"
                                             checked={settings.debug_unhide_native}
                                             onChange={(e) => {
                                                 setSetting('debug_unhide_native', e.target.checked);

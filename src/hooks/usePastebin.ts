@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react';
+import Swal from 'sweetalert2';
 import { useContent } from './useContent';
 import { useSettings } from './useSettings';
 
@@ -488,10 +489,191 @@ Please do not comment on this paste directly, thank you.
 
 `;
 
-    const saveReviewToCloud = useCallback(async (reviewData: { reviewTitle: string, reviewBody: string, asin: string, productTitle: string }) => {
+    const uploadToCatbox = useCallback(async (file: File): Promise<string | null> => {
+        console.log(`[ARS] Catbox: Starting upload for "${file.name}" (${file.size} bytes)...`);
+
+        // Strategy 1: Use GM_upload bridge if available (Best for Extension context)
+        const gmUpload = (window as any).GM_upload;
+        if (gmUpload) {
+            try {
+                console.log('[ARS] Catbox: Attempting upload via GM_upload bridge...');
+                const result = await gmUpload('https://catbox.moe/user/api.php', { reqtype: 'fileupload' }, [{ field: 'fileToUpload', name: file.name, blob: file }]);
+
+                // Catbox returns the URL as a plain text response
+                const url = result?.trim();
+                if (url && url.startsWith('http')) {
+                    console.log(`[ARS] Catbox: Bridge upload successful! URL: ${url}`);
+                    return url;
+                } else {
+                    console.warn(`[ARS] Catbox: Bridge returned unexpected response: ${url}`);
+                }
+            } catch (e) {
+                console.warn('[ARS] Catbox: GM_upload bridge failed or returned error:', e);
+            }
+        }
+
+        // Strategy 2: Direct GM_xmlhttpRequest with manual multipart construction
+        // (Best for real Userscript Manager context, now also fixed for Bridge context)
+        // @ts-ignore
+        if (typeof GM_xmlhttpRequest !== 'undefined') {
+            return new Promise(async (resolve) => {
+                console.log('[ARS] Catbox: Attempting upload via GM_xmlhttpRequest...');
+
+                try {
+                    const boundary = '----ARSBoundary' + Math.random().toString(36).substring(2);
+                    const reader = new FileReader();
+
+                    reader.onload = () => {
+                        const fileData = reader.result as ArrayBuffer;
+                        const dashDash = '--';
+                        const crlf = '\r\n';
+
+                        // Build the multipart body
+                        const header1 = dashDash + boundary + crlf +
+                            'Content-Disposition: form-data; name="reqtype"' + crlf + crlf +
+                            'fileupload' + crlf;
+
+                        const header2 = dashDash + boundary + crlf +
+                            'Content-Disposition: form-data; name="fileToUpload"; filename="' + file.name + '"' + crlf +
+                            'Content-Type: ' + (file.type || 'application/octet-stream') + crlf + crlf;
+
+                        const footer = crlf + dashDash + boundary + dashDash + crlf;
+
+                        const encoder = new TextEncoder();
+                        const blobParts: (ArrayBuffer | Uint8Array)[] = [
+                            encoder.encode(header1),
+                            encoder.encode(header2),
+                            fileData,
+                            encoder.encode(footer)
+                        ];
+
+                        const bodyBlob = new Blob(blobParts);
+
+                        // @ts-ignore
+                        GM_xmlhttpRequest({
+                            method: 'POST',
+                            url: 'https://catbox.moe/user/api.php',
+                            data: bodyBlob, // Bridge now handles Blobs via Base64 conversion
+                            headers: {
+                                'Content-Type': 'multipart/form-data; boundary=' + boundary
+                            },
+                            onload: (res: any) => {
+                                const url = res.responseText.trim();
+                                if (res.status === 200 && url.startsWith('http')) {
+                                    console.log(`[ARS] Catbox: GM_xmlhttpRequest upload successful! URL: ${url}`);
+                                    resolve(url);
+                                } else {
+                                    console.error(`[ARS] Catbox: Upload failed (Status ${res.status}):`, url);
+                                    resolve(null);
+                                }
+                            },
+                            onerror: (err: any) => {
+                                console.error('[ARS] Catbox: GM_xmlhttpRequest error:', err);
+                                resolve(null);
+                            }
+                        });
+                    };
+
+                    reader.onerror = (err) => {
+                        console.error('[ARS] Catbox: Error reading file for multipart:', err);
+                        resolve(null);
+                    };
+
+                    reader.readAsArrayBuffer(file);
+                } catch (e) {
+                    console.error('[ARS] Catbox: Exception during manual multipart setup:', e);
+                    resolve(null);
+                }
+            });
+        }
+
+        console.error('[ARS] Catbox: No upload method available.');
+        return null;
+    }, []);
+
+    const saveReviewToCloud = useCallback(async (reviewData: { reviewTitle: string, reviewBody: string, asin: string, productTitle: string }, imageFiles?: File[]) => {
+        const isDebugOnly = settings.debug_catbox_only;
+
+
         setIsLoading(true);
         try {
-            const ObjectContentJson = JSON.stringify({ ...reviewData, savedAt: new Date().toISOString() });
+            const catboxUrls: string[] = [];
+
+            if (settings.amazon_sync_images && imageFiles && imageFiles.length > 0) {
+                console.log(`[ARS] Cloud Sync: Starting image sync for ${imageFiles.length} files...`);
+                const errors: string[] = [];
+                for (let i = 0; i < imageFiles.length; i++) {
+                    const file = imageFiles[i];
+                    try {
+                        const url = await uploadToCatbox(file);
+                        if (url) {
+                            catboxUrls.push(url);
+                            console.log(`[ARS] Cloud Sync: Progress [${i + 1}/${imageFiles.length}] uploaded.`);
+                        } else {
+                            errors.push(`Image ${i + 1}: Returned null URL`);
+                            console.warn(`[ARS] Cloud Sync: Failed to get URL for image ${i + 1}`);
+                        }
+                    } catch (uploadErr: any) {
+                        errors.push(`Image ${i + 1}: ${uploadErr?.message || String(uploadErr)}`);
+                        console.error(`[ARS] Cloud Sync: error uploading image ${i + 1}:`, uploadErr);
+                    }
+                }
+                console.log(`[ARS] Cloud Sync: Image upload phase complete. ${catboxUrls.length}/${imageFiles.length} successful.`);
+
+                if (isDebugOnly) {
+                    const successCount = catboxUrls.length;
+                    const isFullySuccessful = successCount === imageFiles.length;
+
+                    await Swal.fire({
+                        title: isFullySuccessful ? 'Catbox Upload Successful' : 'Catbox Upload Incomplete',
+                        html: `
+                            <div class="text-left font-sans text-sm">
+                                <p class="mb-2">Uploaded <b>${successCount}</b> out of <b>${imageFiles.length}</b> images.</p>
+                                ${catboxUrls.length > 0 ? `
+                                    <div class="bg-blue-50 p-2 rounded border border-blue-200 mt-2 max-h-32 overflow-auto">
+                                        <p class="font-bold mb-1 text-xs">URLs:</p>
+                                        <ul class="list-disc ml-4 space-y-1">
+                                            ${catboxUrls.map(url => `<li><a href="${url}" target="_blank" class="text-blue-600 hover:underline break-all">${url}</a></li>`).join('')}
+                                        </ul>
+                                    </div>
+                                ` : ''}
+                                ${errors.length > 0 ? `
+                                    <div class="bg-red-50 p-2 rounded border border-red-200 mt-2 max-h-32 overflow-auto text-red-700">
+                                        <p class="font-bold mb-1 text-xs">Errors:</p>
+                                        <ul class="list-disc ml-4 space-y-1 text-xs">
+                                            ${errors.map(err => `<li>${err}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                ` : ''}
+                                <p class="mt-4 text-[10px] text-gray-500 italic text-center">Pastebin sync was skipped due to Debug Mode.</p>
+                            </div>
+                        `,
+                        icon: isFullySuccessful ? 'success' : 'warning',
+                        confirmButtonText: 'Understood'
+                    });
+
+                    return { success: isFullySuccessful, message: isFullySuccessful ? 'Debug upload completed' : 'Partial debug upload' };
+                }
+            } else if (imageFiles && imageFiles.length > 0) {
+                console.log('[ARS] Cloud Sync: Image sync is DISABLED in settings.');
+            }
+
+            // Early return for Catbox Debug Mode if we haven't already returned
+            if (isDebugOnly) {
+                await Swal.fire({
+                    title: 'Catbox Debug Mode',
+                    text: 'Pastebin sync was skipped. No images were provided for Catbox testing.',
+                    icon: 'info',
+                    confirmButtonText: 'Got it'
+                });
+                return { success: true, message: 'Debug mode skip' };
+            }
+
+            const ObjectContentJson = JSON.stringify({
+                ...reviewData,
+                images: catboxUrls,
+                savedAt: new Date().toISOString()
+            });
 
             let finalContent = '';
             if (settings.amazon_pastebin_privacy_mode) {
@@ -513,7 +695,7 @@ Please do not comment on this paste directly, thank you.
             return { success: true, message: 'Review saved' };
         } catch (e: any) { return { success: false, message: e.message }; }
         finally { setIsLoading(false); }
-    }, [listPastes, deletePaste, createPaste, settings.amazon_pastebin_privacy_mode]);
+    }, [listPastes, deletePaste, createPaste, settings.amazon_pastebin_privacy_mode, settings.amazon_sync_images]);
 
     const fetchReviewFromCloud = useCallback(async (asin: string) => {
         setIsLoading(true);
@@ -529,15 +711,18 @@ Please do not comment on this paste directly, thank you.
             if (rawContent.includes('=== AMAZON REVIEW STUDIO PASTE ===')) {
                 const parts = rawContent.split('================================');
                 if (parts.length > 1) {
-                    const base64Payload = parts[1].trim();
+                    const payload = parts[1].trim();
                     try {
-                        const decodedJson = decodeURIComponent(escape(atob(base64Payload)));
+                        // Support both Base64 and Plain JSON in the same divider structure
+                        let decodedJson = payload;
+                        if (!payload.startsWith('{')) {
+                            decodedJson = decodeURIComponent(escape(atob(payload)));
+                        }
                         parsedData = JSON.parse(decodedJson);
                     } catch (decodeErr) {
-                        return { success: false, message: 'Failed to decode review content' };
+                        console.error('[ARS] Decode error:', decodeErr);
+                        return { success: false, message: 'Failed to parse review content' };
                     }
-                } else {
-                    return { success: false, message: 'Invalid obfuscated paste format' };
                 }
             } else {
                 // Fallback to legacy plain JSON parsing
@@ -548,8 +733,40 @@ Please do not comment on this paste directly, thank you.
                 }
             }
 
-            return { success: true, message: 'Review fetched', data: parsedData };
-        } catch (e: any) { return { success: false, message: e.message }; }
+            if (!parsedData) return { success: false, message: 'Invalid review data' };
+
+            // Fetch images if present
+            const imageFiles: File[] = [];
+            if (parsedData.images && Array.isArray(parsedData.images)) {
+                console.log(`[ARS] Restoring ${parsedData.images.length} images from Catbox...`);
+                const fetchImage = (window as any).GM_fetchImage;
+
+                for (let i = 0; i < parsedData.images.length; i++) {
+                    try {
+                        const url = parsedData.images[i];
+                        const dataUrl = fetchImage ? await fetchImage(url) : url;
+                        const res = await fetch(dataUrl);
+                        const blob = await res.blob();
+                        const ext = url.split('.').pop() || 'jpg';
+                        imageFiles.push(new File([blob], `restored-image-${i}.${ext}`, { type: blob.type }));
+                    } catch (imgErr) {
+                        console.error('[ARS] Failed to restore image:', imgErr);
+                    }
+                }
+            }
+
+            return {
+                success: true,
+                message: 'Review fetched',
+                data: {
+                    ...parsedData,
+                    images: imageFiles
+                }
+            };
+        } catch (e: any) {
+            console.error('[ARS] Fetch error:', e);
+            return { success: false, message: e.message };
+        }
         finally { setIsLoading(false); }
     }, [listPastes, getPasteContent]);
 

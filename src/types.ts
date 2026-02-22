@@ -40,6 +40,8 @@ export interface AppSettings {
     amazon_pastebin_api_user_key: string;
     amazon_pastebin_recovery_id: string;
     amazon_pastebin_privacy_mode: boolean;
+    amazon_sync_images: boolean;
+    amazon_auto_save_images: boolean;
     amazon_auto_sync_templates: boolean;
     amazon_auto_sync_phrases: boolean;
     amazon_ui_lights_off: boolean;
@@ -47,6 +49,7 @@ export interface AppSettings {
     amazon_ui_scale: number;
     amazon_bullet_style: string;
     debug_mode: boolean;
+    debug_catbox_only: boolean;
     debug_unhide_native: boolean;
     debug_native_side_by_side: boolean;
     dark_mode: boolean;
@@ -103,6 +106,8 @@ export const DEFAULT_SETTINGS: AppSettings = {
     amazon_pastebin_api_user_key: '',
     amazon_pastebin_recovery_id: '',
     amazon_pastebin_privacy_mode: false,
+    amazon_sync_images: true,
+    amazon_auto_save_images: true,
     amazon_auto_sync_templates: true,
     amazon_auto_sync_phrases: false,
     amazon_ui_lights_off: false,
@@ -110,6 +115,7 @@ export const DEFAULT_SETTINGS: AppSettings = {
     amazon_ui_scale: 1.0,
     amazon_bullet_style: '•',
     debug_mode: false,
+    debug_catbox_only: false,
     debug_unhide_native: false,
     debug_native_side_by_side: false,
     dark_mode: false,

@@ -17,6 +17,7 @@ export default defineConfig({
                 version: '2.0.7',
                 description: 'Complete review writing tookit for Amazon.',
                 author: 'Prismaris',
+                license: 'MIT',
                 match: [
                     '*://*.amazon.com/*',
                     '*://*.amazon.ca/*',
@@ -36,6 +37,7 @@ export default defineConfig({
                 ],
                 connect: [
                     'pastebin.com',
+                    'catbox.moe',
                     'localhost',
                     '127.0.0.1',
                     'generativelanguage.googleapis.com'

@@ -1,4 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
+import { imageStorage } from '../services/imageStorage';
+import { useSettings } from './useSettings';
 
 /** Amazon form element selectors */
 const SELECTORS = {
@@ -9,7 +11,7 @@ const SELECTORS = {
     media: '#media, input[name="media"][type="file"]',
     thumbnails: '.in-context-ryp__form-field__thumbnails',
     thumbnailWrapper: '.in-context-ryp__form-field__thumbnail-wrapper',
-    thumbnailImage: '.in-context-ryp__form-field___thumbnails--image',
+    thumbnailImage: '.in-context-ryp__form-field___thumbnails--image, .in-context-ryp__form-field___thumbnails--video',
     mediaDelete: '.in-context-ryp__media-delete',
     starRating: '.in-context-ryp__form-field--starRating',
     starClear: '.in-context-ryp__form-field--starRating--clear',
@@ -67,6 +69,8 @@ export interface UseAmazonFormResult {
     setStarRating: (rating: number) => void;
     /** Trigger media file picker */
     triggerMediaUpload: () => void;
+    /** Get all current media thumbnails as Blobs (transformed to full resolution) */
+    getMediaBlobs: () => Promise<File[]>;
     /** Upload a set of files to Amazon's media field */
     setMediaFiles: (files: File[] | FileList) => void;
     /** Remove a media item by index */
@@ -251,6 +255,7 @@ function getAmazonStarRating(container: Document | Element): number {
  * Always searches document (page DOM) for Amazon's form elements.
  */
 export function useAmazonForm(): UseAmazonFormResult {
+    const { settings } = useSettings();
     const [isReady, setIsReady] = useState(false);
     const [profile, setProfile] = useState(emptyProfile);
     const [product, setProduct] = useState(emptyProduct);
@@ -271,15 +276,128 @@ export function useAmazonForm(): UseAmazonFormResult {
 
     const [syncStatus, setSyncStatus] = useState<SyncStatus>('idle');
     const [lastSaved, setLastSaved] = useState<Date | null>(null);
-    const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+    const saveTimeoutRef = useRef<any>(null);
     const asinRef = useRef<string | null>(null);
     const isInitializedRef = useRef(false);
     const amazonSubmitHandlerRef = useRef<(() => void) | null>(null);
 
     const stateRef = useRef<AmazonFormState>(state);
-    stateRef.current = state;
+    useEffect(() => {
+        stateRef.current = state;
+    }, [state]);
 
     const rootRef = useRef<Document | Element>(document);
+
+    const getMediaBlobs = useCallback(async (): Promise<File[]> => {
+        const thumbnails = stateRef.current.mediaThumbnails;
+        if (thumbnails.length === 0) return [];
+
+        const files: File[] = [];
+
+        const fetchImage = (window as any).GM_fetchImage || (async (url: string) => {
+            const res = await fetch(url);
+            const blob = await res.blob();
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onloadend = () => resolve(reader.result as string);
+                reader.readAsDataURL(blob);
+            });
+        });
+
+        for (let i = 0; i < thumbnails.length; i++) {
+            try {
+                const fullUrl = thumbnails[i].replace(/\._.*?(?=\.[a-z]+$)/i, '');
+                const dataUrl = await fetchImage(fullUrl);
+                const res = await fetch(dataUrl);
+                const blob = await res.blob();
+                const ext = fullUrl.split('.').pop() || 'jpg';
+                files.push(new File([blob], `image-${i}.${ext}`, { type: blob.type }));
+            } catch (e) {
+                console.error('[ARS] Failed to fetch media blob:', thumbnails[i], e);
+            }
+        }
+        return files;
+    }, []);
+
+    const setMediaFiles = useCallback((files: File[] | FileList) => {
+        const mediaInput = elementsRef.current.mediaInput;
+        if (!mediaInput) return;
+
+        // If we have multiple files, we should ideally trigger them one by one
+        // to ensure Amazon's React state processes each one.
+        const fileList = files instanceof FileList ? Array.from(files) : files;
+
+        const uploadNext = (index: number) => {
+            if (index >= fileList.length) return;
+
+            const dt = new DataTransfer();
+            dt.items.add(fileList[index]);
+            mediaInput.files = dt.files;
+            mediaInput.dispatchEvent(new Event('change', { bubbles: true }));
+
+            // Short delay before next image to allow Amazon's UI to catch up
+            if (index + 1 < fileList.length) {
+                setTimeout(() => uploadNext(index + 1), 800);
+            }
+        };
+
+        uploadNext(0);
+    }, []);
+
+    const saveDrafts = useCallback((text: string, title: string, rating: number) => {
+        const asin = asinRef.current;
+        if (!asin) return;
+
+        setSyncStatus('saving');
+        if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
+
+        saveTimeoutRef.current = setTimeout(() => {
+            try {
+                localStorage.setItem(`amazon_review_draft_${asin}`, text);
+                localStorage.setItem(`amazon_review_title_draft_${asin}`, title);
+                localStorage.setItem(`amazon_review_rating_draft_${asin}`, String(rating));
+                setSyncStatus('saved');
+                setLastSaved(new Date());
+                setTimeout(() => setSyncStatus('idle'), 3000);
+            } catch (e) {
+                console.error('Failed to save draft:', e);
+                setSyncStatus('error');
+            }
+        }, 1000);
+    }, []);
+
+    const setStarRating = useCallback((rating: number) => {
+        setState((s) => {
+            const newState = { ...s, starRating: rating };
+            saveDrafts(newState.reviewText, newState.reviewTitle, newState.starRating);
+            return newState;
+        });
+        setAmazonStarRating(rating, rootRef.current);
+    }, [saveDrafts]);
+
+    const setReviewText = useCallback((value: string) => {
+        setState((s) => {
+            const newState = { ...s, reviewText: value };
+            saveDrafts(newState.reviewText, newState.reviewTitle, newState.starRating);
+            return newState;
+        });
+        syncToElement(elementsRef.current.textarea, value);
+    }, [saveDrafts]);
+
+    const setReviewTitle = useCallback((value: string) => {
+        setState((s) => {
+            const newState = { ...s, reviewTitle: value };
+            saveDrafts(newState.reviewText, newState.reviewTitle, newState.starRating);
+            return newState;
+        });
+        syncToElement(elementsRef.current.titleInput, value);
+    }, [saveDrafts]);
+
+    const triggerMediaUpload = useCallback(() => {
+        elementsRef.current.mediaInput?.click();
+    }, []);
+
+
 
     /** Find and cache Amazon form elements (always in page document) */
     const discover = useCallback(() => {
@@ -456,95 +574,63 @@ export function useAmazonForm(): UseAmazonFormResult {
             productUrl,
             asin: getAsinFromPage(),
         });
-    }, []);
+    }, [settings.amazon_auto_save_images]);
 
     useEffect(() => {
         discover();
-
-        // 1. Mutation Observer for DOM additions/removals
-        const observer = new MutationObserver(() => {
-            discover();
-        });
+        const observer = new MutationObserver(() => discover());
         observer.observe(document.body, { childList: true, subtree: true });
-
-        // 2. Interval Polling for internal state changes (like media uploads finishing)
         const interval = setInterval(discover, 2000);
-
         return () => {
             observer.disconnect();
             clearInterval(interval);
         };
     }, [discover]);
 
-    const saveDrafts = useCallback((text: string, title: string, rating: number) => {
+    // Local Image Restoration Effect - runs once when asin/form is ready
+    useEffect(() => {
+        if (!isReady || !asinRef.current || !settings.amazon_auto_save_images) return;
+
         const asin = asinRef.current;
-        if (!asin) return;
-
-        setSyncStatus('saving');
-        if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
-
-        saveTimeoutRef.current = setTimeout(() => {
-            try {
-                localStorage.setItem(`amazon_review_draft_${asin}`, text);
-                localStorage.setItem(`amazon_review_title_draft_${asin}`, title);
-                localStorage.setItem(`amazon_review_rating_draft_${asin}`, String(rating));
-                setSyncStatus('saved');
-                setLastSaved(new Date());
-
-                // Reset to idle after a while
-                setTimeout(() => setSyncStatus('idle'), 3000);
-            } catch (e) {
-                console.error('Failed to save draft:', e);
-                setSyncStatus('error');
+        console.log('[ARS] Checking for local image drafts...');
+        imageStorage.loadImages(asin).then(blobs => {
+            if (blobs && blobs.length > 0) {
+                console.log(`[ARS] Restoring ${blobs.length} images from local storage...`);
+                const files = blobs.map((blob, i) => new File([blob], `recovered-${i}.jpg`, { type: blob.type }));
+                setMediaFiles(files);
             }
-        }, 1000);
-    }, []);
+        }).catch(err => console.error('[ARS] Failed to load image drafts:', err));
+    }, [isReady, settings.amazon_auto_save_images, setMediaFiles]);
 
-    const setStarRating = useCallback((rating: number) => {
-        setState((s) => {
-            const newState = { ...s, starRating: rating };
-            saveDrafts(newState.reviewText, newState.reviewTitle, newState.starRating);
-            return newState;
-        });
-        setAmazonStarRating(rating, rootRef.current);
-    }, [saveDrafts]);
 
-    const setReviewText = useCallback((value: string) => {
-        setState((s) => {
-            const newState = { ...s, reviewText: value };
-            saveDrafts(newState.reviewText, newState.reviewTitle, newState.starRating);
-            return newState;
-        });
-        syncToElement(elementsRef.current.textarea, value);
-    }, [saveDrafts]);
+    // Debounced effect to save images to IndexedDB when mediaThumbnails changes
+    useEffect(() => {
+        if (!settings.amazon_auto_save_images || !isReady || !asinRef.current) return;
 
-    const setReviewTitle = useCallback((value: string) => {
-        setState((s) => {
-            const newState = { ...s, reviewTitle: value };
-            saveDrafts(newState.reviewText, newState.reviewTitle, newState.starRating);
-            return newState;
-        });
-        syncToElement(elementsRef.current.titleInput, value);
-    }, [saveDrafts]);
+        const handler = setTimeout(async () => {
+            const asin = asinRef.current;
+            const thumbnails = stateRef.current.mediaThumbnails;
+            if (asin && thumbnails.length > 0) {
+                console.log(`[ARS] Auto-saving ${thumbnails.length} images to IndexedDB for ASIN: ${asin}`);
+                try {
+                    const blobs = await getMediaBlobs(); // Get full-res blobs
+                    await imageStorage.saveImages(asin, blobs);
+                    console.log('[ARS] Images saved successfully.');
+                } catch (e) {
+                    console.error('[ARS] Failed to auto-save images:', e);
+                }
+            } else if (asin && thumbnails.length === 0) {
+                // If all thumbnails are removed, clear the draft images
+                console.log(`[ARS] Clearing image drafts for ASIN: ${asin}`);
+                imageStorage.deleteImages(asin).catch(e => console.warn('[ARS] Failed to delete image draft:', e));
+            }
+        }, 1500); // Debounce for 1.5 seconds
 
-    const triggerMediaUpload = useCallback(() => {
-        elementsRef.current.mediaInput?.click();
-    }, []);
+        return () => clearTimeout(handler);
+    }, [state.mediaThumbnails, isReady, settings.amazon_auto_save_images, getMediaBlobs]);
 
-    const setMediaFiles = useCallback((files: File[] | FileList) => {
-        const mediaInput = elementsRef.current.mediaInput;
-        if (!mediaInput) return;
 
-        const dt = new DataTransfer();
-        if (files instanceof FileList) {
-            Array.from(files).forEach(file => dt.items.add(file));
-        } else {
-            files.forEach(file => dt.items.add(file));
-        }
 
-        mediaInput.files = dt.files;
-        mediaInput.dispatchEvent(new Event('change', { bubbles: true }));
-    }, []);
 
     const removeMedia = useCallback((index: number) => {
         const root = document;
@@ -610,7 +696,7 @@ export function useAmazonForm(): UseAmazonFormResult {
         [getImageFileFromClipboard]
     );
 
-    const submit = useCallback(() => {
+    const submit = useCallback(async () => {
         const { form, textarea, titleInput, submitBtn } = elementsRef.current;
         const s = stateRef.current;
 
@@ -633,6 +719,8 @@ export function useAmazonForm(): UseAmazonFormResult {
             localStorage.removeItem(`amazon_review_draft_${asin}`);
             localStorage.removeItem(`amazon_review_title_draft_${asin}`);
             localStorage.removeItem(`amazon_review_rating_draft_${asin}`);
+            // Clear IndexedDB image draft
+            imageStorage.deleteImages(asin).catch(e => console.warn('[ARS] Failed to delete image draft:', e));
         }
 
         if (submitBtn) {
@@ -721,6 +809,7 @@ export function useAmazonForm(): UseAmazonFormResult {
         setReviewTitle,
         setStarRating,
         triggerMediaUpload,
+        getMediaBlobs,
         setMediaFiles,
         removeMedia,
         pasteImageFromClipboard,

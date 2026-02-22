@@ -10,23 +10,28 @@
     },
     "permissions": [
         "storage",
-        "alarms"
+        "alarms",
+        "declarativeNetRequest"
     ],
     "background": {
         "service_worker": "background.js"
     },
     "host_permissions": [
-        "*://*.amazon.com/*",
-        "*://*.amazon.ca/*",
-        "*://*.amazon.co.uk/*",
-        "*://*.amazon.de/*",
-        "*://*.amazon.fr/*",
-        "*://*.amazon.it/*",
-        "*://*.amazon.es/*",
-        "*://*.amazon.co.jp/*",
-        "*://*.amazon.in/*",
-        "*://*.amazon.com.au/*",
-        "*://pastebin.com/*"
+        "https://*.amazon.com/*",
+        "https://*.amazon.ca/*",
+        "https://*.amazon.co.uk/*",
+        "https://*.amazon.de/*",
+        "https://*.amazon.fr/*",
+        "https://*.amazon.it/*",
+        "https://*.amazon.es/*",
+        "https://*.amazon.co.jp/*",
+        "https://*.amazon.in/*",
+        "https://*.amazon.com.au/*",
+        "https://pastebin.com/*",
+        "https://*.pastebin.com/*",
+        "https://catbox.moe/*",
+        "https://*.catbox.moe/*",
+        "<all_urls>"
     ],
     "action": {
         "default_popup": "popup/index.html",
