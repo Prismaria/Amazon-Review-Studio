@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Amazon Review Toolkit 2.0
 // @namespace    https://github.com/Prismaria/Amazon-Review-Studio
-// @version      2.0.7
+// @version      2.0.8
 // @author       Prismaris
 // @description  Complete review writing tookit for Amazon.
 // @license      MIT
@@ -805,7 +805,7 @@ getAll() {
     media: '#media, input[name="media"][type="file"]',
     thumbnails: ".in-context-ryp__form-field__thumbnails",
     thumbnailWrapper: ".in-context-ryp__form-field__thumbnail-wrapper",
-    thumbnailImage: ".in-context-ryp__form-field___thumbnails--image",
+    thumbnailImage: ".in-context-ryp__form-field___thumbnails--image, .in-context-ryp__form-field___thumbnails--video",
     mediaDelete: ".in-context-ryp__media-delete",
     starRating: ".in-context-ryp__form-field--starRating",
     starClear: ".in-context-ryp__form-field--starRating--clear",

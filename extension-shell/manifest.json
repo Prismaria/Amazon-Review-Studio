@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Amazon Review Studio",
-    "version": "2.0.7",
+    "version": "2.0.8",
     "description": "Professional review writing toolkit and dashboard for Amazon.",
     "icons": {
         "16": "icons/ars_icon_3_1.png",
