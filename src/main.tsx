@@ -53,6 +53,7 @@ const CONTAINER_SELECTORS = [
     '.in-context-ryp__container',
     '[data-testid="in-context-ryp-form"]',
     '.ryp__review-candidates-list-container__container', // For Thank You page
+    '[data-hook="ryp-error-page-text"]', // Error page
 ] as const;
 
 function detectPageType(): 'listing' | 'review' {
@@ -61,8 +62,11 @@ function detectPageType(): 'listing' | 'review' {
     const hasAsin = searchParams.has('asin');
 
     // Check for standard "Thank You" pages OR the "Review Your Purchases" listing.
-    // Note: thankyou pages often have ASIN in URL, but should still show the grid
+    const isErrorPage = path.includes('/review/create-review/error');
     const isThankYouPage = path.toLowerCase().includes('thankyou');
+
+    if (isErrorPage) return 'error';
+
     const isListingPage = path.includes('/listing');
     const isReviewPurchasesWithoutEdit = path.includes('/review-your-purchases') && !hasAsin && !path.includes('/edit');
     const hasDOMIndicators = !!document.querySelector('.in-context-ryp__thankyou-container-desktop') ||
@@ -215,10 +219,10 @@ function mount() {
 
     const pageType = detectPageType();
 
-    console.log('[Amazon Review Studio] Rendering React tree...', `Component: ${pageType === 'listing' ? 'ReviewPurchasesPage' : 'App'}`);
+    console.log('[Amazon Review Studio] Rendering React tree...', `Component: ${(pageType === 'listing' || pageType === 'error') ? 'ReviewPurchasesPage' : 'App'}`);
     const root = ReactDOM.createRoot(rootContainer);
     root.render(
-        pageType === 'listing' ? <ReviewPurchasesPage /> : <App />
+        (pageType === 'listing' || pageType === 'error') ? <ReviewPurchasesPage /> : <App />
     );
 
     // Store the current page type and root for remounting
@@ -238,7 +242,7 @@ function remountIfNeeded() {
         if (rootInfo?.root) {
             // Re-render using the existing root to ensure proper unmounting/cleanup
             rootInfo.root.render(
-                newPageType === 'listing' ? <ReviewPurchasesPage /> : <App />
+                (newPageType === 'listing' || newPageType === 'error') ? <ReviewPurchasesPage /> : <App />
             );
             (window as any).__arsCurrentPageType = newPageType;
         }

@@ -6,9 +6,10 @@
     bottom: 0;
     z-index: 100000;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     pointer-events: none;
+    overflow-y: auto;
 }
 
 .ars-modal-backdrop {
@@ -27,11 +28,12 @@
     z-index: 100001;
     pointer-events: none;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     width: 100%;
-    max-height: 100vh;
-    padding: 20px;
+    /* Fixed offset from viewport top — matches the modal's position
+       at default app height so it never shifts down on tall pages */
+    padding: 80px 20px 40px;
 }
 
 .ars-modal {
@@ -41,7 +43,8 @@
     pointer-events: auto;
     display: flex;
     flex-direction: column;
-    max-height: calc(100vh - 80px);
+    /* Cap height so it stays within the viewport from the 80px top offset */
+    max-height: calc(100vh - 120px);
     outline: none;
     border: 1px solid var(--ars-color-border);
     overflow: hidden;

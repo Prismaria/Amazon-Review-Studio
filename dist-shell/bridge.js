@@ -192,5 +192,55 @@
         });
     };
 
+    /**
+     * Theme & Icon Management
+     * Detects browser/system theme or extension setting and syncs the toolbar icon.
+     */
+    function syncIconTheme() {
+        if (!chrome.runtime?.id) return;
+
+        try {
+            chrome.storage.local.get(['popupTheme'], (result) => {
+                if (chrome.runtime.lastError) return;
+
+                const isSystemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const popupTheme = result.popupTheme;
+
+                const isDark = popupTheme
+                    ? (popupTheme === 'dark' || popupTheme === 'black')
+                    : isSystemDark;
+
+                chrome.runtime.sendMessage({
+                    type: 'SET_ICON_THEME',
+                    isDark
+                }).catch(() => { }); // Ignore errors from orphaned scripts
+            });
+        } catch (e) {
+            if (e.message?.includes('context invalidated')) return;
+            console.error('[Review Studio] Failed to sync icon theme:', e);
+        }
+    }
+
+    // Initial sync
+    syncIconTheme();
+
+    // Watch for system theme changes
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    if (mediaQuery.addEventListener) {
+        mediaQuery.addEventListener('change', syncIconTheme);
+    } else if (mediaQuery.addListener) {
+        mediaQuery.addListener(syncIconTheme);
+    }
+
+    // Watch for popup theme changes in storage
+    chrome.storage.onChanged.addListener((changes, area) => {
+        if (area === 'local' && changes.popupTheme) {
+            syncIconTheme();
+        }
+    });
+
+    // Also check on interval just in case (Amazon is an SPA)
+    setInterval(syncIconTheme, 10000);
+
     console.log('[Review Studio] Extension Bridge Loaded');
 })();

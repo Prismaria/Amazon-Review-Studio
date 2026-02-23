@@ -32,8 +32,44 @@ chrome.runtime.onInstalled.addListener(() => {
         });
     }
 
+    // Set initial icon theme from stored popupTheme
+    chrome.storage.local.get(['popupTheme'], (result) => {
+        const isDark = (result.popupTheme === 'dark' || result.popupTheme === 'black');
+        updateIconTheme(isDark);
+    });
+
     refreshVineStats();
 });
+
+chrome.storage.onChanged.addListener((changes, area) => {
+    if (area === 'local' && changes.popupTheme) {
+        const newTheme = changes.popupTheme.newValue;
+        const isDark = (newTheme === 'dark' || newTheme === 'black');
+        updateIconTheme(isDark);
+    }
+});
+
+/**
+ * Updates the extension toolbar icon based on theme.
+ * @param {boolean} isDark 
+ */
+function updateIconTheme(isDark) {
+    const suffix = isDark ? 'dark' : 'light';
+
+    const details = {
+        path: {
+            "16": `icons/logo_small_${suffix}.png`,
+            "48": `icons/logo_small_${suffix}.png`
+        }
+    };
+
+    chrome.action.setIcon(details, () => {
+        if (chrome.runtime.lastError) {
+            // Silently fallback if the object map fails
+            chrome.action.setIcon({ path: `icons/logo_small_${suffix}.png` }).catch(() => { });
+        }
+    });
+}
 
 chrome.alarms.onAlarm.addListener((alarm) => {
     if (alarm.name === ALARM_NAME) {
@@ -44,6 +80,11 @@ chrome.alarms.onAlarm.addListener((alarm) => {
 
 // Listen for manual refresh requests from the popup
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.type === 'SET_ICON_THEME') {
+        updateIconTheme(request.isDark);
+        sendResponse({ success: true });
+        return;
+    }
     if (request.type === 'REFRESH_STATS') {
         refreshVineStats().then(stats => sendResponse(stats));
         return true; // Keep channel open for async response

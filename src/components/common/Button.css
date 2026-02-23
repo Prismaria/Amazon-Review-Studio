@@ -144,3 +144,38 @@
         transform: rotate(360deg);
     }
 }
+
+/* ── Dark mode fixes ─────────────────────────────────────── */
+.ars-dark-mode .ars-button--secondary {
+    background-color: var(--ars-color-bg-tertiary);
+    color: var(--ars-color-text-main);
+}
+
+.ars-dark-mode .ars-button--secondary:hover {
+    background-color: var(--ars-color-border);
+}
+
+.ars-dark-mode .ars-button--outline {
+    border-color: var(--ars-color-border);
+    color: var(--ars-color-text-main);
+    background-color: transparent;
+}
+
+.ars-dark-mode .ars-button--outline:hover {
+    background-color: var(--ars-color-bg-tertiary);
+}
+
+.ars-dark-mode .ars-button--ghost {
+    color: var(--ars-color-text-secondary);
+}
+
+.ars-dark-mode .ars-button--ghost:hover {
+    background-color: var(--ars-color-bg-tertiary);
+    color: var(--ars-color-text-main);
+}
+
+/* Active tab in sidebar */
+.ars-dark-mode .ars-button--secondary.ars-tab-btn {
+    background-color: var(--ars-color-bg-tertiary);
+    color: var(--ars-color-primary);
+}

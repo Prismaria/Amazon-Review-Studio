@@ -52,13 +52,13 @@ export const PopupApp: React.FC = () => {
             if (typeof chrome !== 'undefined' && chrome.storage) {
                 chrome.storage.local.get(['popupTheme'], (result) => {
                     let savedTheme = result.popupTheme;
-                    
+
                     // If no saved theme, detect browser preference
                     if (!savedTheme) {
                         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
                         savedTheme = prefersDark ? 'dark' : 'light';
                     }
-                    
+
                     setTheme(savedTheme);
                     applyTheme(savedTheme);
                 });
@@ -67,7 +67,7 @@ export const PopupApp: React.FC = () => {
                 applyTheme('black');
             }
         };
-        
+
         loadTheme();
     }, []);
 
@@ -96,10 +96,10 @@ export const PopupApp: React.FC = () => {
         const themeOrder: Theme[] = ['light', 'dark', 'black'];
         const currentIndex = themeOrder.indexOf(theme);
         const nextTheme = themeOrder[(currentIndex + 1) % themeOrder.length];
-        
+
         setTheme(nextTheme);
         applyTheme(nextTheme);
-        
+
         if (typeof chrome !== 'undefined' && chrome.storage) {
             chrome.storage.local.set({ popupTheme: nextTheme });
         }
@@ -161,17 +161,19 @@ export const PopupApp: React.FC = () => {
 
     return (
         <div className="flex flex-col h-full min-h-[650px] font-sans overflow-hidden transition-colors duration-300" style={{ backgroundColor: 'var(--bg-main)', color: 'var(--text-primary)' }}>
-            <header 
-                className="p-4 flex items-center justify-between backdrop-blur-md sticky top-0 z-10 w-full transition-all duration-300" 
-                style={{ 
+            <header
+                className="p-4 flex items-center justify-between backdrop-blur-md sticky top-0 z-10 w-full transition-all duration-300"
+                style={{
                     background: theme === 'dark' ? 'var(--header-gradient)' : 'var(--bg-secondary)',
                     borderBottom: '1px solid var(--border-color)'
                 }}
             >
                 <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center">
-                        <Star className="w-5 h-5 text-white" fill="currentColor" />
-                    </div>
+                    <img
+                        src={(theme === 'dark' || theme === 'black') ? '../icons/logo_small_dark.png' : '../icons/logo_small_light.png'}
+                        className="w-8 h-8 object-contain"
+                        alt="Logo"
+                    />
                     <span className="font-bold tracking-tight text-lg">Review Studio</span>
                 </div>
                 <div className="flex items-center gap-1">
@@ -219,40 +221,44 @@ export const PopupApp: React.FC = () => {
                             className="w-full flex flex-col gap-8 my-auto"
                         >
                             <div className="text-center space-y-2">
-                                <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
+                                <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-indigo-500 bg-clip-text text-transparent">
                                     Welcome 👋
                                 </h1>
-                                <p className="text-zinc-400 text-sm">Let's personalize your experience</p>
+                                <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>Let's personalize your experience</p>
                             </div>
 
                             <div className="space-y-4">
                                 <label className="block">
-                                    <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest block mb-2 px-1">Primary Region</span>
+                                    <span className="text-[10px] font-bold uppercase tracking-widest block mb-2 px-1" style={{ color: 'var(--text-muted)' }}>Primary Region</span>
                                     <div className="relative group">
-                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-zinc-500 group-focus-within:text-blue-400">
+                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none transition-colors group-focus-within:text-[var(--accent-blue)]" style={{ color: 'var(--text-muted)' }}>
                                             <Globe size={16} />
                                         </div>
                                         <select
                                             value={region}
                                             onChange={(e) => updateRegion(e.target.value)}
-                                            className="block w-full pl-10 pr-4 py-3 bg-zinc-900 border border-white/5 rounded-xl appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500/50 transition-all text-sm font-medium"
+                                            className="block w-full pl-10 pr-4 py-3 rounded-xl appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all text-sm font-medium border"
+                                            style={{
+                                                backgroundColor: 'var(--bg-secondary)',
+                                                color: 'var(--text-primary)',
+                                                borderColor: 'var(--border-color)'
+                                            }}
                                         >
                                             {REGIONS.map(r => (
-                                                <option key={r.tld} value={r.tld}>{r.label} ({r.tld})</option>
+                                                <option key={r.tld} value={r.tld} style={{ backgroundColor: 'var(--bg-main)' }}>{r.label} ({r.tld})</option>
                                             ))}
                                         </select>
                                     </div>
                                 </label>
 
                                 <div>
-                                    <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest block mb-2 px-1">Your Role</span>
+                                    <span className="text-[10px] font-bold uppercase tracking-widest block mb-2 px-1" style={{ color: 'var(--text-muted)' }}>Your Role</span>
                                     <div className="grid grid-cols-2 gap-4">
                                         <RoleButton
                                             onClick={() => selectRole('regular')}
                                             icon={<ShoppingBag className="w-8 h-8" />}
                                             title="Regular"
                                             description="Order tools"
-                                            color="from-zinc-800 to-zinc-900"
                                             hoverColor="hover:border-blue-500/50"
                                         />
                                         <RoleButton
@@ -260,7 +266,6 @@ export const PopupApp: React.FC = () => {
                                             icon={<Star className="w-8 h-8 text-amber-400" />}
                                             title="Vine"
                                             description="Vine toolkit"
-                                            color="from-zinc-800 to-zinc-900"
                                             hoverColor="hover:border-amber-500/50"
                                         />
                                     </div>
@@ -281,20 +286,24 @@ const RoleButton: React.FC<{
     icon: React.ReactNode;
     title: string;
     description: string;
-    color: string;
     hoverColor: string;
-}> = ({ onClick, icon, title, description, color, hoverColor }) => (
+}> = ({ onClick, icon, title, description, hoverColor }) => (
     <motion.button
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         onClick={onClick}
-        className={`flex flex-col items-center justify-center p-5 rounded-2xl border border-white/5 bg-gradient-to-br ${color} ${hoverColor} transition-all group`}
+        className={`flex flex-col items-center justify-center p-5 rounded-2xl border ${hoverColor} transition-all group`}
+        style={{
+            backgroundColor: 'var(--bg-card)',
+            borderColor: 'var(--border-color)',
+            color: 'var(--text-primary)'
+        }}
     >
-        <div className="mb-3 p-3 rounded-xl bg-white/5 group-hover:bg-white/10 transition-colors">
+        <div className="mb-3 p-3 rounded-xl transition-colors" style={{ backgroundColor: 'var(--bg-secondary)' }}>
             {icon}
         </div>
         <h3 className="font-bold text-sm mb-0.5">{title}</h3>
-        <p className="text-[10px] text-zinc-500 text-center leading-tight">{description}</p>
+        <p className="text-[10px] text-center leading-tight" style={{ color: 'var(--text-muted)' }}>{description}</p>
     </motion.button>
 );
 
@@ -386,7 +395,7 @@ const Dashboard: React.FC<{ role: UserRole, stats: VineStats | null, region: str
 
 const StatCard: React.FC<{ label: string, value: string | number, icon: React.ReactNode, className?: string }> = ({ label, value, icon, className = "" }) => (
     <div className={`p-2 rounded-xl flex flex-col items-center justify-center gap-1 aspect-square text-center transition-colors duration-300 ${className}`}
-         style={{ backgroundColor: 'var(--bg-card)', border: '1px solid var(--border-color)' }}>
+        style={{ backgroundColor: 'var(--bg-card)', border: '1px solid var(--border-color)' }}>
         <div className="flex items-center justify-center p-1 rounded-lg mb-0.5" style={{ backgroundColor: 'var(--bg-secondary)' }}>
             {icon}
         </div>
@@ -480,13 +489,13 @@ const ShortcutLink: React.FC<{ icon: React.ReactNode, label: string, href: strin
         target="_blank"
         rel="noopener noreferrer"
         className={`flex items-center rounded-xl transition-all group ${compact ? 'gap-1.5 px-2.5 py-2' : 'justify-between p-3.5 gap-3'}`}
-        style={{ 
-            backgroundColor: 'var(--bg-card)', 
+        style={{
+            backgroundColor: 'var(--bg-card)',
             border: '1px solid var(--border-color)'
         }}
     >
         <div className={`flex items-center group-hover:text-blue-400 transition-colors ${compact ? 'gap-1.5' : 'gap-3'}`}
-             style={{ color: 'var(--text-muted)' }}>
+            style={{ color: 'var(--text-muted)' }}>
             {icon}
             <span className={compact ? 'text-xs font-medium whitespace-nowrap' : 'text-sm font-medium'} style={{ color: 'var(--text-secondary)' }}>{label}</span>
         </div>
@@ -542,7 +551,7 @@ const InsightfulnessPips: React.FC<{ score: string }> = ({ score }) => {
 
 const EvalPerformance: React.FC<{ stats: VineStats }> = ({ stats }) => {
     const [isExpanded, setIsExpanded] = useState(false);
-    
+
     const metrics = [
         {
             label: 'Total Reviews',

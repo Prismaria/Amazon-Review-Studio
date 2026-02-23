@@ -52,6 +52,11 @@ export interface AmazonFormElements {
 
 export type SyncStatus = 'idle' | 'saving' | 'saved' | 'error';
 
+export interface AmazonError {
+    message: string;
+    originalMessage: string;
+}
+
 export interface UseAmazonFormResult {
     /** Whether Amazon form elements were found */
     isReady: boolean;
@@ -85,6 +90,8 @@ export interface UseAmazonFormResult {
     syncStatus: SyncStatus;
     /** Timestamp of last successful local save */
     lastSaved: Date | null;
+    /** Error message if the page is an error state */
+    error: AmazonError | null;
 }
 
 const emptyProfile = { avatarSrc: '', name: '', editLinkHref: '#' };
@@ -265,6 +272,7 @@ export function useAmazonForm(): UseAmazonFormResult {
         starRating: 0,
         mediaThumbnails: [],
     });
+    const [error, setError] = useState<AmazonError | null>(null);
 
     const elementsRef = useRef<AmazonFormElements>({
         form: null,
@@ -574,6 +582,28 @@ export function useAmazonForm(): UseAmazonFormResult {
             productUrl,
             asin: getAsinFromPage(),
         });
+
+        // Error detection
+        const errorEl = query<HTMLElement>('[data-hook="ryp-error-page-text"]', root);
+        if (errorEl) {
+            const originalText = errorEl.textContent?.trim() || '';
+            let modifiedText = originalText;
+
+            // Apply modification if it matches the 'not accepting reviews' pattern
+            if (originalText.includes('not accepting reviews')) {
+                modifiedText = originalText.replace(
+                    'from this account.',
+                    'from this account (most of the time, this has nothing to do with your account, and is simply because the seller has stopped accepting reviews).'
+                );
+            }
+
+            setError({
+                originalMessage: originalText,
+                message: modifiedText
+            });
+        } else {
+            setError(null);
+        }
     }, [settings.amazon_auto_save_images]);
 
     useEffect(() => {
@@ -817,5 +847,6 @@ export function useAmazonForm(): UseAmazonFormResult {
         elements: elementsRef.current,
         syncStatus,
         lastSaved,
+        error,
     };
 }

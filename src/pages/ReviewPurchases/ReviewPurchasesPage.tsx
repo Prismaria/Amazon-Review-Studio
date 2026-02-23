@@ -7,10 +7,11 @@ import { SettingsProvider, useSettings } from '../../context/SettingsContext';
 import { useSettings as useAppSettings } from '../../hooks/useSettings';
 import { ProfileSection } from '../../components/review/ProfileSection';
 import { AutoSyncWatcher } from '../../components/common/AutoSyncWatcher';
-import { Moon, Settings, CheckCircle2, Loader2, LayoutGrid, List } from 'lucide-react';
+import { Moon, Settings, CheckCircle2, Loader2, LayoutGrid, List, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { LayoutMode } from './types';
 import { ScalingWrapper } from '../../components/common/ScalingWrapper';
+import { useAmazonForm } from '../../hooks/useAmazonForm';
 
 const StarsIcon = ({ size = 20, className = "" }: { size?: number, className?: string }) => (
     <svg
@@ -52,6 +53,7 @@ const ReviewPurchasesContent: React.FC = () => {
     } = useReviewCandidates();
 
     const { settings, setSetting } = useAppSettings();
+    const amazon = useAmazonForm();
     const [isSettingsOpen, setIsSettingsOpen] = React.useState(false);
     const [layoutMode, setLayoutMode] = React.useState<LayoutMode>('grid');
 
@@ -168,6 +170,22 @@ const ReviewPurchasesContent: React.FC = () => {
                         </button>
                     </div>
                 </div>
+
+                {/* Amazon Error Message */}
+                <AnimatePresence>
+                    {amazon.error && (
+                        <motion.div
+                            className="px-10 pt-10"
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                        >
+                            <div className="ars-amazon-error-banner !m-0">
+                                <AlertCircle size={20} />
+                                <div className="ars-error-text" dangerouslySetInnerHTML={{ __html: amazon.error.message }} />
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
 
                 {/* Thank You Message - Enhanced with Animations */}
                 <AnimatePresence>

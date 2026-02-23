@@ -90,6 +90,15 @@
     padding: 0 var(--ars-spacing-xs);
     outline: none;
     font-family: inherit;
+    font-size: var(--ars-font-size-sm);
+    background-color: var(--ars-color-bg-main);
+    color: var(--ars-color-text-main);
+    cursor: pointer;
+}
+
+.ars-select:focus {
+    border-color: var(--ars-color-primary);
+    box-shadow: 0 0 0 1px var(--ars-color-primary);
 }
 
 .ars-ai-prompt-section {
@@ -152,4 +161,18 @@
     color: var(--ars-color-error);
     border-radius: var(--ars-radius-sm);
     font-size: var(--ars-font-size-sm);
+}
+
+/* ── Dark mode ────────────────────────────────────────────── */
+.ars-dark-mode .ars-select {
+    background-color: var(--ars-color-bg-secondary) !important;
+    color: var(--ars-color-text-main) !important;
+    border-color: var(--ars-color-border) !important;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.ars-dark-mode .ars-select:focus {
+    border-color: var(--ars-color-primary) !important;
+    box-shadow: 0 0 0 1px var(--ars-color-primary);
 }

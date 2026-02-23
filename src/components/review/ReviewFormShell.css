@@ -69,11 +69,11 @@
 
 .ars-header-actions {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: 1.25rem;
+    right: 1.25rem;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.75rem;
     z-index: 20;
 }
 
@@ -81,14 +81,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     padding: 0;
     border: none;
     background: transparent;
     color: #ffffff;
     cursor: pointer;
-    border-radius: 8px;
+    border-radius: 10px;
     transition: all 0.2s ease;
     opacity: 0.8;
 }
@@ -125,4 +125,86 @@
 
 .ars-back-button:active {
     transform: translateY(0);
+}
+
+/* Amazon Error Banner */
+.ars-amazon-error-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    margin: 1.5rem 2rem 0;
+    background-color: #fffafa;
+    border: 1px solid #ffdede;
+    border-radius: 8px;
+    color: #ba0933;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    box-shadow: 0 1px 2px rgba(186, 9, 51, 0.05);
+}
+
+.ars-amazon-error-banner svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: #ba0933;
+}
+
+.ars-amazon-error-banner a {
+    color: #007185;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.ars-amazon-error-banner a:hover {
+    text-decoration: underline;
+    color: #c45500;
+}
+
+.ars-dark-mode .ars-amazon-error-banner {
+    background-color: rgba(186, 9, 51, 0.15);
+    border-color: rgba(186, 9, 51, 0.4);
+    color: #f87171;
+}
+
+.ars-dark-mode .ars-amazon-error-banner svg {
+    color: #f87171;
+}
+
+.ars-dark-mode .ars-amazon-error-banner a {
+    color: #60a5fa;
+}
+
+/* Star Twinkle Animations */
+@keyframes ars-twinkle {
+
+    0%,
+    100% {
+        opacity: 0.4;
+        transform: scale(0.9);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+.ars-twinkle-1 {
+    animation: ars-twinkle 3s ease-in-out infinite;
+}
+
+.ars-twinkle-2 {
+    animation: ars-twinkle 4s ease-in-out infinite 0.7s;
+}
+
+.ars-twinkle-3 {
+    animation: ars-twinkle 2.5s ease-in-out infinite 1.2s;
+}
+
+/* Ensure SVG stars have a transform origin for scaling */
+.ars-twinkle-1,
+.ars-twinkle-2,
+.ars-twinkle-3 {
+    transform-origin: center;
+    transform-box: fill-box;
 }
