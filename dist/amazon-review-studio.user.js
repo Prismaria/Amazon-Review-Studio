@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Amazon Review Toolkit 2.0
 // @namespace    https://github.com/Prismaria/Amazon-Review-Studio
-// @version      2.0.9
+// @version      2.0.10
 // @author       Prismaris
 // @description  Complete review writing tookit for Amazon.
 // @license      MIT
@@ -11025,7 +11025,7 @@ React__default.createElement("div", { className: "ars-settings-layout p-2" }, Re
           checked: settings.amazon_ui_show_tooltips,
           onChange: (e) => setSetting("amazon_ui_show_tooltips", e.target.checked)
         }
-      ), React__default.createElement("div", { className: "w-10 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-indigo-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600" }))))), activeTab === "ai" && React__default.createElement("div", { className: "ars-settings-section" }, React__default.createElement("h3", null, "AI Engine Settings"), React__default.createElement("div", { className: "ars-setting-group border border-indigo-100 bg-indigo-50/30 p-4 rounded-xl mb-6" }, React__default.createElement("div", { className: "flex items-center justify-between" }, React__default.createElement("div", { className: "flex items-center gap-3" }, React__default.createElement("div", { className: `p-2 rounded-lg ${settings.amazon_ai_enabled ? "bg-indigo-600 text-white" : "bg-gray-200 text-gray-500"}` }, React__default.createElement(Cpu, { size: 20 })), React__default.createElement("div", null, React__default.createElement("label", { className: "font-semibold text-gray-900 block cursor-pointer select-none", htmlFor: "ai-toggle" }, "AI Features ", !settings.amazon_ai_unlocked && false), React__default.createElement("p", { className: "text-xs text-gray-500" }, "Enable automated content generation"))), React__default.createElement("div", { className: "relative inline-block w-12 h-6 transition duration-200 ease-in-out rounded-full cursor-pointer" }, React__default.createElement(
+      ), React__default.createElement("div", { className: "w-10 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-indigo-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600" }))))), activeTab === "ai" && React__default.createElement("div", { className: "ars-settings-section" }, React__default.createElement("h3", null, "AI Engine Settings"), React__default.createElement("div", { className: "ars-setting-group border border-indigo-100 bg-indigo-50/30 p-4 rounded-xl mb-6" }, React__default.createElement("div", { className: "flex items-center justify-between" }, React__default.createElement("div", { className: "flex items-center gap-3" }, React__default.createElement("div", { className: `p-2 rounded-lg ${settings.amazon_ai_enabled ? "bg-indigo-600 text-white" : "bg-gray-200 text-gray-500"}` }, React__default.createElement(Cpu, { size: 20 })), React__default.createElement("div", null, React__default.createElement("label", { className: "font-semibold text-gray-900 block cursor-pointer select-none", htmlFor: "ai-toggle" }, "AI Features ", !settings.amazon_ai_unlocked && true && React__default.createElement("span", { className: "text-xs font-normal text-amber-600 block" }, "(Title Generation Only)")), React__default.createElement("p", { className: "text-xs text-gray-500" }, "Enable automated content generation"))), React__default.createElement("div", { className: "relative inline-block w-12 h-6 transition duration-200 ease-in-out rounded-full cursor-pointer" }, React__default.createElement(
         "input",
         {
           id: "ai-toggle",
@@ -12637,7 +12637,6 @@ async testConnection() {
     }
   }
   const AIModal = ({ isOpen, onClose, onInsert, productTitle = "", asin, starRating, existingReviewText = "" }) => {
-    const DEVELOPER_ENFORCE_MIN_CHARS = false;
     const MIN_CHARS = 500;
     const { settings, setSetting } = useSettings();
     const [userThoughts, setUserThoughts] = React__default.useState("");
@@ -12853,7 +12852,7 @@ React__default.createElement("option", { value: "local" }, "Local LLM (LM Studio
         "textarea",
         {
           className: "ars-ai-prompt-input",
-          placeholder: `Enter your opinion, pros/cons, or specific points you want the AI to cover${""}...`,
+          placeholder: `Enter your opinion, pros/cons, or specific points you want the AI to cover${` (min. ${MIN_CHARS} characters)`}...`,
           value: useExistingReview ? existingReviewText : userThoughts,
           onChange: (e) => !useExistingReview && setUserThoughts(e.target.value),
           style: {
@@ -12861,7 +12860,7 @@ React__default.createElement("option", { value: "local" }, "Local LLM (LM Studio
             opacity: useExistingReview ? 0.7 : 1,
             cursor: useExistingReview ? "not-allowed" : "text",
             backgroundColor: useExistingReview ? "#fbfcfd" : "white",
-            borderColor: "var(--ars-color-border)"
+            borderColor: !useExistingReview && userThoughts.length > 0 && userThoughts.length < MIN_CHARS ? "#fca5a5" : "var(--ars-color-border)"
           },
           disabled: useExistingReview
         }
@@ -12881,7 +12880,7 @@ React__default.createElement("option", { value: "local" }, "Local LLM (LM Studio
           className: "ars-generate-btn mt-3",
           onClick: handleGenerate,
           isLoading: isGenerating,
-          disabled: isGenerating || DEVELOPER_ENFORCE_MIN_CHARS,
+          disabled: isGenerating || (useExistingReview ? existingReviewText.length < MIN_CHARS : userThoughts.length < MIN_CHARS),
           icon: React__default.createElement(Sparkles, { size: 18 })
         },
         "Generate Review"
@@ -13106,7 +13105,7 @@ React__default.createElement("path", { d: "M22,68 L25,76 L34,76 L27,81 L30,90 L2
         value: amazon.state.starRating,
         onChange: amazon.setStarRating
       }
-    )), React__default.createElement("div", { className: "ars-form-field" }, React__default.createElement("div", { className: "ars-form-field-label-row" }, React__default.createElement("div", { className: "flex items-center gap-3" }, React__default.createElement("label", { className: "ars-form-label" }, "Write a review"), React__default.createElement(SaveIndicator, { status: amazon.syncStatus })), settings.amazon_ai_enabled && (settings.amazon_ai_unlocked || true) && React__default.createElement(
+    )), React__default.createElement("div", { className: "ars-form-field" }, React__default.createElement("div", { className: "ars-form-field-label-row" }, React__default.createElement("div", { className: "flex items-center gap-3" }, React__default.createElement("label", { className: "ars-form-label" }, "Write a review"), React__default.createElement(SaveIndicator, { status: amazon.syncStatus })), settings.amazon_ai_enabled && (settings.amazon_ai_unlocked || false) && React__default.createElement(
       Button,
       {
         variant: "outline",
