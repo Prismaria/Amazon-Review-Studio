@@ -19,7 +19,7 @@ export const TemplateManager: React.FC<TemplateManagerProps> = ({ isOpen, onClos
     const [editTitle, setEditTitle] = useState('');
     const [editContent, setEditContent] = useState('');
     const [isDirty, setIsDirty] = useState(false);
-    
+
     // Drag and drop state
     const [draggedId, setDraggedId] = useState<string | null>(null);
     const [dragOverId, setDragOverId] = useState<string | null>(null);
@@ -119,7 +119,7 @@ export const TemplateManager: React.FC<TemplateManagerProps> = ({ isOpen, onClos
     const handleDrop = (e: React.DragEvent, targetId: string) => {
         e.preventDefault();
         setDragOverId(null);
-        
+
         if (!draggedId || draggedId === targetId) {
             setDraggedId(null);
             return;
@@ -128,7 +128,7 @@ export const TemplateManager: React.FC<TemplateManagerProps> = ({ isOpen, onClos
         // Reorder templates
         const draggedIndex = templates.findIndex(t => t.id === draggedId);
         const targetIndex = templates.findIndex(t => t.id === targetId);
-        
+
         if (draggedIndex === -1 || targetIndex === -1) {
             setDraggedId(null);
             return;
@@ -138,7 +138,7 @@ export const TemplateManager: React.FC<TemplateManagerProps> = ({ isOpen, onClos
         const newTemplates = [...templates];
         const [removed] = newTemplates.splice(draggedIndex, 1);
         newTemplates.splice(targetIndex, 0, removed);
-        
+
         // Update order via the hook
         reorderTemplates(newTemplates.map(t => t.id));
         setDraggedId(null);
@@ -157,7 +157,7 @@ export const TemplateManager: React.FC<TemplateManagerProps> = ({ isOpen, onClos
                 onClose();
             } else {
                 // User chose not to save, discard changes
-                setIsDirty(false); 
+                setIsDirty(false);
                 // Force a reset of the content to the last saved state to prevent persistence
                 if (selectedId) {
                     const originalTemplate = templates.find(t => t.id === selectedId);
@@ -204,21 +204,21 @@ export const TemplateManager: React.FC<TemplateManagerProps> = ({ isOpen, onClos
                                 onDragLeave={handleDragLeave}
                                 onDrop={(e) => handleDrop(e, t.id)}
                                 onDragEnd={handleDragEnd}
-                                className={`ars-tm-item ${selectedId === t.id ? 'active' : ''} ${draggedId === t.id ? 'dragging' : ''} ${dragOverId === t.id ? 'drag-over' : ''}`}
+                                className={`ars-tm-item ars-tooltip ${selectedId === t.id ? 'active' : ''} ${draggedId === t.id ? 'dragging' : ''} ${dragOverId === t.id ? 'drag-over' : ''}`}
                                 onClick={() => setSelectedId(t.id)}
                                 style={{
                                     padding: '0.875rem 1rem',
                                     borderRadius: '8px',
                                     cursor: 'pointer',
-                                    backgroundColor: dragOverId === t.id 
-                                        ? 'var(--ars-color-bg-secondary)' 
-                                        : selectedId === t.id 
-                                            ? 'var(--ars-color-bg-secondary)' 
+                                    backgroundColor: dragOverId === t.id
+                                        ? 'var(--ars-color-bg-secondary)'
+                                        : selectedId === t.id
+                                            ? 'var(--ars-color-bg-secondary)'
                                             : 'transparent',
                                     border: dragOverId === t.id
                                         ? '2px dashed var(--ars-color-primary)'
-                                        : selectedId === t.id 
-                                            ? '1px solid var(--ars-color-primary)' 
+                                        : selectedId === t.id
+                                            ? '1px solid var(--ars-color-primary)'
                                             : '1px solid transparent',
                                     display: 'flex',
                                     alignItems: 'center',
@@ -226,7 +226,7 @@ export const TemplateManager: React.FC<TemplateManagerProps> = ({ isOpen, onClos
                                     opacity: draggedId === t.id ? 0.5 : 1,
                                     transition: 'all 0.15s ease'
                                 }}
-                                title="Drag to reorder"
+                                data-tooltip="Drag to reorder"
                             >
                                 {/* Drag Handle */}
                                 <div
@@ -242,7 +242,7 @@ export const TemplateManager: React.FC<TemplateManagerProps> = ({ isOpen, onClos
                                 >
                                     <GripVertical size={16} />
                                 </div>
-                                
+
                                 {/* Template Info */}
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', overflow: 'hidden', flex: 1 }}>
                                     <FileText size={16} color="var(--ars-color-text-secondary)" />
@@ -285,6 +285,7 @@ export const TemplateManager: React.FC<TemplateManagerProps> = ({ isOpen, onClos
                                             variant="ghost"
                                             onClick={() => handleDelete(selectedId)}
                                             title="Delete Template"
+                                            tooltipPlacement="left"
                                             style={{ color: 'var(--ars-color-error)' }}
                                         >
                                             <Trash2 size={18} />

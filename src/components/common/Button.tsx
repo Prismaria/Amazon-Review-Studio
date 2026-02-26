@@ -7,10 +7,11 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     size?: 'sm' | 'md' | 'lg' | 'icon';
     isLoading?: boolean;
     icon?: React.ReactNode;
+    tooltipPlacement?: 'top' | 'left' | 'right' | 'bottom';
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-    ({ className, variant = 'primary', size = 'md', isLoading, icon, children, disabled, ...props }, ref) => {
+    ({ className, variant = 'primary', size = 'md', isLoading, icon, children, disabled, title, tooltipPlacement, ...props }, ref) => {
         return (
             <button
                 ref={ref}
@@ -19,9 +20,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                     `ars-button--${variant}`,
                     `ars-button--${size}`,
                     isLoading && 'ars-button--loading',
+                    title && 'ars-tooltip',
+                    title && tooltipPlacement && `ars-tooltip-${tooltipPlacement}`,
                     className
                 )}
                 disabled={disabled || isLoading}
+                data-tooltip={title}
                 {...props}
             >
                 {isLoading && <Loader2 className="ars-button__loader" size={16} />}

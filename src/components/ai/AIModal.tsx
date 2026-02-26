@@ -22,8 +22,7 @@ export interface AIModalProps {
 }
 
 export const AIModal: React.FC<AIModalProps> = ({ isOpen, onClose, onInsert, productTitle = "", asin, starRating, existingReviewText = "" }) => {
-    // DEVELOPER FLAG: Set to false to disable minimum character requirement
-    const DEVELOPER_ENFORCE_MIN_CHARS = true;
+    const DEVELOPER_ENFORCE_MIN_CHARS = typeof __IS_PERSONAL_BUILD__ !== 'undefined' ? !__IS_PERSONAL_BUILD__ : true;
     const MIN_CHARS = 500;
 
     const { settings, setSetting } = useSettings();

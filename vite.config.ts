@@ -7,6 +7,9 @@ export default defineConfig({
     build: {
         minify: false, // Ensure readability for Greasy Fork reviewers
     },
+    define: {
+        __IS_PERSONAL_BUILD__: process.env.VITE_APP_MODE === 'personal'
+    },
     plugins: [
         react({ jsxRuntime: 'classic' }),
         monkey({
@@ -14,7 +17,7 @@ export default defineConfig({
             userscript: {
                 name: 'Amazon Review Toolkit 2.0',
                 namespace: 'https://github.com/Prismaria/Amazon-Review-Studio',
-                version: '2.0.9',
+                version: '2.0.10',
                 description: 'Complete review writing tookit for Amazon.',
                 author: 'Prismaris',
                 license: 'MIT',

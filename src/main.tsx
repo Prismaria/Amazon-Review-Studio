@@ -22,6 +22,10 @@ const HIDE_CSS = `
 
 /** Inject hiding style as soon as possible */
 function injectHidingStyle() {
+    // @ts-ignore
+    const arsSettings = typeof GM_getValue !== 'undefined' ? GM_getValue('arsSettings', {}) : {};
+    if (arsSettings.masterEnable === false) return;
+
     const debugUnhide = settingsService.get('debug_unhide_native');
     const existing = document.getElementById('ars-anti-flicker');
 
@@ -249,7 +253,52 @@ function remountIfNeeded() {
     }
 }
 
+function restoreAmazonReviewUI() {
+    const allContainers = document.querySelectorAll(CONTAINER_SELECTORS.join(', '));
+    allContainers.forEach((el) => {
+        const htmlEl = el as HTMLElement;
+        htmlEl.style.removeProperty('display');
+        htmlEl.style.removeProperty('opacity');
+        htmlEl.style.removeProperty('margin-top');
+        htmlEl.style.removeProperty('flex');
+        htmlEl.style.removeProperty('min-width');
+        htmlEl.style.removeProperty('max-width');
+    });
+
+    const rypForm = document.getElementById('in-context-ryp-form');
+    if (rypForm) {
+        rypForm.style.removeProperty('display');
+        rypForm.style.removeProperty('opacity');
+    }
+}
+
 function watchAndMount() {
+    // Expose unlockAI cheat code
+    (window as any).unlockAI = () => {
+        // @ts-ignore
+        const settings = typeof GM_getValue !== 'undefined' ? GM_getValue('arsSettings', {}) : {};
+        settings.amazon_ai_unlocked = true;
+        // @ts-ignore
+        GM_setValue('arsSettings', settings);
+        alert("Review Studio AI Features Unlocked! Please refresh the page.");
+    };
+
+    // @ts-ignore
+    const arsSettings = typeof GM_getValue !== 'undefined' ? GM_getValue('arsSettings', {}) : {};
+    if (arsSettings.masterEnable === false) {
+        // If it was already mounted or hiding styles were injected, clean them up
+        const existingRoot = document.getElementById(MOUNT_ID);
+        if (existingRoot) existingRoot.remove();
+
+        const existingStyle = document.getElementById('ars-anti-flicker');
+        if (existingStyle) existingStyle.remove();
+
+        // Restore any inline styles that hid the native UI
+        restoreAmazonReviewUI();
+
+        return;
+    }
+
     injectHidingStyle(); // Ensure hiding style respects current settings
 
     if (document.getElementById(MOUNT_ID)) {

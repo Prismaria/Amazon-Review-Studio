@@ -24,7 +24,7 @@ export const PhraseManager: React.FC<PhraseManagerProps> = ({ onInsert, onClose 
 
         setSyncState('syncing');
         const result = await syncPhrasesToCloud();
-        
+
         if (result.success) {
             setSyncState('synced');
             // State will naturally reset when the popover closes/unmounts
@@ -55,16 +55,16 @@ export const PhraseManager: React.FC<PhraseManagerProps> = ({ onInsert, onClose 
                 </h3>
 
                 {/* Sync Pill Badge */}
-                <div 
+                <div
                     onClick={handleSync}
                     className={`
-                        flex items-center gap-1.5 px-2 py-1 rounded-full text-[10px] font-semibold cursor-pointer transition-all border
-                        ${syncState === 'synced' 
-                            ? 'bg-green-50 text-green-700 border-green-200' 
+                        ars-tooltip flex items-center gap-1.5 px-2 py-1 rounded-full text-[10px] font-semibold cursor-pointer transition-all border
+                        ${syncState === 'synced'
+                            ? 'bg-green-50 text-green-700 border-green-200'
                             : 'bg-gray-50 text-gray-600 border-gray-200 hover:bg-gray-100'
                         }
                     `}
-                    title="Sync Phrases to Cloud"
+                    data-tooltip="Sync Phrases to Cloud"
                 >
                     {syncState === 'syncing' ? (
                         <RefreshCw size={10} className="animate-spin text-orange-500" />
@@ -73,7 +73,7 @@ export const PhraseManager: React.FC<PhraseManagerProps> = ({ onInsert, onClose 
                     ) : (
                         <RefreshCw size={10} />
                     )}
-                    
+
                     <span>
                         {syncState === 'syncing' ? 'Syncing...' : syncState === 'synced' ? 'Synced' : 'Sync'}
                     </span>
@@ -95,9 +95,10 @@ export const PhraseManager: React.FC<PhraseManagerProps> = ({ onInsert, onClose 
                         }}
                     >
                         <div
+                            className="ars-tooltip"
                             style={{ flex: 1, cursor: 'pointer', overflow: 'hidden' }}
                             onClick={() => { onInsert(p.content); onClose(); }}
-                            title={p.content}
+                            data-tooltip={p.content}
                         >
                             <span style={{ fontWeight: 500, display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                                 {p.label || p.content}
@@ -110,6 +111,7 @@ export const PhraseManager: React.FC<PhraseManagerProps> = ({ onInsert, onClose 
                         </div>
                         <button
                             onClick={(e) => { e.stopPropagation(); deletePhrase(p.id); }}
+                            className="ars-tooltip ars-tooltip-left"
                             style={{
                                 background: 'transparent',
                                 border: 'none',
@@ -119,48 +121,51 @@ export const PhraseManager: React.FC<PhraseManagerProps> = ({ onInsert, onClose 
                                 display: 'flex',
                                 alignItems: 'center'
                             }}
-                            title="Delete phrase"
+                            data-tooltip="Delete phrase"
                         >
                             <Trash2 size={14} />
                         </button>
                     </div>
                 ))}
-                {phrases.length === 0 && (
-                    <div style={{ textAlign: 'center', padding: '1rem', color: 'var(--ars-color-text-secondary)', fontSize: '0.875rem' }}>
-                        No saved phrases.
-                    </div>
-                )}
-            </div>
+                {
+                    phrases.length === 0 && (
+                        <div style={{ textAlign: 'center', padding: '1rem', color: 'var(--ars-color-text-secondary)', fontSize: '0.875rem' }}>
+                            No saved phrases.
+                        </div>
+                    )
+                }
+            </div >
 
-            {isAdding ? (
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', borderTop: '1px solid var(--ars-color-border)', paddingTop: '1rem' }}>
-                    <Input
-                        placeholder="Label (Optional)"
-                        value={newLabel}
-                        onChange={(e) => setNewLabel(e.target.value)}
-                        autoFocus
-                    />
-                    <Input
-                        placeholder="Phrase content..."
-                        value={newContent}
-                        onChange={(e) => setNewContent(e.target.value)}
-                    />
-                    <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'flex-end' }}>
-                        <Button size="sm" variant="ghost" onClick={() => setIsAdding(false)}>Cancel</Button>
-                        <Button size="sm" variant="primary" onClick={handleAdd}>Add</Button>
-                    </div>
-                </div>
-            ) : (
-                <Button
-                    variant="secondary"
-                    size="sm"
-                    style={{ width: '100%' }}
-                    onClick={() => setIsAdding(true)}
-                    icon={<Plus size={14} />}
-                >
-                    Add New Phrase
-                </Button>
-            )}
-        </div>
+            {
+                isAdding ? (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', borderTop: '1px solid var(--ars-color-border)', paddingTop: '1rem' }} >
+                        <Input
+                            placeholder="Label (Optional)"
+                            value={newLabel}
+                            onChange={(e) => setNewLabel(e.target.value)}
+                            autoFocus
+                        />
+                        <Input
+                            placeholder="Phrase content..."
+                            value={newContent}
+                            onChange={(e) => setNewContent(e.target.value)}
+                        />
+                        <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'flex-end' }}>
+                            <Button size="sm" variant="ghost" onClick={() => setIsAdding(false)}>Cancel</Button>
+                            <Button size="sm" variant="primary" onClick={handleAdd}>Add</Button>
+                        </div>
+                    </div >
+                ) : (
+                    <Button
+                        variant="secondary"
+                        size="sm"
+                        style={{ width: '100%' }}
+                        onClick={() => setIsAdding(true)}
+                        icon={<Plus size={14} />}
+                    >
+                        Add New Phrase
+                    </Button>
+                )}
+        </div >
     );
 };

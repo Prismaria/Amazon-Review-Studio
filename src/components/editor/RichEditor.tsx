@@ -42,6 +42,13 @@ export const RichEditor: React.FC<RichEditorProps> = ({
         valueRef.current = value;
     }, [value]);
 
+    // Implementation of Auto-Focus setting
+    useEffect(() => {
+        if (settings.autoFocus && textareaRef.current) {
+            textareaRef.current.focus();
+        }
+    }, []); // Only on first mount
+
     const bulletStyle = settings.amazon_bullet_style || '•';
 
     // Sync prop changes to local state
@@ -464,7 +471,7 @@ export const RichEditor: React.FC<RichEditorProps> = ({
             />
             <div className="ars-editor-footer">
                 <div className="ars-editor-options">
-                    <label className="ars-checkbox-label" title="Automatically resize textbox to fit content">
+                    <label className="ars-checkbox-label">
                         <input
                             type="checkbox"
                             checked={isAutoResize}

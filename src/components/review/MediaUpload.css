@@ -132,6 +132,7 @@
 }
 
 .ars-media-thumbnail-image {
+    position: relative;
     width: 100%;
     height: 100%;
     background-size: cover;
@@ -140,13 +141,13 @@
 }
 
 .ars-media-thumbnail-remove {
-    position: absolute;
+    position: absolute !important;
     top: 4px;
     right: 4px;
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.4);
     color: white;
     border: none;
     display: flex;
@@ -190,4 +191,77 @@
         transform: translateY(0);
         animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
     }
+}
+
+.ars-media-upload-progress-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.ars-media-upload-progress {
+    /* transform: rotate(-90deg); */ /* Start the progress from the top */
+    margin-bottom: 5px;
+}
+
+.ars-media-upload-progress circle {
+    transition: stroke-dashoffset 0.3s ease-in-out;
+}
+
+.in-context-ryp__media-duration-container {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.in-context-ryp__media-duration-container img {
+    height: 9px; /* Adjust as needed */
+    width: 9px; /* Adjust as needed */
+    vertical-align: middle;
+}
+
+.ars-media-upload-validation-alert {
+    margin-top: 1rem;
+}
+
+.ars-media-upload-validation-alert .a-alert-container {
+    display: flex;
+    align-items: center;
+    position: relative; /* For positioning the dismiss button */
+    padding-right: 40px; /* Make space for the dismiss button */
+}
+
+.ars-alert-dismiss-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    color: #565959; /* Amazon's default text color */
+    transition: color 0.2s ease;
+}
+
+.ars-alert-dismiss-btn:hover {
+    color: #FF9900; /* Amazon's highlight color */
 }

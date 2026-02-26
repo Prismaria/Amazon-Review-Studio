@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useSettings } from '../../hooks/useSettings';
 import { Maximize2 } from 'lucide-react';
+import { TooltipPositioner } from './TooltipPositioner';
 
 interface ScalingWrapperProps {
     children: React.ReactNode;
@@ -88,13 +89,14 @@ export const ScalingWrapper: React.FC<ScalingWrapperProps> = ({ children }) => {
     return (
         <div
             ref={containerRef}
-            className={`ars-scaling-wrapper ${isResizing ? 'is-resizing' : ''} ${settings.dark_mode ? 'ars-dark-mode' : ''}`}
+            className={`ars-scaling-wrapper ${isResizing ? 'is-resizing' : ''} ${settings.dark_mode ? 'ars-dark-mode' : ''} ${!settings.amazon_ui_show_tooltips ? 'ars-tooltips-disabled' : ''}`}
             style={{
                 height: compHeight || 'auto',
                 width: '100%',
                 position: 'relative'
             }}
         >
+            <TooltipPositioner />
             <div
                 className="ars-scaling-content"
                 style={{
@@ -122,7 +124,6 @@ export const ScalingWrapper: React.FC<ScalingWrapperProps> = ({ children }) => {
                         className="ars-resize-handle"
                         onMouseDown={startResize}
                         onDoubleClick={() => setSetting('amazon_ui_scale', 1.0)}
-                        title="Drag to scale down, double-click to reset"
                     />
                 </div>
             </div>

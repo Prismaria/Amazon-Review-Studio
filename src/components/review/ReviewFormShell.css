@@ -189,15 +189,15 @@
     }
 }
 
-.ars-twinkle-1 {
+.ars-action-button.active .ars-twinkle-1 {
     animation: ars-twinkle 3s ease-in-out infinite;
 }
 
-.ars-twinkle-2 {
+.ars-action-button.active .ars-twinkle-2 {
     animation: ars-twinkle 4s ease-in-out infinite 0.7s;
 }
 
-.ars-twinkle-3 {
+.ars-action-button.active .ars-twinkle-3 {
     animation: ars-twinkle 2.5s ease-in-out infinite 1.2s;
 }
 

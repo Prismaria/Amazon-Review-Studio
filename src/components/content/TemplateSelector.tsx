@@ -29,7 +29,7 @@ export const TemplateSelector: React.FC<TemplateSelectorProps> = ({
 
         setSyncState('syncing');
         const result = await syncTemplatesToCloud();
-        
+
         if (result.success) {
             setSyncState('synced');
             // State will naturally reset when the popover closes/unmounts
@@ -65,18 +65,18 @@ export const TemplateSelector: React.FC<TemplateSelectorProps> = ({
                 <h3 style={{ margin: 0, fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     <Layout size={16} /> Templates
                 </h3>
-                
+
                 {/* Sync Pill Badge */}
-                <div 
+                <div
                     onClick={handleSync}
                     className={`
-                        flex items-center gap-1.5 px-2 py-1 rounded-full text-[10px] font-semibold cursor-pointer transition-all border
-                        ${syncState === 'synced' 
-                            ? 'bg-green-50 text-green-700 border-green-200' 
+                        ars-tooltip flex items-center gap-1.5 px-2 py-1 rounded-full text-[10px] font-semibold cursor-pointer transition-all border
+                        ${syncState === 'synced'
+                            ? 'bg-green-50 text-green-700 border-green-200'
                             : 'bg-gray-50 text-gray-600 border-gray-200 hover:bg-gray-100'
                         }
                     `}
-                    title="Sync Templates to Cloud"
+                    data-tooltip="Sync Templates to Cloud"
                 >
                     {syncState === 'syncing' ? (
                         <RefreshCw size={10} className="animate-spin text-orange-500" />
@@ -85,7 +85,7 @@ export const TemplateSelector: React.FC<TemplateSelectorProps> = ({
                     ) : (
                         <RefreshCw size={10} />
                     )}
-                    
+
                     <span>
                         {syncState === 'syncing' ? 'Syncing...' : syncState === 'synced' ? 'Synced' : 'Sync'}
                     </span>

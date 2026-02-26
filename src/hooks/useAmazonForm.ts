@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { imageStorage } from '../services/imageStorage';
 import { useSettings } from './useSettings';
+import { Thumbnail } from '../components/review/MediaUpload';
 
 /** Amazon form element selectors */
 const SELECTORS = {
@@ -24,6 +25,13 @@ const SELECTORS = {
     productTitle: '.in-context-ryp__product-title',
     productName: '.in-context-ryp__product-name, .ryp__product-title',
     submitBtn: '.ryp-submit-button-desktop input[type="submit"], .ryp__submit-button input[type="submit"]',
+    // New selectors for progress
+    thumbnailProgressOverlay: '.in-context-ryp__thumbnail-progress-overlay',
+    mediaUploadProgressSvg: '.in-context-ryp__media-upload-progress',
+    mediaUploadProgressBar: '#ryp__progress-bar__upper-circle', // The circle element with stroke-dashoffset
+    mediaDurationContainer: '.in-context-ryp__media-duration-container',
+    mediaDurationLabel: '.in-context-ryp__media-duration-label',
+    validationAlert: '.in-context-ryp-validation-alert .a-alert-content span.a-size-base',
 } as const;
 
 /** Scoped query - searches within container first, then document */
@@ -39,7 +47,7 @@ export interface AmazonFormState {
     reviewText: string;
     reviewTitle: string;
     starRating: number;
-    mediaThumbnails: string[];
+    mediaThumbnails: Thumbnail[];
 }
 
 export interface AmazonFormElements {
@@ -92,6 +100,7 @@ export interface UseAmazonFormResult {
     lastSaved: Date | null;
     /** Error message if the page is an error state */
     error: AmazonError | null;
+    validationAlert: string | null;
 }
 
 const emptyProfile = { avatarSrc: '', name: '', editLinkHref: '#' };
@@ -273,6 +282,7 @@ export function useAmazonForm(): UseAmazonFormResult {
         mediaThumbnails: [],
     });
     const [error, setError] = useState<AmazonError | null>(null);
+    const [validationAlert, setValidationAlert] = useState<string | null>(null);
 
     const elementsRef = useRef<AmazonFormElements>({
         form: null,
@@ -331,10 +341,10 @@ export function useAmazonForm(): UseAmazonFormResult {
         const mediaInput = elementsRef.current.mediaInput;
         if (!mediaInput) return;
 
-        // If we have multiple files, we should ideally trigger them one by one
-        // to ensure Amazon's React state processes each one.
         const fileList = files instanceof FileList ? Array.from(files) : files;
 
+        // If we have multiple files, we should ideally trigger them one by one
+        // to ensure Amazon's React state processes each one.
         const uploadNext = (index: number) => {
             if (index >= fileList.length) return;
 
@@ -418,11 +428,7 @@ export function useAmazonForm(): UseAmazonFormResult {
         const mediaInput = query<HTMLInputElement>(SELECTORS.media, root);
         const submitBtn = query<HTMLInputElement>(SELECTORS.submitBtn, root);
 
-        if (!submitBtn) {
-            console.warn('[ARS] Submit button not found with primary selector. Trying loose search...');
-        } else {
-            // console.log('[ARS] Submit button found:', submitBtn);
-        }
+
 
         elementsRef.current = { form, textarea, titleInput, mediaInput, submitBtn };
 
@@ -522,37 +528,83 @@ export function useAmazonForm(): UseAmazonFormResult {
         }
 
         /** Scrape thumbnails periodically or on change */
-        const scrapeThumbnails = () => {
+        const scrapeThumbnails = (): Thumbnail[] => {
             const container = query(SELECTORS.thumbnails, root);
             if (!container) return [];
 
             const wrappers = queryAll(SELECTORS.thumbnailWrapper, container);
             return wrappers.map(wrapper => {
                 const img = query<HTMLElement>(SELECTORS.thumbnailImage, wrapper);
-                if (!img) return '';
-                // Amazon uses background-image on a div for thumbnails
+                if (!img) return null;
                 const bg = img.style.backgroundImage;
                 const match = bg.match(/url\(["']?(.*?)["']?\)/);
-                return match ? match[1] : '';
-            }).filter(Boolean);
+                const src = match ? match[1] : '';
+
+                // Check for Amazon's native progress indicator
+                const progressSvg = query<SVGElement>(SELECTORS.mediaUploadProgressSvg, wrapper);
+                const progressBar = query<SVGCircleElement>(SELECTORS.mediaUploadProgressBar, wrapper);
+
+                let isUploading = false;
+                let progress = 100;
+                let duration: string | undefined;
+
+                // Scrape video duration
+                const durationEl = query<HTMLElement>(SELECTORS.mediaDurationLabel, wrapper);
+                if (durationEl) {
+                    duration = durationEl.textContent?.trim() || undefined;
+                }
+
+                if (progressSvg && progressBar) {
+                    const strokeDasharray = parseFloat(progressBar.getAttribute('stroke-dasharray') || '0');
+                    const strokeDashoffset = parseFloat(progressBar.getAttribute('stroke-dashoffset') || '0');
+
+                    if (strokeDasharray > 0) {
+                        // Amazon's progress is inverse (offset decreases as progress increases)
+                        const calculatedProgress = 100 - (strokeDashoffset / strokeDasharray) * 100;
+                        progress = Math.max(0, Math.min(100, Math.round(calculatedProgress)));
+                        isUploading = progress < 100;
+                    } else {
+                        // If dasharray is 0, consider it not uploading or already complete
+                        isUploading = false;
+                        progress = 100;
+                    }
+                }
+
+                if (!src) return null; // Only return if there's an image src
+
+                return { src, isUploading, progress, duration };
+            }).filter(Boolean) as Thumbnail[];
         };
 
         const currentMedia = scrapeThumbnails();
         const currentStars = getAmazonStarRating(root);
 
         setState(s => {
-            const thumbnailsMatch = s.mediaThumbnails.length === currentMedia.length &&
-                s.mediaThumbnails.every((val, index) => val === currentMedia[index]);
+            const scrapedThumbnails = scrapeThumbnails();
+            const currentStars = getAmazonStarRating(root);
+
+            const thumbnailsMatch = s.mediaThumbnails.length === scrapedThumbnails.length &&
+                s.mediaThumbnails.every((val, index) =>
+                    val.src === scrapedThumbnails[index].src &&
+                    val.isUploading === scrapedThumbnails[index].isUploading &&
+                    val.progress === scrapedThumbnails[index].progress
+                );
 
             const starsMatch = s.starRating === currentStars;
 
-            // Once initialized, we don't scrape text/title from DOM to avoid undo-loops
-            // unless the form was just found
             if (thumbnailsMatch && (starsMatch || currentStars === 0)) return s;
 
             return {
                 ...s,
-                mediaThumbnails: currentMedia,
+                mediaThumbnails: scrapedThumbnails,
+                starRating: currentStars || s.starRating
+            };
+
+            if (thumbnailsMatch && (starsMatch || currentStars === 0)) return s;
+
+            return {
+                ...s,
+                mediaThumbnails: uniqueNextThumbnails,
                 starRating: currentStars || s.starRating
             };
         });
@@ -603,6 +655,14 @@ export function useAmazonForm(): UseAmazonFormResult {
             });
         } else {
             setError(null);
+        }
+
+        // Validation alert detection
+        const validationAlertEl = query<HTMLSpanElement>(SELECTORS.validationAlert, root);
+        if (validationAlertEl) {
+            setValidationAlert(validationAlertEl.textContent?.trim() || null);
+        } else {
+            setValidationAlert(null);
         }
     }, [settings.amazon_auto_save_images]);
 
@@ -848,5 +908,6 @@ export function useAmazonForm(): UseAmazonFormResult {
         syncStatus,
         lastSaved,
         error,
+        validationAlert,
     };
 }

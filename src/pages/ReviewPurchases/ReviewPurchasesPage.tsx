@@ -13,29 +13,21 @@ import { LayoutMode } from './types';
 import { ScalingWrapper } from '../../components/common/ScalingWrapper';
 import { useAmazonForm } from '../../hooks/useAmazonForm';
 
-const StarsIcon = ({ size = 20, className = "" }: { size?: number, className?: string }) => (
+const StarsIcon = ({ size = 22, className = "" }: { size?: number, className?: string }) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         width={size}
         height={size}
-        viewBox="0 0 24 24"
+        viewBox="0 0 100 100"
         fill="currentColor"
         className={className}
     >
-        {/* Large Crescent Moon at Bottom Left - Adjusted to fit 24x24 */}
-        <path d="M11 21c-4.97 0-9-4.03-9-9s4.03-9 9-9c.83 0 1.62.11 2.37.32-2.18 1.39-3.62 3.8-3.62 6.5s1.44 5.11 3.62 6.5c-.75.21-1.54.32-2.37.32z" />
-
-        {/* Sprinkled Stars */}
-        <circle cx="18" cy="5" r="1.2" />
-        <circle cx="21" cy="9" r="0.8" />
-        <circle cx="15" cy="4" r="0.6" />
-        <circle cx="22" cy="3" r="0.5" />
-        <circle cx="17" cy="11" r="0.7" />
-        <circle cx="20" cy="16" r="0.6" />
-
-        {/* 4-pointed sparkles */}
-        <path d="M19 14l.3 1.1 1.1.3-1.1.3-.3 1.1-.3-1.1-1.1-.3 1.1-.3z" />
-        <path d="M12 7l.2.8.8.2-.8.2-.2.8-.2-.8-.8-.2.8-.2z" />
+        {/* Large center star — outlined like Moon icon */}
+        <path d="M45,17 L52,37 L73,38 L57,51 L63,72 L45,60 L27,72 L33,51 L17,38 L38,37 Z" fill="none" stroke="currentColor" strokeWidth="4.5" strokeLinejoin="round" className="ars-twinkle-1" />
+        {/* Medium upper-right star */}
+        <path d="M80,8 L83,17 L93,17 L85,23 L88,32 L80,26 L72,32 L75,23 L67,17 L77,17 Z" className="ars-twinkle-2" />
+        {/* Small lower-left star */}
+        <path d="M22,68 L25,76 L34,76 L27,81 L30,90 L22,85 L14,90 L17,81 L10,76 L19,76 Z" className="ars-twinkle-3" />
     </svg>
 );
 
@@ -142,7 +134,7 @@ const ReviewPurchasesContent: React.FC = () => {
                     <div className="absolute top-1/2 -translate-y-1/2 right-8 flex items-center gap-2">
                         <button
                             type="button"
-                            className={`p-2.5 rounded-xl transition-all ${settings.amazon_ui_lights_off
+                            className={`p-2.5 rounded-xl transition-all ars-tooltip ars-tooltip-left ${settings.amazon_ui_lights_off
                                 ? 'bg-amber-500/10 text-amber-500 font-bold'
                                 : 'text-gray-400 hover:bg-gray-100 hover:text-gray-600'
                                 } ${settings.dark_mode ? '!text-yellow-400' : ''}`}
@@ -156,15 +148,15 @@ const ReviewPurchasesContent: React.FC = () => {
                             }}
                             onTouchStart={handleLightsPressStart}
                             onTouchEnd={handleLightsPressEnd}
-                            title={settings.dark_mode ? "Dark Mode On (Long Press to Toggle)" : "Lights Off (Long Press for Dark Mode)"}
+                            data-tooltip={settings.dark_mode ? "Dark Mode On (Long Press to Toggle)" : "Lights Off (Long Press for Dark Mode)"}
                         >
                             {settings.dark_mode ? <StarsIcon size={20} /> : <Moon size={20} />}
                         </button>
                         <button
                             type="button"
-                            className="p-2.5 text-gray-400 hover:bg-gray-100 hover:text-gray-600 rounded-xl transition-all"
+                            className="p-2.5 text-gray-400 hover:bg-gray-100 hover:text-gray-600 rounded-xl transition-all ars-tooltip ars-tooltip-left"
                             onClick={() => setIsSettingsOpen(true)}
-                            title="Settings"
+                            data-tooltip="Settings"
                         >
                             <Settings size={20} />
                         </button>
@@ -259,21 +251,21 @@ const ReviewPurchasesContent: React.FC = () => {
                             <div className={`p-1 rounded-xl flex items-center gap-1 border shadow-sm bg-gray-50 border-gray-100`}>
                                 <button
                                     onClick={() => setLayoutMode('grid')}
-                                    className={`p-1.5 rounded-lg transition-all ${layoutMode === 'grid'
+                                    className={`p-1.5 rounded-lg transition-all ars-tooltip ${layoutMode === 'grid'
                                         ? 'bg-amber-600 text-white shadow-sm shadow-amber-900/20'
                                         : 'text-gray-400 hover:text-gray-600'
                                         }`}
-                                    title="Grid View"
+                                    data-tooltip="Grid View"
                                 >
                                     <LayoutGrid size={16} />
                                 </button>
                                 <button
                                     onClick={() => setLayoutMode('list')}
-                                    className={`p-1.5 rounded-lg transition-all ${layoutMode === 'list'
+                                    className={`p-1.5 rounded-lg transition-all ars-tooltip ${layoutMode === 'list'
                                         ? 'bg-amber-600 text-white shadow-sm shadow-amber-900/20'
                                         : 'text-gray-400 hover:text-gray-600'
                                         }`}
-                                    title="List View"
+                                    data-tooltip="List View"
                                 >
                                     <List size={16} />
                                 </button>

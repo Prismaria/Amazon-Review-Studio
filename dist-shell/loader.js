@@ -8,10 +8,15 @@
 
     const STORAGE_KEY = 'ars_userscript_data';
 
-    // Pre-fetch storage to make GM_getValue "synchronous" for the userscript initialization
+    // Pre-fetch storage to make settings available to the userscript initialization
     const result = await new Promise((resolve) => {
-        chrome.storage.local.get([STORAGE_KEY], (res) => {
-            resolve(res[STORAGE_KEY] || {});
+        chrome.storage.local.get([STORAGE_KEY, 'arsSettings', 'userRole', 'amazonRegion'], (res) => {
+            const data = res[STORAGE_KEY] || {};
+            // Inject top-level settings into the cache so GM_getValue can find them
+            data.arsSettings = res.arsSettings || {};
+            data.userRole = res.userRole || null;
+            data.amazonRegion = res.amazonRegion || '.com';
+            resolve(data);
         });
     });
 

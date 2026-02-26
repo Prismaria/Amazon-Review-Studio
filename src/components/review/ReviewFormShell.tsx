@@ -55,6 +55,10 @@ export const ReviewFormShell: React.FC = () => {
     const { settings, setSetting } = useSettings();
     const [isAIModalOpen, setIsAIModalOpen] = useState(false);
     const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+
+    // Persistence for Lights Out mode
+    const lightsOut = settings.amazon_ui_lights_off;
+
     const [showPasteFeedback, setShowPasteFeedback] = useState(false);
     const [isGeneratingTitle, setIsGeneratingTitle] = useState(false);
 
@@ -87,7 +91,7 @@ export const ReviewFormShell: React.FC = () => {
     // Typing Simulation logic for Demo Mode
     useEffect(() => {
         const styleId = 'ars-lights-off-global';
-        if (settings.amazon_ui_lights_off) {
+        if (lightsOut) {
             if (!document.getElementById(styleId)) {
                 const styleEl = document.createElement('style');
                 styleEl.id = styleId;
@@ -132,7 +136,7 @@ export const ReviewFormShell: React.FC = () => {
             const el = document.getElementById(styleId);
             if (el) el.remove();
         };
-    }, [settings.amazon_ui_lights_off]);
+    }, [lightsOut]);
 
     useEffect(() => {
         if (!showPasteFeedback) return;
@@ -310,7 +314,7 @@ export const ReviewFormShell: React.FC = () => {
                                 <label className="ars-form-label">Write a review</label>
                                 <SaveIndicator status={amazon.syncStatus} />
                             </div>
-                            {settings.amazon_ai_enabled && (
+                            {settings.amazon_ai_enabled && (settings.amazon_ai_unlocked || __IS_PERSONAL_BUILD__) && (
                                 <Button
                                     variant="outline"
                                     size="sm"
@@ -344,6 +348,7 @@ export const ReviewFormShell: React.FC = () => {
                             onRemove={amazon.removeMedia}
                             showPasteFeedback={showPasteFeedback}
                             placeholder="Drag-and-drop or Crtl+V your images here!"
+                            validationAlert={amazon.validationAlert}
                         />
                     </div>
 
@@ -445,6 +450,7 @@ export const ReviewFormShell: React.FC = () => {
             {/* Footer Actions / Corner Controls */}
             <div className="ars-header-actions">
                 <button
+                    id="ars-lights-toggle"
                     type="button"
                     className={`ars-action-button ${settings.amazon_ui_lights_off ? 'active' : ''}`}
                     onMouseDown={handleLightsPressStart}
@@ -458,11 +464,11 @@ export const ReviewFormShell: React.FC = () => {
                     onTouchStart={handleLightsPressStart}
                     onTouchEnd={handleLightsPressEnd}
                     aria-label={settings.dark_mode ? "Dark Mode On (Long Press to Toggle)" : "Lights Off"}
-                    title="Lights Off (Long Press for Dark Mode)"
                 >
                     {settings.dark_mode ? <StarsIcon size={22} /> : <Moon size={18} />}
                 </button>
                 <button
+                    id="ars-settings-toggle"
                     type="button"
                     className="ars-action-button"
                     onClick={() => setIsSettingsOpen(true)}

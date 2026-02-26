@@ -20,6 +20,7 @@ export interface AppSettings {
 
     // Features
     amazon_ai_vision_autoskip: boolean;
+    amazon_ai_unlocked: boolean;
     amazon_ai_skip_length_on_retry: boolean;
     amazon_ai_disable_corruption_detection: boolean;
     amazon_ai_detailed_snowball_enabled: boolean;
@@ -27,6 +28,8 @@ export interface AppSettings {
     amazon_ai_include_images_default: boolean;
 
     // UI Preferences
+    masterEnable: boolean;
+    autoFocus: boolean;
     amazon_review_title_style: 'normal' | 'uppercase' | 'titlecase';
 
     // Custom Templates & Phrases (Stored as JSON strings in localStorage, but parsed here)
@@ -54,6 +57,12 @@ export interface AppSettings {
     debug_native_side_by_side: boolean;
     dark_mode: boolean;
     show_demo_settings: boolean;
+    vine_showReminder: boolean;
+    vine_showEval: boolean;
+    vine_evalAlwaysExpanded: boolean;
+    amazon_ui_show_tooltips: boolean;
+    showGreeting: boolean;
+    dashboardOrder: string[];
 
     // Demo Mode
     demo_enabled: boolean;
@@ -90,11 +99,15 @@ export const DEFAULT_SETTINGS: AppSettings = {
     amazon_ai_main_backoff: 1500,
 
     amazon_ai_vision_autoskip: true,
+    amazon_ai_unlocked: false,
     amazon_ai_skip_length_on_retry: false,
     amazon_ai_disable_corruption_detection: false,
     amazon_ai_detailed_snowball_enabled: false,
     amazon_ai_convert_markdown: true,
     amazon_ai_include_images_default: true,
+
+    masterEnable: true,
+    autoFocus: false,
 
     amazon_review_title_style: 'normal',
     amazon_review_templates: [],
@@ -120,6 +133,12 @@ export const DEFAULT_SETTINGS: AppSettings = {
     debug_native_side_by_side: false,
     dark_mode: false,
     show_demo_settings: false,
+    vine_showReminder: true,
+    vine_showEval: true,
+    vine_evalAlwaysExpanded: false,
+    amazon_ui_show_tooltips: true,
+    showGreeting: true,
+    dashboardOrder: ['greeting', 'evalCountdown', 'stats', 'reminders', 'evalPerformance', 'navigation', 'syncStatus'],
     demo_enabled: false,
     demo_pfp_url: '',
     demo_name: '',

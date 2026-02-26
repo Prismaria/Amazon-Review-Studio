@@ -505,6 +505,7 @@ export const EditorToolbar: React.FC<EditorToolbarProps> = ({
                                 onClick={() => setShowCloudPopover(!showCloudPopover)}
                                 title="Cloud Sync"
                                 className="ars-toolbar-btn"
+                                tooltipPlacement="left"
                             >
                                 <Cloud size={16} />
                             </Button>
@@ -571,7 +572,7 @@ export const EditorToolbar: React.FC<EditorToolbarProps> = ({
                                                 <div className="ars-popover-item w-full flex items-center justify-between p-2 hover:bg-gray-100 rounded text-sm transition-colors cursor-pointer" onClick={handlePrivacyToggle}>
                                                     <div className="flex items-center gap-2">
                                                         <Settings size={14} className="text-blue-500" />
-                                                        <span title="Encrypts review before saving">Privacy Mode {settings.amazon_pastebin_privacy_mode ? '(ON)' : '(OFF)'}</span>
+                                                        <span className="ars-tooltip" data-tooltip="Encrypts review before saving">Privacy Mode {settings.amazon_pastebin_privacy_mode ? '(ON)' : '(OFF)'}</span>
                                                     </div>
                                                     <div className={`w-8 h-4 rounded-full p-0.5 transition-colors ${settings.amazon_pastebin_privacy_mode ? 'bg-blue-500' : 'bg-gray-300'}`}>
                                                         <div className={`bg-white w-3 h-3 rounded-full shadow-sm transform transition-transform ${settings.amazon_pastebin_privacy_mode ? 'translate-x-4' : 'translate-x-0'}`} />

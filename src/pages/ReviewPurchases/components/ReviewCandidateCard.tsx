@@ -62,8 +62,8 @@ export const ReviewCandidateCard: React.FC<Props> = ({ candidate, layoutMode }) 
                     href={productUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="w-10 h-10 shrink-0 flex items-center justify-center"
-                    title="View Product Page"
+                    className="w-10 h-10 shrink-0 flex items-center justify-center ars-tooltip"
+                    data-tooltip="View Product Page"
                 >
                     <img
                         src={candidate.imageUrl}
@@ -141,8 +141,8 @@ export const ReviewCandidateCard: React.FC<Props> = ({ candidate, layoutMode }) 
                 href={productUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="w-28 shrink-0 p-2 flex items-center justify-center"
-                title="View Product Page"
+                className="w-28 shrink-0 p-2 flex items-center justify-center ars-tooltip"
+                data-tooltip="View Product Page"
             >
                 <div className="w-full h-full relative">
                     <img
@@ -215,8 +215,8 @@ export const ReviewCandidateCard: React.FC<Props> = ({ candidate, layoutMode }) 
 
                                 <button
                                     onClick={handleReset}
-                                    className={`p-1.5 rounded-lg transition-colors flex items-center justify-center bg-gray-100 hover:bg-gray-200 text-gray-500 hover:text-gray-700`}
-                                    title="Reset Rating"
+                                    className={`p-1.5 rounded-lg transition-colors flex items-center justify-center bg-gray-100 hover:bg-gray-200 text-gray-500 hover:text-gray-700 ars-tooltip ars-tooltip-left`}
+                                    data-tooltip="Reset Rating"
                                 >
                                     <RotateCcw size={14} />
                                 </button>
