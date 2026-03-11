@@ -23,6 +23,7 @@ export interface AppSettings {
     amazon_ai_unlocked: boolean;
     amazon_ai_skip_length_on_retry: boolean;
     amazon_ai_disable_corruption_detection: boolean;
+    bypass_char_limit: boolean;
     amazon_ai_detailed_snowball_enabled: boolean;
     amazon_ai_convert_markdown: boolean;
     amazon_ai_include_images_default: boolean;
@@ -38,8 +39,6 @@ export interface AppSettings {
 
     // Pastebin Configuration
     amazon_pastebin_api_dev_key: string;
-    amazon_pastebin_api_user_name: string;
-    amazon_pastebin_api_user_password: string;
     amazon_pastebin_api_user_key: string;
     amazon_pastebin_recovery_id: string;
     amazon_pastebin_privacy_mode: boolean;
@@ -102,6 +101,7 @@ export const DEFAULT_SETTINGS: AppSettings = {
     amazon_ai_unlocked: false,
     amazon_ai_skip_length_on_retry: false,
     amazon_ai_disable_corruption_detection: false,
+    bypass_char_limit: false,
     amazon_ai_detailed_snowball_enabled: false,
     amazon_ai_convert_markdown: true,
     amazon_ai_include_images_default: true,
@@ -114,8 +114,6 @@ export const DEFAULT_SETTINGS: AppSettings = {
     amazon_review_phrases: [],
 
     amazon_pastebin_api_dev_key: '',
-    amazon_pastebin_api_user_name: '',
-    amazon_pastebin_api_user_password: '',
     amazon_pastebin_api_user_key: '',
     amazon_pastebin_recovery_id: '',
     amazon_pastebin_privacy_mode: false,

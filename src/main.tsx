@@ -24,7 +24,7 @@ const HIDE_CSS = `
 function injectHidingStyle() {
     // @ts-ignore
     const arsSettings = typeof GM_getValue !== 'undefined' ? GM_getValue('arsSettings', {}) : {};
-    if (arsSettings.masterEnable === false) return;
+    if ((arsSettings as any).masterEnable === false) return;
 
     const debugUnhide = settingsService.get('debug_unhide_native');
     const existing = document.getElementById('ars-anti-flicker');
@@ -60,7 +60,7 @@ const CONTAINER_SELECTORS = [
     '[data-hook="ryp-error-page-text"]', // Error page
 ] as const;
 
-function detectPageType(): 'listing' | 'review' {
+function detectPageType(): 'listing' | 'review' | 'error' {
     const path = window.location.pathname;
     const searchParams = new URLSearchParams(window.location.search);
     const hasAsin = searchParams.has('asin');
@@ -272,20 +272,55 @@ function restoreAmazonReviewUI() {
     }
 }
 
+let cheatCodeListenerAdded = false;
 function watchAndMount() {
-    // Expose unlockAI cheat code
-    (window as any).unlockAI = () => {
-        // @ts-ignore
-        const settings = typeof GM_getValue !== 'undefined' ? GM_getValue('arsSettings', {}) : {};
-        settings.amazon_ai_unlocked = true;
-        // @ts-ignore
-        GM_setValue('arsSettings', settings);
-        alert("Review Studio AI Features Unlocked! Please refresh the page.");
-    };
+    // Cheat code event listener
+    if (!cheatCodeListenerAdded) {
+        window.addEventListener('arsCheatCode', (event: any) => {
+            const action = event.detail.action;
+
+            if (action === 'unlockAI') {
+                const current = settingsService.get('amazon_ai_unlocked');
+                const newValue = !current;
+                settingsService.set('amazon_ai_unlocked', newValue);
+
+                // Also update the merged 'arsSettings' for any components still relying on it
+                // @ts-ignore
+                const arsSettings = typeof GM_getValue !== 'undefined' ? GM_getValue('arsSettings', {}) : {};
+                // @ts-ignore
+                if (typeof GM_setValue !== 'undefined') GM_setValue('arsSettings', arsSettings);
+
+                alert(
+                    newValue
+                        ? "Review Studio AI Features Unlocked! Please refresh the page."
+                        : "Review Studio AI Features locked again. Please refresh the page."
+                );
+            } else if (action === 'bypassCharLimit') {
+                const current = settingsService.get('bypass_char_limit');
+                const newValue = !current;
+                settingsService.set('bypass_char_limit', newValue);
+
+                // Also update the merged 'arsSettings'
+                // @ts-ignore
+                const arsSettings = typeof GM_getValue !== 'undefined' ? GM_getValue('arsSettings', {}) : {};
+                // @ts-ignore
+                if (typeof GM_setValue !== 'undefined') GM_setValue('arsSettings', arsSettings);
+
+                alert(
+                    newValue
+                        ? "AI character limit bypassed! Please refresh the page."
+                        : "AI character limit restored. Please refresh the page."
+                );
+            }
+
+            window.dispatchEvent(new CustomEvent('ars-settings-changed'));
+        });
+        cheatCodeListenerAdded = true;
+    }
 
     // @ts-ignore
     const arsSettings = typeof GM_getValue !== 'undefined' ? GM_getValue('arsSettings', {}) : {};
-    if (arsSettings.masterEnable === false) {
+    if ((arsSettings as any).masterEnable === false) {
         // If it was already mounted or hiding styles were injected, clean them up
         const existingRoot = document.getElementById(MOUNT_ID);
         if (existingRoot) existingRoot.remove();

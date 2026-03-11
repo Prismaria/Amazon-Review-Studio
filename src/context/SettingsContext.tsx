@@ -40,7 +40,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
             setPhrasesState(DEFAULT_PHRASES);
             localStorage.setItem('amazon_review_phrases', JSON.stringify(DEFAULT_PHRASES));
         }
-        
+
         setIsLoaded(true);
 
         const handleStorageChange = () => {
@@ -52,7 +52,12 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         };
 
         window.addEventListener('storage', handleStorageChange);
-        return () => window.removeEventListener('storage', handleStorageChange);
+        window.addEventListener('ars-settings-changed', handleStorageChange);
+
+        return () => {
+            window.removeEventListener('storage', handleStorageChange);
+            window.removeEventListener('ars-settings-changed', handleStorageChange);
+        };
     }, []);
 
     const setSetting = useCallback(<K extends keyof AppSettings>(key: K, value: AppSettings[K]) => {

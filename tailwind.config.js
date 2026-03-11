@@ -5,7 +5,7 @@ export default {
         './src/**/*.{js,ts,jsx,tsx}',
         './extension-shell/**/*.{js,ts,jsx,tsx,html}'
     ],
-    darkMode: 'class', // Enable class-based dark mode
+    darkMode: ['class', '.ars-dark-mode'],
     theme: {
         extend: {
             colors: {

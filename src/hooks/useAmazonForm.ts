@@ -324,7 +324,9 @@ export function useAmazonForm(): UseAmazonFormResult {
 
         for (let i = 0; i < thumbnails.length; i++) {
             try {
-                const fullUrl = thumbnails[i].replace(/\._.*?(?=\.[a-z]+$)/i, '');
+                // `mediaThumbnails` entries are Thumbnail objects; use their `src` value.
+                const thumb = thumbnails[i];
+                const fullUrl = thumb.src.replace(/\._.*?(?=\.[a-z]+$)/i, '');
                 const dataUrl = await fetchImage(fullUrl);
                 const res = await fetch(dataUrl);
                 const blob = await res.blob();

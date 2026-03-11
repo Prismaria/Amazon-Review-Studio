@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import Swal from 'sweetalert2';
+import { useAlert } from '../context/AlertContext';
 import { useContent } from './useContent';
 import { useSettings } from './useSettings';
 
@@ -9,9 +9,33 @@ const PASTEBIN_API_RAW_URL = 'https://pastebin.com/raw/';
 
 // --- Quota Constants & Helpers ---
 const PASTEBIN_DAILY_LIMIT = 20;
-const PASTEBIN_WARNING_THRESHOLD = 15;
-const PASTEBIN_AUTO_DISABLE_THRESHOLD = 18;
+// const PASTEBIN_WARNING_THRESHOLD = 15;
+// const PASTEBIN_AUTO_DISABLE_THRESHOLD = 18;
 const QUOTA_STORAGE_KEY = 'amazon_review_studio_sync_quota';
+
+/**
+ * Safely decodes a Base64 string, checking for non-Latin1 characters that would cause atob to crash.
+ * This is especially useful for detecting when Pastebin or Cloudflare returns an HTML challenge
+ * instead of the raw paste content.
+ */
+function safeAtob(str: string): string {
+    // Check for characters with code point > 255 (non-Latin1)
+    if (/[^\x00-\xFF]/.test(str)) {
+        // Most common case: Pastebin/Cloudflare challenge page
+        if (str.toLowerCase().includes('<html') || str.toLowerCase().includes('<!doctype') || str.toLowerCase().includes('<script')) {
+            throw new Error('Cloud Sync blocked by Pastebin. Please visit Pastebin.com in a regular browser tab and complete any automated security challenges, then try again.');
+        }
+        throw new Error('The data from Cloud Sync contains invalid characters and cannot be decoded.');
+    }
+
+    try {
+        return atob(str);
+    } catch (e: any) {
+        // If it's a "string is not correctly encoded" or length error
+        throw new Error('Cloud Sync received malformed data (Invalid Base64 format).');
+    }
+}
+
 
 interface SyncQuota {
     date: string;
@@ -45,6 +69,7 @@ function incrementSyncQuota(): number {
 
 export function usePastebin() {
     const { settings, setSetting } = useSettings();
+    const { alert } = useAlert();
     const [isLoading, setIsLoading] = useState(false);
     const { templates, phrases, saveLocalTemplates, saveLocalPhrases } = useContent();
 
@@ -77,25 +102,28 @@ export function usePastebin() {
         }
     };
 
-    const generateUserKey = useCallback(async (username?: string, password?: string, updateRecovery = false) => {
-        const user = username || settings.amazon_pastebin_api_user_name;
-        const pass = password || settings.amazon_pastebin_api_user_password;
+    const generateUserKey = useCallback(async (username: string, password: string) => {
         const devKey = settings.amazon_pastebin_api_dev_key;
-        if (!user || !pass || !devKey) throw new Error('Missing credentials');
+        if (!username || !password || !devKey) throw new Error('Missing credentials');
+
         setIsLoading(true);
         try {
-            const data = new URLSearchParams({ api_dev_key: devKey, api_user_name: user, api_user_password: pass });
+            const data = new URLSearchParams({
+                api_dev_key: devKey,
+                api_user_name: username,
+                api_user_password: password
+            });
+
             const userKey = await apiRequest(PASTEBIN_API_LOGIN_URL, 'POST', data);
-            if (userKey.includes('Bad API request')) throw new Error(userKey);
 
-            setSetting('amazon_pastebin_api_user_name', user);
-            setSetting('amazon_pastebin_api_user_password', pass);
-            setSetting('amazon_pastebin_api_user_key', userKey);
-
-            if (updateRecovery) {
-                // We'll call saveUserKeyToCloud separately in the UI to keep logic clean, 
-                // but we could also do it here. For now just returning the key.
+            if (userKey.includes('Bad API request')) {
+                // Handle specific Pastebin errors gracefully
+                if (userKey.includes('invalid login')) throw new Error('Invalid Pastebin username or password.');
+                throw new Error(userKey);
             }
+
+            // ONLY save the secure session key. Never save the password.
+            setSetting('amazon_pastebin_api_user_key', userKey);
 
             return userKey;
         } catch (error: any) {
@@ -104,6 +132,7 @@ export function usePastebin() {
             setIsLoading(false);
         }
     }, [settings, setSetting]);
+
 
     const createPaste = useCallback(async (title: string, content: string, format = 'json', privacy = '2') => {
         if (!settings.amazon_pastebin_api_dev_key || !settings.amazon_pastebin_api_user_key) throw new Error('Missing Keys');
@@ -146,14 +175,46 @@ export function usePastebin() {
     }, [settings]);
 
     const getPasteContent = useCallback(async (pasteKey: string) => {
+        // Strategy 1: Attempt authenticated API first (more reliable, bypasses raw blocks for owned pastes)
+        if (settings.amazon_pastebin_api_user_key && settings.amazon_pastebin_api_dev_key) {
+            try {
+                const data = new URLSearchParams({
+                    api_option: 'show_paste',
+                    api_dev_key: settings.amazon_pastebin_api_dev_key,
+                    api_user_key: settings.amazon_pastebin_api_user_key,
+                    api_paste_key: pasteKey
+                });
+                const response = await apiRequest(PASTEBIN_API_POST_URL, 'POST', data);
+
+                // If it looks like a valid response (not HTML and not a Pastebin error message)
+                if (response && !response.includes('Bad API request') && !response.toLowerCase().includes('<html')) {
+                    return response;
+                }
+                console.warn('[Cloud Sync] Authenticated content fetch returned invalid response, falling back to raw:', response.substring(0, 100));
+            } catch (authError) {
+                console.warn('[Cloud Sync] Authenticated content fetch failed, falling back to raw:', authError);
+            }
+        }
+
+        // Strategy 2: Fallback to raw endpoint
         try {
             const response = await fetch(`${PASTEBIN_API_RAW_URL}${pasteKey}`);
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
             return await response.text();
         } catch {
-            return await apiRequest(`${PASTEBIN_API_RAW_URL}${pasteKey}`, 'GET');
+            const response = await apiRequest(`${PASTEBIN_API_RAW_URL}${pasteKey}`, 'GET');
+
+            // Check for HTML block page in the raw response
+            if (response.toLowerCase().includes('<html') || response.toLowerCase().includes('<!doctype')) {
+                const isForbidden = response.includes('403') || response.includes('Forbidden');
+                if (isForbidden) {
+                    throw new Error('Pastebin access forbidden (403). The paste might be private or pending moderation. Please ensure you are logged in and the API Key is correct.');
+                }
+                throw new Error('Pastebin returned an HTML page instead of raw data (access blocked by security check).');
+            }
+            return response;
         }
-    }, []);
+    }, [settings.amazon_pastebin_api_user_key, settings.amazon_pastebin_api_dev_key, apiRequest]);
 
     const listPastes = useCallback(async (limit = 100) => {
         if (!settings.amazon_pastebin_api_dev_key || !settings.amazon_pastebin_api_user_key) throw new Error('Not logged in');
@@ -220,7 +281,7 @@ export function usePastebin() {
         try {
             const content = await getPasteContent(id);
             const encoded = content.trim();
-            const decoded = atob(encoded);
+            const decoded = safeAtob(encoded);
 
             if (decoded.length === 32 && /^[a-f0-9]+$/i.test(decoded)) {
                 setSetting('amazon_pastebin_api_user_key', decoded);
@@ -547,7 +608,7 @@ Please do not comment on this paste directly, thank you.
                             encoder.encode(footer)
                         ];
 
-                        const bodyBlob = new Blob(blobParts);
+                        const bodyBlob = new Blob(blobParts as any[]);
 
                         // @ts-ignore
                         GM_xmlhttpRequest({
@@ -624,7 +685,7 @@ Please do not comment on this paste directly, thank you.
                     const successCount = catboxUrls.length;
                     const isFullySuccessful = successCount === imageFiles.length;
 
-                    await Swal.fire({
+                    await alert({
                         title: isFullySuccessful ? 'Catbox Upload Successful' : 'Catbox Upload Incomplete',
                         html: `
                             <div class="text-left font-sans text-sm">
@@ -660,7 +721,7 @@ Please do not comment on this paste directly, thank you.
 
             // Early return for Catbox Debug Mode if we haven't already returned
             if (isDebugOnly) {
-                await Swal.fire({
+                await alert({
                     title: 'Catbox Debug Mode',
                     text: 'Pastebin sync was skipped. No images were provided for Catbox testing.',
                     icon: 'info',
@@ -716,7 +777,7 @@ Please do not comment on this paste directly, thank you.
                         // Support both Base64 and Plain JSON in the same divider structure
                         let decodedJson = payload;
                         if (!payload.startsWith('{')) {
-                            decodedJson = decodeURIComponent(escape(atob(payload)));
+                            decodedJson = decodeURIComponent(escape(safeAtob(payload)));
                         }
                         parsedData = JSON.parse(decodedJson);
                     } catch (decodeErr) {

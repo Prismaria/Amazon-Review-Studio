@@ -22,7 +22,8 @@ export interface AIModalProps {
 }
 
 export const AIModal: React.FC<AIModalProps> = ({ isOpen, onClose, onInsert, productTitle = "", asin, starRating, existingReviewText = "" }) => {
-    const DEVELOPER_ENFORCE_MIN_CHARS = typeof __IS_PERSONAL_BUILD__ !== 'undefined' ? !__IS_PERSONAL_BUILD__ : true;
+    // Always enforce min chars in the UI; the cheat code toggles `settings.bypass_char_limit`.
+    const DEVELOPER_ENFORCE_MIN_CHARS = true;
     const MIN_CHARS = 500;
 
     const { settings, setSetting } = useSettings();
@@ -112,22 +113,28 @@ Formatting Instructions:
 
         let p = `Write a helpful product review for: ${productTitle || 'this product'}.
         
-IMPORTANT: Output ONLY the review content. Do not include any introductory or concluding remarks like "Here is a review" or "I hope this helps". Start directly with the review title or body. 
+        ${additionalInstructions.trim() ? `The user has provided the following additional instructions (tone, style, focus, etc.), YOU MUST FOLLOW THEM EXACTLY:\n${additionalInstructions}\n\n` : ''}IMPORTANT: Output ONLY the review content. Do not include any introductory or concluding remarks like "Here is a review" or "I hope this helps". Start directly with the review title or body. 
 
-RULES: Absolutely NO marketing language, no hype, no exaggerated claims, keep language plain and grounded. Avoid phrases like "game changer", "must have", "look no further", "It's not X, it's Y", or rhetorical questions. You must never use em dashes (—). 
+        RULES: Absolutely NO marketing language, no hype, no exaggerated claims, keep language plain and grounded. Avoid phrases like "game changer", "must have", "look no further", "It's not X, it's Y", or rhetorical questions. You must never use em dashes (—). 
 
-TONE: Write in a candid way, like you're jotting your own thoughts as they come up while using the product. Structure can be loose or out of order. Don’t give an overview of the product or list features; only mention specifics that naturally surfaced during one's use of the product.
+        TONE: Write in a candid way, like you're jotting your own thoughts as they come up while using the product. Structure can be loose or out of order. Don’t give an overview of the product or list features; only mention specifics that naturally surfaced during one's use of the product.
 
-${lengthInstruction}
-${markdownInstruction}`;
+        ${lengthInstruction}
+        ${markdownInstruction}`;
 
         if (productContext?.description) {
-            const desc = productContext.description.slice(0, 500) + (productContext.description.length > 500 ? '...' : '');
+            const desc = (reviewLength === 'long' || reviewLength === 'detailed')
+                ? productContext.description
+                : productContext.description.slice(0, 500) + (productContext.description.length > 500 ? '...' : '');
             p += `\n\n[Product Description]\n${desc}`;
         }
 
         if (productContext?.reviews && productContext.reviews.length > 0) {
-            p += `\n\n[Top Reviews Summary]\n${productContext.reviews.map(r => '- ' + r.slice(0, 150) + '...').join('\n')}`;
+            const reviewsForPrompt = (reviewLength === 'long' || reviewLength === 'detailed')
+                ? productContext.reviews
+                : productContext.reviews.map(r => r.slice(0, 150) + '...');
+
+            p += `\n\n[Top Reviews Summary]\n${reviewsForPrompt.map(r => '- ' + r).join('\n')}`;
         }
 
         if (starRating && starRating > 0) {
@@ -138,10 +145,6 @@ ${markdownInstruction}`;
 
         if (currentThoughts.trim()) {
             p += `\n\nUser's Initial Thoughts / Specific Points to Cover:\n${currentThoughts}`;
-        }
-
-        if (additionalInstructions.trim()) {
-            p += `\n\nAdditional User Instructions (Tone, Focus, etc.):\n${additionalInstructions}`;
         }
 
         return p;
@@ -340,8 +343,7 @@ ${markdownInstruction}`;
                         className="ars-generate-btn mt-3"
                         onClick={handleGenerate}
                         isLoading={isGenerating}
-                        disabled={isGenerating || (DEVELOPER_ENFORCE_MIN_CHARS && (useExistingReview ? existingReviewText.length < MIN_CHARS : userThoughts.length < MIN_CHARS))}
-                        icon={<Sparkles size={18} />}
+                        disabled={isGenerating || (DEVELOPER_ENFORCE_MIN_CHARS && !settings.bypass_char_limit && (useExistingReview ? existingReviewText.length < MIN_CHARS : userThoughts.length < MIN_CHARS))}
                     >
                         Generate Review
                     </Button>

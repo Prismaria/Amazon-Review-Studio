@@ -8,7 +8,7 @@ import { TemplateSelector } from '../content/TemplateSelector';
 import { useSettings } from '../../hooks/useSettings';
 import { usePastebin } from '../../hooks/usePastebin';
 import { SettingsDashboard } from '../settings/SettingsDashboard';
-import Swal from 'sweetalert2';
+import { useAlert } from '../../context/AlertContext';
 
 export interface EditorToolbarProps {
     onStyleToggle: (style: UnicodeStyle) => void;
@@ -46,6 +46,7 @@ export const EditorToolbar: React.FC<EditorToolbarProps> = ({
     const [showBulletSelector, setShowBulletSelector] = useState(false);
 
     const { settings, setSetting } = useSettings();
+    const { alert, confirm } = useAlert();
     const {
         saveReviewToCloud,
         fetchReviewFromCloud,
@@ -130,17 +131,12 @@ export const EditorToolbar: React.FC<EditorToolbarProps> = ({
             setSetting('amazon_pastebin_privacy_mode', false);
         } else {
             const isDark = settings.dark_mode || settings.amazon_ui_lights_off;
-            const result = await Swal.fire({
+            const result = await confirm({
                 title: 'Enable Privacy Mode?',
                 html: 'Privacy Mode encrypts your drafted reviews into a <b>Base64 format</b>.<br><br><span style="color: #d33; font-size: 14px"><b>Warning:</b> Pastebin occasionally flags pastes containing encrypted text. While they usually get approved, some do not, thereby increasing the odds of your Pastebin account being banned. Proceed at your own risk.</span>',
                 icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
                 confirmButtonText: 'Accept Risk & Enable',
-                cancelButtonText: 'Cancel',
-                background: isDark ? '#1f2937' : '#fff',
-                color: isDark ? '#f3f4f6' : '#545454'
+                cancelButtonText: 'Cancel'
             });
 
             if (result.isConfirmed) {

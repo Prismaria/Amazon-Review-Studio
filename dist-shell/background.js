@@ -5,10 +5,18 @@
 
 const ALARM_NAME = 'vine-stats-refresh';
 const SCRAPE_INTERVAL_MINS = 30; // 30 minutes
+const OPTIONS_MENU_ID = 'ars-open-options';
 
 chrome.runtime.onInstalled.addListener(() => {
-    console.log('[ARS Background] Installed. Setting up alarms and CORS rules...');
+    console.log('[ARS Background] Installed. Setting up alarms, context menus, and CORS rules...');
     chrome.alarms.create(ALARM_NAME, { periodInMinutes: SCRAPE_INTERVAL_MINS });
+
+    // Create context menu for the extension icon
+    chrome.contextMenus.create({
+        id: OPTIONS_MENU_ID,
+        title: "Open Dashboard",
+        contexts: ["action"]
+    });
 
     // Help bypass CORS for Catbox by stripping Origin/Referer headers
     if (chrome.declarativeNetRequest) {
@@ -191,6 +199,14 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 });
 
 
+// Handle context menu clicks
+chrome.contextMenus.onClicked.addListener((info, tab) => {
+    if (info.menuItemId === OPTIONS_MENU_ID) {
+        chrome.runtime.openOptionsPage();
+    }
+});
+
+
 async function refreshVineStats() {
     console.log('[ARS Background] Refreshing Vine stats...');
 
@@ -270,71 +286,25 @@ async function refreshVineStats() {
             || ordersHtml.match(/Orders\s*\((\d+)\)/i);
         stats.totalOrders = totalOrdersMatch ? parseInt(totalOrdersMatch[1], 10) : 0;
 
-        // Count requests used today (Requests Used)
-        // We check varied date formats because the background fetch might receive different
-        // locale formatting (e.g. "Feb 18, 2026" vs "2026-02-18") than the browser tab.
-        const today = new Date();
-        const yyyy = today.getFullYear();
-        const mm = String(today.getMonth() + 1).padStart(2, '0');
-        const dd = String(today.getDate()).padStart(2, '0');
-        const shortYear = String(yyyy).slice(-2);
+        // Count requests used today (Requests Used) using 3 AM EST reset threshold
+        const threshold = getQuotaResetThreshold();
+        console.log(`[ARS Background] Daily quota threshold: ${new Date(threshold).toISOString()} (${threshold})`);
 
-        const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        const monthStr = monthNames[today.getMonth()]; // "Feb"
-
-        // Formats to check: YYYY-MM-DD, DD/MM/YYYY, MM/DD/YYYY, Text formats
-        const possibleDates = [
-            `${yyyy}-${mm}-${dd}`,       // 2026-02-18 (ISO/Canada)
-            `${mm}/${dd}/${yyyy}`,       // 02/18/2026 (US)
-            `${dd}/${mm}/${yyyy}`,       // 18/02/2026 (Europe)
-            `${monthStr} ${dd}, ${yyyy}`,// Feb 18, 2026 (US Text)
-            `${dd} ${monthStr} ${yyyy}`, // 18 Feb 2026 (EU Text)
-            `${monthStr} ${parseInt(dd)}, ${yyyy}`, // Feb 18, 2026 (No padding)
-        ];
-
-        console.log(`[ARS Background] Checking for today's date formats:`, possibleDates);
-
-        let foundCount = 0;
-
-        // We look for >DATE< to ensure we are matching the table cell content
-        // We combine counts from all matching formats (though usually only one format is present)
-        possibleDates.forEach(dateStr => {
-            const regex = new RegExp(`>\\s*${dateStr}\\s*<`, 'gi');
-            const matches = ordersHtml.match(regex);
-            if (matches) {
-                console.log(`[ARS Background] Found match for format "${dateStr}": ${matches.length}`);
-                foundCount = matches.length; // Use the count from the matching format
-            }
-        });
-
-        // Strategy 2: Check for data-order-timestamp attributes (more robust)
         const timestampRegex = /data-order-timestamp="(\d+)"/g;
         let tsMatch;
-        let tsCount = 0;
+        let foundCount = 0;
 
         while ((tsMatch = timestampRegex.exec(ordersHtml)) !== null) {
             const ts = parseInt(tsMatch[1], 10);
-            const date = new Date(ts);
-
-            // Check if this timestamp is from "today" (local time)
-            if (date.getFullYear() === today.getFullYear() &&
-                date.getMonth() === today.getMonth() &&
-                date.getDate() === today.getDate()) {
-                tsCount++;
+            if (ts >= threshold) {
+                foundCount++;
             }
         }
 
-        if (tsCount > 0) {
-            console.log(`[ARS Background] Found ${tsCount} orders via data-order-timestamp.`);
-            foundCount = Math.max(foundCount, tsCount);
-        } else {
+        if (foundCount === 0 && ordersHtml.includes('vvp-orders-table--row')) {
+            console.log(`[ARS Background] No orders found since reset, but rows exist. Checking first order for context:`);
             const rowIndex = ordersHtml.indexOf('vvp-orders-table--row');
-            if (rowIndex !== -1) {
-                // Extended lookahead to find the timestamp in case it's further down
-                console.log(`[ARS Debug] First order row context (extended):`, ordersHtml.substring(rowIndex, rowIndex + 1500));
-            } else {
-                console.warn(`[ARS Debug] No 'vvp-orders-table--row' found! Is the table empty?`);
-            }
+            console.log(`[ARS Debug] First order row context:`, ordersHtml.substring(rowIndex, rowIndex + 1000));
         }
 
         stats.requestsUsed = foundCount;
@@ -359,6 +329,36 @@ async function refreshVineStats() {
         await chrome.storage.local.set({ vineStats: errorStats });
         return errorStats;
     }
+}
+
+/**
+ * Calculates the UTC timestamp (ms) for the start of the current "Quota Day" (3 AM ET).
+ * This is "timezone agnostic" as it anchors to ET regardless of user location.
+ */
+function getQuotaResetThreshold() {
+    const now = new Date();
+
+    // Get the current time in New York
+    const nyTimeString = now.toLocaleString("en-US", { timeZone: "America/New_York", hour12: false });
+    // String format: "M/D/YYYY, HH:MM:SS" (e.g., "3/1/2026, 03:13:37")
+    const [datePart, timePart] = nyTimeString.split(", ");
+    const [month, day, year] = datePart.split("/");
+    const [hour] = timePart.split(":");
+
+    // Create a Date object representing 3 AM ET on the CURRENT day in NY
+    const et3AMToday = new Date(new Intl.DateTimeFormat('en-US', {
+        timeZone: 'America/New_York',
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', second: '2-digit',
+        hour12: false
+    }).format(now).replace(/(\d+)\/(\d+)\/(\d+), (\d+):(\d+):(\d+)/, '$3-$1-$2T03:00:00'));
+
+    // If it's currently earlier than 3 AM in New York, the threshold is 3 AM YESTERDAY.
+    if (parseInt(hour, 10) < 3) {
+        et3AMToday.setDate(et3AMToday.getDate() - 1);
+    }
+
+    return et3AMToday.getTime();
 }
 
 /** Helper: Simple fetch for background worker */

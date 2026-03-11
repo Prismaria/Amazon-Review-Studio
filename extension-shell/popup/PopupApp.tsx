@@ -648,12 +648,13 @@ const Dashboard: React.FC<{ role: UserRole, stats: VineStats | null, region: str
                                 <>
                                     <ShortcutLink icon={<Star size={14} />} label="Vine Reviews" href={`${baseUrl}/vine/vine-reviews`} compact />
                                     <ShortcutLink icon={<ShoppingBag size={14} />} label="Vine Orders" href={`${baseUrl}/vine/orders`} compact />
+                                    <ShortcutLink icon={<Star size={14} />} label="Review Your Purchases" href={`${baseUrl}/review/review-your-purchases/listing`} compact />
                                     <ShortcutLink icon={<LayoutDashboard size={14} />} label="Amazon Orders" href={`${baseUrl}/gp/css/order-history`} compact />
                                 </>
                             ) : (
                                 <>
+                                    <ShortcutLink icon={<Star size={14} />} label="Review Your Purchases" href={`${baseUrl}/review/review-your-purchases/listing`} compact />
                                     <ShortcutLink icon={<ShoppingBag size={14} />} label="Order History" href={`${baseUrl}/gp/css/order-history`} compact />
-                                    <ShortcutLink icon={<Star size={14} />} label="Review Purchases" href={`${baseUrl}/review/review-your-purchases/listing`} compact />
                                 </>
                             )}
                         </div>

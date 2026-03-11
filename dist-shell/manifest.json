@@ -11,8 +11,13 @@
     "permissions": [
         "storage",
         "alarms",
-        "declarativeNetRequest"
+        "declarativeNetRequest",
+        "contextMenus"
     ],
+    "options_ui": {
+        "page": "popup/index.html",
+        "open_in_tab": true
+    },
     "background": {
         "service_worker": "background.js"
     },
@@ -31,7 +36,8 @@
         "https://*.pastebin.com/*",
         "https://catbox.moe/*",
         "https://*.catbox.moe/*",
-        "<all_urls>"
+        "http://localhost/*",
+        "http://127.0.0.1/*"
     ],
     "action": {
         "default_popup": "popup/index.html",

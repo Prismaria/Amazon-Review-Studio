@@ -1,0 +1,45 @@
+.ars-rich-input-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.ars-rich-input-container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--ars-color-border);
+    border-radius: var(--ars-radius-md);
+    overflow: visible;
+    /* Allow popovers to be visible */
+    background-color: var(--ars-color-bg-main);
+}
+
+.ars-rich-input-container:focus-within {
+    border-color: var(--ars-color-primary);
+    box-shadow: 0 0 0 1px var(--ars-color-primary);
+}
+
+.ars-rich-input-container .ars-editor-toolbar {
+    border-bottom: 1px solid var(--ars-color-border);
+    padding: 2px 4px;
+    background-color: var(--ars-color-bg-secondary);
+}
+
+.ars-rich-input-container .ars-input-wrapper {
+    flex: 1;
+}
+
+.ars-rich-input {
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+}
+
+.ars-dark-mode .ars-rich-input-container {
+    background-color: var(--ars-color-bg-secondary);
+}
+
+.ars-dark-mode .ars-rich-input-container .ars-editor-toolbar {
+    background-color: var(--ars-color-bg-tertiary);
+}

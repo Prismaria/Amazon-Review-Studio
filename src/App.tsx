@@ -3,6 +3,7 @@ import { ReviewFormShell } from './components/review/ReviewFormShell';
 import { SettingsProvider } from './context/SettingsContext';
 import { AutoSyncWatcher } from './components/common/AutoSyncWatcher';
 import { ScalingWrapper } from './components/common/ScalingWrapper';
+import { AlertProvider } from './context/AlertContext';
 import { TourGuide } from './components/common/TourGuide';
 import { TOUR_STEPS } from './constants/tourSteps';
 
@@ -26,13 +27,15 @@ function App() {
 
     return (
         <SettingsProvider>
-            <AutoSyncWatcher />
-            <ScalingWrapper>
-                <ReviewFormShell />
-            </ScalingWrapper>
-            {isTourVisible && (
-                <TourGuide steps={TOUR_STEPS} onComplete={handleTourComplete} />
-            )}
+            <AlertProvider>
+                <AutoSyncWatcher />
+                <ScalingWrapper>
+                    <ReviewFormShell />
+                </ScalingWrapper>
+                {isTourVisible && (
+                    <TourGuide steps={TOUR_STEPS} onComplete={handleTourComplete} />
+                )}
+            </AlertProvider>
         </SettingsProvider>
     );
 }

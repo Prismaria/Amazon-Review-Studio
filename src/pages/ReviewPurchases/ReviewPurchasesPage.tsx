@@ -3,8 +3,9 @@ import { useReviewCandidates } from './hooks/useReviewCandidates';
 import { ReviewCandidateCard } from './components/ReviewCandidateCard';
 import { SortFilterTabs } from './components/SortFilterTabs';
 import { SettingsDashboard } from '../../components/settings/SettingsDashboard';
-import { SettingsProvider, useSettings } from '../../context/SettingsContext';
+import { SettingsProvider } from '../../context/SettingsContext';
 import { useSettings as useAppSettings } from '../../hooks/useSettings';
+import { AlertProvider } from '../../context/AlertContext';
 import { ProfileSection } from '../../components/review/ProfileSection';
 import { AutoSyncWatcher } from '../../components/common/AutoSyncWatcher';
 import { Moon, Settings, CheckCircle2, Loader2, LayoutGrid, List, AlertCircle } from 'lucide-react';
@@ -120,8 +121,13 @@ const ReviewPurchasesContent: React.FC = () => {
     }, [settings.amazon_ui_lights_off]);
 
     return (
-        <div className="max-w-[1200px] mx-auto transition-all duration-500">
-            <div className={`rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] overflow-hidden pb-12 bg-white border-gray-100 border`}>
+        <div className="w-full max-w-[1200px] mx-auto">
+            <motion.div
+                className={`rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] overflow-hidden pb-12 bg-white border-gray-100 border w-full`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+            >
 
                 {/* Header Area */}
                 <div className="relative">
@@ -189,18 +195,18 @@ const ReviewPurchasesContent: React.FC = () => {
                             exit={{ opacity: 0, scale: 0.95 }}
                             transition={{ duration: 0.6, ease: "easeOut" }}
                         >
-                            <div className={`rounded-3xl p-8 flex items-start gap-6 border shadow-lg bg-gradient-to-br from-green-50 to-emerald-50/50 border-green-200/50`}>
+                            <div className={`rounded-3xl p-8 flex items-start gap-6 border shadow-lg bg-gradient-to-br from-green-50 to-emerald-50/50 border-green-200/50 w-fit mx-auto dark:from-gray-700 dark:to-gray-800 dark:border-gray-600`}>
                                 <motion.div
-                                    className={`w-16 h-16 rounded-2xl flex items-center justify-center shrink-0 bg-green-100`}
+                                    className={`w-16 h-16 rounded-2xl flex items-center justify-center shrink-0 bg-green-100 dark:bg-green-900`}
                                     initial={{ scale: 0, rotate: -180 }}
                                     animate={{ scale: 1, rotate: 0 }}
                                     transition={{ duration: 0.5, delay: 0.2, type: "spring", stiffness: 200 }}
                                 >
-                                    <CheckCircle2 className="text-green-600" size={32} strokeWidth={2} />
+                                    <CheckCircle2 className="text-green-600 dark:text-green-300" size={32} strokeWidth={2} />
                                 </motion.div>
-                                <div className="flex-1">
+                                <div>
                                     <motion.h3
-                                        className={`text-2xl mb-2 text-green-800`}
+                                        className={`text-2xl mb-2 text-green-800 dark:text-green-200`}
                                         initial={{ opacity: 0, x: -20 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{ duration: 0.5, delay: 0.3 }}
@@ -208,7 +214,7 @@ const ReviewPurchasesContent: React.FC = () => {
                                         <span className="font-black tracking-tight">Review Submitted</span>
                                     </motion.h3>
                                     <motion.p
-                                        className={`text-lg mb-3 text-green-700`}
+                                        className={`text-lg mb-3 text-green-700 dark:text-green-300`}
                                         initial={{ opacity: 0, x: -20 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{ duration: 0.5, delay: 0.4 }}
@@ -217,7 +223,7 @@ const ReviewPurchasesContent: React.FC = () => {
                                         <span className="font-bold">Thank you for helping other shoppers!</span>
                                     </motion.p>
                                     <motion.p
-                                        className={`text-sm text-green-600/70`}
+                                        className={`text-sm text-green-600/70 dark:text-green-400/70`}
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
                                         transition={{ duration: 0.5, delay: 0.5 }}
@@ -244,7 +250,7 @@ const ReviewPurchasesContent: React.FC = () => {
                 </div>
 
                 {/* Main Content Area */}
-                <main className="px-10 py-6 min-h-[400px]">
+                <main className="px-10 py-6 min-h-[400px] w-full">
                     {/* Layout Toggle Switch */}
                     {!isLoading && candidates.length > 0 && (
                         <div className="flex justify-end mb-6">
@@ -274,7 +280,7 @@ const ReviewPurchasesContent: React.FC = () => {
                     )}
 
                     {isLoading && candidates.length === 0 ? (
-                        <div className="flex flex-col items-center justify-center py-24 text-center">
+                        <div className="flex flex-col items-center justify-center py-24 text-center w-full">
                             <motion.div
                                 className={`w-24 h-24 rounded-2xl flex items-center justify-center mb-8 bg-gray-50`}
                                 animate={{ rotate: 360 }}
@@ -288,7 +294,7 @@ const ReviewPurchasesContent: React.FC = () => {
                             </p>
                         </div>
                     ) : candidates.length === 0 ? (
-                        <div className="flex flex-col items-center justify-center py-24 text-center">
+                        <div className="flex flex-col items-center justify-center py-24 text-center w-full">
                             <div className={`w-24 h-24 rounded-2xl flex items-center justify-center mb-8 bg-gray-50`}>
                                 <svg className={`w-12 h-12 text-gray-200`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
@@ -303,13 +309,14 @@ const ReviewPurchasesContent: React.FC = () => {
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={`${layoutMode}-${sortMode}`}
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
+                                initial={{ opacity: 0, scale: 0.98 }}
+                                animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0 }}
-                                transition={{ duration: 0.2 }}
+                                transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+                                style={{ contain: 'layout' }}
                                 className={layoutMode === 'grid'
-                                    ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
-                                    : "flex flex-col gap-3"
+                                    ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 w-full"
+                                    : "flex flex-col gap-3 w-full"
                                 }
                             >
                                 {sortMode === 'category' ? (() => {
@@ -360,7 +367,7 @@ const ReviewPurchasesContent: React.FC = () => {
                     <span className={`text-[9px] font-black uppercase tracking-[0.2em] text-gray-300`}>Powered by Review Studio</span>
                     <div className={`h-px flex-1 bg-gray-100`}></div>
                 </div>
-            </div>
+            </motion.div>
 
             <SettingsDashboard
                 isOpen={isSettingsOpen}
@@ -374,10 +381,12 @@ const ReviewPurchasesContent: React.FC = () => {
 export const ReviewPurchasesPage: React.FC = () => {
     return (
         <SettingsProvider>
-            <AutoSyncWatcher />
-            <ScalingWrapper>
-                <ReviewPurchasesContent />
-            </ScalingWrapper>
+            <AlertProvider>
+                <AutoSyncWatcher />
+                <ScalingWrapper>
+                    <ReviewPurchasesContent />
+                </ScalingWrapper>
+            </AlertProvider>
         </SettingsProvider>
     );
 };

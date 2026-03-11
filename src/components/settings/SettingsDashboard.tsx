@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Settings, Cpu, Cloud, Info, ShieldCheck, Key, RefreshCw, DownloadCloud, HelpCircle, Edit2, Search, Trash2, Bug, PlayCircle, Map } from 'lucide-react';
+import { Settings, Cpu, Cloud, Info, ShieldCheck, Key, RefreshCw, DownloadCloud, HelpCircle, Edit2, Search, Trash2, Bug, PlayCircle, Map, Eye, EyeOff } from 'lucide-react';
 import { Modal } from '../common/Modal';
 import { Button } from '../common/Button';
 import { Input } from '../common/Input';
@@ -16,15 +16,21 @@ export interface SettingsDashboardProps {
 
 type Tab = 'general' | 'ai' | 'sync' | 'about' | 'debug';
 
-import Swal from 'sweetalert2';
+import { useAlert } from '../../context/AlertContext';
 
 export const SettingsDashboard: React.FC<SettingsDashboardProps> = ({ isOpen, onClose, initialTab = 'general' }) => {
     const { settings, setSetting } = useSettings();
+    const { alert, confirm } = useAlert();
     const [activeTab, setActiveTab] = useState<Tab>(initialTab);
     const { generateUserKey, fetchUserKeyFromCloud, testConnection, findRecoveryPasteID, saveUserKeyToCloud, clearCloudData, isLoading } = usePastebin();
     const [syncStatus, setSyncStatus] = useState<{ type: 'success' | 'error' | 'info'; message: string } | null>(null);
     const [isSaving, setIsSaving] = useState(false);
-    const [isUserKeyEditable, setIsUserKeyEditable] = useState(false);
+
+    // Transient login fields (NOT saved to settings)
+    const [pbUsername, setPbUsername] = useState('');
+    const [pbPassword, setPbPassword] = useState('');
+    const [showGeminiKey, setShowGeminiKey] = useState(false);
+
 
     // ── Cloud Sync Tour ──────────────────────────────────────────────────────
     const [isSyncTourVisible, setIsSyncTourVisible] = useState(false);
@@ -58,13 +64,25 @@ export const SettingsDashboard: React.FC<SettingsDashboardProps> = ({ isOpen, on
 
     const handleGenerateKey = async () => {
         try {
-            setSyncStatus({ type: 'info', message: 'Authenticating...' });
-            await generateUserKey();
-            setSyncStatus({ type: 'success', message: 'Successfully authenticated!' });
+            if (!pbUsername || !pbPassword) {
+                setSyncStatus({ type: 'error', message: 'Please enter both username and password.' });
+                return;
+            }
+            setSyncStatus({ type: 'info', message: 'Authenticating with Pastebin...' });
+            await generateUserKey(pbUsername, pbPassword);
+
+            // Clear transient fields immediately for security
+            setPbUsername('');
+            setPbPassword('');
+
+            setSyncStatus({ type: 'success', message: 'Successfully authenticated! Your secure User Key has been saved.' });
         } catch (error: any) {
             setSyncStatus({ type: 'error', message: error.message });
         }
     };
+
+
+
 
     const handleTestConnection = async () => {
         setSyncStatus({ type: 'info', message: 'Testing connection...' });
@@ -127,15 +145,12 @@ export const SettingsDashboard: React.FC<SettingsDashboardProps> = ({ isOpen, on
         if (enabled) {
             // Check if user has already accepted the ToS
             if (!settings.amazon_ai_tos_accepted) {
-                const result = await Swal.fire({
+                const result = await confirm({
                     title: 'ATTENTION!',
                     text: 'This feature has the potential to be abused to generate reviews without any user input. By enabling this feature, you agree to write your own review first. Do you accept?',
                     icon: 'warning',
-                    showCancelButton: true,
                     confirmButtonText: 'Yeah sure, whatever.',
                     cancelButtonText: 'No! Get me outta here!',
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#3085d6',
                 });
 
                 if (result.isConfirmed) {
@@ -315,18 +330,26 @@ export const SettingsDashboard: React.FC<SettingsDashboardProps> = ({ isOpen, on
                                                         </div>
                                                     </div>
 
-                                                    <div className="ars-setting-item">
+                                                    <div className="ars-setting-item relative">
                                                         <Input
                                                             label="API Key"
-                                                            type="text"
+                                                            type={showGeminiKey ? "text" : "password"}
                                                             placeholder="Paste your Gemini API key here..."
                                                             value={settings.amazon_ai_gemini_key}
                                                             onChange={(e) => setSetting('amazon_ai_gemini_key', e.target.value)}
                                                             icon={<Key size={16} className="text-gray-400" />}
                                                             disabled={!settings.amazon_ai_enabled}
-                                                            className="font-mono text-sm"
+                                                            className="font-mono text-sm pr-10"
                                                             autoComplete="off"
                                                         />
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => setShowGeminiKey(!showGeminiKey)}
+                                                            className="absolute right-3 top-[34px] text-gray-400 hover:text-indigo-600 transition-colors"
+                                                            title={showGeminiKey ? "Hide API Key" : "Show API Key"}
+                                                        >
+                                                            {showGeminiKey ? <EyeOff size={16} /> : <Eye size={16} />}
+                                                        </button>
                                                         <p className="mt-2 text-xs text-gray-500 flex items-center gap-1">
                                                             <Info size={12} />
                                                             Get a free key from <a href="https://aistudio.google.com/" target="_blank" className="text-indigo-600 hover:text-indigo-700 hover:underline font-medium">Google AI Studio</a>.
@@ -458,23 +481,26 @@ export const SettingsDashboard: React.FC<SettingsDashboardProps> = ({ isOpen, on
                                             <Input
                                                 label="Pastebin Username"
                                                 placeholder="Username"
-                                                value={settings.amazon_pastebin_api_user_name}
-                                                onChange={(e) => setSetting('amazon_pastebin_api_user_name', e.target.value)}
+                                                value={pbUsername}
+                                                onChange={(e) => setPbUsername(e.target.value)}
                                             />
                                             <Input
                                                 label="Pastebin Password"
                                                 type="password"
                                                 placeholder="Password"
-                                                value={settings.amazon_pastebin_api_user_password}
-                                                onChange={(e) => setSetting('amazon_pastebin_api_user_password', e.target.value)}
+                                                value={pbPassword}
+                                                onChange={(e) => setPbPassword(e.target.value)}
                                             />
                                         </div>
+                                        <p className="text-[10px] text-gray-500 italic -mt-2">
+                                            Note: Credentials are used only to generate an API key and are never saved.
+                                        </p>
 
                                         <div id="ars-pastebin-auth-actions" className="flex gap-3 pt-2">
                                             <Button
                                                 onClick={handleGenerateKey}
                                                 variant="secondary"
-                                                disabled={isLoading || !settings.amazon_pastebin_api_dev_key || !settings.amazon_pastebin_api_user_name || !settings.amazon_pastebin_api_user_password}
+                                                disabled={isLoading || !settings.amazon_pastebin_api_dev_key || !pbUsername || !pbPassword}
                                                 className="flex-1"
                                                 icon={isLoading ? <RefreshCw size={16} className="animate-spin" /> : <ShieldCheck size={16} />}
                                             >
@@ -506,23 +532,15 @@ export const SettingsDashboard: React.FC<SettingsDashboardProps> = ({ isOpen, on
                                         {/* User Key Section */}
                                         <div className="relative">
                                             <Input
-                                                label="API User Key (Auto-generated)"
+                                                label="API User Key"
                                                 value={settings.amazon_pastebin_api_user_key}
                                                 onChange={(e) => setSetting('amazon_pastebin_api_user_key', e.target.value)}
-                                                placeholder="Will be generated automatically"
-                                                readOnly={!isUserKeyEditable}
-                                                className={!isUserKeyEditable ? "bg-gray-50 text-gray-500 cursor-not-allowed" : ""}
+                                                placeholder="Enter your Pastebin User Key"
                                                 icon={<ShieldCheck size={16} className="text-gray-400" />}
                                             />
-                                            <button
-                                                type="button"
-                                                onClick={() => setIsUserKeyEditable(!isUserKeyEditable)}
-                                                className="absolute right-3 top-[34px] text-gray-400 hover:text-blue-600 transition-colors"
-                                                title="Edit User Key manually"
-                                            >
-                                                <Edit2 size={16} />
-                                            </button>
-                                            <p className="ars-help-text mt-2">Generated from your credentials or recovered from cloud.</p>
+                                            <p className="ars-help-text mt-2">
+                                                To get your User Key, join the <a href="https://pastebin.com/doc_api#1" target="_blank" className="text-blue-600 hover:underline">API page</a> or recover it from the cloud below.
+                                            </p>
                                         </div>
 
                                         {/* Recovery Section */}

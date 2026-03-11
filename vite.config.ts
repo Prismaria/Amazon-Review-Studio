@@ -17,7 +17,7 @@ export default defineConfig({
             userscript: {
                 name: 'Amazon Review Toolkit 2.0',
                 namespace: 'https://github.com/Prismaria/Amazon-Review-Studio',
-                version: '2.0.10',
+                version: '2.0.11',
                 description: 'Complete review writing tookit for Amazon.',
                 author: 'Prismaris',
                 license: 'MIT',
@@ -35,8 +35,7 @@ export default defineConfig({
                 ],
                 require: [
                     'https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js',
-                    'https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js',
-                    'https://cdn.jsdelivr.net/npm/sweetalert2@11.10/dist/sweetalert2.all.min.js'
+                    'https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js'
                 ],
                 connect: [
                     'pastebin.com',
@@ -60,7 +59,6 @@ export default defineConfig({
                     'react': 'React',
                     'react-dom': 'ReactDOM',
                     'react-dom/client': 'ReactDOM',
-                    'sweetalert2': 'Swal',
                 },
             },
         }),

@@ -16,7 +16,7 @@ The Extension does **not** collect:
 - Personally identifiable information (name, email, address)
 - Browsing history or activity outside of Amazon review pages
 - Financial or payment information
-- Authentication credentials (passwords, tokens for Amazon itself)
+- Authentication credentials (passwords, login credentials for any service)
 - Location data
 - Health information
 
@@ -34,9 +34,9 @@ All user data is stored **locally** on the user's device using the browser's bui
 - Custom review templates and saved phrases
 - User preferences and settings (UI theme, scaling, AI configuration)
 - Cached Vine dashboard statistics (refreshed periodically)
-- Pastebin API keys (if the user configures Cloud Sync)
+- Pastebin API Dev Key and User Key (if the user configures Cloud Sync)
 
-No data is stored on any external server controlled by the developer.
+No data is stored on any external server controlled by the developer. All credentials remain on your device.
 
 ## 4. Data Sharing
 
@@ -44,7 +44,7 @@ The Extension does **not** sell, transfer, or share any user data with third par
 
 The following optional features, when explicitly configured and initiated by the user, transmit data directly to third-party services:
 
-- **Cloud Sync (Pastebin):** If the user provides their own Pastebin API key and initiates a sync, review drafts, templates, and phrases are uploaded as "Unlisted" pastes to the user's personal Pastebin account. The developer has no access to the user's Pastebin account or its contents.
+- **Cloud Sync (Pastebin):** If the user provides their own Pastebin API credentials (Dev Key and User Key) and initiates a sync, review drafts, templates, and phrases are uploaded as "Unlisted" pastes to the user's personal Pastebin account. The developer has no access to the user's Pastebin account or its contents.
 - **Image Hosting (Catbox.moe):** If the user chooses to upload images through the extension, those images are sent directly to Catbox.moe from the user's browser.
 - **AI Writing Assistant (Google Gemini):** If the user provides their own Google Gemini API key and requests AI-generated content, the product title and user-provided instructions are sent directly to the Google Gemini API. The developer has no access to the user's API key or generated content.
 - **AI Writing Assistant (Local LLM):** If the user connects to a locally-hosted AI model (e.g., Ollama or LM Studio), all data remains entirely on the user's own computer and never leaves their local network.
