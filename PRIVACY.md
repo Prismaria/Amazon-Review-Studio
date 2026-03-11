@@ -1,37 +1,64 @@
 # Privacy Policy for Amazon Review Studio
 
-**Last Updated: March 9, 2026**
+**Last Updated: March 10, 2026**
 
-Amazon Review Studio is designed with a "Privacy-First" architecture. We believe that your reviews, drafts, and account statistics are your business, not ours.
+Amazon Review Studio ("the Extension") is a browser extension that enhances the Amazon review writing experience. This privacy policy explains how user data is collected, handled, stored, and shared.
 
-## 1. Data Collection and Usage
-Amazon Review Studio **does not collect, store, or transmit** any personal data to the developer or any central servers. 
+## 1. Data Collection
 
-*   **Review Drafts:** When you type a review, the text is saved locally in your browser's storage (using the `chrome.storage` API). This data never leaves your device unless you explicitly use the "Cloud Sync" feature.
-*   **Vine Statistics:** The extension's dashboard periodically scrapes your Vine account metrics (such as evaluation countdowns and review ratios) for display in the popup. This information is stored only in your browser's local cache and is never shared.
-*   **Media:** Images you paste or drag into the editor are handled entirely within your browser session.
+The Extension accesses the following data on Amazon web pages:
 
-## 2. Third-Party Integrations (Optional)
-The extension provides optional features that interact with third-party services. These only activate if you provide your own API keys or accounts:
+- **Review text and titles** that the user types into the Amazon review editor.
+- **Product information** (product title, ASIN) from the Amazon review page, used to associate saved drafts with the correct product.
+- **Amazon Vine account statistics** (review counts, insightfulness score, media percentage, evaluation countdown, order counts) scraped from the user's own Vine account pages to display in the extension's dashboard popup.
 
-*   **Cloud Sync (Pastebin):** If configured, your drafts and templates are synced to your personal Pastebin account as "Unlisted" pastes. We do not have access to your Pastebin account or its contents.
-*   **Image Hosting (Catbox.moe):** If used, images are uploaded directly from your browser to Catbox.moe. 
-*   **AI Writing Assistant (Google Gemini / Local LLM):** 
-    *   If using **Google Gemini**, the text you explicitly send for generation is transmitted directly to Google. 
-    *   If using **Local LLMs** (Ollama/LM Studio), all AI processing happens entirely on your own computer and never touches the internet.
+The Extension does **not** collect:
+- Personally identifiable information (name, email, address)
+- Browsing history or activity outside of Amazon review pages
+- Financial or payment information
+- Authentication credentials (passwords, tokens for Amazon itself)
+- Location data
+- Health information
 
-## 3. Permissions
-The extension requests only the minimum permissions necessary to function:
-*   `storage`: To save your drafts and settings locally.
-*   `alarms`: To update your dashboard stats in the background.
-*   `declarativeNetRequest`: To allow image uploads to your chosen hosting service.
-*   `host_permissions`: To allow the extension to function on Amazon domains and communicate with your chosen sync/AI endpoints.
+## 2. Data Handling
 
-## 4. No Tracking
-We do not use analytics, tracking pixels, or any telemetry to monitor your usage of the extension.
+All data accessed by the Extension is processed **locally within the user's browser**. No data is transmitted to the developer or any developer-controlled server. There is no analytics, telemetry, or usage tracking of any kind.
 
-## 5. Changes to This Policy
-Because this extension has no central server and does not collect data, any future changes to this policy will be minor and will be reflected here in the project repository.
+When the user explicitly chooses to use optional third-party integrations (see Section 4), data is transmitted **directly from the user's browser to the third-party service**. The developer does not act as an intermediary and has no access to this data in transit or at rest.
 
-## 6. Contact
-If you have any questions regarding your privacy, you can view the source code of this extension directly on our GitHub repository to verify our data handling practices.
+## 3. Data Storage
+
+All user data is stored **locally** on the user's device using the browser's built-in `chrome.storage` API. This includes:
+
+- Saved review drafts (linked to product ASINs)
+- Custom review templates and saved phrases
+- User preferences and settings (UI theme, scaling, AI configuration)
+- Cached Vine dashboard statistics (refreshed periodically)
+- Pastebin API keys (if the user configures Cloud Sync)
+
+No data is stored on any external server controlled by the developer.
+
+## 4. Data Sharing
+
+The Extension does **not** sell, transfer, or share any user data with third parties for any purpose, including advertising, analytics, or creditworthiness determination.
+
+The following optional features, when explicitly configured and initiated by the user, transmit data directly to third-party services:
+
+- **Cloud Sync (Pastebin):** If the user provides their own Pastebin API key and initiates a sync, review drafts, templates, and phrases are uploaded as "Unlisted" pastes to the user's personal Pastebin account. The developer has no access to the user's Pastebin account or its contents.
+- **Image Hosting (Catbox.moe):** If the user chooses to upload images through the extension, those images are sent directly to Catbox.moe from the user's browser.
+- **AI Writing Assistant (Google Gemini):** If the user provides their own Google Gemini API key and requests AI-generated content, the product title and user-provided instructions are sent directly to the Google Gemini API. The developer has no access to the user's API key or generated content.
+- **AI Writing Assistant (Local LLM):** If the user connects to a locally-hosted AI model (e.g., Ollama or LM Studio), all data remains entirely on the user's own computer and never leaves their local network.
+
+## 5. Security
+
+- User-provided API keys (Pastebin, Gemini) are stored locally in the browser's extension storage and are never transmitted to the developer.
+- Cloud Sync tokens are Base64-encoded and stored as Unlisted Pastebin pastes to prevent public discovery.
+- All network requests to Amazon and third-party services use HTTPS encryption.
+
+## 6. Changes to This Policy
+
+Any updates to this privacy policy will be reflected in this document within the project repository. Users are encouraged to review this policy periodically.
+
+## 7. Contact
+
+If you have questions about this privacy policy or the Extension's data practices, you may review the full source code in the project's public repository or contact the developer through the Chrome Web Store listing.
