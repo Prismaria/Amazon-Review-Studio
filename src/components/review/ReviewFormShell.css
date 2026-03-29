@@ -11,6 +11,7 @@
     overflow: hidden;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
     animation: ars-fade-zoom 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    transition: max-width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .ars-review-shell--loading {
@@ -28,6 +29,12 @@
     flex-direction: column;
     gap: 1.5rem;
     margin-top: 1.5rem;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ars-form-field,
+.ars-field--submit {
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .ars-form-field {
@@ -57,14 +64,78 @@
     background-color: rgba(255, 153, 0, 0.08) !important;
 }
 
-.ars-review-submit {
+/* Submit section – acts as full-width footer in portrait, grid cell in landscape */
+.ars-field--submit {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 1.5rem;
+    margin: 1.5rem -2rem 0;
     padding: 1.25rem 2rem;
     border-top: 1px solid #e5e7eb;
     background-color: #f9fafb;
+}
+
+/* ─── Landscape (Two Column) Layout ─── */
+
+.ars-review-shell--landscape {
+    max-width: 1400px;
+}
+
+.ars-review-shell--landscape .ars-review-form-fields {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 1.5rem;
+    column-gap: 2rem;
+}
+
+/* Editor – left column, spans all right-side rows */
+.ars-review-shell--landscape .ars-field--editor {
+    grid-column: 1;
+    grid-row: 1 / 4;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Make the editor stretch to fill the column height */
+.ars-review-shell--landscape .ars-field--editor .ars-rich-editor {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.ars-review-shell--landscape .ars-field--editor .ars-editor-textarea {
+    flex: 1;
+    min-height: 300px;
+}
+
+/* Stars – right column, row 1 */
+.ars-review-shell--landscape .ars-field--stars {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+/* Media – right column, row 2 */
+.ars-review-shell--landscape .ars-field--media {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+/* Title – right column, row 3 */
+.ars-review-shell--landscape .ars-field--title {
+    grid-column: 2;
+    grid-row: 3;
+}
+
+/* Submit – full width footer below both columns */
+.ars-review-shell--landscape .ars-field--submit {
+    grid-column: 1 / -1;
+    grid-row: 4;
+}
+
+/* Dark mode overrides for submit section */
+.ars-dark-mode .ars-field--submit {
+    background-color: var(--ars-color-bg-secondary);
+    border-top-color: var(--ars-color-border);
 }
 
 .ars-header-actions {
@@ -89,8 +160,21 @@
     color: #ffffff;
     cursor: pointer;
     border-radius: 10px;
-    transition: all 0.2s ease;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 0.8;
+}
+
+/* Orientation toggle icon animation */
+.ars-action-button svg {
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;
+}
+
+#ars-orientation-toggle:active svg {
+    transform: scale(0.85);
+}
+
+#ars-orientation-toggle.active svg {
+    transform: scale(1);
 }
 
 .ars-action-button:hover {
@@ -207,4 +291,4 @@
 .ars-twinkle-3 {
     transform-origin: center;
     transform-box: fill-box;
-}
+}

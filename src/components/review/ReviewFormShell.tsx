@@ -261,6 +261,8 @@ export const ReviewFormShell: React.FC = () => {
         }
     };
 
+    const isLandscape = settings.amazon_ui_landscape;
+
     if (!amazon.isReady) {
         return (
             <div className="ars-review-shell ars-review-shell--loading" key="loading">
@@ -270,7 +272,11 @@ export const ReviewFormShell: React.FC = () => {
     }
 
     return (
-        <div className="ars-review-shell" key="ready">
+        <div 
+            className={`ars-review-shell ${isLandscape ? 'ars-review-shell--landscape' : ''}`} 
+            key="ready"
+        >
+
             {/* Profile section */}
             <ProfileSection
                 avatarSrc={amazon.profile.avatarSrc}
@@ -287,6 +293,7 @@ export const ReviewFormShell: React.FC = () => {
                     title={amazon.product.title}
                     name={amazon.product.name}
                     productUrl={amazon.product.productUrl || undefined}
+                    purchaseDate={amazon.product.purchaseDate}
                 />
 
                 {/* Amazon Error Message */}
@@ -300,7 +307,8 @@ export const ReviewFormShell: React.FC = () => {
                 {/* Form fields */}
                 <div className="ars-review-form-fields">
                     {/* Star rating */}
-                    <div className="ars-form-field">
+                    <div className="ars-form-field ars-field--stars">
+                        {isLandscape && <label className="ars-form-label">Rate your product</label>}
                         <StarRating
                             value={amazon.state.starRating}
                             onChange={amazon.setStarRating}
@@ -308,7 +316,7 @@ export const ReviewFormShell: React.FC = () => {
                     </div>
 
                     {/* Review text */}
-                    <div className="ars-form-field">
+                    <div className="ars-form-field ars-field--editor">
                         <div className="ars-form-field-label-row">
                             <div className="flex items-center gap-3">
                                 <label className="ars-form-label">Write a review</label>
@@ -337,7 +345,7 @@ export const ReviewFormShell: React.FC = () => {
                     </div>
 
                     {/* Media upload */}
-                    <div className="ars-form-field">
+                    <div className="ars-form-field ars-field--media">
                         <label className="ars-form-label">Share a video or photo</label>
                         <MediaUpload
                             onTrigger={amazon.triggerMediaUpload}
@@ -352,7 +360,8 @@ export const ReviewFormShell: React.FC = () => {
                         />
                     </div>
 
-                    <div className="ars-form-field">
+                    {/* Title */}
+                    <div className="ars-form-field ars-field--title">
                         <Input
                             id="reviewTitle"
                             label="Title your review (required)"
@@ -384,54 +393,53 @@ export const ReviewFormShell: React.FC = () => {
                             )}
                         />
                     </div>
+
+                    {/* Submit actions (inside grid for landscape layout) */}
+                    <div className="ars-field--submit">
+                        <div className="ars-submit-saved">
+                            {amazon.lastSaved && (
+                                <div className="text-xs text-gray-500 font-medium">
+                                    Draft saved {amazon.lastSaved.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                </div>
+                            )}
+                        </div>
+                        <div className="ars-submit-group">
+                            <SaveIndicator status={amazon.syncStatus} />
+                            <Button
+                                variant="outline"
+                                size="md"
+                                onClick={() => {
+                                    const hasContent = amazon.state.reviewText.trim().length > 0;
+                                    if (hasContent) {
+                                        if (window.confirm("You have unsaved changes in your review. Are you sure you want to go back?")) {
+                                            window.location.href = "https://www.amazon.ca/review/review-your-purchases/listing";
+                                        }
+                                    } else {
+                                        window.location.href = "https://www.amazon.ca/review/review-your-purchases/listing";
+                                    }
+                                }}
+                                className="ars-back-button"
+                                icon={
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M19 12H5M12 19l-7-7 7-7" />
+                                    </svg>
+                                }
+                            >
+                                Back
+                            </Button>
+                            <Button
+                                variant="primary"
+                                size="lg"
+                                onClick={amazon.submit}
+                                icon={<Send size={20} />}
+                                type="button"
+                            >
+                                Submit
+                            </Button>
+                        </div>
+                    </div>
                 </div>
             </form>
-
-            {/* Footer Actions */}
-            <div className="ars-review-submit">
-                <div className="flex items-center gap-4">
-                    {amazon.lastSaved && (
-                        <div className="text-xs text-gray-500 font-medium">
-                            Draft saved {amazon.lastSaved.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                        </div>
-                    )}
-                </div>
-
-                <div className="ars-submit-group">
-                    <SaveIndicator status={amazon.syncStatus} />
-                    <Button
-                        variant="outline"
-                        size="md"
-                        onClick={() => {
-                            const hasContent = amazon.state.reviewText.trim().length > 0;
-                            if (hasContent) {
-                                if (window.confirm("You have unsaved changes in your review. Are you sure you want to go back?")) {
-                                    window.location.href = "https://www.amazon.ca/review/review-your-purchases/listing";
-                                }
-                            } else {
-                                window.location.href = "https://www.amazon.ca/review/review-your-purchases/listing";
-                            }
-                        }}
-                        className="ars-back-button"
-                        icon={
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M19 12H5M12 19l-7-7 7-7" />
-                            </svg>
-                        }
-                    >
-                        Back
-                    </Button>
-                    <Button
-                        variant="primary"
-                        size="lg"
-                        onClick={amazon.submit}
-                        icon={<Send size={20} />}
-                        type="button"
-                    >
-                        Submit
-                    </Button>
-                </div>
-            </div>
 
             <AIModal
                 isOpen={isAIModalOpen}
@@ -447,8 +455,26 @@ export const ReviewFormShell: React.FC = () => {
                 onClose={() => setIsSettingsOpen(false)}
             />
 
-            {/* Footer Actions / Corner Controls */}
+            {/* Header Actions / Corner Controls */}
             <div className="ars-header-actions">
+                <button
+                    id="ars-orientation-toggle"
+                    type="button"
+                    className={`ars-action-button ${isLandscape ? 'active' : ''}`}
+                    onClick={() => setSetting('amazon_ui_landscape', !isLandscape)}
+                    aria-label={isLandscape ? "Switch to portrait layout" : "Switch to landscape layout"}
+                >
+                    {isLandscape ? (
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <rect x="3" y="5" width="8" height="14" rx="1" />
+                            <rect x="13" y="5" width="8" height="14" rx="1" />
+                        </svg>
+                    ) : (
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <rect x="6" y="3" width="12" height="18" rx="2" />
+                        </svg>
+                    )}
+                </button>
                 <button
                     id="ars-lights-toggle"
                     type="button"
@@ -477,6 +503,6 @@ export const ReviewFormShell: React.FC = () => {
                     <Settings size={18} />
                 </button>
             </div>
-        </div >
+        </div>
     );
 };

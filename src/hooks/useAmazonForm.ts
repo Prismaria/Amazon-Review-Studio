@@ -71,7 +71,7 @@ export interface UseAmazonFormResult {
     /** Scraped profile data */
     profile: { avatarSrc: string; name: string; editLinkHref: string };
     /** Scraped product data */
-    product: { imageSrc: string; title: string; name: string; productUrl: string };
+    product: { imageSrc: string; title: string; name: string; productUrl: string; asin?: string | null; purchaseDate?: string };
     /** Form state - controlled by our UI */
     state: AmazonFormState;
     /** Update review text and sync to Amazon */
@@ -104,7 +104,7 @@ export interface UseAmazonFormResult {
 }
 
 const emptyProfile = { avatarSrc: '', name: '', editLinkHref: '#' };
-const emptyProduct = { imageSrc: '', title: 'How was the item?', name: '', productUrl: '' };
+const emptyProduct = { imageSrc: '', title: 'How was the item?', name: '', productUrl: '', asin: null as string | null, purchaseDate: undefined as string | undefined };
 
 /** Get Amazon site origin (e.g. https://www.amazon.com) */
 function getAmazonBaseUrl(): string {
@@ -629,13 +629,14 @@ export function useAmazonForm(): UseAmazonFormResult {
             ?? query<HTMLElement>(SELECTORS.productName, root)
             ?? query<HTMLElement>('#productTitle', root);
         const productUrl = getProductUrlFromPage(root);
-        setProduct({
+        setProduct(prev => ({
+            ...prev,
             imageSrc: productImg?.src ?? productImg?.getAttribute?.('data-a-hires') ?? '',
             title: titleEl?.textContent?.trim() ?? 'How was the item?',
             name: nameElProduct?.textContent?.trim() ?? '',
             productUrl,
             asin: getAsinFromPage(),
-        });
+        }));
 
         // Error detection
         const errorEl = query<HTMLElement>('[data-hook="ryp-error-page-text"]', root);
@@ -693,6 +694,57 @@ export function useAmazonForm(): UseAmazonFormResult {
             }
         }).catch(err => console.error('[ARS] Failed to load image drafts:', err));
     }, [isReady, settings.amazon_auto_save_images, setMediaFiles]);
+
+    const fetchedAsinDateRef = useRef<string | null>(null);
+
+    // Fetch purchase date effect
+    useEffect(() => {
+        if (!isReady || !asinRef.current) return;
+        const asin = asinRef.current;
+        if (fetchedAsinDateRef.current === asin) return; // Already fetched for this ASIN
+
+        fetchedAsinDateRef.current = asin;
+
+        const fetchPurchaseDate = async () => {
+            try {
+                const url = `${getAmazonBaseUrl()}/dp/${asin}`;
+                const res = await fetch(url);
+                if (!res.ok) return;
+                const html = await res.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+
+                let purchaseDate: string | undefined;
+
+                const orderInfo = doc.getElementById('orderInformationGroup');
+                if (orderInfo) {
+                    const text = orderInfo.querySelector('.a-size-medium')?.textContent?.trim();
+                    if (text && text.match(/purchased/i)) {
+                        // "You last purchased this item on Mar 6, 2026" or similar
+                        purchaseDate = text.replace(/You last purchased this item on/i, '').trim();
+                    }
+                }
+
+                if (!purchaseDate) {
+                    const booksInfo = doc.getElementById('booksInstantOrderUpdate');
+                    if (booksInfo) {
+                        const text = booksInfo.textContent?.trim();
+                        if (text && text.match(/Purchased/i)) {
+                            purchaseDate = text.replace(/Purchased on/i, '').trim();
+                        }
+                    }
+                }
+
+                if (purchaseDate) {
+                    setProduct(p => ({ ...p, purchaseDate }));
+                }
+            } catch (err) {
+                console.warn('[ARS] Failed to fetch purchase date:', err);
+            }
+        };
+
+        fetchPurchaseDate();
+    }, [isReady]);
 
 
     // Debounced effect to save images to IndexedDB when mediaThumbnails changes

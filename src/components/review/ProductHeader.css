@@ -31,6 +31,30 @@
     min-width: 0;
 }
 
+.ars-product-title-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ars-purchase-badge {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    background-color: #e6f4f1;
+    color: #007185;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+    display: inline-block;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.ars-dark-mode .ars-purchase-badge {
+    background-color: #1a3a3a;
+    color: #4fd1c5;
+}
+
 .ars-product-title {
     font-size: 1.125rem;
     font-weight: 700;

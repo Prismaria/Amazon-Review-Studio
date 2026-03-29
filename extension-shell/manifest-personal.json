@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "Amazon Review Studio",
+    "name": "Amazon Review Studio (Personal)",
     "version": "2.0.14",
-    "description": "Professional review writing toolkit for Amazon.",
+    "description": "Professional review writing toolkit and dashboard for Amazon (Personal Build).",
     "icons": {
         "16": "icons/logo_small_light.png",
         "48": "icons/logo_small_light.png",
@@ -11,8 +11,13 @@
     "permissions": [
         "storage",
         "alarms",
-        "declarativeNetRequest"
+        "declarativeNetRequest",
+        "contextMenus"
     ],
+    "options_ui": {
+        "page": "popup/index.html",
+        "open_in_tab": true
+    },
     "background": {
         "service_worker": "background.js"
     },
@@ -36,7 +41,7 @@
     ],
     "action": {
         "default_popup": "popup/index.html",
-        "default_title": "Review Studio",
+        "default_title": "Review Studio Dashboard",
         "default_icon": {
             "16": "icons/logo_small_light.png",
             "48": "icons/logo_small_light.png"

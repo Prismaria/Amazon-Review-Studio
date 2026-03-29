@@ -5,6 +5,8 @@
 .ars-scaling-wrapper.is-resizing {
     transition: none;
     cursor: nwse-resize;
+    user-select: none !important;
+    -webkit-user-select: none !important;
 }
 
 .ars-scaling-content {
@@ -26,6 +28,9 @@
     z-index: 1000;
     opacity: 0.6;
     transition: opacity 0.2s ease;
+    user-select: none !important;
+    -webkit-user-drag: none !important;
+    touch-action: none;
     /* Two small, light, elegant lines in the corner */
     background:
         linear-gradient(-45deg,

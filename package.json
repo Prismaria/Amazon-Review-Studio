@@ -1,7 +1,7 @@
 {
   "name": "amazon-review-studio",
   "private": true,
-  "version": "0.0.0",
+  "version": "2.0.14",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,9 +9,10 @@
     "build:userscript": "node ./node_modules/typescript/bin/tsc && vite build",
     "build:userscript:personal": "powershell -Command \"$env:VITE_APP_MODE='personal'; node ./node_modules/typescript/bin/tsc; node ./node_modules/vite/bin/vite.js build\"",
     "build:shell-popup": "vite build --config vite.config.popup.ts",
-    "build:shell": "powershell -Command \"node ./node_modules/vite/bin/vite.js build --config vite.config.popup.ts; Copy-Item extension-shell/manifest.json, extension-shell/bridge.js, extension-shell/loader.js, extension-shell/anti-flicker.css, extension-shell/background.js -Destination dist-shell/ -Force; Copy-Item extension-shell/vendor -Destination dist-shell/ -Recurse -Force -ErrorAction SilentlyContinue; New-Item -ItemType Directory -Path dist-shell/icons -Force -ErrorAction SilentlyContinue; Copy-Item extension-shell/icons/logo_large.png, extension-shell/icons/logo_small_dark.png, extension-shell/icons/logo_small_light.png -Destination dist-shell/icons/ -Force -ErrorAction SilentlyContinue; Copy-Item dist/amazon-review-studio.user.js -Destination dist-shell/ -Force -ErrorAction SilentlyContinue\"",
+    "build:shell": "powershell -Command \"node ./node_modules/vite/bin/vite.js build --config vite.config.popup.ts; Copy-Item extension-shell/manifest.json -Destination dist-shell/manifest.json -Force; Copy-Item extension-shell/bridge.js, extension-shell/loader.js, extension-shell/anti-flicker.css, extension-shell/background.js -Destination dist-shell/ -Force; Copy-Item extension-shell/vendor -Destination dist-shell/ -Recurse -Force -ErrorAction SilentlyContinue; New-Item -ItemType Directory -Path dist-shell/icons -Force -ErrorAction SilentlyContinue; Copy-Item extension-shell/icons/logo_large.png, extension-shell/icons/logo_small_dark.png, extension-shell/icons/logo_small_light.png -Destination dist-shell/icons/ -Force -ErrorAction SilentlyContinue; Copy-Item dist/amazon-review-studio.user.js -Destination dist-shell/ -Force -ErrorAction SilentlyContinue\"",
+    "build:shell:personal": "powershell -Command \"node ./node_modules/vite/bin/vite.js build --config vite.config.popup.ts; Copy-Item extension-shell/manifest-personal.json -Destination dist-shell/manifest.json -Force; Copy-Item extension-shell/bridge.js, extension-shell/loader.js, extension-shell/anti-flicker.css, extension-shell/background.js -Destination dist-shell/ -Force; (Get-Content dist-shell/background.js) -replace 'const IS_PERSONAL = false; // @FLAG_IS_PERSONAL@', 'const IS_PERSONAL = true; // @FLAG_IS_PERSONAL@' | Set-Content dist-shell/background.js; Copy-Item extension-shell/vendor -Destination dist-shell/ -Recurse -Force -ErrorAction SilentlyContinue; New-Item -ItemType Directory -Path dist-shell/icons -Force -ErrorAction SilentlyContinue; Copy-Item extension-shell/icons/logo_large.png, extension-shell/icons/logo_small_dark.png, extension-shell/icons/logo_small_light.png -Destination dist-shell/icons/ -Force -ErrorAction SilentlyContinue; Copy-Item dist/amazon-review-studio.user.js -Destination dist-shell/ -Force -ErrorAction SilentlyContinue\"",
     "package:zip": "powershell -Command \"Compress-Archive -Path dist-shell\\* -DestinationPath amazon-review-studio-extension.zip -Force\"",
-    "package:zip:personal": "npm run build:userscript:personal && npm run build:shell && powershell -Command \"Compress-Archive -Path dist-shell\\* -DestinationPath amazon-review-studio-extension-personal.zip -Force\"",
+    "package:zip:personal": "npm run build:userscript:personal && npm run build:shell:personal && powershell -Command \"Compress-Archive -Path dist-shell\\* -DestinationPath amazon-review-studio-extension-personal.zip -Force\"",
     "preview": "vite preview"
   },
   "devDependencies": {

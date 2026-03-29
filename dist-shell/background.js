@@ -5,18 +5,19 @@
 
 const ALARM_NAME = 'vine-stats-refresh';
 const SCRAPE_INTERVAL_MINS = 30; // 30 minutes
+const IS_PERSONAL = false; // @FLAG_IS_PERSONAL@
 const OPTIONS_MENU_ID = 'ars-open-options';
 
 chrome.runtime.onInstalled.addListener(() => {
-    console.log('[ARS Background] Installed. Setting up alarms, context menus, and CORS rules...');
     chrome.alarms.create(ALARM_NAME, { periodInMinutes: SCRAPE_INTERVAL_MINS });
 
-    // Create context menu for the extension icon
-    chrome.contextMenus.create({
-        id: OPTIONS_MENU_ID,
-        title: "Open Dashboard",
-        contexts: ["action"]
-    });
+    if (IS_PERSONAL) {
+        chrome.contextMenus.create({
+            id: OPTIONS_MENU_ID,
+            title: "Open Dashboard",
+            contexts: ["action"]
+        });
+    }
 
     // Help bypass CORS for Catbox by stripping Origin/Referer headers
     if (chrome.declarativeNetRequest) {
@@ -199,12 +200,14 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 });
 
 
-// Handle context menu clicks
-chrome.contextMenus.onClicked.addListener((info, tab) => {
-    if (info.menuItemId === OPTIONS_MENU_ID) {
-        chrome.runtime.openOptionsPage();
-    }
-});
+// Image fetching...
+if (IS_PERSONAL) {
+    chrome.contextMenus.onClicked.addListener((info, tab) => {
+        if (info.menuItemId === OPTIONS_MENU_ID) {
+            chrome.runtime.openOptionsPage();
+        }
+    });
+}
 
 
 async function refreshVineStats() {

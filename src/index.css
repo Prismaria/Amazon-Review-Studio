@@ -250,7 +250,7 @@ button {
     color: var(--ars-color-text-main) !important;
 }
 
-.ars-dark-mode .ars-review-submit {
+.ars-dark-mode .ars-field--submit {
     background-color: var(--ars-color-bg-secondary) !important;
     border-top-color: var(--ars-color-border) !important;
 }

@@ -17,7 +17,7 @@ export default defineConfig({
             userscript: {
                 name: 'Amazon Review Toolkit 2.0',
                 namespace: 'https://github.com/Prismaria/Amazon-Review-Studio',
-                version: '2.0.11',
+                version: '2.0.14',
                 description: 'Complete review writing tookit for Amazon.',
                 author: 'Prismaris',
                 license: 'MIT',

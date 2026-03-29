@@ -14,17 +14,41 @@ export const ScalingWrapper: React.FC<ScalingWrapperProps> = ({ children }) => {
     const dragRef = useRef<{ startX: number; startScale: number; unscaledWidth: number } | null>(null);
     const scale = settings.amazon_ui_scale ?? 1.0;
 
-    const startResize = useCallback((e: React.MouseEvent) => {
-        e.preventDefault();
-        if (!containerRef.current) return;
+    const clickRef = useRef({ count: 0, last: 0, timer: null as any, unlocked: false });
 
-        const rect = containerRef.current.getBoundingClientRect();
-        dragRef.current = {
-            startX: e.clientX,
-            startScale: scale,
-            unscaledWidth: rect.width / scale
-        };
-        setIsResizing(true);
+    const startResize = useCallback((e: React.MouseEvent) => {
+        const now = Date.now();
+        const c = clickRef.current;
+        
+        // Reset count if too much time passed
+        if (now - c.last > 400) c.count = 0;
+        c.count++;
+        c.last = now;
+
+        if (c.count === 2) {
+            // Double click detected - wait to see if it's held
+            const startX = e.clientX;
+            const startScale = scale;
+            const rect = containerRef.current?.getBoundingClientRect();
+            const unscaledWidth = rect ? rect.width / scale : 0;
+
+            
+            c.timer = setTimeout(() => {
+                c.unlocked = true;
+                dragRef.current = { startX, startScale, unscaledWidth };
+                setIsResizing(true);
+            }, 300);
+        } else {
+            // Normal drag (single click or triple etc)
+            if (!containerRef.current) return;
+            const rect = containerRef.current.getBoundingClientRect();
+            dragRef.current = {
+                startX: e.clientX,
+                startScale: scale,
+                unscaledWidth: rect.width / scale
+            };
+            setIsResizing(true);
+        }
     }, [scale]);
 
     useEffect(() => {
@@ -32,15 +56,13 @@ export const ScalingWrapper: React.FC<ScalingWrapperProps> = ({ children }) => {
 
         const handleMouseMove = (e: MouseEvent) => {
             const { startX, startScale, unscaledWidth } = dragRef.current!;
-
-            // Calculate change in pixels
             const deltaX = e.clientX - startX;
-
-            // newScale = startScale + (deltaX / unscaledWidth)
             let newScale = startScale + (deltaX / unscaledWidth);
 
-            // Constraints
-            newScale = Math.max(0.5, Math.min(1.0, newScale));
+            // Secret gesture logic: 
+            // Only allow > 1.0 if unlocked via double-click-hold
+            const max = clickRef.current.unlocked ? 1.5 : 1.0;
+            newScale = Math.max(0.5, Math.min(max, newScale));
             newScale = Math.round(newScale * 100) / 100;
 
             if (newScale !== scale) {
@@ -51,6 +73,8 @@ export const ScalingWrapper: React.FC<ScalingWrapperProps> = ({ children }) => {
         const handleMouseUp = () => {
             setIsResizing(false);
             dragRef.current = null;
+            if (clickRef.current.timer) clearTimeout(clickRef.current.timer);
+            clickRef.current.unlocked = false;
         };
 
         window.addEventListener('mousemove', handleMouseMove);
@@ -61,10 +85,7 @@ export const ScalingWrapper: React.FC<ScalingWrapperProps> = ({ children }) => {
         };
     }, [isResizing, scale, setSetting]);
 
-    // Calculate height compensation to avoid extra space at the bottom
-    // This is tricky because scale() doesn't affect document flow height.
-    // However, if we're in a relative container, we can use margin-bottom to pull up the rest.
-    // But better yet, we can set the wrapper height to match the scaled content.
+    // ... height compensation code ...
     const [compHeight, setCompHeight] = useState<number | string>('auto');
     const [compWidth, setCompWidth] = useState<number | string>('auto');
     const contentRef = useRef<HTMLDivElement>(null);
@@ -106,10 +127,6 @@ export const ScalingWrapper: React.FC<ScalingWrapperProps> = ({ children }) => {
                     position: 'relative'
                 }}
             >
-                {/* 
-                    This inner container wraps the app tightly so the handle 
-                    stays glued to the visual bottom-right corner of the app card.
-                */}
                 <div style={{
                     position: 'relative',
                     width: 'fit-content',
@@ -123,7 +140,10 @@ export const ScalingWrapper: React.FC<ScalingWrapperProps> = ({ children }) => {
                     <div
                         className="ars-resize-handle"
                         onMouseDown={startResize}
-                        onDoubleClick={() => setSetting('amazon_ui_scale', 1.0)}
+                        onDoubleClick={(e) => {
+                            if (clickRef.current.timer) clearTimeout(clickRef.current.timer);
+                            setSetting('amazon_ui_scale', 1.0);
+                        }}
                     />
                 </div>
             </div>

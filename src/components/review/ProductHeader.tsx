@@ -6,6 +6,7 @@ export interface ProductHeaderProps {
     title: string;
     name: string;
     productUrl?: string;
+    purchaseDate?: string;
     className?: string;
 }
 
@@ -15,6 +16,7 @@ export const ProductHeader: React.FC<ProductHeaderProps> = ({
     name,
     productUrl,
     className,
+    purchaseDate,
 }) => {
     const imageNode = imageSrc ? (
         <img
@@ -36,7 +38,14 @@ export const ProductHeader: React.FC<ProductHeaderProps> = ({
                 imageNode
             ))}
             <div className="ars-product-info">
-                <span className="ars-product-title">{title}</span>
+                <div className="ars-product-title-row">
+                    <span className="ars-product-title">{title}</span>
+                    {purchaseDate && (
+                        <span className="ars-purchase-badge">
+                            Purchased: {purchaseDate}
+                        </span>
+                    )}
+                </div>
                 <span className="ars-product-name">{name}</span>
             </div>
         </div>

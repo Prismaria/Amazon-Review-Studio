@@ -53,6 +53,7 @@ export const PopupApp: React.FC = () => {
         vine_showReminder: true,
         vine_showEval: true,
         vine_evalAlwaysExpanded: false,
+        vine_showStats: true,
         showGreeting: true,
         dashboardOrder: ['greeting', 'evalCountdown', 'stats', 'reminders', 'evalPerformance', 'navigation', 'syncStatus'],
     });
@@ -458,12 +459,20 @@ const SettingsView: React.FC<{
                                 onChange={(v) => onUpdateSetting('vine_showEval', v)}
                             />
                             {settings.vine_showEval && (
-                                <SettingToggle
-                                    label="Always Expand Eval Performance"
-                                    description="Show full metrics by default"
-                                    enabled={settings.vine_evalAlwaysExpanded}
-                                    onChange={(v) => onUpdateSetting('vine_evalAlwaysExpanded', v)}
-                                />
+                                <>
+                                    <SettingToggle
+                                        label="Show Quick Stats Grid"
+                                        description="Display the To Review / Reviewed / Total / Quota cards"
+                                        enabled={settings.vine_showStats !== false}
+                                        onChange={(v) => onUpdateSetting('vine_showStats', v)}
+                                    />
+                                    <SettingToggle
+                                        label="Always Expand Eval Performance"
+                                        description="Show full metrics by default"
+                                        enabled={settings.vine_evalAlwaysExpanded}
+                                        onChange={(v) => onUpdateSetting('vine_evalAlwaysExpanded', v)}
+                                    />
+                                </>
                             )}
                         </div>
                     </section>
@@ -619,7 +628,7 @@ const Dashboard: React.FC<{ role: UserRole, stats: VineStats | null, region: str
                     <EvalCountdown days={stats.evalDaysRemaining} />
                 );
             case 'stats':
-                return isVine && settings.vine_showEval && (
+                return isVine && settings.vine_showEval && settings.vine_showStats !== false && (
                     <div className="grid grid-cols-4 gap-2">
                         <StatCard label="To Review" value={stats ? stats.pendingReviews : '...'} icon={<Clock size={12} className="text-amber-400" />} />
                         <StatCard label="Reviewed" value={stats ? stats.completedReviews : '...'} icon={<Star size={12} className="text-emerald-400" />} />
@@ -731,7 +740,7 @@ const Greeting: React.FC<{ isVine: boolean, stats: VineStats | null }> = ({ isVi
         };
         if (count <= 10) return {
             title: "Single Digits... Barely 🤏",
-            message: <span>You've got {n} reviews pending. Manageable? Yes. Ignorable? Maybe not.</span>
+            message: <span>You've got {n} reviews pending. Manageable? Yes. Ignorable? Maybe not...</span>
         };
         if (count <= 20) return {
             title: "The Pile Grows 📚",
@@ -739,27 +748,27 @@ const Greeting: React.FC<{ isVine: boolean, stats: VineStats | null }> = ({ isVi
         };
         if (count <= 30) return {
             title: "Getting Serious 🧐",
-            message: <span>Clocking in at {n} reviews. The 'later' pile is becoming 'now'.</span>
+            message: <span>Clocking in at {n} reviews. Let's turn that 'later' pile into 'now'.</span>
         };
         if (count <= 40) return {
             title: "Warning Signs ⚠️",
-            message: <span>{n} items. Your mail carrier is probably judging you slightly.</span>
+            message: <span>{n} items?! Get that sh*t done fam!</span>
         };
         if (count <= 50) return {
             title: "Half a Hundred 😬",
-            message: <span>You hit {n}. That's 50 shades of "I really need to catch up".</span>
+            message: <span>You hit {n} items. That's 50 shades of "I really need to catch up!"</span>
         };
         if (count <= 75) return {
             title: "Review Debt Crisis 📉",
-            message: <span>{n} pending. We might need to declare reviewing bankruptcy soon.</span>
+            message: <span>{n} items?! We might need to declare reviewing bankruptcy soon.</span>
         };
         if (count < 100) return {
             title: "Certified Hoarder 📦",
-            message: <span>{n} items. Congratulations? You are officially a hoarder of unreviewed goods.</span>
+            message: <span>{n} items??!! You are officially a hoarder of unreviewed goods.</span>
         };
         if (count < 200) return {
             title: "The Century Club 💯",
-            message: <span>🎉 You did it! <strong style={{ color: 'var(--text-primary)' }}>{count} items</strong> to review! We'd throw a party but we're afraid you'd order the decorations and never review those either.</span>
+            message: <span>🎉 YOU DID IT! <strong style={{ color: 'var(--text-primary)' }}>{count} items</strong> to review! We'd throw a party but we're afraid you'd order the decorations and never review those either.</span>
         };
         // 200 and beyond
         return {

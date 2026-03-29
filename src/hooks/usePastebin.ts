@@ -239,7 +239,7 @@ export function usePastebin() {
         // If XML parsing didn't work properly, try manual parsing as fallback
         let pastes: { key: string; title: string }[] = [];
 
-        if (pasteElements.length === 0 || pasteElements.length === 1) {
+        if (pasteElements.length === 0) {
             console.log('[Cloud Sync] XML parsing may have failed, trying manual parsing...');
 
             // Manual parsing using regex
@@ -315,7 +315,7 @@ export function usePastebin() {
         try {
             const pastes = await listPastes();
             const existingP = pastes.find(p => p.title === 'Amazon Review Phrases');
-            const pContent = JSON.stringify({ version: '1.0', lastUpdated: new Date().toISOString(), phrases: phrases.map(p => ({ name: p.label || p.content.slice(0, 20), text: p.content })) });
+            const pContent = JSON.stringify({ version: '1.0', lastUpdated: new Date().toISOString(), phrases: phrases.map(p => ({ label: p.label || '', text: p.content })) });
             if (existingP) await deletePaste(existingP.key);
             await createPaste('Amazon Review Phrases', pContent);
             return { success: true, message: 'Phrases synced' };
@@ -338,7 +338,8 @@ export function usePastebin() {
         console.log('[Cloud Sync] Starting template and phrase import...');
         try {
             const pastes = await listPastes();
-            let importedCount = 0;
+            let importedTemplatesCount = 0;
+            let importedPhrasesCount = 0;
             let currentTemplates = [...templates];
             let currentPhrases = [...phrases];
 
@@ -347,190 +348,121 @@ export function usePastebin() {
                 catch { return Math.random().toString(36).substring(2) + Date.now().toString(36); }
             };
 
-            // 1. Fetch Templates (Modern Grouped takes priority)
+            // 1. Fetch Templates (Modern Grouped takes priority but tries to merge if confirmed)
             const modernT = pastes.find(p => p.title === 'Amazon Review Templates');
             if (modernT) {
-                console.log('[Cloud Sync] Found modern grouped templates. Using as source of truth.');
-                const data = JSON.parse(await getPasteContent(modernT.key));
-                const tList = data.templates || data;
-                if (Array.isArray(tList)) {
-                    // Reset local templates to match cloud truth exactly
-                    currentTemplates = tList.map((t: any) => ({
-                        id: generateId(),
-                        title: t.name || t.title,
-                        content: t.text || t.content,
-                        editorHeight: t.height
-                    })).filter(t => t.title && t.content);
-                    importedCount++;
-                }
-            } else {
-                // 2. Fallback to Legacy Individual Templates only if modern grouped is missing
-                // Broadened filter to catch legacy templates more reliably
-                console.log('[Cloud Sync] No modern grouped templates found. Checking for legacy individual templates...');
-                console.log(`[Cloud Sync] Total pastes found: ${pastes.length}`);
-
-                // Log all pastes for debugging
-                pastes.forEach(p => {
-                    console.log(`[Cloud Sync] Paste found: "${p.title}"`);
+                console.log('[Cloud Sync] Found modern grouped templates.');
+                const confirmRes = await confirm({
+                    title: 'Import Modern Templates?',
+                    text: 'Found grouped templates. Would you like to merge them with your current ones or replace everything?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Merge',
+                    denyButtonText: 'Replace',
+                    showDenyButton: true
                 });
 
-                const legacyT = pastes.filter(p => {
-                    // Must start with the template prefix (with or without trailing space)
-                    const hasPrefix = p.title.startsWith('Amazon Review Template:') ||
-                        p.title.startsWith('Amazon Review Template: ');
+                if (confirmRes.isConfirmed || confirmRes.isDenied) {
+                    const data = JSON.parse(await getPasteContent(modernT.key));
+                    const tList = data.templates || data;
+                    if (Array.isArray(tList)) {
+                        if (confirmRes.isDenied) currentTemplates = []; // Replace mode
 
-                    // Exclude the phrases paste
-                    const isPhrases = p.title === 'Amazon Review Template: Amazon Review Phrases' ||
-                        p.title.includes('Amazon Review Phrases');
+                        tList.forEach((t: any) => {
+                            const name = t.name || t.title;
+                            const text = t.text || t.content;
+                            const height = t.height || t.editorHeight;
+                            if (!name || !text) return;
 
-                    // Exclude review pastes (they contain specific review indicators)
-                    // IMPORTANT: Only check for the specific review suffix format, not just 'REVIEW'
-                    // because template titles like "Standard Pros/Cons Review" contain 'Review'
-                    const isReview = p.title.includes(' — REVIEW — ') ||
-                        p.title.includes(' - REVIEW - ') ||
-                        /\s-\sREVIEW\s-\s[A-Z0-9]{10}$/.test(p.title) ||  // "Product - REVIEW - ASIN" format
-                        /\s—\sREVIEW\s—\s[A-Z0-9]{10}$/.test(p.title);    // "Product — REVIEW — ASIN" format
-
-                    const include = hasPrefix && !isPhrases && !isReview;
-
-                    if (hasPrefix) {
-                        console.log(`[Cloud Sync] Filter check for "${p.title}": hasPrefix=${hasPrefix}, isPhrases=${isPhrases}, isReview=${isReview}, include=${include}`);
-                    }
-
-                    return include;
-                });
-
-                console.log(`[Cloud Sync] Filtered to ${legacyT.length} legacy templates`);
-
-                if (legacyT.length > 0) {
-                    console.log(`[Cloud Sync] No modern templates found. Falling back to ${legacyT.length} legacy individual templates.`);
-                    for (const p of legacyT) {
-                        try {
-                            // Extract name from title, handling both formats
-                            const name = p.title
-                                .replace('Amazon Review Template: ', '')
-                                .replace('Amazon Review Template:', '')
-                                .trim();
-
-                            if (!name) {
-                                console.warn(`[Cloud Sync] Skipping template with empty name: ${p.title}`);
-                                continue;
-                            }
-
-                            const content = await getPasteContent(p.key);
-                            let text = content;
-                            let height: any = undefined;
-                            let templateName = name;
-
-                            // Improved JSON parsing for legacy templates
-                            if (content.trim().startsWith('{')) {
-                                try {
-                                    const data = JSON.parse(content);
-
-                                    // Handle both modern and legacy JSON formats
-                                    text = data.text || data.content || content;
-                                    height = data.height || data.editorHeight;
-
-                                    // Use name from JSON if available (legacy format includes name)
-                                    if (data.name && typeof data.name === 'string') {
-                                        templateName = data.name;
-                                    }
-
-                                    // Validate extracted text
-                                    if (!text || (typeof text !== 'string')) {
-                                        console.warn(`[Cloud Sync] Invalid text in template ${p.title}, using raw content`);
-                                        text = content;
-                                    }
-                                } catch (e) {
-                                    console.warn(`[Cloud Sync] Failed to parse JSON for ${p.title}, using raw content`);
-                                }
-                            }
-
-                            // Check for duplicate by name (either from title or JSON)
-                            const idx = currentTemplates.findIndex(et =>
-                                et.title === templateName || et.title === name
-                            );
-
+                            const idx = currentTemplates.findIndex(et => et.title === name);
                             if (idx >= 0) {
-                                // Update existing template
-                                currentTemplates[idx] = {
-                                    ...currentTemplates[idx],
-                                    title: templateName,
-                                    content: text,
-                                    editorHeight: height
-                                };
-                                console.log(`[Cloud Sync] Updated existing template: ${templateName}`);
+                                currentTemplates[idx] = { ...currentTemplates[idx], content: text, editorHeight: height };
                             } else {
-                                // Add new template
-                                currentTemplates.push({
-                                    id: generateId(),
-                                    title: templateName,
-                                    content: text,
-                                    editorHeight: height
-                                });
-                                console.log(`[Cloud Sync] Imported new template: ${templateName}`);
+                                currentTemplates.push({ id: generateId(), title: name, content: text, editorHeight: height });
                             }
-                            importedCount++;
-                        } catch (err) {
-                            console.error(`[Cloud Sync] Failed to import individual template: ${p.title}`, err);
-                        }
+                            importedTemplatesCount++;
+                        });
                     }
-                } else {
-                    console.log('[Cloud Sync] No legacy individual templates found.');
                 }
             }
 
-            // 3. Fetch Phrases (Modern takes priority)
-            let phrasePaste = pastes.find(p => p.title === 'Amazon Review Phrases');
-            const isModernPhrase = !!phrasePaste;
+            // 2. Fetch Legacy Individual Templates (ALWAYS check and merge)
+            console.log('[Cloud Sync] Checking for legacy individual templates...');
+            const legacyT = pastes.filter(p => {
+                const hasPrefix = p.title.startsWith('Amazon Review Template:') || p.title.startsWith('Amazon Review Template: ');
+                const isPhrases = p.title.includes('Amazon Review Phrases');
+                const isReview = p.title.includes(' — REVIEW — ') || p.title.includes(' - REVIEW - ');
+                return hasPrefix && !isPhrases && !isReview;
+            });
 
-            if (!phrasePaste) {
-                phrasePaste = pastes.find(p => p.title === 'Amazon Review Template: Amazon Review Phrases');
+            if (legacyT.length > 0) {
+                console.log(`[Cloud Sync] Found ${legacyT.length} legacy templates. Merging...`);
+                for (const p of legacyT) {
+                    try {
+                        const name = p.title.replace(/^Amazon Review Template:\s*/, '').trim();
+                        if (!name) continue;
+
+                        const content = await getPasteContent(p.key);
+                        let text = content;
+                        let height: any = undefined;
+                        let templateName = name;
+
+                        if (content.trim().startsWith('{')) {
+                            try {
+                                const data = JSON.parse(content);
+                                text = data.text || data.content || content;
+                                height = data.height || data.editorHeight;
+                                if (data.name) templateName = data.name;
+                            } catch (e) { console.warn(`[Cloud Sync] Legacy JSON parse fail for ${p.title}`); }
+                        }
+
+                        const idx = currentTemplates.findIndex(et => et.title === templateName);
+                        if (idx >= 0) {
+                            currentTemplates[idx] = { ...currentTemplates[idx], content: text, editorHeight: height };
+                        } else {
+                            currentTemplates.push({ id: generateId(), title: templateName, content: text, editorHeight: height });
+                        }
+                        importedTemplatesCount++;
+                    } catch (err) { console.error(`[Cloud Sync] Legacy import fail: ${p.title}`, err); }
+                }
             }
+
+            // 3. Fetch Phrases
+            let phrasePaste = pastes.find(p => p.title === 'Amazon Review Phrases' || p.title === 'Amazon Review Template: Amazon Review Phrases');
 
             if (phrasePaste) {
-                console.log(`[Cloud Sync] Found phrases list (${isModernPhrase ? 'Modern' : 'Legacy'}).`);
+                console.log(`[Cloud Sync] Found phrases list.`);
                 const data = JSON.parse(await getPasteContent(phrasePaste.key));
                 const pList = data.phrases || data;
                 if (Array.isArray(pList)) {
-                    if (isModernPhrase) {
-                        // Source of truth: replace local with cloud
-                        currentPhrases = pList.map((p: any) => ({
-                            id: generateId(),
-                            label: p.name || p.label || '',
-                            content: p.text || p.content
-                        })).filter(p => p.content);
-                    } else {
-                        // Legacy: merge as before
-                        pList.forEach((p: any) => {
-                            const label = p.name || p.label || '';
-                            const text = p.text || p.content;
-                            if (!text) return;
-                            const idx = currentPhrases.findIndex(ep => ep.content === text);
-                            if (idx === -1) {
-                                currentPhrases.push({ id: generateId(), label, content: text });
-                            }
-                        });
-                    }
-                    importedCount++;
+                    pList.forEach((p: any) => {
+                        const label = p.name || p.label || '';
+                        const text = p.text || p.content;
+                        if (!text) return;
+                        const idx = currentPhrases.findIndex(ep => ep.content === text);
+                        if (idx === -1) {
+                            currentPhrases.push({ id: generateId(), label, content: text });
+                            importedPhrasesCount++;
+                        } else if (label && !currentPhrases[idx].label) {
+                            currentPhrases[idx].label = label;
+                        }
+                    });
                 }
             }
 
-            if (importedCount > 0) {
+            if (importedTemplatesCount > 0 || importedPhrasesCount > 0) {
                 saveLocalTemplates(currentTemplates);
                 saveLocalPhrases(currentPhrases);
-                console.log(`[Cloud Sync] Successfully imported ${importedCount} items.`);
-                return { success: true, message: `Sync completed: Found ${importedCount} items` };
+                return { success: true, message: `Imported ${importedTemplatesCount} templates and ${importedPhrasesCount} phrases.` };
             }
 
-            console.warn('[Cloud Sync] No valid sync data found in your Pastebin account.');
             return { success: false, message: 'No sync data found in cloud' };
         } catch (e: any) {
             console.error('[Cloud Sync] Critical error during import:', e);
             return { success: false, message: e.message };
         }
         finally { setIsLoading(false); }
-    }, [listPastes, getPasteContent, templates, phrases, saveLocalTemplates, saveLocalPhrases]);
+    }, [listPastes, getPasteContent, templates, phrases, saveLocalTemplates, saveLocalPhrases, confirm]);
 
     const REVIEW_OBFUSCATION_HEADER = `=== AMAZON REVIEW STUDIO PASTE ===
 This Pastebin contains an encrypted, base64-encoded review draft.
@@ -886,9 +818,12 @@ Please do not comment on this paste directly, thank you.
             const pastes = await listPastes();
             const appPastes = pastes.filter(p =>
                 p.title === 'Amazon Review Templates' ||
+                p.title === 'Amazon Review Phrases' ||
                 p.title === 'Amazon Review - Account Token' ||
+                p.title.startsWith('Amazon Review Template:') ||
                 p.title.includes(' - REVIEW - ')
             );
+            
             if (appPastes.length === 0) return { success: true, message: 'No cloud data found.' };
 
             for (const paste of appPastes) {

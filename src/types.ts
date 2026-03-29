@@ -48,6 +48,7 @@ export interface AppSettings {
     amazon_auto_sync_phrases: boolean;
     amazon_ui_lights_off: boolean;
     amazon_editor_auto_resize: boolean;
+    amazon_ui_landscape: boolean;
     amazon_ui_scale: number;
     amazon_bullet_style: string;
     debug_mode: boolean;
@@ -75,8 +76,9 @@ export interface AppSettings {
 
 export interface ReviewTemplate {
     id: string;
-    name: string;
+    title: string;
     content: string;
+    editorHeight?: number;
 }
 
 export const DEFAULT_SETTINGS: AppSettings = {
@@ -123,6 +125,7 @@ export const DEFAULT_SETTINGS: AppSettings = {
     amazon_auto_sync_phrases: false,
     amazon_ui_lights_off: false,
     amazon_editor_auto_resize: false,
+    amazon_ui_landscape: false,
     amazon_ui_scale: 1.0,
     amazon_bullet_style: '•',
     debug_mode: false,
