@@ -2,26 +2,34 @@ import React, { createContext, useContext, useState, useCallback, ReactNode } fr
 
 export type AlertType = 'success' | 'error' | 'warning' | 'info';
 
+export interface AlertResult {
+    isConfirmed: boolean;
+    isDenied?: boolean;
+}
+
 interface AlertOptions {
     title: string;
     text?: string;
     html?: string;
     icon?: AlertType;
     showCancelButton?: boolean;
+    showDenyButton?: boolean;
     confirmButtonText?: string;
     cancelButtonText?: string;
+    denyButtonText?: string;
     confirmButtonColor?: string;
     cancelButtonColor?: string;
+    denyButtonColor?: string;
 }
 
 interface AlertState extends AlertOptions {
     id: string;
-    resolve: (value: { isConfirmed: boolean }) => void;
+    resolve: (value: AlertResult) => void;
 }
 
 interface AlertContextType {
-    alert: (options: AlertOptions | string) => Promise<{ isConfirmed: boolean }>;
-    confirm: (options: AlertOptions | string) => Promise<{ isConfirmed: boolean }>;
+    alert: (options: AlertOptions | string) => Promise<AlertResult>;
+    confirm: (options: AlertOptions | string) => Promise<AlertResult>;
 }
 
 const AlertContext = createContext<AlertContextType | undefined>(undefined);
@@ -38,7 +46,7 @@ export const AlertProvider: React.FC<{ children: ReactNode }> = ({ children }) =
     const [alerts, setAlerts] = useState<AlertState[]>([]);
 
     const showAlert = useCallback((options: AlertOptions | string, showCancel: boolean = false) => {
-        return new Promise<{ isConfirmed: boolean }>((resolve) => {
+        return new Promise<AlertResult>((resolve) => {
             const id = Math.random().toString(36).substring(2, 9);
             const alertOptions: AlertOptions = typeof options === 'string'
                 ? { title: options, icon: 'info' }

@@ -53,9 +53,16 @@ export const EditorToolbar: React.FC<EditorToolbarProps> = ({
         syncAllToCloud,
         syncTemplatesFromCloud,
         clearCloudData,
+        fetchPastebinProfile,
         isLoading: isCloudLoading,
         getSyncQuota
     } = usePastebin();
+
+    const pastebinProfileUrl = settings.amazon_pastebin_profile_url
+        || (settings.amazon_pastebin_profile_username
+            ? `https://pastebin.com/u/${encodeURIComponent(settings.amazon_pastebin_profile_username)}`
+            : '');
+    const pastebinAvatarUrl = settings.amazon_pastebin_profile_avatar_url || '';
 
     const bulletOptions = ['•', '●', '➜', '►', '▸', '■', '✦', '◈', '★', '✓', '✗'];
 
@@ -82,8 +89,11 @@ export const EditorToolbar: React.FC<EditorToolbarProps> = ({
     useEffect(() => {
         if (showCloudPopover) {
             setQuota(getSyncQuota());
+            if (settings.amazon_pastebin_api_user_key) {
+                fetchPastebinProfile().catch(() => {});
+            }
         }
-    }, [showCloudPopover, getSyncQuota]);
+    }, [showCloudPopover, getSyncQuota, settings.amazon_pastebin_api_user_key, fetchPastebinProfile]);
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -297,13 +307,11 @@ export const EditorToolbar: React.FC<EditorToolbarProps> = ({
                     break;
 
                 case 'my-pastebin':
-                    const username = settings.amazon_pastebin_api_user_name;
-                    window.open(username ? `https://pastebin.com/u/${username}` : 'https://pastebin.com/', '_blank');
+                    window.open(pastebinProfileUrl || 'https://pastebin.com/', '_blank');
                     break;
 
                 case 'status':
-                    // In a real app we'd show a modal, for now alert
-                    alert(`Sync Service: Connected\nUser: ${settings.amazon_pastebin_api_user_name || 'Anonymous'}\nDev Key: ${settings.amazon_pastebin_api_dev_key ? '✓' : '✗'}\nUser Key: ${settings.amazon_pastebin_api_user_key ? '✓' : '✗'}`);
+                    alert(`Sync Service: Connected\nUser: ${settings.amazon_pastebin_profile_username || 'Unknown'}\nDev Key: ${settings.amazon_pastebin_api_dev_key ? '✓' : '✗'}\nUser Key: ${settings.amazon_pastebin_api_user_key ? '✓' : '✗'}`);
                     break;
 
                 case 'clear':
@@ -508,20 +516,56 @@ export const EditorToolbar: React.FC<EditorToolbarProps> = ({
 
                             {showCloudPopover && (
                                 <div ref={cloudPopoverRef} className="ars-phrase-popover" style={{ width: '220px' }}>
-                                    <div className="ars-popover-header" style={{ padding: '12px 16px', borderBottom: '1px solid var(--ars-color-border)', marginBottom: '4px' }}>
-                                        <h3 style={{ margin: 0, fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 600 }}>
-                                            <Cloud size={16} /> Cloud Sync
-                                        </h3>
-                                        {quota && (
-                                            <div style={{
-                                                fontSize: '0.7rem',
-                                                fontWeight: 600,
-                                                color: quota.count >= 20 ? '#dc2626' : quota.count >= 15 ? '#d97706' : '#6b7280',
-                                                marginTop: '4px',
-                                                marginLeft: '24px'
-                                            }}>
-                                                Daily Limit: {quota.count}/20
-                                            </div>
+                                    <div
+                                        className="ars-popover-header"
+                                        style={{
+                                            padding: '12px 16px',
+                                            borderBottom: '1px solid var(--ars-color-border)',
+                                            marginBottom: '4px',
+                                            display: 'flex',
+                                            alignItems: 'flex-start',
+                                            justifyContent: 'space-between',
+                                            gap: '10px',
+                                        }}
+                                    >
+                                        <div style={{ flex: 1, minWidth: 0 }}>
+                                            <h3 style={{ margin: 0, fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 600 }}>
+                                                <Cloud size={16} /> Cloud Sync
+                                            </h3>
+                                            {quota && (
+                                                <div style={{
+                                                    fontSize: '0.7rem',
+                                                    fontWeight: 600,
+                                                    color: quota.count >= 20 ? '#dc2626' : quota.count >= 15 ? '#d97706' : '#6b7280',
+                                                    marginTop: '4px',
+                                                    marginLeft: '24px'
+                                                }}>
+                                                    Daily Limit: {quota.count}/20
+                                                </div>
+                                            )}
+                                        </div>
+                                        {pastebinAvatarUrl && pastebinProfileUrl && (
+                                            <a
+                                                href={pastebinProfileUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                title="My Pastebin"
+                                                onClick={(e) => e.stopPropagation()}
+                                                style={{ flexShrink: 0 }}
+                                            >
+                                                <img
+                                                    src={pastebinAvatarUrl}
+                                                    alt={settings.amazon_pastebin_profile_username || 'Pastebin profile'}
+                                                    style={{
+                                                        width: 32,
+                                                        height: 32,
+                                                        borderRadius: '50%',
+                                                        objectFit: 'cover',
+                                                        border: '2px solid var(--ars-color-border, #e5e7eb)',
+                                                        display: 'block',
+                                                    }}
+                                                />
+                                            </a>
                                         )}
                                     </div>
                                     <div className="ars-popover-content">

@@ -1,15 +1,37 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Sparkles, Send, Copy, Check, RotateCcw, Eye, EyeOff } from 'lucide-react';
+import { Copy, Eye, EyeOff, Image as ImageIcon, Loader2, Trash2 } from 'lucide-react';
 import { Modal } from '../common/Modal';
 import { Button } from '../common/Button';
-import { Input } from '../common/Input';
 import { Card } from '../common/Card';
 import { aiService } from '../../services/ai';
 import { textFormattingService } from '../../services/textFormatting';
 import { useSettings } from '../../hooks/useSettings';
 import { fetchProductContext } from '../../pages/ReviewPurchases/services/productDetailsFetcher';
 import { getUploadedImages } from '../../utils/imageExtractor';
-import { Image as ImageIcon, Loader2 } from 'lucide-react';
+
+const ADDITIONAL_INSTRUCTIONS_PRESETS_KEY = 'ars-ai-additional-instructions-presets';
+const SAVE_INSTRUCTION_ON_ENTER_KEY = 'ars-ai-save-instruction-on-enter';
+const MAX_INSTRUCTION_PRESETS = 40;
+
+function loadInstructionPresets(): string[] {
+    try {
+        const raw = localStorage.getItem(ADDITIONAL_INSTRUCTIONS_PRESETS_KEY);
+        if (!raw) return [];
+        const parsed = JSON.parse(raw) as unknown;
+        if (!Array.isArray(parsed)) return [];
+        return parsed.filter((x): x is string => typeof x === 'string' && x.trim().length > 0);
+    } catch {
+        return [];
+    }
+}
+
+function loadSaveInstructionOnEnter(): boolean {
+    try {
+        return localStorage.getItem(SAVE_INSTRUCTION_ON_ENTER_KEY) === '1';
+    } catch {
+        return false;
+    }
+}
 
 export interface AIModalProps {
     isOpen: boolean;
@@ -29,6 +51,9 @@ export const AIModal: React.FC<AIModalProps> = ({ isOpen, onClose, onInsert, pro
     const { settings, setSetting } = useSettings();
     const [userThoughts, setUserThoughts] = useState('');
     const [additionalInstructions, setAdditionalInstructions] = useState('');
+    const [instructionPresets, setInstructionPresets] = useState<string[]>(() => loadInstructionPresets());
+    const [saveInstructionOnEnter, setSaveInstructionOnEnter] = useState(() => loadSaveInstructionOnEnter());
+    const [additionalInstructionsInputUnlocked, setAdditionalInstructionsInputUnlocked] = useState(false);
     const [useExistingReview, setUseExistingReview] = useState(false);
     const [reviewLength, setReviewLength] = useState<'short' | 'normal' | 'long' | 'detailed'>('normal');
     const [isGenerating, setIsGenerating] = useState(false);
@@ -74,6 +99,18 @@ export const AIModal: React.FC<AIModalProps> = ({ isOpen, onClose, onInsert, pro
         setContextFetched(false);
         setProductContext(null);
     }, [asin]);
+
+    useEffect(() => {
+        if (!isOpen) return;
+        setInstructionPresets(loadInstructionPresets());
+        setSaveInstructionOnEnter(loadSaveInstructionOnEnter());
+    }, [isOpen]);
+
+    useEffect(() => {
+        if (!isOpen) {
+            setAdditionalInstructionsInputUnlocked(false);
+        }
+    }, [isOpen]);
 
     // Construct the final prompt dynamically
     const finalPrompt = useMemo(() => {
@@ -148,7 +185,63 @@ Formatting Instructions:
         }
 
         return p;
-    }, [productTitle, productContext, starRating, userThoughts, existingReviewText, useExistingReview, reviewLength]);
+    }, [productTitle, productContext, starRating, userThoughts, existingReviewText, useExistingReview, reviewLength, additionalInstructions]);
+
+    const presetSelectValue = useMemo(() => {
+        const idx = instructionPresets.findIndex((p) => p === additionalInstructions);
+        return idx >= 0 ? String(idx) : '';
+    }, [instructionPresets, additionalInstructions]);
+
+    const persistPresets = (next: string[]) => {
+        const capped = next.slice(0, MAX_INSTRUCTION_PRESETS);
+        setInstructionPresets(capped);
+        try {
+            localStorage.setItem(ADDITIONAL_INSTRUCTIONS_PRESETS_KEY, JSON.stringify(capped));
+        } catch {
+            /* ignore quota */
+        }
+    };
+
+    const saveCurrentInstructionPreset = () => {
+        const t = additionalInstructions.trim();
+        if (!t) return;
+        const lower = t.toLowerCase();
+        const withoutDup = instructionPresets.filter((p) => p.trim().toLowerCase() !== lower);
+        persistPresets([t, ...withoutDup]);
+    };
+
+    const handleAdditionalInstructionKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key !== 'Enter' || !saveInstructionOnEnter) return;
+        e.preventDefault();
+        saveCurrentInstructionPreset();
+    };
+
+    const handlePresetSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const v = e.target.value;
+        if (v === '') {
+            return;
+        }
+        const idx = Number.parseInt(v, 10);
+        if (Number.isNaN(idx) || idx < 0 || idx >= instructionPresets.length) return;
+        setAdditionalInstructions(instructionPresets[idx]);
+    };
+
+    const handleSaveOnEnterToggle = (checked: boolean) => {
+        setSaveInstructionOnEnter(checked);
+        try {
+            localStorage.setItem(SAVE_INSTRUCTION_ON_ENTER_KEY, checked ? '1' : '0');
+        } catch {
+            /* ignore */
+        }
+    };
+
+    const handleRemoveMatchingSavedInstruction = () => {
+        if (presetSelectValue === '') return;
+        const idx = Number.parseInt(presetSelectValue, 10);
+        if (Number.isNaN(idx) || idx < 0 || idx >= instructionPresets.length) return;
+        if (instructionPresets[idx] !== additionalInstructions) return;
+        persistPresets(instructionPresets.filter((_, i) => i !== idx));
+    };
 
     const handleGenerate = async () => {
         setIsGenerating(true);
@@ -319,18 +412,75 @@ Formatting Instructions:
                         )}
                     </div>
 
-                    <div className="mt-3">
-                        <label className="ars-label mb-1 text-xs text-gray-500 font-medium">
-                            Additional Instructions <span className="text-[10px] text-gray-400 font-normal ml-1">(Optional)</span>
-                        </label>
-                        <input
-                            type="text"
-                            className="ars-ai-prompt-input !text-xs !py-2 !px-3 !h-auto"
-                            placeholder="e.g. Keep it humorous, focus on durability, avoid mentioning price..."
-                            value={additionalInstructions}
-                            onChange={(e) => setAdditionalInstructions(e.target.value)}
-                            style={{ minHeight: '38px' }}
-                        />
+                    <div className="ars-ai-additional-block">
+                        <div className="ars-ai-additional-head">
+                            <label className="ars-label text-xs text-gray-500 font-medium">
+                                Additional Instructions <span className="text-[10px] text-gray-400 font-normal ml-1">(Optional)</span>
+                            </label>
+                            <label className="ars-ai-additional-save-enter">
+                                <input
+                                    type="checkbox"
+                                    checked={saveInstructionOnEnter}
+                                    onChange={(e) => handleSaveOnEnterToggle(e.target.checked)}
+                                    className="ars-checkbox"
+                                />
+                                Save on Enter
+                            </label>
+                        </div>
+                        <form
+                            className="ars-ai-additional-fields-row"
+                            autoComplete="off"
+                            onSubmit={(e) => e.preventDefault()}
+                        >
+                            <input
+                                type="text"
+                                id="ars-ai-additional-instructions-input"
+                                className="ars-ai-prompt-input ars-ai-additional-input !text-xs !py-2 !px-3 !h-auto"
+                                placeholder="e.g. Keep it humorous, focus on durability, avoid mentioning price..."
+                                name="review_studio_ai_additional_notes"
+                                autoComplete="off"
+                                autoCorrect="off"
+                                autoCapitalize="off"
+                                spellCheck={false}
+                                data-lpignore="true"
+                                data-1p-ignore="true"
+                                data-bwignore="true"
+                                readOnly={!additionalInstructionsInputUnlocked}
+                                onFocus={() => setAdditionalInstructionsInputUnlocked(true)}
+                                value={additionalInstructions}
+                                onChange={(e) => setAdditionalInstructions(e.target.value)}
+                                onKeyDown={handleAdditionalInstructionKeyDown}
+                                style={{ minHeight: '38px' }}
+                            />
+                            <div className="ars-ai-additional-presets-row">
+                                <select
+                                    aria-label="Saved additional instructions"
+                                    className="ars-select ars-ai-additional-presets-select"
+                                    value={presetSelectValue}
+                                    onChange={handlePresetSelectChange}
+                                    autoComplete="off"
+                                    name="review_studio_ai_saved_presets"
+                                >
+                                    <option value="">Saved instructions…</option>
+                                    {instructionPresets.map((text, i) => (
+                                        <option key={`${i}-${text.slice(0, 24)}`} value={String(i)} title={text}>
+                                            {text.length > 72 ? `${text.slice(0, 72)}…` : text}
+                                        </option>
+                                    ))}
+                                </select>
+                                {presetSelectValue !== '' && (
+                                    <button
+                                        type="button"
+                                        className="ars-ai-additional-preset-remove"
+                                        title="Remove from saved list"
+                                        aria-label="Remove this saved instruction from the list"
+                                        onClick={handleRemoveMatchingSavedInstruction}
+                                    >
+                                        <Trash2 size={13} strokeWidth={2} aria-hidden />
+                                    </button>
+                                )}
+                            </div>
+                        </form>
                     </div>
 
                     {showPreview && (

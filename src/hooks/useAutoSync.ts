@@ -14,11 +14,16 @@ const stringifyUnordered = (items: any[]) => {
     return JSON.stringify(sorted);
 };
 
+/**
+ * Watches local template/phrase edits and pushes them to Pastebin when auto-sync is enabled.
+ * This hook never imports from cloud — only `syncTemplatesFromCloud` pulls cloud → local.
+ * Compares against a snapshot ref (order ignored) so identical re-saves after a no-op import do not sync.
+ */
 export function useAutoSync() {
     const { templates, phrases, isLoaded } = useContent();
     const { syncTemplatesToCloud, syncPhrasesToCloud, isLoading } = usePastebin();
     const { settings } = useSettings();
-    
+
     // Use refs to track previous states to detect meaningful changes
     // We store unordered JSON to detect content changes (ignoring order)
     const prevTemplatesRef = useRef<string | null>(null);

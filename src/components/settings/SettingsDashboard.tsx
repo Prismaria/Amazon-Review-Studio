@@ -460,6 +460,9 @@ export const SettingsDashboard: React.FC<SettingsDashboardProps> = ({ isOpen, on
                                                     <div className="w-10 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-indigo-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600"></div>
                                                 </div>
                                             </div>
+                                            <p className="text-[10px] font-bold italic uppercase text-amber-800 tracking-wide leading-relaxed mt-2 pt-3 border-t border-amber-100">
+                                                These settings enable real-time cloud sync, just like OneDrive. Any deletions must be fully intentional — they will be reflected in the cloud as well.
+                                            </p>
                                         </div>
                                     </div>
 
@@ -601,7 +604,7 @@ export const SettingsDashboard: React.FC<SettingsDashboardProps> = ({ isOpen, on
                                 <div className="ars-brand">
                                     <Settings size={48} className="ars-brand-icon" />
                                     <h1>Amazon Review Studio</h1>
-                                    <span className="ars-version">v2.0.0-react</span>
+                                    <span className="ars-version">v2.0.16</span>
                                 </div>
                                 <p>A premium userscript for Amazon reviewers.</p>
                                 <Card padding="md">

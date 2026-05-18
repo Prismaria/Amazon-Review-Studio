@@ -2,6 +2,22 @@ import { useState, useCallback } from 'react';
 import { useAlert } from '../context/AlertContext';
 import { useContent } from './useContent';
 import { useSettings } from './useSettings';
+import { parsePastebinProfileFromHtml, profileFromUsername, type PastebinProfile } from '../utils/pastebinProfile';
+import {
+    applyPhrasesImport,
+    applyTemplatesImport,
+    areLocalPhrasesEqual,
+    areLocalTemplatesEqual,
+    areNormalizedPhrasesEqual,
+    areNormalizedTemplatesEqual,
+    normalizePhrasesFromLocal,
+    normalizeTemplatesFromLocal,
+    parseCloudPhrasesFromPaste,
+    parseCloudTemplatesFromPaste,
+    type ImportMode,
+} from '../utils/cloudContentDiff';
+
+const PASTEBIN_HOME_URL = 'https://pastebin.com/';
 
 const PASTEBIN_API_LOGIN_URL = 'https://pastebin.com/api/api_login.php';
 const PASTEBIN_API_POST_URL = 'https://pastebin.com/api/api_post.php';
@@ -67,11 +83,55 @@ function incrementSyncQuota(): number {
     return quota.count;
 }
 
+/** Pastebin list API returns sibling <paste> nodes with no document root; regex is reliable. */
+function parsePastesFromListXml(xmlResponse: string): { key: string; title: string }[] {
+    const pasteMatches = xmlResponse.match(/<paste>([\s\S]*?)<\/paste>/gi);
+    if (!pasteMatches) return [];
+
+    const pastes: { key: string; title: string }[] = [];
+    for (const pasteXml of pasteMatches) {
+        const titleMatch = pasteXml.match(/<paste_title>([^<]*)<\/paste_title>/i);
+        const keyMatch = pasteXml.match(/<paste_key>([^<]*)<\/paste_key>/i);
+        if (titleMatch && keyMatch) {
+            pastes.push({ key: keyMatch[1], title: titleMatch[1] });
+        }
+    }
+    return pastes;
+}
+
 export function usePastebin() {
     const { settings, setSetting } = useSettings();
-    const { alert } = useAlert();
+    const { alert, confirm } = useAlert();
     const [isLoading, setIsLoading] = useState(false);
     const { templates, phrases, saveLocalTemplates, saveLocalPhrases } = useContent();
+
+    const fetchHtml = useCallback(async (url: string) => {
+        // @ts-ignore
+        if (typeof GM_xmlhttpRequest !== 'undefined') {
+            return new Promise<string>((resolve, reject) => {
+                // @ts-ignore
+                GM_xmlhttpRequest({
+                    method: 'GET',
+                    url,
+                    onload: (response: any) => {
+                        if (response.status >= 200 && response.status < 300) resolve(response.responseText);
+                        else reject(new Error(response.responseText || `HTTP ${response.status}`));
+                    },
+                    onerror: (error: any) => reject(error)
+                });
+            });
+        }
+        const response = await fetch(url, { method: 'GET', credentials: 'include' });
+        const text = await response.text();
+        if (!response.ok) throw new Error(text || `HTTP ${response.status}`);
+        return text;
+    }, []);
+
+    const applyPastebinProfile = useCallback((profile: PastebinProfile) => {
+        setSetting('amazon_pastebin_profile_username', profile.username);
+        setSetting('amazon_pastebin_profile_url', profile.profileUrl);
+        setSetting('amazon_pastebin_profile_avatar_url', profile.avatarUrl || '');
+    }, [setSetting]);
 
     const apiRequest = async (url: string, method: 'POST' | 'GET', data?: URLSearchParams) => {
         // @ts-ignore
@@ -124,6 +184,15 @@ export function usePastebin() {
 
             // ONLY save the secure session key. Never save the password.
             setSetting('amazon_pastebin_api_user_key', userKey);
+            applyPastebinProfile(profileFromUsername(username));
+
+            try {
+                const html = await fetchHtml(PASTEBIN_HOME_URL);
+                const parsed = parsePastebinProfileFromHtml(html);
+                if (parsed) applyPastebinProfile(parsed);
+            } catch (e) {
+                console.warn('[Cloud Sync] Could not load Pastebin profile from homepage:', e);
+            }
 
             return userKey;
         } catch (error: any) {
@@ -131,7 +200,30 @@ export function usePastebin() {
         } finally {
             setIsLoading(false);
         }
-    }, [settings, setSetting]);
+    }, [settings, setSetting, applyPastebinProfile, fetchHtml]);
+
+    const fetchPastebinProfile = useCallback(async (): Promise<PastebinProfile | null> => {
+        if (!settings.amazon_pastebin_api_user_key) return null;
+
+        try {
+            const html = await fetchHtml(PASTEBIN_HOME_URL);
+            const parsed = parsePastebinProfileFromHtml(html);
+            if (parsed) {
+                applyPastebinProfile(parsed);
+                return parsed;
+            }
+        } catch (e) {
+            console.warn('[Cloud Sync] Pastebin profile fetch failed:', e);
+        }
+
+        if (settings.amazon_pastebin_profile_username) {
+            const fallback = profileFromUsername(settings.amazon_pastebin_profile_username);
+            applyPastebinProfile(fallback);
+            return fallback;
+        }
+
+        return null;
+    }, [settings.amazon_pastebin_api_user_key, settings.amazon_pastebin_profile_username, fetchHtml, applyPastebinProfile]);
 
 
     const createPaste = useCallback(async (title: string, content: string, format = 'json', privacy = '2') => {
@@ -230,44 +322,23 @@ export function usePastebin() {
         console.log('[Cloud Sync] Raw XML response length:', xmlResponse.length);
         console.log('[Cloud Sync] Raw XML response:', xmlResponse.substring(0, 2000));
 
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(xmlResponse, 'text/xml');
-        const pasteElements = xmlDoc.getElementsByTagName('paste');
+        // Primary: regex (Pastebin returns multiple root-level <paste> nodes; bare DOMParser keeps only one)
+        let pastes = parsePastesFromListXml(xmlResponse);
+        const regexCount = pastes.length;
 
-        console.log('[Cloud Sync] XML parsed paste elements:', pasteElements.length);
-
-        // If XML parsing didn't work properly, try manual parsing as fallback
-        let pastes: { key: string; title: string }[] = [];
-
-        if (pasteElements.length === 0) {
-            console.log('[Cloud Sync] XML parsing may have failed, trying manual parsing...');
-
-            // Manual parsing using regex
-            const pasteMatches = xmlResponse.match(/<paste>([\s\S]*?)<\/paste>/g);
-            if (pasteMatches) {
-                console.log(`[Cloud Sync] Manual parsing found ${pasteMatches.length} pastes`);
-
-                for (const pasteXml of pasteMatches) {
-                    const titleMatch = pasteXml.match(/<paste_title>([^<]+)<\/paste_title>/);
-                    const keyMatch = pasteXml.match(/<paste_key>([^<]+)<\/paste_key>/);
-
-                    if (titleMatch && keyMatch) {
-                        const title = titleMatch[1];
-                        const key = keyMatch[1];
-                        console.log(`[Cloud Sync] Manual parse - Title: "${title}", Key: "${key}"`);
-                        pastes.push({ key, title });
-                    }
-                }
-            }
-        } else {
-            // Use normal XML parsing
+        // Fallback: wrapped DOMParser when regex finds nothing
+        if (pastes.length === 0) {
+            const wrappedXml = `<pastes>${xmlResponse.trim()}</pastes>`;
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(wrappedXml, 'text/xml');
+            const pasteElements = xmlDoc.getElementsByTagName('paste');
             pastes = Array.from(pasteElements).map(node => ({
                 key: node.querySelector('paste_key')?.textContent || node.getElementsByTagName('paste_key')[0]?.textContent || '',
                 title: node.querySelector('paste_title')?.textContent || node.getElementsByTagName('paste_title')[0]?.textContent || '',
-            }));
+            })).filter(p => p.key && p.title);
         }
 
-        console.log(`[Cloud Sync] Total pastes parsed: ${pastes.length}`);
+        console.log(`[Cloud Sync] Total pastes parsed: ${pastes.length} (regex: ${regexCount})`);
         pastes.forEach(p => console.log(`[Cloud Sync] Parsed paste: "${p.title}" (${p.key})`));
 
         return pastes;
@@ -348,46 +419,11 @@ export function usePastebin() {
                 catch { return Math.random().toString(36).substring(2) + Date.now().toString(36); }
             };
 
-            // 1. Fetch Templates (Modern Grouped takes priority but tries to merge if confirmed)
             const modernT = pastes.find(p => p.title === 'Amazon Review Templates');
-            if (modernT) {
-                console.log('[Cloud Sync] Found modern grouped templates.');
-                const confirmRes = await confirm({
-                    title: 'Import Modern Templates?',
-                    text: 'Found grouped templates. Would you like to merge them with your current ones or replace everything?',
-                    icon: 'question',
-                    showCancelButton: true,
-                    confirmButtonText: 'Merge',
-                    denyButtonText: 'Replace',
-                    showDenyButton: true
-                });
+            const modernPhrases = pastes.find(p => p.title === 'Amazon Review Phrases');
+            const legacyPhrases = pastes.find(p => p.title === 'Amazon Review Template: Amazon Review Phrases');
+            const phrasePaste = modernPhrases || legacyPhrases;
 
-                if (confirmRes.isConfirmed || confirmRes.isDenied) {
-                    const data = JSON.parse(await getPasteContent(modernT.key));
-                    const tList = data.templates || data;
-                    if (Array.isArray(tList)) {
-                        if (confirmRes.isDenied) currentTemplates = []; // Replace mode
-
-                        tList.forEach((t: any) => {
-                            const name = t.name || t.title;
-                            const text = t.text || t.content;
-                            const height = t.height || t.editorHeight;
-                            if (!name || !text) return;
-
-                            const idx = currentTemplates.findIndex(et => et.title === name);
-                            if (idx >= 0) {
-                                currentTemplates[idx] = { ...currentTemplates[idx], content: text, editorHeight: height };
-                            } else {
-                                currentTemplates.push({ id: generateId(), title: name, content: text, editorHeight: height });
-                            }
-                            importedTemplatesCount++;
-                        });
-                    }
-                }
-            }
-
-            // 2. Fetch Legacy Individual Templates (ALWAYS check and merge)
-            console.log('[Cloud Sync] Checking for legacy individual templates...');
             const legacyT = pastes.filter(p => {
                 const hasPrefix = p.title.startsWith('Amazon Review Template:') || p.title.startsWith('Amazon Review Template: ');
                 const isPhrases = p.title.includes('Amazon Review Phrases');
@@ -395,8 +431,61 @@ export function usePastebin() {
                 return hasPrefix && !isPhrases && !isReview;
             });
 
-            if (legacyT.length > 0) {
-                console.log(`[Cloud Sync] Found ${legacyT.length} legacy templates. Merging...`);
+            let cloudTemplates = modernT
+                ? parseCloudTemplatesFromPaste(await getPasteContent(modernT.key))
+                : [];
+            let cloudPhrases = phrasePaste
+                ? parseCloudPhrasesFromPaste(await getPasteContent(phrasePaste.key))
+                : [];
+
+            const localTemplatesNorm = normalizeTemplatesFromLocal(templates);
+            const localPhrasesNorm = normalizePhrasesFromLocal(phrases);
+            const localTemplatesEmpty = templates.length === 0;
+            const localPhrasesEmpty = phrases.length === 0;
+            const cloudTemplatesEmpty = cloudTemplates.length === 0;
+            const cloudPhrasesEmpty = cloudPhrases.length === 0;
+
+            const templatesEqual = areNormalizedTemplatesEqual(localTemplatesNorm, cloudTemplates);
+            const phrasesEqual = areNormalizedPhrasesEqual(localPhrasesNorm, cloudPhrases);
+
+            const templatesNeedDialog = !localTemplatesEmpty && !cloudTemplatesEmpty && !templatesEqual;
+            const phrasesNeedDialog = !localPhrasesEmpty && !cloudPhrasesEmpty && !phrasesEqual;
+
+            let importMode: ImportMode = 'merge';
+
+            if (templatesNeedDialog || phrasesNeedDialog) {
+                const differs: string[] = [];
+                if (templatesNeedDialog) differs.push('templates');
+                if (phrasesNeedDialog) differs.push('phrases');
+
+                const confirmRes = await confirm({
+                    title: 'Cloud data differs from local',
+                    text: `Pastebin ${differs.join(' and ')} differ from this device. Merge cloud into local, replace local with cloud, or cancel?`,
+                    icon: 'info',
+                    showCancelButton: true,
+                    confirmButtonText: 'Merge',
+                    denyButtonText: 'Replace',
+                    showDenyButton: true,
+                });
+
+                if (!confirmRes.isConfirmed && !confirmRes.isDenied) {
+                    return { success: false, message: 'Import cancelled.' };
+                }
+                importMode = confirmRes.isDenied ? 'replace' : 'merge';
+            }
+
+            // Modern grouped templates
+            if (modernT && !cloudTemplatesEmpty && !templatesEqual) {
+                console.log('[Cloud Sync] Applying modern grouped templates.');
+                const mode: ImportMode = localTemplatesEmpty ? 'replace' : importMode;
+                const result = applyTemplatesImport(templates, cloudTemplates, mode, generateId);
+                currentTemplates = result.items;
+                importedTemplatesCount += result.importedCount;
+            }
+
+            // Legacy individual templates: only when local empty, no modern paste, legacy exists
+            if (localTemplatesEmpty && !modernT && legacyT.length > 0) {
+                console.log(`[Cloud Sync] No modern paste; importing ${legacyT.length} legacy template(s).`);
                 for (const p of legacyT) {
                     try {
                         const name = p.title.replace(/^Amazon Review Template:\s*/, '').trim();
@@ -404,56 +493,64 @@ export function usePastebin() {
 
                         const content = await getPasteContent(p.key);
                         let text = content;
-                        let height: any = undefined;
+                        let height: number | undefined = undefined;
                         let templateName = name;
 
                         if (content.trim().startsWith('{')) {
                             try {
                                 const data = JSON.parse(content);
                                 text = data.text || data.content || content;
-                                height = data.height || data.editorHeight;
+                                height = data.height ?? data.editorHeight;
                                 if (data.name) templateName = data.name;
                             } catch (e) { console.warn(`[Cloud Sync] Legacy JSON parse fail for ${p.title}`); }
                         }
 
                         const idx = currentTemplates.findIndex(et => et.title === templateName);
                         if (idx >= 0) {
-                            currentTemplates[idx] = { ...currentTemplates[idx], content: text, editorHeight: height };
+                            const prev = currentTemplates[idx];
+                            if (prev.content !== text || prev.editorHeight !== height) {
+                                importedTemplatesCount++;
+                            }
+                            currentTemplates[idx] = { ...prev, content: text, editorHeight: height };
                         } else {
-                            currentTemplates.push({ id: generateId(), title: templateName, content: text, editorHeight: height });
+                            currentTemplates.push({
+                                id: generateId(),
+                                title: templateName,
+                                content: text,
+                                editorHeight: height,
+                            });
+                            importedTemplatesCount++;
                         }
-                        importedTemplatesCount++;
-                    } catch (err) { console.error(`[Cloud Sync] Legacy import fail: ${p.title}`, err); }
+                    } catch (err) {
+                        console.error(`[Cloud Sync] Legacy import fail: ${p.title}`, err);
+                    }
                 }
             }
 
-            // 3. Fetch Phrases
-            let phrasePaste = pastes.find(p => p.title === 'Amazon Review Phrases' || p.title === 'Amazon Review Template: Amazon Review Phrases');
-
-            if (phrasePaste) {
-                console.log(`[Cloud Sync] Found phrases list.`);
-                const data = JSON.parse(await getPasteContent(phrasePaste.key));
-                const pList = data.phrases || data;
-                if (Array.isArray(pList)) {
-                    pList.forEach((p: any) => {
-                        const label = p.name || p.label || '';
-                        const text = p.text || p.content;
-                        if (!text) return;
-                        const idx = currentPhrases.findIndex(ep => ep.content === text);
-                        if (idx === -1) {
-                            currentPhrases.push({ id: generateId(), label, content: text });
-                            importedPhrasesCount++;
-                        } else if (label && !currentPhrases[idx].label) {
-                            currentPhrases[idx].label = label;
-                        }
-                    });
-                }
+            // Phrases (modern preferred paste title already resolved via phrasePaste)
+            if (phrasePaste && !cloudPhrasesEmpty && !phrasesEqual) {
+                console.log(`[Cloud Sync] Applying phrases from "${phrasePaste.title}".`);
+                const mode: ImportMode = localPhrasesEmpty ? 'replace' : importMode;
+                const result = applyPhrasesImport(phrases, cloudPhrases, mode, generateId);
+                currentPhrases = result.items;
+                importedPhrasesCount += result.importedCount;
             }
 
-            if (importedTemplatesCount > 0 || importedPhrasesCount > 0) {
+            const templatesChanged = !areLocalTemplatesEqual(templates, currentTemplates);
+            const phrasesChanged = !areLocalPhrasesEqual(phrases, currentPhrases);
+
+            if (templatesChanged || phrasesChanged) {
                 saveLocalTemplates(currentTemplates);
                 saveLocalPhrases(currentPhrases);
-                return { success: true, message: `Imported ${importedTemplatesCount} templates and ${importedPhrasesCount} phrases.` };
+                return {
+                    success: true,
+                    message: `Imported ${importedTemplatesCount} templates and ${importedPhrasesCount} phrases.`,
+                };
+            }
+
+            const hadCloudData = !cloudTemplatesEmpty || !cloudPhrasesEmpty || (localTemplatesEmpty && !modernT && legacyT.length > 0);
+            if (hadCloudData) {
+                return { success: true, message: 'Already up to date with cloud.' };
             }
 
             return { success: false, message: 'No sync data found in cloud' };
@@ -851,6 +948,7 @@ Please do not comment on this paste directly, thank you.
         findRecoveryPasteID,
         saveUserKeyToCloud,
         clearCloudData,
+        fetchPastebinProfile,
         getSyncQuota // Exposed for UI display
     };
 }

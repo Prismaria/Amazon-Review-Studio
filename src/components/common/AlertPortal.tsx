@@ -9,11 +9,14 @@ interface AlertProps {
     html?: string;
     icon?: 'success' | 'error' | 'warning' | 'info';
     showCancelButton?: boolean;
+    showDenyButton?: boolean;
     confirmButtonText?: string;
     cancelButtonText?: string;
+    denyButtonText?: string;
     confirmButtonColor?: string;
     cancelButtonColor?: string;
-    resolve: (value: { isConfirmed: boolean }) => void;
+    denyButtonColor?: string;
+    resolve: (value: { isConfirmed: boolean; isDenied?: boolean }) => void;
 }
 
 const IconMap = {
@@ -61,15 +64,24 @@ export const AlertPortal: React.FC<{ alerts: AlertProps[] }> = ({ alerts }) => {
                             <div className="mt-8 flex flex-wrap gap-3 w-full">
                                 {alert.showCancelButton && (
                                     <button
-                                        onClick={() => alert.resolve({ isConfirmed: false })}
+                                        onClick={() => alert.resolve({ isConfirmed: false, isDenied: false })}
                                         className="flex-1 px-6 py-3 rounded-xl font-bold text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors border border-gray-100 dark:border-gray-700"
                                         style={{ backgroundColor: alert.cancelButtonColor }}
                                     >
                                         {alert.cancelButtonText || 'Cancel'}
                                     </button>
                                 )}
+                                {alert.showDenyButton && (
+                                    <button
+                                        onClick={() => alert.resolve({ isConfirmed: false, isDenied: true })}
+                                        className="flex-1 px-6 py-3 rounded-xl font-bold text-amber-700 hover:bg-amber-50 dark:hover:bg-amber-900/20 transition-colors border border-amber-100 dark:border-amber-800"
+                                        style={{ backgroundColor: alert.denyButtonColor }}
+                                    >
+                                        {alert.denyButtonText || 'No'}
+                                    </button>
+                                )}
                                 <button
-                                    onClick={() => alert.resolve({ isConfirmed: true })}
+                                    onClick={() => alert.resolve({ isConfirmed: true, isDenied: false })}
                                     className="flex-1 px-6 py-3 rounded-xl font-bold text-white shadow-lg shadow-indigo-200 dark:shadow-none transition-all hover:scale-[1.02] active:scale-[0.98]"
                                     style={{ backgroundColor: alert.confirmButtonColor || '#4f46e5' }}
                                 >

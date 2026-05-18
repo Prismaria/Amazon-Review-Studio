@@ -127,6 +127,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                 method,
                 headers,
             };
+            if (method === 'GET' && url.includes('pastebin.com')) {
+                options.credentials = 'include';
+            }
             if (bodyData) {
                 options.body = bodyData;
             }

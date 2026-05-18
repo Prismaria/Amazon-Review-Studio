@@ -101,6 +101,116 @@
     box-shadow: 0 0 0 1px var(--ars-color-primary);
 }
 
+.ars-ai-additional-block {
+    width: 100%;
+    margin-top: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    box-sizing: border-box;
+}
+
+.ars-ai-additional-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+    min-width: 0;
+}
+
+.ars-ai-additional-head .ars-label {
+    margin-bottom: 0;
+}
+
+.ars-ai-additional-save-enter {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--ars-color-text-secondary);
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.ars-ai-additional-fields-row {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.ars-ai-additional-fields-row .ars-ai-additional-presets-row {
+    flex: 0 1 44%;
+    min-width: 0;
+    max-width: 50%;
+}
+
+.ars-ai-additional-fields-row .ars-ai-additional-input {
+    flex: 1 1 0;
+    min-width: 0;
+    width: auto;
+}
+
+.ars-ai-additional-presets-row {
+    display: flex;
+    gap: 6px;
+    align-items: stretch;
+    min-width: 0;
+}
+
+.ars-ai-additional-presets-row .ars-ai-additional-presets-select {
+    flex: 1;
+    min-width: 0;
+    width: auto;
+    height: 32px;
+    font-size: var(--ars-font-size-xs);
+    box-sizing: border-box;
+}
+
+.ars-ai-additional-preset-remove {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--ars-color-border);
+    border-radius: var(--ars-radius-sm);
+    background: var(--ars-color-bg-main);
+    color: var(--ars-color-text-secondary);
+    cursor: pointer;
+    opacity: 0.55;
+    transition:
+        opacity var(--ars-anim-fast),
+        border-color var(--ars-anim-fast),
+        color var(--ars-anim-fast);
+}
+
+.ars-ai-additional-preset-remove:hover {
+    opacity: 1;
+    color: var(--ars-color-error);
+    border-color: rgba(186, 9, 51, 0.35);
+}
+
+.ars-ai-additional-preset-remove:focus-visible {
+    outline: 2px solid var(--ars-color-primary);
+    outline-offset: 1px;
+}
+
+.ars-ai-additional-input {
+    box-sizing: border-box;
+}
+
 .ars-ai-prompt-section {
     display: flex;
     flex-direction: column;
@@ -175,4 +285,9 @@
 .ars-dark-mode .ars-select:focus {
     border-color: var(--ars-color-primary) !important;
     box-shadow: 0 0 0 1px var(--ars-color-primary);
+}
+
+.ars-dark-mode .ars-ai-additional-preset-remove {
+    background-color: var(--ars-color-bg-secondary) !important;
+    border-color: var(--ars-color-border) !important;
 }

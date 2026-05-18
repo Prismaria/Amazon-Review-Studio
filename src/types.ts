@@ -41,6 +41,9 @@ export interface AppSettings {
     amazon_pastebin_api_dev_key: string;
     amazon_pastebin_api_user_key: string;
     amazon_pastebin_recovery_id: string;
+    amazon_pastebin_profile_username: string;
+    amazon_pastebin_profile_url: string;
+    amazon_pastebin_profile_avatar_url: string;
     amazon_pastebin_privacy_mode: boolean;
     amazon_sync_images: boolean;
     amazon_auto_save_images: boolean;
@@ -118,6 +121,9 @@ export const DEFAULT_SETTINGS: AppSettings = {
     amazon_pastebin_api_dev_key: '',
     amazon_pastebin_api_user_key: '',
     amazon_pastebin_recovery_id: '',
+    amazon_pastebin_profile_username: '',
+    amazon_pastebin_profile_url: '',
+    amazon_pastebin_profile_avatar_url: '',
     amazon_pastebin_privacy_mode: false,
     amazon_sync_images: true,
     amazon_auto_save_images: true,
